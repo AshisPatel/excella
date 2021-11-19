@@ -5956,29 +5956,19 @@ body {
           animation: fadeIn 0.25s linear forwards;
 }
 
-@media screen and (max-width: 760px) {
-  .sl-form {
-    min-height: 22vh;
-    width: 80vw;
-    position: absolute;
-    top: calc((70vh - 22vh)/2);
-    left: calc((100vw - 80vw)/2);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
-@media screen and (min-width: 800px) {
-  .sl-form {
-    min-height: 32vh;
-    width: 25vw;
-    position: absolute;
-    top: calc((70vh - 32vh)/2);
-    left: calc((100vw - 25vw)/2);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+.sl-form {
+  max-height: 20rem;
+  max-width: 20rem;
+  height: 10rem;
+  width: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }/*# sourceMappingURL=style.css.map */

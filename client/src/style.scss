@@ -37,42 +37,22 @@ body {
     // overflow: hidden; 
 }
 
-@mixin sl-styling($sl-height, $sl-width){
-    .sl-form {
-        min-height: $sl-height;
-        width: $sl-width; 
-        position: absolute; 
-        top: calc((70vh - #{$sl-height})/2);
-        left: calc((100vw - #{$sl-width})/2); 
-        z-index: 10; 
-        display: flex;
-        flex-direction: column; 
-        justify-content: space-between; 
-    }
+.sl-form {
+    max-height: 20rem;
+    max-width: 20rem; 
+    height: 10rem; 
+    width: 80%;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto; 
+    z-index: 10; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
 }
-
-@media screen and (max-width: 760px) {
-    @include sl-styling($sl-height: 22vh, $sl-width: 80vw)
-}
-
-@media screen and (min-width: 800px) {
-    @include sl-styling($sl-height: 32vh, $sl-width: 25vw)
-}
-
-// $sl-height: 32vh; 
-// $sl-width: 25vw; 
-
-// .sl-form {
-//     min-height: $sl-height;
-//     width: $sl-width; 
-//     position: absolute; 
-//     top: calc((100vh - #{$sl-height})/2);
-//     left: calc((100vw - #{$sl-width})/2); 
-//     z-index: 10; 
-//     display: flex;
-//     flex-direction: column; 
-//     justify-content: space-between; 
-// }
 
 
 
