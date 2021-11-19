@@ -5957,6 +5957,9 @@ body {
 }
 
 .sl-form {
+  background: linear-gradient(0deg, #00CDCD, #3CD184);
+  padding: 2rem;
+  border-radius: 0.5rem;
   max-height: 20rem;
   max-width: 20rem;
   height: 10rem;
