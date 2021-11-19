@@ -1,11 +1,23 @@
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/root";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/type";
-@import "../node_modules/bootstrap/scss/images";
-@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/utilities/api";
 @import "../node_modules/bootstrap/scss/grid";
+
+// custom colors
+$black: #282828;
+$white: #EBECE9;
+$light-blue: #00CDCD;
+$light-green: #3CD184;
+$light-purple: #C175FF;
+$light-red: #E23C57;
+$red: #B11B34;
+$blue: #008F8F;
+$green: #23955A;
+$purple: #8700F5;
+
+
+
 
 
