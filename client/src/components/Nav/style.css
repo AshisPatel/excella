@@ -1,0 +1,13 @@
+.nav-btn {
+  color: #282828;
+  background: transparent;
+  border: 1px solid #282828;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  width: 5rem;
+  transition: background-color 0.2s linear, color 0.2s linear;
+}
+.nav-btn:hover {
+  color: #EBECE9;
+  background: #282828;
+}/*# sourceMappingURL=style.css.map */

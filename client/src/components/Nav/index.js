@@ -1,14 +1,17 @@
 import React from "react";
+import './style.css';
 
-const Nav = () => {
+const Nav = (props) => {
+
+    const { setShowLogin, setShowSignup } = props; 
+
     return (
         <nav className='d-flex justify-content-between'>
             <h1>Excella</h1>
-            <div className='d-flex justify-content-between'>
-                <button className='me-2'>Login</button>
-                <button className='me-2'>Signup</button>
+            <div className='d-flex justify-content-between my-auto'>
+                <button className='me-2 nav-btn'>Login</button>
+                <button className='me-2 nav-btn'>Signup</button>
             </div>
-
         </nav>
     );
 };

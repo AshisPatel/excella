@@ -7,7 +7,7 @@
 
 // custom colors
 $black: #282828;
-$white: #EBECE9;
+$white: #F0EAD6;
 $light-blue: #00CDCD;
 $light-green: #3CD184;
 $light-purple: #C175FF;
@@ -17,7 +17,9 @@ $blue: #008F8F;
 $green: #23955A;
 $purple: #8700F5;
 
-
+body {
+    background: $white; 
+}
 
 
 
