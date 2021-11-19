@@ -5941,4 +5941,44 @@
 }
 body {
   background: #F0EAD6;
+}
+
+.modal-backdrop {
+  background: rgba(40, 40, 40, 0.5);
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  -webkit-animation: fadeIn 0.25s linear forwards;
+          animation: fadeIn 0.25s linear forwards;
+}
+
+@media screen and (max-width: 760px) {
+  .sl-form {
+    min-height: 22vh;
+    width: 80vw;
+    position: absolute;
+    top: calc((70vh - 22vh)/2);
+    left: calc((100vw - 80vw)/2);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 800px) {
+  .sl-form {
+    min-height: 32vh;
+    width: 25vw;
+    position: absolute;
+    top: calc((70vh - 32vh)/2);
+    left: calc((100vw - 25vw)/2);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }/*# sourceMappingURL=style.css.map */

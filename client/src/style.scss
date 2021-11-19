@@ -21,5 +21,58 @@ body {
     background: $white; 
 }
 
+.modal-backdrop {
+    background: rgba($black, 0.5);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left:0;
+    z-index: 1;
+    animation: fadeIn 0.25s linear forwards; 
+}
+
+.modal-wrapper {
+    // overflow: hidden; 
+}
+
+@mixin sl-styling($sl-height, $sl-width){
+    .sl-form {
+        min-height: $sl-height;
+        width: $sl-width; 
+        position: absolute; 
+        top: calc((70vh - #{$sl-height})/2);
+        left: calc((100vw - #{$sl-width})/2); 
+        z-index: 10; 
+        display: flex;
+        flex-direction: column; 
+        justify-content: space-between; 
+    }
+}
+
+@media screen and (max-width: 760px) {
+    @include sl-styling($sl-height: 22vh, $sl-width: 80vw)
+}
+
+@media screen and (min-width: 800px) {
+    @include sl-styling($sl-height: 32vh, $sl-width: 25vw)
+}
+
+// $sl-height: 32vh; 
+// $sl-width: 25vw; 
+
+// .sl-form {
+//     min-height: $sl-height;
+//     width: $sl-width; 
+//     position: absolute; 
+//     top: calc((100vh - #{$sl-height})/2);
+//     left: calc((100vw - #{$sl-width})/2); 
+//     z-index: 10; 
+//     display: flex;
+//     flex-direction: column; 
+//     justify-content: space-between; 
+// }
+
 
 
