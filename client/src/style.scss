@@ -39,7 +39,6 @@ body {
 
 .sl-form {
     background: $black;
-    text-align: center; 
     // background-color: $white; 
     padding: 2rem; 
     border-radius: 0.5rem; 
@@ -58,8 +57,9 @@ body {
     flex-direction: column; 
     justify-content: space-between; 
 
-    & input {
+    & .text-input {
         width: 100%; 
+        z-index: 2;
         border-radius: 0.5rem; 
         height: 3rem; 
         margin-top: 0.5rem;
@@ -67,6 +67,7 @@ body {
         border: none; 
         color: $white;
         background-color: rgba($white, 0.3);
+        text-align: center; 
         font-size: 1.2rem;
         &:focus {
             outline: none;
@@ -91,8 +92,50 @@ body {
     left: 1.5rem;
     right: 0;
     bottom: 0; 
-    text-align: start;
+    width: 0.1rem; 
 }
+
+.show-btn {
+    text-align: center; 
+    position: absolute;
+    appearance: none; 
+    width: 4rem;
+    height: 2rem;
+    border-radius: 0.5rem; 
+    background-color: $white; 
+    color: $black;
+    top: 1rem;
+    left: 85%;
+    bottom: 0;
+    border: none;
+    transition: background-color 0.2s linear, color 0.2s linear;
+
+    &:hover {
+        background-color: rgba($white, 0.8);
+    }
+}
+
+.show-btn-clicked {
+    text-align: center; 
+    position: absolute;
+    appearance: none; 
+    width: 4rem;
+    height: 2rem;
+    border-radius: 0.5rem; 
+    background-color: $black; 
+    color: $white;
+    top: 1rem;
+    left: 85%;
+    bottom: 0;
+    border: none;
+    transition: background-color 0.2s linear, color 0.2s linear;
+
+    &:hover {
+        background-color: rgba($black, 0.6);
+    }
+}
+
+
 
 
 
