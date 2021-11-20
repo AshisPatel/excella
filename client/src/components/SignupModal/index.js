@@ -47,7 +47,7 @@ const SignupModal = ({ setShowSignup }) => {
             setLoading(false);
             setWarning('');
             closeHandler();
-        }, 5000)
+        }, 3000)
 
      
 
