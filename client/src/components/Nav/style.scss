@@ -9,6 +9,16 @@ $blue: #008F8F;
 $green: #23955A;
 $purple: #8700F5;
 
+#top-nav {
+    display: flex;
+    justify-content:  space-between;
+  
+    & .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin: auto 0 auto 0; 
+    }
+  }
 
 .nav-btn {
     color: $black; 
@@ -16,6 +26,7 @@ $purple: #8700F5;
     border: 1px solid $black;
     border-radius: 0.5rem; 
     height: 2.5rem; 
+    margin-right: 1rem; 
     width: 5rem; 
     transition: background-color 0.2s linear, color 0.2s linear;
     

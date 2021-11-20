@@ -13,10 +13,10 @@ const Nav = (props) => {
     const { setShowLogin, setShowSignup } = props;
 
     return (
-        <nav className='d-flex justify-content-between'>
+        <nav id='top-nav'>
             <h1>Excella</h1>
 
-            <div className='d-flex justify-content-between my-auto'>
+            <div className='btn-container'>
                 {loggedIn ?
                     <button
                         className='nav-btn'
@@ -27,13 +27,13 @@ const Nav = (props) => {
                     :
                     <>
                         <button
-                            className='me-2 nav-btn'
+                            className='nav-btn'
                             onClick={() => setShowLogin(true)}
                         >
                             Login
                         </button>
                         <button
-                            className='me-2 nav-btn'
+                            className='nav-btn'
                             onClick={() => setShowSignup(true)}
                         >
                             Signup
