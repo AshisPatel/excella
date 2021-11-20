@@ -166,6 +166,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                         className="button"
                         type="button"
                         onClick={getSignup}
+                        disabled={loading ? true : false}
                     >
                         Signup
                     </button>
