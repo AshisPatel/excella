@@ -5715,10 +5715,9 @@ body {
   background: #282828;
   padding: 2rem;
   border-radius: 0.5rem;
-  max-height: 30rem;
   max-width: 30rem;
-  height: 22rem;
-  width: 80%;
+  height: 32rem;
+  width: 75%;
   position: absolute;
   top: 0;
   left: 0;
@@ -5736,6 +5735,18 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.sl-form h2 {
+  font-weight: bold;
+  text-align: center;
+  color: #EBECE9;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.sl-form h2 span {
+  color: #00CDCD;
 }
 
 .sl-form .text-input {
@@ -5777,6 +5788,39 @@ body {
   color: #EBECE9;
 }
 
+.sl-form .button {
+  border: none;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  height: 3rem;
+  -webkit-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+}
+
+.sl-form .button:hover {
+  background-color: #00CDCD;
+}
+
+.sl-form .button:focus {
+  background-color: #00CDCD;
+}
+
+.close-btn {
+  position: absolute;
+  color: white;
+  top: 1rem;
+  right: 0;
+  left: 92%;
+}
+
+.close-btn:hover {
+  color: #00CDCD;
+}
+
+.inputs {
+  margin-bottom: 0.5rem;
+}
+
 .input-wrapper {
   position: relative;
 }
@@ -5798,7 +5842,7 @@ body {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  width: 4rem;
+  width: 3.5rem;
   height: 2rem;
   border-radius: 0.5rem;
   background-color: #EBECE9;
@@ -5821,7 +5865,7 @@ body {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  width: 4rem;
+  width: 3.5rem;
   height: 2rem;
   border-radius: 0.5rem;
   background-color: #282828;
@@ -5836,5 +5880,63 @@ body {
 
 .show-btn-clicked:hover {
   background-color: rgba(40, 40, 40, 0.6);
+}
+
+@media screen and (max-width: 425px) {
+  .sl-form .text-input {
+    font-size: 1rem;
+  }
+  .sl-form .text-input::-webkit-input-placeholder {
+    font-size: 1rem;
+  }
+  .sl-form .text-input:-ms-input-placeholder {
+    font-size: 1rem;
+  }
+  .sl-form .text-input::-ms-input-placeholder {
+    font-size: 1rem;
+  }
+  .sl-form .text-input::placeholder {
+    font-size: 1rem;
+  }
+  .show-btn {
+    width: 2rem;
+    font-size: .5rem;
+    font-weight: bold;
+  }
+  .show-btn-clicked {
+    width: 2rem;
+    font-size: .5rem;
+    font-weight: bold;
+  }
+}
+
+.divider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #EBECE9;
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.divider:before {
+  content: "";
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  border-bottom: 1px solid #EBECE9;
+  margin: auto;
+  margin-right: 0.75rem;
+}
+
+.divider:after {
+  content: "";
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  border-bottom: 1px solid #EBECE9;
+  margin: auto;
+  margin-left: 0.75rem;
 }
 /*# sourceMappingURL=style.css.map */
