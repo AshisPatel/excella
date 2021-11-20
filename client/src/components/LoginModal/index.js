@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // remove these once authentication is added
 import { login } from "../../redux/loggedIn";
 import { useDispatch } from "react-redux";
+import validateEmail from "../../utils/validateEmail";
+import validatePassword from "../../utils/validatePassword";
+import validateUsername from "../../utils/validateUsername";
 
 const LoginModal = ({ setShowSignup, setShowLogin }) => {
 
@@ -24,26 +27,25 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
         e.preventDefault();
         // check all inputs
         const {username, email, password} = formState; 
-        if(!username) {
-            return setWarning('Please include a username');
+        if(!username || !validateUsername(username)) {
+            return setWarning('Please include a valid username');
         }
 
-        if(!email) {
+        if(!email || !validateEmail(email)) {
             return setWarning('Please include a valid email');
         }
 
          // check valid password
-        if(!password) {
+        if(!password || !validatePassword(password)) {
             return setWarning('Please include a valid password');
         }
 
-
         // async query to see if this matches any valid user and then log in user 
-        setLoading(true)
+        setLoading(true);
+        setWarning('');
         setTimeout(() => {
             setLoading(false);
             setSuccess(true);
-            setWarning('');
             // remove this once authentication is added
             dispatch(login());
         }, 3000)

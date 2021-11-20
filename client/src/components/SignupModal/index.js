@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import validateEmail from "../../utils/validateEmail";
+import validatePassword from "../../utils/validatePassword";
+import validateUsername from "../../utils/validateUsername";
 // remove these once authentication is added
 import { login } from "../../redux/loggedIn";
 import { useDispatch } from "react-redux";
@@ -28,8 +30,8 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
         // check all inputs
         const {username, email, password, confirmPassword} = formState; 
 
-        if(!username) {
-            return setWarning('Please include a username');
+        if(!username || !validateUsername(username)) {
+            return setWarning('Please include a valid username');
         }
 
         if(!email || !validateEmail(email)) {
@@ -37,11 +39,11 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
         }
 
          // check valid password
-        if(!password) {
+        if(!password || !validatePassword(password)) {
             return setWarning('Please include a valid password');
         }
 
-        if(!confirmPassword) {
+        if(!confirmPassword || !validatePassword(confirmPassword)) {
             return setWarning('Please confirm your password');
         }
 
@@ -61,9 +63,6 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
         setTimeout(() => {
             closeHandler();
         }, 3500);
-
-     
-
     }
 
     const handleChange = (e) => {
