@@ -45,7 +45,7 @@ body {
     // max-height: 30rem;
     max-width: 30rem; 
     height: 32rem; 
-    width: 75%;
+    width: 85%;
     position: absolute; 
     top: 0;
     left: 0;
@@ -90,6 +90,14 @@ body {
         }
     }
 
+    & .warning {
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 0;
+        color: $light-red;
+    }
+
     & .button {
         border: none;
         font-size: 1.5rem; 
@@ -111,10 +119,10 @@ body {
     color: white;
     top: 1rem;
     right: 0;
-    left: 92%; 
-
+    left: 92%;   
+    transition: color 0.2s linear; 
     &:hover {
-        color: $light-blue;
+        color: $light-red;
     }
 }
 
@@ -226,7 +234,37 @@ body {
     }
 }
 
+// keyframe animations
 
+.slide-in {
+    animation: slide-in 0.2s linear forwards;
+}
+
+.slide-out {
+    animation: slide-out 0.2s linear forwards; 
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateY(-50vh);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0); 
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateY(0);
+        opacity: 1; 
+    }
+    to {
+        transform: translateY(-50vh);
+        opacity: 0;  
+    }
+}
 
 
 

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import validateEmail from "../../utils/validateEmail";
 
 const SignupModal = ({ setShowSignup }) => {
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [fadeOut, setFadeOut] = useState(false);
     const [formState, setFormState] = useState({
         username: '',
         email: '',
@@ -12,13 +15,51 @@ const SignupModal = ({ setShowSignup }) => {
         confirmPassword: ''
     });
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // check all inputs
+        const {username, email, password, confirmPassword} = formState; 
+
+        if(!username) {
+            return setWarning('Please include a username');
+        }
+
+        if(!email || !validateEmail(email)) {
+            return setWarning('Please include a valid email');
+        }
+
+         // check valid password
+        if(!password) {
+            return setWarning('Please include a valid password');
+        }
+
+        if(!confirmPassword) {
+            return setWarning('Please confirm your password');
+        }
+
+        if(password !== confirmPassword) {
+            return setWarning('Your password does not match')
+        }
+
+        // async query to create account here and set user to be logged in
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false);
+            setWarning('');
+            closeHandler();
+        }, 5000)
+
+     
+
+    }
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
         setFormState(prevFormState =>
             ({
                 ...prevFormState,
-                [name]: value
+                [name]: value.trim()
             })
         );
     }
@@ -35,14 +76,24 @@ const SignupModal = ({ setShowSignup }) => {
 
     }
 
+    const closeHandler = () => {
+        setFadeOut(true);
+        setTimeout(() => {
+            setShowSignup(false);
+        }, 300)
+    }
+
     return (
         <>
             <div className="modal-wrapper">
-                <form className='sl-form'>
+                <form 
+                    className={`sl-form ${fadeOut ? 'slide-out' : 'slide-in'}`}
+                    onSubmit={handleSubmit}
+                >
                     <span 
                         className="close-btn" 
                         aria-label="close"
-                        onClick={() => setShowSignup(false)}    
+                        onClick={closeHandler}    
                     >
                             <FontAwesomeIcon icon="window-close"/>
                     </span>
@@ -97,6 +148,7 @@ const SignupModal = ({ setShowSignup }) => {
                                 className={showPassword ? 'show-btn-clicked' : 'show-btn'}
                                 onClick={toggleShow}
                                 id='show-password'
+                                type="button"
                             >
                                 Show
                             </button>
@@ -118,13 +170,17 @@ const SignupModal = ({ setShowSignup }) => {
                                 className={showConfirmPassword ? 'show-btn-clicked' : 'show-btn'}
                                 onClick={toggleShow}
                                 id='show-confirm-password'
+                                type="button"
                             >
                                 Show
                             </button>
                         </div>
                     </div>
+                    <p className="warning">
+                        {warning}
+                    </p>
                     <button className="button">
-                        Create Account
+                        {loading ? "Creation In Progress..." : "Create Account"}
                     </button>
                     <span className="divider">Already have an account?</span>
                     <button className="button">
