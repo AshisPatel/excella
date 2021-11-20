@@ -5,9 +5,12 @@
   border-radius: 0.5rem;
   height: 2.5rem;
   width: 5rem;
+  -webkit-transition: background-color 0.2s linear, color 0.2s linear;
   transition: background-color 0.2s linear, color 0.2s linear;
 }
+
 .nav-btn:hover {
   color: #EBECE9;
   background: #282828;
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */

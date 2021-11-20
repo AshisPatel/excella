@@ -7,7 +7,7 @@
 
 // custom colors
 $black: #282828;
-$white: #F0EAD6;
+$white: #EBECE9;
 $light-blue: #00CDCD;
 $light-green: #3CD184;
 $light-purple: #C175FF;
@@ -38,12 +38,14 @@ body {
 }
 
 .sl-form {
-    background: linear-gradient(0deg, $light-blue,$light-green);
+    background: $black;
+    text-align: center; 
+    // background-color: $white; 
     padding: 2rem; 
     border-radius: 0.5rem; 
-    max-height: 20rem;
-    max-width: 20rem; 
-    height: 10rem; 
+    max-height: 30rem;
+    max-width: 30rem; 
+    height: 22rem; 
     width: 80%;
     position: absolute; 
     top: 0;
@@ -55,6 +57,41 @@ body {
     display: flex;
     flex-direction: column; 
     justify-content: space-between; 
+
+    & input {
+        width: 100%; 
+        border-radius: 0.5rem; 
+        height: 3rem; 
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; 
+        border: none; 
+        color: $white;
+        background-color: rgba($white, 0.3);
+        font-size: 1.2rem;
+        &:focus {
+            outline: none;
+            background-color: rgba($white, 0.5);
+        }
+        &::placeholder {
+            text-align: center;
+            color: $white;
+        }
+    }
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.icon-wrapper {
+    position: absolute; 
+    color: $white; 
+    font-size: 1.5rem; 
+    top: 1.25rem;
+    left: 1.5rem;
+    right: 0;
+    bottom: 0; 
+    text-align: start;
 }
 
 
