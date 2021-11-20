@@ -5813,6 +5813,11 @@ body {
   background-color: #00CDCD;
 }
 
+.sl-form .success {
+  background-color: #3CD184 !important;
+  color: #EBECE9 !important;
+}
+
 .close-btn {
   position: absolute;
   color: white;

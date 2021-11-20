@@ -112,6 +112,11 @@ body {
             background-color: $light-blue;
         }
     }
+
+    & .success {
+        background-color: $light-green !important;
+        color: $white !important; 
+    }
 }
 
 .close-btn {

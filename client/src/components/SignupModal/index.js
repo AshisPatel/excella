@@ -15,6 +15,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [fadeOut, setFadeOut] = useState(false);
+    const [success, setSuccess] = useState(false);
     const [formState, setFormState] = useState({
         username: '',
         email: '',
@@ -50,13 +51,16 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
 
         // async query to create account here and set user to be logged in
         setLoading(true)
+        setWarning('');
         setTimeout(() => {
             setLoading(false);
-            setWarning('');
             // remove once authentication is added
             dispatch(login());
+            setSuccess(true);
+        }, 3000);
+        setTimeout(() => {
             closeHandler();
-        }, 3000)
+        }, 3500);
 
      
 
@@ -198,8 +202,8 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                     <p className="warning">
                         {warning}
                     </p>
-                    <button className="button">
-                        {loading ? "Creation In Progress..." : "Create Account"}
+                    <button className={success ? 'button success' : 'button'}>
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? "Creation In Progress..." : "Create Account"}
                     </button>
                     <span className="divider">Already have an account?</span>
                     <button 

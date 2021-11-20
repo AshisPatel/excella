@@ -13,13 +13,14 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [fadeOut, setFadeOut] = useState(false);
+    const [success, setSuccess] = useState(false);
     const [formState, setFormState] = useState({
         username: '',
         email: '',
         password: '',
     });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // check all inputs
         const {username, email, password} = formState; 
@@ -41,11 +42,15 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
         setLoading(true)
         setTimeout(() => {
             setLoading(false);
+            setSuccess(true);
             setWarning('');
             // remove this once authentication is added
             dispatch(login());
-            closeHandler();
         }, 3000)
+
+        setTimeout(() => {
+            closeHandler();
+        }, 3500);
 
      
 
@@ -158,8 +163,10 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                     <p className="warning">
                         {warning}
                     </p>
-                    <button className="button">
-                        {loading ? "Logging You In..." : "Login"}
+                    <button className={success ? 'button success' : 'button'}>
+                        {
+                            success ? <FontAwesomeIcon icon="check" /> : loading ? "Logging You In..." : "Login"
+                        }
                     </button>
                     <span className="divider">Need to create an account?</span>
                     <button 
