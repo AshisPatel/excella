@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// remove these once authentication is added
+import { login } from "../../redux/loggedIn";
+import { useDispatch } from "react-redux";
 
 const LoginModal = ({ setShowSignup, setShowLogin }) => {
+
+    // remove this once authentication is added
+    const dispatch = useDispatch();
+
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -35,6 +42,8 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
         setTimeout(() => {
             setLoading(false);
             setWarning('');
+            // remove this once authentication is added
+            dispatch(login());
             closeHandler();
         }, 3000)
 

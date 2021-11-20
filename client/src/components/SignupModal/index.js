@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import validateEmail from "../../utils/validateEmail";
+// remove these once authentication is added
+import { login } from "../../redux/loggedIn";
+import { useDispatch } from "react-redux";
 
 const SignupModal = ({ setShowSignup, setShowLogin }) => {
+
+    // remove thse once authentication is added
+    const dispatch = useDispatch();
+
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -46,6 +53,8 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
         setTimeout(() => {
             setLoading(false);
             setWarning('');
+            // remove once authentication is added
+            dispatch(login());
             closeHandler();
         }, 3000)
 
