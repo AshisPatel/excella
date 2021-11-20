@@ -17,8 +17,8 @@ function App() {
 
   return (
     <div className="App">
-      {showSignup && <SignupModal setShowSignup={setShowSignup} />}
-      {showLogin && <LoginModal setShowLogin={setShowLogin} />}
+      {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin}/>}
+      {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}
       <Nav 
         setShowLogin={setShowLogin}
         setShowSignup={setShowSignup} 

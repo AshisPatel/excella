@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import validateEmail from "../../utils/validateEmail";
 
-const SignupModal = ({ setShowSignup }) => {
+const SignupModal = ({ setShowSignup, setShowLogin }) => {
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -80,6 +80,16 @@ const SignupModal = ({ setShowSignup }) => {
         setFadeOut(true);
         setTimeout(() => {
             setShowSignup(false);
+        }, 300)
+    }
+
+    const getLogin = () => {
+        setFadeOut(true);
+        setTimeout(() => {
+            setShowSignup(false);
+        }, 300)
+        setTimeout(() => {
+            setShowLogin(true);
         }, 300)
     }
 
@@ -183,7 +193,11 @@ const SignupModal = ({ setShowSignup }) => {
                         {loading ? "Creation In Progress..." : "Create Account"}
                     </button>
                     <span className="divider">Already have an account?</span>
-                    <button className="button">
+                    <button 
+                        className="button"
+                        type="button"
+                        onClick={() => getLogin()}
+                    >
                         Login
                     </button>
                 </form>

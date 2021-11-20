@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const LoginModal = ({ setShowLogin }) => {
+const LoginModal = ({ setShowSignup, setShowLogin }) => {
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -62,6 +62,16 @@ const LoginModal = ({ setShowLogin }) => {
         setFadeOut(true);
         setTimeout(() => {
             setShowLogin(false);
+        }, 300)
+    }
+
+    const getSignup = () => {
+        setFadeOut(true);
+        setTimeout(() => {
+            setShowLogin(false);
+        }, 300)
+        setTimeout(() => {
+            setShowSignup(true);
         }, 300)
     }
 
@@ -143,7 +153,11 @@ const LoginModal = ({ setShowLogin }) => {
                         {loading ? "Logging You In..." : "Login"}
                     </button>
                     <span className="divider">Need to create an account?</span>
-                    <button className="button">
+                    <button 
+                        className="button"
+                        type="button"
+                        onClick={getSignup}
+                    >
                         Signup
                     </button>
                 </form>
