@@ -41,7 +41,7 @@ $purple: #8700F5;
     border-style: solid; 
 }
 
-#em-btn {
+.em-btn {
     border-color: $light-purple;  
     color: $light-purple; 
     transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
@@ -49,9 +49,15 @@ $purple: #8700F5;
         background-color: rgba($light-purple,0.2); 
         box-shadow: 0 0 0.15rem 0.15rem rgba($purple, 0.5);
     }
+    
 }
 
-#pt-btn {
+.em-selected {
+    background-color: $light-purple !important;
+    color: $white !important; 
+}
+
+.pt-btn {
     border-color: $light-red;  
     color: $light-red; 
     transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
@@ -61,7 +67,12 @@ $purple: #8700F5;
     }
 }
 
-#jc-btn {
+.pt-selected {
+    background-color: $light-red !important;
+    color: $white !important; 
+}
+
+.jc-btn {
     border-color: $light-green;  
     color: $light-green; 
     transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
@@ -71,7 +82,12 @@ $purple: #8700F5;
     }
 }
 
-#help-btn {
+.jc-selected {
+    background-color: $light-green !important;
+    color: $white !important; 
+}
+
+.help-btn {
     border-color: $light-blue;  
     color: $light-blue; 
     transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
@@ -79,4 +95,9 @@ $purple: #8700F5;
         background-color: rgba($light-blue,0.2);
         box-shadow: 0 0 0.15rem 0.15rem rgba($blue,0.5); 
     }
+}
+
+.help-selected {
+    background-color: $light-blue !important;
+    color: $white !important; 
 }

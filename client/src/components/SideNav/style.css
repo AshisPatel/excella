@@ -34,7 +34,7 @@
   border-style: solid;
 }
 
-#em-btn {
+.em-btn {
   border-color: #C175FF;
   color: #C175FF;
   -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
@@ -43,13 +43,18 @@
   transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
 }
 
-#em-btn:hover {
+.em-btn:hover {
   background-color: rgba(193, 117, 255, 0.2);
   -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(135, 0, 245, 0.5);
           box-shadow: 0 0 0.15rem 0.15rem rgba(135, 0, 245, 0.5);
 }
 
-#pt-btn {
+.em-selected {
+  background-color: #C175FF !important;
+  color: #EBECE9 !important;
+}
+
+.pt-btn {
   border-color: #E23C57;
   color: #E23C57;
   -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
@@ -58,13 +63,18 @@
   transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
 }
 
-#pt-btn:hover {
+.pt-btn:hover {
   background-color: rgba(226, 60, 87, 0.2);
   -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(177, 27, 52, 0.5);
           box-shadow: 0 0 0.15rem 0.15rem rgba(177, 27, 52, 0.5);
 }
 
-#jc-btn {
+.pt-selected {
+  background-color: #E23C57 !important;
+  color: #EBECE9 !important;
+}
+
+.jc-btn {
   border-color: #3CD184;
   color: #3CD184;
   -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
@@ -73,13 +83,18 @@
   transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
 }
 
-#jc-btn:hover {
+.jc-btn:hover {
   background-color: rgba(60, 209, 132, 0.2);
   -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(35, 149, 90, 0.5);
           box-shadow: 0 0 0.15rem 0.15rem rgba(35, 149, 90, 0.5);
 }
 
-#help-btn {
+.jc-selected {
+  background-color: #3CD184 !important;
+  color: #EBECE9 !important;
+}
+
+.help-btn {
   border-color: #00CDCD;
   color: #00CDCD;
   -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
@@ -88,9 +103,14 @@
   transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
 }
 
-#help-btn:hover {
+.help-btn:hover {
   background-color: rgba(0, 205, 205, 0.2);
   -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(0, 143, 143, 0.5);
           box-shadow: 0 0 0.15rem 0.15rem rgba(0, 143, 143, 0.5);
+}
+
+.help-selected {
+  background-color: #00CDCD !important;
+  color: #EBECE9 !important;
 }
 /*# sourceMappingURL=style.css.map */
