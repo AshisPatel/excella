@@ -15,7 +15,154 @@
   margin-right: 1rem;
 }
 
-.side-nav .label {
+.options {
+  position: fixed;
+  border: 2px #282828 solid;
+  top: 15%;
+  right: 0%;
+  margin-right: 1rem;
+  -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
+}
+
+.options:hover {
+  background-color: rgba(40, 40, 40, 0.1);
+  -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(40, 40, 40, 0.5);
+          box-shadow: 0 0 0.15rem 0.15rem rgba(40, 40, 40, 0.5);
+}
+
+.click-off a {
+  pointer-events: none;
+}
+
+.option-item-in-0 {
+  opacity: 0;
+  -webkit-transform: translateY(-20vh);
+          transform: translateY(-20vh);
+  -webkit-animation: slideInOption 0.25s 0.1s linear forwards;
+          animation: slideInOption 0.25s 0.1s linear forwards;
+}
+
+.option-item-in-1 {
+  opacity: 0;
+  -webkit-transform: translateY(-20vh);
+          transform: translateY(-20vh);
+  -webkit-animation: slideInOption 0.25s 0.35s linear forwards;
+          animation: slideInOption 0.25s 0.35s linear forwards;
+}
+
+.option-item-in-2 {
+  opacity: 0;
+  -webkit-transform: translateY(-20vh);
+          transform: translateY(-20vh);
+  -webkit-animation: slideInOption 0.25s 0.6s linear forwards;
+          animation: slideInOption 0.25s 0.6s linear forwards;
+}
+
+.option-item-in-3 {
+  opacity: 0;
+  -webkit-transform: translateY(-20vh);
+          transform: translateY(-20vh);
+  -webkit-animation: slideInOption 0.25s 0.85s linear forwards;
+          animation: slideInOption 0.25s 0.85s linear forwards;
+}
+
+.option-item-out-0 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-animation: slideOutOption 0.1s 0s linear forwards;
+          animation: slideOutOption 0.1s 0s linear forwards;
+}
+
+.option-item-out-1 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-animation: slideOutOption 0.1s 0.1s linear forwards;
+          animation: slideOutOption 0.1s 0.1s linear forwards;
+}
+
+.option-item-out-2 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-animation: slideOutOption 0.1s 0.2s linear forwards;
+          animation: slideOutOption 0.1s 0.2s linear forwards;
+}
+
+.option-item-out-3 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-animation: slideOutOption 0.1s 0.3s linear forwards;
+          animation: slideOutOption 0.1s 0.3s linear forwards;
+}
+
+@-webkit-keyframes slideInOption {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-20vh);
+            transform: translateY(-20vh);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes slideInOption {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-20vh);
+            transform: translateY(-20vh);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes slideOutOption {
+  from {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(-20vh);
+            transform: translateY(-20vh);
+  }
+}
+
+@keyframes slideOutOption {
+  from {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(-20vh);
+            transform: translateY(-20vh);
+  }
+}
+
+.op-selected {
+  background-color: #282828 !important;
+  color: #EBECE9;
+}
+
+.hidden {
+  display: none;
+}
+
+.label {
   text-align: center;
   display: block;
   margin-right: auto;
@@ -44,7 +191,7 @@
 }
 
 .em-btn:hover {
-  background-color: rgba(193, 117, 255, 0.2);
+  background-color: rgba(235, 236, 233, 0.9);
   -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(135, 0, 245, 0.5);
           box-shadow: 0 0 0.15rem 0.15rem rgba(135, 0, 245, 0.5);
 }
@@ -64,7 +211,7 @@
 }
 
 .pt-btn:hover {
-  background-color: rgba(226, 60, 87, 0.2);
+  background-color: rgba(235, 236, 233, 0.9);
   -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(177, 27, 52, 0.5);
           box-shadow: 0 0 0.15rem 0.15rem rgba(177, 27, 52, 0.5);
 }
@@ -84,7 +231,7 @@
 }
 
 .jc-btn:hover {
-  background-color: rgba(60, 209, 132, 0.2);
+  background-color: rgba(235, 236, 233, 0.9);
   -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(35, 149, 90, 0.5);
           box-shadow: 0 0 0.15rem 0.15rem rgba(35, 149, 90, 0.5);
 }
@@ -104,7 +251,7 @@
 }
 
 .help-btn:hover {
-  background-color: rgba(0, 205, 205, 0.2);
+  background-color: rgba(235, 236, 233, 0.9);
   -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(0, 143, 143, 0.5);
           box-shadow: 0 0 0.15rem 0.15rem rgba(0, 143, 143, 0.5);
 }

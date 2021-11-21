@@ -5709,38 +5709,148 @@ body {
   left: 0;
   bottom: 0;
   margin: auto;
-  border-radius: 100%;
   width: 0;
   height: 0;
-  background-color: #00CDCD;
-  -webkit-animation: expand 0.5s linear forwards;
-          animation: expand 0.5s linear forwards;
   z-index: -1;
 }
 
-@-webkit-keyframes expand {
+.expand-blue {
+  -webkit-animation: expand-blue 0.5s linear forwards;
+          animation: expand-blue 0.5s linear forwards;
+}
+
+.expand-green {
+  -webkit-animation: expand-green 0.5s linear forwards;
+          animation: expand-green 0.5s linear forwards;
+}
+
+.expand-purple {
+  -webkit-animation: expand-purple 0.5s linear forwards;
+          animation: expand-purple 0.5s linear forwards;
+}
+
+.expand-red {
+  -webkit-animation: expand-red 0.5s linear forwards;
+          animation: expand-red 0.5s linear forwards;
+}
+
+@-webkit-keyframes expand-blue {
   from {
+    background-color: #00CDCD;
+    border-radius: 0.5rem;
     width: 0;
     height: 0;
-    border-radius: 100%;
   }
   to {
+    background-color: #00CDCD;
     width: 100vw;
+    border-radius: 0rem;
     height: 100vh;
-    border-radius: 0%;
   }
 }
 
-@keyframes expand {
+@keyframes expand-blue {
   from {
+    background-color: #00CDCD;
+    border-radius: 0.5rem;
     width: 0;
     height: 0;
-    border-radius: 100%;
   }
   to {
+    background-color: #00CDCD;
+    width: 100vw;
+    border-radius: 0rem;
+    height: 100vh;
+  }
+}
+
+@-webkit-keyframes expand-green {
+  from {
+    background-color: #3CD184;
+    border-radius: 0.5rem;
+    width: 0;
+    height: 0;
+  }
+  to {
+    background-color: #3CD184;
+    border-radius: 0;
     width: 100vw;
     height: 100vh;
-    border-radius: 0%;
+  }
+}
+
+@keyframes expand-green {
+  from {
+    background-color: #3CD184;
+    border-radius: 0.5rem;
+    width: 0;
+    height: 0;
+  }
+  to {
+    background-color: #3CD184;
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@-webkit-keyframes expand-purple {
+  from {
+    background-color: #C175FF;
+    border-radius: 0.5rem;
+    width: 0;
+    height: 0;
+  }
+  to {
+    background-color: #C175FF;
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@keyframes expand-purple {
+  from {
+    background-color: #C175FF;
+    border-radius: 0.5rem;
+    width: 0;
+    height: 0;
+  }
+  to {
+    background-color: #C175FF;
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@-webkit-keyframes expand-red {
+  from {
+    background-color: #E23C57;
+    border-radius: 0.5rem;
+    width: 0;
+    height: 0;
+  }
+  to {
+    background-color: #E23C57;
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@keyframes expand-red {
+  from {
+    background-color: #E23C57;
+    border-radius: 0.5rem;
+    width: 0;
+    height: 0;
+  }
+  to {
+    background-color: #E23C57;
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
   }
 }
 

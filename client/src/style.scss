@@ -32,26 +32,83 @@ body {
     left: 0;
     bottom: 0;
     margin: auto;
-    border-radius: 100%; 
     width: 0;
-    height: 0; 
-    background-color: $light-blue; 
-    animation: expand 0.5s linear forwards; 
+    height: 0;
     z-index: -1;
 }
 
-@keyframes expand {
+.expand-blue {
+    animation: expand-blue 0.5s linear forwards; 
+}
+
+.expand-green {
+    animation: expand-green 0.5s linear forwards; 
+}
+
+.expand-purple {
+    animation: expand-purple 0.5s linear forwards; 
+}
+
+.expand-red {
+    animation: expand-red 0.5s linear forwards; 
+}
+
+
+@keyframes expand-blue {
     from {
+        background-color: $light-blue; 
+        border-radius: 0.5rem; 
         width: 0;
         height: 0;
-        border-radius: 100%;  
     } to {
+        background-color: $light-blue; 
         width: 100vw;
+        border-radius: 0rem; 
         height: 100vh; 
-        border-radius: 0%; 
     }
 }
 
+@keyframes expand-green {
+    from {
+        background-color: $light-green; 
+        border-radius: 0.5rem; 
+        width: 0;
+        height: 0;
+    } to {
+        background-color: $light-green;
+        border-radius: 0; 
+        width: 100vw;
+        height: 100vh; 
+    }
+}
+
+@keyframes expand-purple {
+    from {
+        background-color: $light-purple; 
+        border-radius: 0.5rem; 
+        width: 0;
+        height: 0;
+    } to {
+        background-color: $light-purple;
+        border-radius: 0; 
+        width: 100vw;
+        height: 100vh; 
+    }
+}
+
+@keyframes expand-red {
+    from {
+        background-color: $light-red; 
+        border-radius: 0.5rem; 
+        width: 0;
+        height: 0;
+    } to {
+        background-color: $light-red;
+        border-radius: 0; 
+        width: 100vw;
+        height: 100vh; 
+    }
+}
 .modal-backdrop {
     background: rgba($black, 0.5);
     height: 100vh;
