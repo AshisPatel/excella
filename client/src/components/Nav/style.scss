@@ -1,13 +1,8 @@
 $black: #282828;
 $white: #EBECE9;
-$light-blue: #00CDCD;
-$light-green: #3CD184;
-$light-purple: #C175FF;
-$light-red: #E23C57;
-$red: #B11B34;
-$blue: #008F8F;
-$green: #23955A;
-$purple: #8700F5;
+$blue: #283143;
+$gold: #D8B646;
+$light-gold: #E2CA78;
 
 #top-nav {
     display: flex;
@@ -18,13 +13,17 @@ $purple: #8700F5;
         justify-content: space-between;
         margin: auto 0 auto 0; 
     }
+
+    h1 {
+        color: $gold; 
+    }
   }
 
 .nav-btn {
-    color: $black; 
+    color: $light-gold; 
     font-size: 1.2rem; 
     background: transparent;
-    border: 2px solid $black;
+    border: 2px solid $light-gold;
     border-radius: 0.5rem; 
     height: 2.5rem; 
     margin-right: 1rem; 
@@ -32,7 +31,8 @@ $purple: #8700F5;
     transition: background-color 0.2s linear, color 0.2s linear;
     
     &:hover {
-        color: $white;
+        color: $gold;
+        border-color: $gold; 
         background: $black; 
     }
 }

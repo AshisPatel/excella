@@ -20,18 +20,9 @@ function App() {
 
   // delete once authentication exists 
   const loggedIn = useSelector(state => state.loggedIn);
-  const currentPage = useSelector(state => state.currentPage);
-
-  const pageColor = 
-          currentPage === 'Help' ? 'expand-blue' 
-          : currentPage === 'Job CRM' ? 'expand-green' 
-          : currentPage === 'Pomodoro Timer' ? 'expand-red' 
-          : currentPage === 'Eisenhower Matrix' ? 'expand-purple' 
-          : '';
 
   return (
     <div className="content">
-      <div className={`color-circle ${pageColor}`} />
       {loggedIn && <SideNav />}
       {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin}/>}
       {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}

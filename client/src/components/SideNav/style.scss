@@ -1,13 +1,9 @@
 $black: #282828;
 $white: #EBECE9;
-$light-blue: #00CDCD;
-$light-green: #3CD184;
-$light-purple: #C175FF;
-$light-red: #E23C57;
-$red: #B11B34;
-$blue: #008F8F;
-$green: #23955A;
-$purple: #8700F5;
+$blue: #283143;
+$gold: #D8B646;
+$light-gold: #E2CA78;
+
 
 .side-nav {
 
@@ -25,14 +21,27 @@ $purple: #8700F5;
 
 .options {
     position: fixed;
-    border: 2px $black solid; 
+    border: 3px $light-gold solid; 
+    color: $light-gold; 
     top: 15%;
     right: 0%; 
     margin-right: 1rem;  
-    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
+    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear; 
     &:hover {
-        background-color: rgba($black,0.1); 
-        box-shadow: 0 0 0.15rem 0.15rem rgba($black, 0.5);
+        background-color: rgba($blue, 0.5);
+        border: 3px $gold solid;
+        color: $gold; 
+    }
+}
+
+.op-selected {
+    background-color: $gold !important;
+    color: $white; 
+    border: 3px $white solid; 
+    &:hover {
+        background-color: $gold !important;
+        color: $white !important; 
+        border: 3px $white solid !important; 
     }
 }
 
@@ -80,10 +89,7 @@ $purple: #8700F5;
     }
 }
 
-.op-selected {
-    background-color: $black !important;
-    color: $white; 
-}
+
 
 .hidden {
     display: none; 
@@ -103,68 +109,22 @@ $purple: #8700F5;
     height: 6rem; 
     padding: 0;
     margin-bottom: 1rem; 
-    background-color: $white; 
+    background-color: $black; 
     border-width: 3px;
     border-style: solid; 
-}
-
-.em-btn {
-    border-color: $light-purple;  
-    color: $light-purple; 
-    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
+    border-color: $light-gold;
+    color: $light-gold;
+    transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear; 
     &:hover {
-        background-color: rgba($white,0.9); 
-        box-shadow: 0 0 0.15rem 0.15rem rgba($purple, 0.5);
-    }
-    
-}
-
-.em-selected {
-    background-color: $light-purple !important;
-    color: $white !important; 
-}
-
-.pt-btn {
-    border-color: $light-red;  
-    color: $light-red; 
-    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
-    &:hover {
-        background-color: rgba($white,0.9);
-        box-shadow: 0 0 0.15rem 0.15rem rgba($red, 0.5);    
+        border-color: $gold;
+        color: $gold;
+        background-color: rgba($white, 0.1); 
     }
 }
 
-.pt-selected {
-    background-color: $light-red !important;
-    color: $white !important; 
-}
 
-.jc-btn {
-    border-color: $light-green;  
-    color: $light-green; 
-    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
-    &:hover {
-        background-color: rgba($white,0.9); 
-        box-shadow: 0 0 0.15rem 0.15rem rgba($green, 0.5); 
-    }
-}
-
-.jc-selected {
-    background-color: $light-green !important;
-    color: $white !important; 
-}
-
-.help-btn {
-    border-color: $light-blue;  
-    color: $light-blue; 
-    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
-    &:hover {
-        background-color: rgba($white,0.9); 
-        box-shadow: 0 0 0.15rem 0.15rem rgba($blue,0.5); 
-    }
-}
-
-.help-selected {
-    background-color: $light-blue !important;
-    color: $white !important; 
+.sn-selected {
+    background-color: $gold !important;
+    color: $black !important; 
+    border-color: $gold !important; 
 }

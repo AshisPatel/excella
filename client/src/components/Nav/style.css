@@ -17,11 +17,15 @@
   margin: auto 0 auto 0;
 }
 
+#top-nav h1 {
+  color: #D8B646;
+}
+
 .nav-btn {
-  color: #282828;
+  color: #E2CA78;
   font-size: 1.2rem;
   background: transparent;
-  border: 2px solid #282828;
+  border: 2px solid #E2CA78;
   border-radius: 0.5rem;
   height: 2.5rem;
   margin-right: 1rem;
@@ -31,7 +35,8 @@
 }
 
 .nav-btn:hover {
-  color: #EBECE9;
+  color: #D8B646;
+  border-color: #D8B646;
   background: #282828;
 }
 /*# sourceMappingURL=style.css.map */

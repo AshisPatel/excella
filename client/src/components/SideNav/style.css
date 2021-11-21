@@ -17,20 +17,33 @@
 
 .options {
   position: fixed;
-  border: 2px #282828 solid;
+  border: 3px #E2CA78 solid;
+  color: #E2CA78;
   top: 15%;
   right: 0%;
   margin-right: 1rem;
-  -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
+  -webkit-transition: background-color 0.2s linear, color 0.2s linear, border 0.2s linear, -webkit-box-shadow 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, border 0.2s linear, -webkit-box-shadow 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear, -webkit-box-shadow 0.2s linear;
 }
 
 .options:hover {
-  background-color: rgba(40, 40, 40, 0.1);
-  -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(40, 40, 40, 0.5);
-          box-shadow: 0 0 0.15rem 0.15rem rgba(40, 40, 40, 0.5);
+  background-color: rgba(40, 49, 67, 0.5);
+  border: 3px #D8B646 solid;
+  color: #D8B646;
+}
+
+.op-selected {
+  background-color: #D8B646 !important;
+  color: #EBECE9;
+  border: 3px #EBECE9 solid;
+}
+
+.op-selected:hover {
+  background-color: #D8B646 !important;
+  color: #EBECE9 !important;
+  border: 3px #EBECE9 solid !important;
 }
 
 .click-off a {
@@ -153,11 +166,6 @@
   }
 }
 
-.op-selected {
-  background-color: #282828 !important;
-  color: #EBECE9;
-}
-
 .hidden {
   display: none;
 }
@@ -176,88 +184,24 @@
   height: 6rem;
   padding: 0;
   margin-bottom: 1rem;
-  background-color: #EBECE9;
+  background-color: #282828;
   border-width: 3px;
   border-style: solid;
+  border-color: #E2CA78;
+  color: #E2CA78;
+  -webkit-transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear;
 }
 
-.em-btn {
-  border-color: #C175FF;
-  color: #C175FF;
-  -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
+.side-nav-btn:hover {
+  border-color: #D8B646;
+  color: #D8B646;
+  background-color: rgba(235, 236, 233, 0.1);
 }
 
-.em-btn:hover {
-  background-color: rgba(235, 236, 233, 0.9);
-  -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(135, 0, 245, 0.5);
-          box-shadow: 0 0 0.15rem 0.15rem rgba(135, 0, 245, 0.5);
-}
-
-.em-selected {
-  background-color: #C175FF !important;
-  color: #EBECE9 !important;
-}
-
-.pt-btn {
-  border-color: #E23C57;
-  color: #E23C57;
-  -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
-}
-
-.pt-btn:hover {
-  background-color: rgba(235, 236, 233, 0.9);
-  -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(177, 27, 52, 0.5);
-          box-shadow: 0 0 0.15rem 0.15rem rgba(177, 27, 52, 0.5);
-}
-
-.pt-selected {
-  background-color: #E23C57 !important;
-  color: #EBECE9 !important;
-}
-
-.jc-btn {
-  border-color: #3CD184;
-  color: #3CD184;
-  -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
-}
-
-.jc-btn:hover {
-  background-color: rgba(235, 236, 233, 0.9);
-  -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(35, 149, 90, 0.5);
-          box-shadow: 0 0 0.15rem 0.15rem rgba(35, 149, 90, 0.5);
-}
-
-.jc-selected {
-  background-color: #3CD184 !important;
-  color: #EBECE9 !important;
-}
-
-.help-btn {
-  border-color: #00CDCD;
-  color: #00CDCD;
-  -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
-}
-
-.help-btn:hover {
-  background-color: rgba(235, 236, 233, 0.9);
-  -webkit-box-shadow: 0 0 0.15rem 0.15rem rgba(0, 143, 143, 0.5);
-          box-shadow: 0 0 0.15rem 0.15rem rgba(0, 143, 143, 0.5);
-}
-
-.help-selected {
-  background-color: #00CDCD !important;
-  color: #EBECE9 !important;
+.sn-selected {
+  background-color: #D8B646 !important;
+  color: #282828 !important;
+  border-color: #D8B646 !important;
 }
 /*# sourceMappingURL=style.css.map */

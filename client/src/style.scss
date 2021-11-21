@@ -7,110 +7,38 @@
 
 // custom colors
 $black: #282828;
-$white: #EBECE9;
-$light-blue: #00CDCD;
-$light-green: #3CD184;
+// $white: #EBECE9;
+// $light-blue: #00CDCD;
+// $light-green: #3CD184;
 $light-purple: #C175FF;
-$light-red: #E23C57;
-$red: #B11B34;
-$blue: #008F8F;
-$green: #23955A;
-$purple: #8700F5;
+// $light-red: #E23C57;
+// $red: #B11B34;
+// $blue: #008F8F;
+// $green: #23955A;
+// $purple: #8700F5;
+
+$white: #FEF9EF;
+$light-blue: #227C9D;
+$light-green: #17C3B2;
+$light-red: #FE6D73; 
+
+$blue: #283143;
+$gold: #D8B646;
+$light-gold: #E2CA78;
+
+
+
 
 body {
-    background: $white;  
+    background: $black;  
 }
 
 .content {
     overflow: hidden; 
 }
 
-.color-circle {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-    width: 0;
-    height: 0;
-    z-index: -1;
-}
-
-.expand-blue {
-    animation: expand-blue 0.5s linear forwards; 
-}
-
-.expand-green {
-    animation: expand-green 0.5s linear forwards; 
-}
-
-.expand-purple {
-    animation: expand-purple 0.5s linear forwards; 
-}
-
-.expand-red {
-    animation: expand-red 0.5s linear forwards; 
-}
-
-
-@keyframes expand-blue {
-    from {
-        background-color: $light-blue; 
-        border-radius: 0.5rem; 
-        width: 0;
-        height: 0;
-    } to {
-        background-color: $light-blue; 
-        width: 100vw;
-        border-radius: 0rem; 
-        height: 100vh; 
-    }
-}
-
-@keyframes expand-green {
-    from {
-        background-color: $light-green; 
-        border-radius: 0.5rem; 
-        width: 0;
-        height: 0;
-    } to {
-        background-color: $light-green;
-        border-radius: 0; 
-        width: 100vw;
-        height: 100vh; 
-    }
-}
-
-@keyframes expand-purple {
-    from {
-        background-color: $light-purple; 
-        border-radius: 0.5rem; 
-        width: 0;
-        height: 0;
-    } to {
-        background-color: $light-purple;
-        border-radius: 0; 
-        width: 100vw;
-        height: 100vh; 
-    }
-}
-
-@keyframes expand-red {
-    from {
-        background-color: $light-red; 
-        border-radius: 0.5rem; 
-        width: 0;
-        height: 0;
-    } to {
-        background-color: $light-red;
-        border-radius: 0; 
-        width: 100vw;
-        height: 100vh; 
-    }
-}
 .modal-backdrop {
-    background: rgba($black, 0.5);
+    background: rgba($blue, 0.9);
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -152,7 +80,7 @@ body {
         margin-top: 0.2rem; 
         margin-bottom: 0.2rem;
         & span {
-            color: $light-blue;
+            color: $gold;
         }
     }
 
@@ -183,7 +111,7 @@ body {
         font-weight: bold;
         text-align: center;
         margin-top: 0;
-        color: $light-red;
+        color: $light-gold;
     }
 
     & .button {
@@ -193,16 +121,16 @@ body {
         height: 3rem; 
         transition: background-color 0.2s linear; 
         &:hover {
-            background-color: $light-blue; 
+            background-color: $light-gold; 
         }
 
         &:focus {
-            background-color: $light-blue;
+            background-color: $light-gold;
         }
     }
 
     & .success {
-        background-color: $light-green !important;
+        background-color: $gold !important;
         color: $white !important; 
     }
 }
@@ -215,7 +143,7 @@ body {
     left: 92%;   
     transition: color 0.2s linear; 
     &:hover {
-        color: $light-red;
+        color: $gold;
     }
 }
 
