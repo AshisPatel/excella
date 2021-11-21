@@ -1,6 +1,6 @@
 import React , { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from "./pages/Home";
 import EisenHowerMatrix from './pages/EisenhowerMatrix';
 import JobCRM from './pages/JobCRM';
 import PomodoroTimer from './pages/PomodoroTimer';

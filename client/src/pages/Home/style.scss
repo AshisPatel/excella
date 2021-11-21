@@ -1,0 +1,127 @@
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+$gold: #D8B646;
+$light-gold: #E2CA78;
+
+.home-sprite-wrapper {
+    // margin-left: 25%;
+    // margin-right: auto; 
+    // display: block;
+    width: 15rem;
+    margin-top: 6rem; 
+    padding-bottom: 1.5rem; 
+    animation: hover-1 3s ease-in-out infinite;  
+
+    svg {
+        fill: $gold;
+        stroke:$gold; 
+    }
+}
+
+.speech-bubble {
+    color: $black; 
+    border-radius: 0.5rem; 
+    background-color: $gold; 
+    height: 8rem;
+    width: 8rem;  
+    margin-top: -2rem; 
+    margin-left: 0rem; 
+    box-shadow: 1rem 1rem rgba($white, 0.08); 
+    animation: hover-2 3s linear infinite; 
+    padding: 1rem; 
+    display:flex;
+    align-items: center; 
+    justify-content: center;
+    text-align: center; 
+    font-size: 1.5rem; 
+    position: relative; 
+    &::before {
+        content: '';
+        position: absolute; 
+        width: 4rem; 
+        height: 0.75rem;
+        border-radius: 1rem;  
+        top: calc(100% + 1rem);
+        left: 0%;
+        background-color: $gold;
+        box-shadow: 1.2rem 1.2rem rgba($white, 0.08); 
+        animation: hover-3 3s linear infinite; 
+
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 100%;  
+        top: calc(100% + 2.5rem);
+        left: 0%;
+        background-color: $gold; 
+        box-shadow: 1.2rem 1.2rem rgba($white, 0.08); 
+        animation: hover-4 3s linear infinite; 
+    }
+}
+
+@keyframes hover-1 {
+    0%{
+        transform: translateY(0.75rem);
+    }
+    50% {
+        transform: translateY(-0.75rem); 
+    }
+    100% {
+        transform: translateY(0.75rem); 
+    }
+}
+
+@keyframes hover-2 {
+    0%{
+        transform: translateY(0.6rem);
+    }
+    50% {
+        transform: translateY(-0.6rem); 
+    }
+    100% {
+        transform: translateY(0.6rem); 
+    }
+}
+@keyframes hover-3 {
+    0%{
+        transform: translateY(0.5rem);
+    }
+    50% {
+        transform: translateY(-0.5rem); 
+    }
+    100% {
+        transform: translateY(0.5rem); 
+    }
+}
+
+@keyframes hover-4 {
+    0% {
+        transform: translateY(0.4rem);
+    }
+    50% {
+        transform: translateY(-0.4rem);
+    }
+    100% {
+        transform: translateY(0.4rem);
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .sprite-row {
+        margin-top: 5rem; 
+    }
+
+    .home-sprite-wrapper {
+        width: 10rem; 
+    }
+
+    .speech-bubble {
+        font-size: 1.25rem; 
+        width: 5rem; 
+        height: 5rem; 
+    }
+}
