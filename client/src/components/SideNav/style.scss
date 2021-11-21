@@ -21,27 +21,24 @@ $light-gold: #E2CA78;
 
 .options {
     position: fixed;
-    border: 3px $light-gold solid; 
-    color: $light-gold; 
-    top: 15%;
-    right: 0%; 
-    margin-right: 1rem;  
-    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear; 
+    top: 0%;
+    right: 0%;
+    margin-top: 1.4rem;  
+    margin-right: 8rem;
+    font-size: 2rem; 
+    background-color: $black; 
+    border: none;   
+    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear;
+    color: $light-gold;  
     &:hover {
-        background-color: rgba($blue, 0.5);
-        border: 3px $gold solid;
         color: $gold; 
     }
 }
 
 .op-selected {
-    background-color: $gold !important;
-    color: $white; 
-    border: 3px $white solid; 
+    color: $gold !important;  
     &:hover {
-        background-color: $gold !important;
-        color: $white !important; 
-        border: 3px $white solid !important; 
+        color: $light-gold !important; 
     }
 }
 

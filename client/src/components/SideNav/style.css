@@ -17,33 +17,30 @@
 
 .options {
   position: fixed;
-  border: 3px #E2CA78 solid;
-  color: #E2CA78;
-  top: 15%;
+  top: 0%;
   right: 0%;
-  margin-right: 1rem;
+  margin-top: 1.4rem;
+  margin-right: 8rem;
+  font-size: 2rem;
+  background-color: #282828;
+  border: none;
   -webkit-transition: background-color 0.2s linear, color 0.2s linear, border 0.2s linear, -webkit-box-shadow 0.2s linear;
   transition: background-color 0.2s linear, color 0.2s linear, border 0.2s linear, -webkit-box-shadow 0.2s linear;
   transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear;
   transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear, -webkit-box-shadow 0.2s linear;
+  color: #E2CA78;
 }
 
 .options:hover {
-  background-color: rgba(40, 49, 67, 0.5);
-  border: 3px #D8B646 solid;
   color: #D8B646;
 }
 
 .op-selected {
-  background-color: #D8B646 !important;
-  color: #EBECE9;
-  border: 3px #EBECE9 solid;
+  color: #D8B646 !important;
 }
 
 .op-selected:hover {
-  background-color: #D8B646 !important;
-  color: #EBECE9 !important;
-  border: 3px #EBECE9 solid !important;
+  color: #E2CA78 !important;
 }
 
 .click-off a {
