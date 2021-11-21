@@ -5,13 +5,10 @@ $gold: #D8B646;
 $light-gold: #E2CA78;
 
 .home-sprite-wrapper {
-    // margin-left: 25%;
-    // margin-right: auto; 
-    // display: block;
     width: 15rem;
     margin-top: 6rem; 
     padding-bottom: 1.5rem; 
-    animation: hover-1 3s ease-in-out infinite;  
+    animation: hover-1 5s ease-in-out infinite;  
 
     svg {
         fill: $gold;
@@ -19,16 +16,59 @@ $light-gold: #E2CA78;
     }
 }
 
+
+
+// .speech-bubble {
+//     color: $black; 
+//     border-radius: 0.5rem; 
+//     background-color: $gold; 
+//     height: 8rem;
+//     width: 8rem;  
+//     margin-top: -2rem; 
+//     margin-left: 0rem; 
+//     box-shadow: 1rem 1rem rgba($white, 0.08); 
+//     animation: hover-2 5s linear infinite; 
+//     padding: 1rem; 
+//     display:flex;
+//     align-items: center; 
+//     justify-content: center;
+//     text-align: center; 
+//     font-size: 1.5rem; 
+//     position: relative; 
+//     &::before {
+//         content: '';
+//         position: absolute; 
+//         width: 4rem; 
+//         height: 0.75rem;
+//         border-radius: 1rem;  
+//         top: calc(100% + 1rem);
+//         left: 0%;
+//         background-color: $gold;
+//         box-shadow: 1.2rem 1.2rem rgba($white, 0.08); 
+//         animation: hover-3 5s linear infinite; 
+
+//     }
+//     &::after {
+//         content: '';
+//         position: absolute;
+//         width: 0.75rem;
+//         height: 0.75rem;
+//         border-radius: 100%;  
+//         top: calc(100% + 2.5rem);
+//         left: 0%;
+//         background-color: $gold; 
+//         box-shadow: 1.2rem 1.2rem rgba($white, 0.08); 
+//         animation: hover-4 5s linear infinite; 
+//     }
+// }
+
+
 .speech-bubble {
-    color: $black; 
+    color: $black;
+    background-color: $gold;
     border-radius: 0.5rem; 
-    background-color: $gold; 
-    height: 8rem;
-    width: 8rem;  
-    margin-top: -2rem; 
-    margin-left: 0rem; 
     box-shadow: 1rem 1rem rgba($white, 0.08); 
-    animation: hover-2 3s linear infinite; 
+    animation: hover-2 5s linear infinite; 
     padding: 1rem; 
     display:flex;
     align-items: center; 
@@ -36,17 +76,16 @@ $light-gold: #E2CA78;
     text-align: center; 
     font-size: 1.5rem; 
     position: relative; 
+
     &::before {
         content: '';
         position: absolute; 
         width: 4rem; 
         height: 0.75rem;
         border-radius: 1rem;  
-        top: calc(100% + 1rem);
-        left: 0%;
         background-color: $gold;
         box-shadow: 1.2rem 1.2rem rgba($white, 0.08); 
-        animation: hover-3 3s linear infinite; 
+        animation: hover-3 5s linear infinite; 
 
     }
     &::after {
@@ -55,12 +94,45 @@ $light-gold: #E2CA78;
         width: 0.75rem;
         height: 0.75rem;
         border-radius: 100%;  
-        top: calc(100% + 2.5rem);
-        left: 0%;
         background-color: $gold; 
         box-shadow: 1.2rem 1.2rem rgba($white, 0.08); 
-        animation: hover-4 3s linear infinite; 
+        animation: hover-4 5s linear infinite; 
     }
+}
+
+.first-bubble {
+    height: 8rem;
+    width: 8rem;  
+    margin-top: -2rem; 
+    margin-left: 0rem; 
+    &::before {
+        top: calc(100% + 1rem);
+        left: 0%;
+    }
+    &::after {
+        top: calc(100% + 2.5rem);
+        left: 0%;
+    }
+}
+
+.second-bubble {
+    height: 10rem; 
+    width: 12rem; 
+    margin-left: 2rem; 
+    margin-top: 12rem; 
+    &::before {
+        top: calc(0% - 2rem);
+        left: 0%;
+    }
+    &::after {
+        top: calc(0% - 3.5rem);
+        left: 0%; 
+    }
+}
+
+#second-bubble {
+    margin-top: 10rem; 
+    margin-left: 10rem; 
 }
 
 @keyframes hover-1 {
@@ -120,8 +192,28 @@ $light-gold: #E2CA78;
     }
 
     .speech-bubble {
-        font-size: 1.25rem; 
+        font-size: 1rem; 
+    }
+
+    .first-bubble {
         width: 5rem; 
         height: 5rem; 
+    }
+
+    .second-bubble {
+        width: 7rem;
+        height: 8rem; 
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .home-sprite-wrapper {
+        width: 6.5rem; 
+    }
+    .speech-bubble {
+        font-size: 1rem; 
+    }
+    .second-bubble {
+        margin-left: -1rem; 
     }
 }

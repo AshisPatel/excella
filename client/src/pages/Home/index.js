@@ -9,9 +9,11 @@ const Home = () => {
                 <div className="home-sprite-wrapper offset-1 offset-lg-2 col-1">
                     <ExcellaIcon />
                 </div>
-                <div className="col-2 speech-bubble">
-                    <p>Hello friend! I'm Excella</p>
+                <div className="col-2">
+                    <p className="speech-bubble first-bubble">Hello friend! I'm Excella</p>
+                    <p className="speech-bubble second-bubble">Signup / Login to get started today~! Or checkout some of my features!</p>
                 </div>
+                
             </div>
         </div>
 
