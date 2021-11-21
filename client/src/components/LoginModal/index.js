@@ -31,9 +31,9 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
             return setWarning('Please include a valid username');
         }
 
-        if(!email || !validateEmail(email)) {
-            return setWarning('Please include a valid email');
-        }
+        // if(!email || !validateEmail(email)) {
+        //     return setWarning('Please include a valid email');
+        // }
 
          // check valid password
         if(!password || !validatePassword(password)) {
@@ -124,7 +124,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                                 <FontAwesomeIcon icon="user" />
                             </span>
                         </div>
-                        <div className="input-wrapper">
+                        {/* <div className="input-wrapper">
                             <input
                                 aria-label="email"
                                 name="email"
@@ -138,7 +138,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                             <span className="icon-wrapper">
                                 <FontAwesomeIcon icon="envelope" />
                             </span>
-                        </div>
+                        </div> */}
                         <div className="input-wrapper">
                             <input
                                 aria-label='password'

@@ -22,7 +22,8 @@ function App() {
   const loggedIn = useSelector(state => state.loggedIn);
 
   return (
-    <div className="App">
+    <div className="content">
+      <div className="color-circle" />
       {loggedIn && <SideNav />}
       {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin}/>}
       {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}

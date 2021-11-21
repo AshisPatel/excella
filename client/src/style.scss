@@ -18,7 +18,38 @@ $green: #23955A;
 $purple: #8700F5;
 
 body {
-    background: $white; 
+    background: $white;  
+}
+
+.content {
+    overflow: hidden; 
+}
+
+.color-circle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 100%; 
+    width: 0;
+    height: 0; 
+    background-color: $light-blue; 
+    animation: expand 0.5s linear forwards; 
+    z-index: -1;
+}
+
+@keyframes expand {
+    from {
+        width: 0;
+        height: 0;
+        border-radius: 100%;  
+    } to {
+        width: 100vw;
+        height: 100vh; 
+        border-radius: 0%; 
+    }
 }
 
 .modal-backdrop {
