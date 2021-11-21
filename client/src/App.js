@@ -5,8 +5,11 @@ import EisenHowerMatrix from './pages/EisenhowerMatrix';
 import JobCRM from './pages/JobCRM';
 import PomodoroTimer from './pages/PomodoroTimer';
 import Nav from './components/Nav';
+import SideNav from "./components/SideNav";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
+import { useSelector } from "react-redux";
+
 
 
 function App() {
@@ -15,8 +18,12 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false); 
 
+  // delete once authentication exists 
+  const loggedIn = useSelector(state => state.loggedIn);
+
   return (
     <div className="App">
+      {loggedIn && <SideNav />}
       {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin}/>}
       {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}
       <Nav 

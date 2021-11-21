@@ -1,0 +1,82 @@
+$black: #282828;
+$white: #EBECE9;
+$light-blue: #00CDCD;
+$light-green: #3CD184;
+$light-purple: #C175FF;
+$light-red: #E23C57;
+$red: #B11B34;
+$blue: #008F8F;
+$green: #23955A;
+$purple: #8700F5;
+
+.side-nav {
+
+    // max-height: 30rem;
+    // height: 15rem; 
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  
+    top: 30%; 
+    right: 0%; 
+    margin-right: 1rem; 
+
+    & .label {
+        text-align: center; 
+        display: block; 
+        margin-right: auto;
+        margin-left: auto; 
+    }
+}
+
+.side-nav-btn {
+    font-size: 1rem; 
+    border-radius: 100%;
+    width: 6rem;
+    height: 6rem; 
+    padding: 0;
+    margin-bottom: 1rem; 
+    background-color: $white; 
+    border-width: 3px;
+    border-style: solid; 
+}
+
+#em-btn {
+    border-color: $light-purple;  
+    color: $light-purple; 
+    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
+    &:hover {
+        background-color: rgba($light-purple,0.2); 
+        box-shadow: 0 0 0.15rem 0.15rem rgba($purple, 0.5);
+    }
+}
+
+#pt-btn {
+    border-color: $light-red;  
+    color: $light-red; 
+    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
+    &:hover {
+        background-color: rgba($light-red,0.2);
+        box-shadow: 0 0 0.15rem 0.15rem rgba($red, 0.5);    
+    }
+}
+
+#jc-btn {
+    border-color: $light-green;  
+    color: $light-green; 
+    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
+    &:hover {
+        background-color: rgba($light-green,0.2);
+        box-shadow: 0 0 0.15rem 0.15rem rgba($green, 0.5); 
+    }
+}
+
+#help-btn {
+    border-color: $light-blue;  
+    color: $light-blue; 
+    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear; 
+    &:hover {
+        background-color: rgba($light-blue,0.2);
+        box-shadow: 0 0 0.15rem 0.15rem rgba($blue,0.5); 
+    }
+}
