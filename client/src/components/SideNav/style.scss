@@ -3,6 +3,7 @@ $white: #EBECE9;
 $blue: #283143;
 $gold: #D8B646;
 $light-gold: #E2CA78;
+$depth-box-shadow: 0 0 4px rgba($white, .4);
 
 
 .side-nav {
@@ -101,19 +102,17 @@ $light-gold: #E2CA78;
 
 .side-nav-btn {
     font-size: 1rem; 
-    border-radius: 100%;
+    border-radius: 0.5rem; 
     width: 6rem;
     height: 6rem; 
     padding: 0;
     margin-bottom: 1rem; 
     background-color: $black; 
-    border-width: 3px;
-    border-style: solid; 
-    border-color: $light-gold;
     color: $light-gold;
+    border: none; 
+    box-shadow: $depth-box-shadow;
     transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear; 
     &:hover {
-        border-color: $gold;
         color: $gold;
         background-color: rgba($white, 0.1); 
     }
@@ -123,5 +122,4 @@ $light-gold: #E2CA78;
 .sn-selected {
     background-color: $gold !important;
     color: $black !important; 
-    border-color: $gold !important; 
 }

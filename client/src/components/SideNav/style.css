@@ -176,22 +176,21 @@
 
 .side-nav-btn {
   font-size: 1rem;
-  border-radius: 100%;
+  border-radius: 0.5rem;
   width: 6rem;
   height: 6rem;
   padding: 0;
   margin-bottom: 1rem;
   background-color: #282828;
-  border-width: 3px;
-  border-style: solid;
-  border-color: #E2CA78;
   color: #E2CA78;
+  border: none;
+  -webkit-box-shadow: 0 0 4px rgba(235, 236, 233, 0.4);
+          box-shadow: 0 0 4px rgba(235, 236, 233, 0.4);
   -webkit-transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear;
   transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear;
 }
 
 .side-nav-btn:hover {
-  border-color: #D8B646;
   color: #D8B646;
   background-color: rgba(235, 236, 233, 0.1);
 }
@@ -199,6 +198,5 @@
 .sn-selected {
   background-color: #D8B646 !important;
   color: #282828 !important;
-  border-color: #D8B646 !important;
 }
 /*# sourceMappingURL=style.css.map */

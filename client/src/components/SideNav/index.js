@@ -63,11 +63,11 @@ const SideNav = () => {
                     
                     <Link to="/">
                         <button
-                            className={`side-nav-btn help-btn ${currentPage === '' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-0' : 'option-item-out-0' : 'option-item-in-0'}`}
-                            name=""
+                            className={`side-nav-btn help-btn ${currentPage === 'Home' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-0' : 'option-item-out-0' : 'option-item-in-0'}`}
+                            name="Home"
                             onClick={handleClick}
                         >
-                            <FontAwesomeIcon icon="home" name="" />
+                            <FontAwesomeIcon icon="home" name="Home" />
                             <span className="label">
                                 Home
                             </span>
