@@ -36,6 +36,7 @@ function App() {
         <Route path="/JobCRM" element={<JobCRM />} />
         <Route path="/PomodoroTimer" element={<PomodoroTimer />} />
       </Routes>
+     
     </div>
   );
 }
