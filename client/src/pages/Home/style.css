@@ -122,7 +122,7 @@
 }
 
 .info-bubble {
-  min-width: 30rem;
+  width: 30rem;
   min-height: 15rem;
   top: 10rem;
   display: -webkit-box;
@@ -382,7 +382,7 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 768.1px) {
   .home-sprite-wrapper {
     margin-top: 15rem;
   }
@@ -394,9 +394,9 @@
   }
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 768px) {
   .sprite-row {
-    margin-top: 5rem;
+    margin-top: 10rem;
   }
   .home-sprite-wrapper {
     width: 10rem;
@@ -411,6 +411,18 @@
   .second-bubble {
     width: 7rem;
     height: 8rem;
+  }
+  .info-bubble {
+    top: 0;
+    width: 20rem;
+    height: 23rem;
+  }
+  .info-bubble p {
+    font-size: 1rem;
+  }
+  .feature-btn {
+    width: 2rem;
+    height: 2rem;
   }
 }
 

@@ -54,7 +54,7 @@ const Home = () => {
     return (
         <div className="container">
             <div className="row sprite-row">
-                <div className="home-sprite-wrapper offset-lg-1 offset-xl-4 col-1">
+                <div className="home-sprite-wrapper offset-lg-1 offset-xl-3 col-1">
                     <ExcellaIcon />
                 </div>
                 <div className="col-2">
