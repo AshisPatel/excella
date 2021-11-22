@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './style.css';
 import { useSelector } from "react-redux";
 import ExcellaIcon from '../../components/ExcellaIcon';
@@ -9,7 +9,44 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Home = () => {
     const loggedIn = useSelector(state => state.loggedIn);
+    const [fi, setFI] = useState(0)
     const speechBubbleText = loggedIn ? "Hello, <username>! Let's have a wonderful day!" : "Hi, Friend! Excellence starts with you, and I'm here to help.";
+    const features = [
+        {
+            name: 'Eisenhower Matrix',
+            icon: 'tasks',
+            description: 'Conquer the day with the Eisenhower Matrix approach to todo lists!'
+        },
+        {
+            name: 'Job CRM',
+            icon: 'users',
+            description: 'Stay on top of your job hunt with the Job CRM!'
+        },
+        {
+            name: 'Pomodoro Timer',
+            icon: 'clock',
+            description: 'Increase productivity and decrease burnout with the Pomodoro Timer!'
+        }
+    ]
+
+    // chooses which feature will be displayed in the info box
+    let currentFeature = features[fi];
+
+    // will handle 'forward-button' clicks
+    const increaseFI = () => {
+        // if the current feature is the last feature, return back to the first feature else + 1
+        fi === features.length - 1 ? setFI(0) : setFI(fi => fi + 1);
+    }
+    // will handle 'backward-button' clicks
+    const decreaseFI = () => {
+        // if current feature is the first feature, set feature equal to the last feature in the array else - 1
+        fi === 0 ? setFI(features.length - 1) : setFI(fi => fi - 1);
+    }
+    // will handle 'pagination' clicks
+    const indexButtonClick = (e) => {
+        const dataIndex = e.target.getAttribute('dataIndex');
+        setFI(parseInt(dataIndex));
+    }
 
     return (
         <section className="container">
@@ -22,21 +59,44 @@ const Home = () => {
                 </div>
             </div>
             <div className="row">
-                <div className=" offset-2 col-8 offset-md-1 col-md-10 offset-lg-3 col-lg-6 info-bubble">
+                <div className="col-2 col-md-3"></div>
+                <div className=" col-8 col-md-6 info-bubble">
                     <p>Here are some of the ways I can help...</p>
-                    <h2><FontAwesomeIcon icon="tasks" /> Eisenhower Matrix</h2>
+                    <h1>{currentFeature.name}</h1>
                     <div className="info-content">
-                        <button className="forwards-btn">
+                        <button
+                            className="backwards-btn"
+                            onClick={() => decreaseFI()}
+                        >
                             <FontAwesomeIcon icon="chevron-left" />
                         </button>
-                        <p>
-                            The Eisenhower Matrix is an approach that attempts to make your daily and future tasks more managable. Unlike a simple todo list the Eisenhower Matrix requires that a task has to go in one of four categories: (1) DO: Urgent and must be done by you, (2) DELEGATE: Urgent and can be delegated to someone else, (3) DO LATER: Not urgent and can be done by you later, (4) DELETE Not pressing, can be deleted.
-                        </p>
-                        <button className="backwards-btn">
-                        <FontAwesomeIcon icon="chevron-right" />
+                        <FontAwesomeIcon
+                            icon={currentFeature.icon}
+                            className="info-icon"
+                        />
+                        <button
+                            className="forwards-btn"
+                            onClick={() => increaseFI()}
+                        >
+                            <FontAwesomeIcon icon="chevron-right" />
                         </button>
                     </div>
-
+                    <h2 className="info-description">
+                        {currentFeature.description}
+                    </h2>
+                    <div className="index-btn-container">
+                        {features.map((feature, index) => {
+                            return (
+                                <button
+                                    className={`index-btn ${fi === index ? 'selected-index' : ''}`}
+                                    dataIndex={index}
+                                    onClick={indexButtonClick}
+                                    key={index}
+                                >
+                                </button>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </section>
