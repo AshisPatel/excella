@@ -49,6 +49,52 @@
           animation: hover-4 5s linear infinite;
 }
 
+.info-bubble {
+  background-color: #D8B646;
+  color: #282828;
+  border-radius: 0.5rem;
+  box-shadow: 1rem 1rem rgba(235, 236, 233, 0.08);
+  padding-bottom: 1rem;
+  margin-bottom: 3rem;
+}
+.info-bubble p {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.info-bubble h2 {
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.info-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info-content p {
+  font-size: 1.25rem;
+  background-color: rgba(235, 236, 233, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: inset 0 0 0.25rem rgba(40, 40, 40, 0.5);
+  font-weight: 400;
+}
+.info-content button {
+  background-color: transparent;
+  border: none;
+  transition: color 0.2s linear;
+  font-size: 1rem;
+}
+.info-content button:hover {
+  color: #EBECE9;
+}
+.info-content .forwards-btn {
+  margin-right: 1rem;
+}
+.info-content .backwards-btn {
+  margin-left: 1rem;
+}
+
 .speech-bubble-fade-in {
   -webkit-animation: hover-2 5s linear infinite, fade-in 1s linear forwards;
           animation: hover-2 5s linear infinite, fade-in 1s linear forwards;
@@ -200,6 +246,38 @@
 @media screen and (max-width: 500px) {
   .speech-bubble {
     font-size: 1.2rem;
+  }
+  .speech-bubble::before {
+    display: none;
+  }
+  .speech-bubble::after {
+    display: none;
+  }
+
+  .optional-margin {
+    margin-top: 4rem;
+  }
+
+  .info-bubble p {
+    font-size: 0.9rem;
+  }
+  .info-bubble h2 {
+    font-size: 1rem;
+  }
+
+  .info-content p {
+    font-size: 0.9rem;
+  }
+  .info-content .forwards-btn {
+    margin-right: 0.5rem;
+  }
+  .info-content .backwards-btn {
+    margin-left: 0.5rem;
+  }
+}
+@media screen and (max-width: 320px) {
+  .speech-bubble {
+    font-size: 1rem;
   }
   .speech-bubble::before {
     display: none;
