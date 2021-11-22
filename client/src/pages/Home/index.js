@@ -59,7 +59,7 @@ const Home = () => {
         <div className="container">
             <div className="row sprite-row">
                 <div className="home-sprite-wrapper offset-lg-1 offset-xl-3 col-1">
-                    <ExcellaShadowIcon />
+                    <ExcellaIcon />
                 </div>
                 <div className="col-2">
                     {feature === '' ?
