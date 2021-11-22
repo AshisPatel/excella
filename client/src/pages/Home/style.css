@@ -50,6 +50,7 @@
 }
 
 .info-bubble {
+  opacity: 0;
   background-color: #D8B646;
   color: #282828;
   border-radius: 0.5rem;
@@ -61,8 +62,8 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  -webkit-animation: fade-in 0.5s 0.5s linear forwards;
-          animation: fade-in 0.5s 0.5s linear forwards;
+  -webkit-animation: fade-in 0.75s 0.75s linear forwards;
+          animation: fade-in 0.75s 0.75s linear forwards;
 }
 .info-bubble .info-icon {
   font-size: 5rem;
@@ -143,8 +144,8 @@
 }
 
 .speech-bubble-fade-in {
-  -webkit-animation: hover-2 5s linear infinite, fade-in 0.5s linear forwards;
-          animation: hover-2 5s linear infinite, fade-in 0.5s linear forwards;
+  -webkit-animation: hover-2 5s linear infinite, fade-in 0.75s linear forwards;
+          animation: hover-2 5s linear infinite, fade-in 0.75s linear forwards;
 }
 
 .speech-bubble-fade-out {
@@ -290,7 +291,7 @@
     width: 0.5rem;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   .speech-bubble {
     font-size: 1.2rem;
   }
@@ -313,6 +314,12 @@
   }
   .info-bubble .info-icon {
     font-size: 2.5rem;
+  }
+  .info-bubble::before {
+    display: none;
+  }
+  .info-bubble::after {
+    display: none;
   }
 
   .info-content button {

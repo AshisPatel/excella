@@ -56,6 +56,7 @@ $light-gold: #E2CA78;
 }
 
 .info-bubble {
+    opacity: 0;
     background-color: $gold;
     color: $black;
     border-radius: 0.5rem; 
@@ -67,7 +68,7 @@ $light-gold: #E2CA78;
     justify-content: space-between; 
     align-items: center; 
     position: relative; 
-    animation: fade-in 0.5s 0.5s linear forwards; 
+    animation: fade-in 0.75s 0.75s linear forwards; 
     & .info-icon {
         font-size: 5rem; 
     }
@@ -116,7 +117,7 @@ $light-gold: #E2CA78;
     margin-right: auto; 
 }
 
-.info-content {
+.info-content { 
     display: flex;
     width: 90%; 
     justify-content: space-between;
@@ -151,7 +152,7 @@ $light-gold: #E2CA78;
 }
 
 .speech-bubble-fade-in {
-    animation: hover-2 5s linear infinite, fade-in 0.5s linear forwards; 
+    animation: hover-2 5s linear infinite, fade-in 0.75s linear forwards; 
 }
 
 .speech-bubble-fade-out {
@@ -238,8 +239,8 @@ $light-gold: #E2CA78;
         }
     }
 }
-
-@media screen and (max-width: 500px) {
+// this used to be 500
+@media screen and (max-width: 700px) {
     .speech-bubble {
         font-size: 1.2rem; 
         &::before {
@@ -265,6 +266,12 @@ $light-gold: #E2CA78;
 
         & .info-icon {
             font-size: 2.5rem; 
+        }
+        &::before {
+            display: none; 
+        }
+        &::after{
+           display: none; 
         }
     }
 

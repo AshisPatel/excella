@@ -59,8 +59,8 @@ const Home = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-2 col-md-3"></div>
-                <div className=" col-8 col-md-6 info-bubble">
+                <div className="col-1 col-md-3"></div>
+                <div className="col-8 col-md-6 info-bubble">
                     <p>Here are some of the ways I can help...</p>
                     <h1>{currentFeature.name}</h1>
                     <div className="info-content">
