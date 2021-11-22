@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './style.css';
 import { useSelector } from "react-redux";
 import ExcellaIcon from '../../components/ExcellaIcon';
+import ExcellaShadowIcon from '../../components/ExcellaShadowIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
@@ -58,7 +59,7 @@ const Home = () => {
         <div className="container">
             <div className="row sprite-row">
                 <div className="home-sprite-wrapper offset-lg-1 offset-xl-3 col-1">
-                    <ExcellaIcon />
+                    <ExcellaShadowIcon />
                 </div>
                 <div className="col-2">
                     {feature === '' ?
