@@ -3,15 +3,18 @@ import './style.css';
 import { useSelector } from "react-redux";
 import ExcellaIcon from '../../components/ExcellaIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 
 const Home = () => {
+    const { width, height} = useWindowDimensions();
     const [feature, setFeature] = useState('');
     const [fadeIn, setFadeIn] = useState(true);
     const [infoFade, setInfoFade] = useState(true);
     const loggedIn = useSelector(state => state.loggedIn);
     const firstBubbleText = loggedIn ? "Hello, <username>! Let's have a wonderful day!" : "Hello, friend! I'm Excella, Your new favorite producitivy suite";
     const secondBubbleText = loggedIn ? "Select one of my features to learn about!" : "Signup / Login to get started today,  select one of my features to learn about!";
+    const reducedSecondBubbleText = loggedIn ? "Click on the settings icon to access my features!" : "Signup / Login today to use my Job CRM, Todo list, Pomodoro Timer, and more!";
 
     const features = [
         {
@@ -62,7 +65,8 @@ const Home = () => {
                         <>
                             <p className={`speech-bubble first-bubble ${fadeIn ? 'first-bubble-fade-in' : 'first-bubble-fade-out'}`}>{firstBubbleText}</p>
                             <div className={`speech-bubble second-bubble ${fadeIn ? 'second-bubble-fade-in' : 'second-bubble-fade-out'}`}>
-                                {secondBubbleText}
+                                {width > 550 ? secondBubbleText : reducedSecondBubbleText}
+                                { width > 550 &&
                                 <ul className="features-list">
                                     {features.map(feature => {
                                         return (
@@ -77,6 +81,7 @@ const Home = () => {
                                         );
                                     })}
                                 </ul>
+                                }
                             </div>
 
                         </>
@@ -97,7 +102,7 @@ const Home = () => {
                 </div>
 
             </div>
-            <div style={{ width: 100, height: 300 }} />
+            <div style={{ width: 100, height: 100 }} />
         </div>
 
     );
