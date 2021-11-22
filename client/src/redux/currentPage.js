@@ -14,7 +14,7 @@ export const setCurrentPage = (page) => {
 // takes in slice of state and it's initial value
 // initiated as an empty string
 // also takes in the action parameter destructed into { type, payload }
-export default function currentPageReducer(currentPage = '', { type, payload }) {
+export default function currentPageReducer(currentPage = window.location.pathname, { type, payload }) {
     switch(type) {
         case "SET_CURRENT_PAGE":
             // payload will contain the name of the current page, this will set thecurrent page equal to what is returned here 
