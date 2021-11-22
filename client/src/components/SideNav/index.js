@@ -14,17 +14,21 @@ const SideNav = () => {
     const [clickOff, setClickOff] = useState(false); 
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
-    const transitionWidth = 1000;
+    const transitionWidth = 768.1;
 
     const handleClick = (e) => {
-        console.log(e.target.parentNode);
+        // grab the name of the clicked object
+        // sometimes the target of the event is not the button, but rather the icon or the label
+        // in this case, we need to grab the parent node and grab it's name attribute
         let name = e.target.name;
         if (!name) {
             name = e.target.parentNode.getAttribute('name');
         }
-
-        console.log(name);
         dispatch(setCurrentPage(name));
+        
+        if(width < transitionWidth) {
+            toggleDropDown();
+        }
     }
 
     const toggleDropDown = async () => {
