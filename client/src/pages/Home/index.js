@@ -52,10 +52,16 @@ const Home = () => {
         <section className="container">
             <div className="row optional-margin">
                 <div className="col-4 col-lg-2 offset-1 home-sprite-wrapper">
-                    <ExcellaIcon />
+                    <ExcellaShadowIcon />
                 </div>
                 <div className="col-4">
-                    <p className='speech-bubble speech-bubble-fade-in'>{speechBubbleText}</p>
+                    <p className='speech-bubble speech-bubble-fade-in'>
+                        {loggedIn ? 
+                            "Hello, <username>! Let's have a wonderful day!" 
+                        : 
+                            <> Hi, friend! <span className="emphasized-text">Excellence</span> starts with you, and I'm here to <span className="emphasized-text">help</span>.</>
+                        }
+                        </p>
                 </div>
             </div>
             <div className="row">

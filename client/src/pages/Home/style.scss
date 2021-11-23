@@ -4,6 +4,18 @@ $blue: #283143;
 $gold: #D8B646;
 $light-gold: #E2CA78;
 
+#logo {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: -0.25rem;
+    margin-left: 1rem;  
+    & svg {
+        width: 3rem; 
+        fill: $white; 
+    }
+}
+
 .home-sprite-wrapper {
     animation: hover-1 5s ease-in-out infinite;  
 
@@ -17,6 +29,11 @@ $light-gold: #E2CA78;
     margin-top: 1rem; 
 }
 
+.emphasized-text {
+    color: $white; 
+    font-weight: bold; 
+}
+
 .speech-bubble {
     opacity: 0;
     color: $black;
@@ -25,7 +42,7 @@ $light-gold: #E2CA78;
     box-shadow: 1rem 1rem rgba($white, 0.08); 
     padding: 1rem; 
     margin-top: -2rem;  
-    font-size: 1.5rem; 
+    font-size: 2rem; 
     position: relative; 
 
     &::before {

@@ -1,5 +1,6 @@
 import React from "react";
 import './style.css';
+import ExcellaIcon from "../ExcellaIcon";
 // remove these once authentication is added
 import { logout } from "../../redux/loggedIn";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,7 +15,7 @@ const Nav = (props) => {
 
     return (
         <nav id='top-nav'>
-            <h1>Excella</h1>
+            <h1 id="logo">E<ExcellaIcon />cella</h1>
 
             <div className='btn-container'>
                 {loggedIn ?
