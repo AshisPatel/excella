@@ -9,7 +9,9 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Home = () => {
     const loggedIn = useSelector(state => state.loggedIn);
-    const [fi, setFI] = useState(0)
+    // instantiate variable to switch Excella's animations after a second
+    const [slideIn, setSlideIn] = useState(true); 
+    const [fi, setFI] = useState(0);
     const speechBubbleText = loggedIn ? "Hello, <username>! Let's have a wonderful day!" : "Hi, Friend! Excellence starts with you, and I'm here to help.";
     const features = [
         {
@@ -48,10 +50,19 @@ const Home = () => {
         setFI(parseInt(dataIndex));
     }
 
+    // useEffect to switch an animation variable for Excella -> sliding in to hovering 
+    // timeout duration is with reference to the animation length for .slide-in
+    useEffect(() => {
+        setTimeout(() => {
+            setSlideIn(false); 
+        },500);
+    }, []);
+
+
     return (
         <section className="container">
             <div className="row optional-margin">
-                <div className="col-4 col-lg-2 offset-1 home-sprite-wrapper">
+                <div className={`col-4 col-lg-2 offset-1 home-sprite-wrapper ${slideIn ? 'slide-in' : 'hover-1'}`}>
                     <ExcellaShadowIcon />
                 </div>
                 <div className="col-4">

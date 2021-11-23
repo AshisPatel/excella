@@ -24,12 +24,16 @@ $light-gold: #E2CA78;
 }
 
 .home-sprite-wrapper {
-    animation: hover-1 5s ease-in-out infinite;  
+    
 
     svg {
         fill: $gold;
         stroke:$gold; 
     }
+}
+
+.hover-1 {
+    animation: hover-1 5s linear infinite;  
 }
 
 .optional-margin {
@@ -92,7 +96,7 @@ $light-gold: #E2CA78;
     justify-content: space-between; 
     align-items: center; 
     position: relative; 
-    animation: fade-in 0.75s 0.75s linear forwards; 
+    animation: fade-in 0.75s 1s linear forwards; 
     & .info-icon {
         font-size: 5rem; 
     }
@@ -176,11 +180,15 @@ $light-gold: #E2CA78;
 }
 
 .speech-bubble-fade-in {
-    animation: hover-2 5s linear infinite, fade-in 0.75s linear forwards; 
+    animation: hover-2 5s linear infinite, fade-in 0.75s 0.5s linear forwards; 
 }
 
 .speech-bubble-fade-out {
     animation: hover-2 5s linear infinite, fade-out 0.5s linear forwards; 
+}
+
+.slide-in {
+    animation: slide-in 0.5s linear forwards; 
 }
 
 @keyframes fade-in {
@@ -202,13 +210,16 @@ $light-gold: #E2CA78;
 
 @keyframes hover-1 {
     0%{
-        transform: translateY(0.75rem);
+        transform: translateY(0);
     }
-    50% {
+    25% {
         transform: translateY(-0.75rem); 
     }
-    100% {
+    75% {
         transform: translateY(0.75rem); 
+    }
+    100% {
+        transform: translateY(0); 
     }
 }
 
@@ -244,6 +255,18 @@ $light-gold: #E2CA78;
     }
     100% {
         transform: translateY(0.4rem);
+    }
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(-20vw) rotate(45deg);
+    }
+    75% {
+        transform: translateX(0) rotate(-45deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg); 
     }
 }
 
