@@ -32,12 +32,12 @@ const SideNav = () => {
         }
     }
 
-    const logoutHandler = () => {
+    const logoutHandler = async () => {
         dispatch(setCurrentPage('/'));
-        dispatch(logout());
         if(width < transitionWidth) {
-            toggleDropDown();
+             toggleDropDown();
         }
+        setTimeout(() => dispatch(logout()), 600);
     };
 
     const toggleDropDown = async () => {

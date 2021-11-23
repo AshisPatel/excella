@@ -10,7 +10,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  top: 25%;
+  top: 15%;
   right: 0%;
   margin-right: 1rem;
   z-index: 10;
@@ -21,7 +21,7 @@
   top: 0;
   right: 0;
   margin-top: 1.4rem;
-  margin-right: 7rem;
+  margin-right: 2rem;
   font-size: 2rem;
   background-color: #282828;
   border: none;
