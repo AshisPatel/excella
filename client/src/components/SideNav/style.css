@@ -182,6 +182,17 @@
   box-shadow: 0.4rem 0.4rem rgba(226, 202, 120, 0.3);
 }
 
+@media screen and (max-width: 1440px) {
+  .side-nav {
+    top: 25%;
+  }
+
+  .side-nav-btn {
+    font-size: 0.8rem;
+    width: 4.25rem;
+    height: 4.25rem;
+  }
+}
 @media screen and (max-width: 768px) {
   .side-nav {
     background-color: rgba(40, 40, 40, 0.8);

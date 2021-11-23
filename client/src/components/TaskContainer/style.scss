@@ -1,0 +1,90 @@
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+$gold: #D8B646;
+$light-gold: #E2CA78;
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+// fourth of the vertical gutter between containers
+$central-spacing: 1rem;
+// this moves the left-container 2*spacing away from the middle
+$left-container-left-margin: -2*$central-spacing;  
+// moving the left-container to the right also moves the right container
+// thus we need to move the left-container by a total of 4x the central spacing to the right to make up for the lost space
+$right-container-left-margin: 4*$central-spacing; 
+
+
+
+.task-container {
+    background-color: $gold; 
+    margin-top: 2*$central-spacing;
+    margin-bottom: 2*$central-spacing;
+    border-radius: 0.5rem; 
+    box-shadow: $box-shadow; 
+    min-height: 13rem; 
+    padding: 0; 
+    position: relative; 
+    
+    & h2 {
+        margin-top: 1rem; 
+        margin-left: 1rem; 
+        margin-bottom: 0; 
+        font-size: 1.5rem; 
+    }
+
+    & .title-wrapper {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center; 
+    }
+
+    & .clear-btn {
+        position: absolute; 
+        top: 0;
+        right: 0; 
+        border: none; 
+        border-radius: 0.5rem; 
+        padding: 0.4rem;
+        margin-right: 1rem; 
+        margin-top: 1rem; 
+        height: 2rem;  
+        animation: fade-in 0.2s linear forwards; 
+    }
+
+ 
+}
+
+.em-left-box {
+    margin-left: $left-container-left-margin;
+    margin-right: 0rem;
+}
+
+.em-right-box {
+    margin-left: $right-container-left-margin;
+}
+
+.spacing-col {
+    // this is removed from the spacing columns to prevent the columns from being decentralized 
+    padding-right: 0; 
+}
+
+
+@media screen and (max-width: 768px) {
+    // keeps width consistent with header
+    .task-container {
+        padding-left: 1rem;
+        padding-right: 1rem; 
+        margin-top: $central-spacing;
+        margin-bottom: $central-spacing; 
+    }
+
+    .em-right-box {
+        margin-left: auto;
+        margin-right: auto;  
+    }
+
+    .em-left-box {
+        margin-left: auto;
+        margin-right: auto; 
+    }
+}
