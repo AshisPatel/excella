@@ -7,9 +7,9 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom"
 import store from "./redux";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt);
+library.add(faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt, faPlus, faTrash);
 
 ReactDOM.render(
   <React.StrictMode>

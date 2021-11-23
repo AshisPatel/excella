@@ -21,6 +21,8 @@ body {
     overflow: hidden; 
 }
 
+// signup and login modal CSS
+
 .modal-backdrop {
     background: rgba($blue, 0.9);
     height: 100vh;
@@ -270,6 +272,7 @@ body {
         opacity: 0;  
     }
 }
+
 
 
 

@@ -187,8 +187,8 @@ $light-gold: #E2CA78;
     animation: hover-2 5s linear infinite, fade-out 0.5s linear forwards; 
 }
 
-.slide-in {
-    animation: slide-in 0.5s linear forwards; 
+.excella-slide-in {
+    animation: excella-slide-in 0.5s linear forwards; 
 }
 
 @keyframes fade-in {
@@ -258,7 +258,7 @@ $light-gold: #E2CA78;
     }
 }
 
-@keyframes slide-in {
+@keyframes excella-slide-in {
     0% {
         transform: translateX(-20vw) rotate(45deg);
     }

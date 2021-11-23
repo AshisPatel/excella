@@ -178,9 +178,9 @@
           animation: hover-2 5s linear infinite, fade-out 0.5s linear forwards;
 }
 
-.slide-in {
-  -webkit-animation: slide-in 0.5s linear forwards;
-          animation: slide-in 0.5s linear forwards;
+.excella-slide-in {
+  -webkit-animation: excella-slide-in 0.5s linear forwards;
+          animation: excella-slide-in 0.5s linear forwards;
 }
 
 @-webkit-keyframes fade-in {
@@ -310,7 +310,7 @@
     transform: translateY(0.4rem);
   }
 }
-@-webkit-keyframes slide-in {
+@-webkit-keyframes excella-slide-in {
   0% {
     transform: translateX(-20vw) rotate(45deg);
   }
@@ -321,7 +321,7 @@
     transform: translateX(0) rotate(0deg);
   }
 }
-@keyframes slide-in {
+@keyframes excella-slide-in {
   0% {
     transform: translateX(-20vw) rotate(45deg);
   }

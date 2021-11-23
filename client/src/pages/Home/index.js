@@ -62,7 +62,7 @@ const Home = () => {
     return (
         <section className="container">
             <div className="row optional-margin">
-                <div className={`col-4 col-lg-2 offset-1 home-sprite-wrapper ${slideIn ? 'slide-in' : 'hover-1'}`}>
+                <div className={`col-4 col-lg-2 offset-1 home-sprite-wrapper ${slideIn ? 'excella-slide-in' : 'hover-1'}`}>
                     <ExcellaShadowIcon />
                 </div>
                 <div className="col-4">
