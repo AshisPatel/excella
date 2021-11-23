@@ -8,12 +8,19 @@ $light-gold: #E2CA78;
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    margin-top: -0.25rem;
+    margin-top: auto;
+    margin-bottom: auto; 
     margin-left: 1rem;  
+    font-size: 3rem; 
     & svg {
         width: 3rem; 
         fill: $white; 
     }
+}
+
+#top-nav {
+    display: flex; 
+    align-items: center; 
 }
 
 .home-sprite-wrapper {
@@ -258,6 +265,10 @@ $light-gold: #E2CA78;
 }
 // this used to be 500
 @media screen and (max-width: 700px) {
+    #logo {
+        font-size: 1.75rem; 
+    }
+
     .speech-bubble {
         font-size: 1.2rem; 
         &::before {
@@ -312,6 +323,11 @@ $light-gold: #E2CA78;
         &::after{
            display: none; 
         }
+    }
+    
+    .nav-btn {
+        width: 4rem !important; 
+        font-size: 1rem !important; 
     }
 
     .optional-margin {

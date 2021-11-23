@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../redux/currentPage';
 import { Link } from "react-router-dom";
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import { logout } from '../../redux/loggedIn';
 
 const SideNav = () => {
 
@@ -30,6 +31,14 @@ const SideNav = () => {
             toggleDropDown();
         }
     }
+
+    const logoutHandler = () => {
+        dispatch(setCurrentPage('/'));
+        dispatch(logout());
+        if(width < transitionWidth) {
+            toggleDropDown();
+        }
+    };
 
     const toggleDropDown = async () => {
     //   setDisplay(prevDisplay => !prevDisplay);
@@ -59,7 +68,7 @@ const SideNav = () => {
                     className={`options ${display && 'op-selected'}`}
                     onClick={() => toggleDropDown()}
                 >
-                    <FontAwesomeIcon icon="cog" />
+                    <FontAwesomeIcon icon="bars" />
                 </button>
             }
             {display ?
@@ -113,6 +122,18 @@ const SideNav = () => {
                             <FontAwesomeIcon icon="clock" name='/PomodoroTimer' />
                             <span className="label">
                                 Pomodoro Timer
+                            </span>
+                        </button>
+                    </Link>
+
+                    <Link to="/">
+                        <button
+                            className={`side-nav-btn pt-btn ${width < transitionWidth ? !fadeOut ? 'option-item-in-4' : 'option-item-out-4' : 'option-item-in-4'}`}
+                            onClick={() => logoutHandler()}
+                        >
+                            <FontAwesomeIcon icon="sign-out-alt"/>
+                            <span className="label">
+                                Logout
                             </span>
                         </button>
                     </Link>

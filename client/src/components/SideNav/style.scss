@@ -23,14 +23,14 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
 
 .options {
     position: fixed;
-    top: 0%;
-    right: 0%;
+    top: 0;
+    right: 0;
     margin-top: 1.4rem;  
-    margin-right: 8rem;
+    margin-right: 7rem;
     font-size: 2rem; 
     background-color: $black; 
     border: none;   
-    transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear;
+    transition: color 0.2s linear;
     color: $light-gold;  
     &:hover {
         color: $gold; 
@@ -50,15 +50,15 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
     }
 }
 
-@for $i from 0 through 3 {
+@for $i from 0 through 4 {
     .option-item-in-#{$i}{
         opacity: 0;
         transform: translateY(-20vh);
-        animation: slideInOption 0.25s .1s + $i*0.25s linear forwards; 
+        animation: slideInOption 0.25s .75s + $i*0.25s linear forwards; 
     }
 }
 
-@for $i from 0 through 3 {
+@for $i from 0 through 4 {
     .option-item-out-#{$i}{
         opacity: 1;
         transform: translateY(0);

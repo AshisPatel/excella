@@ -18,17 +18,15 @@
 
 .options {
   position: fixed;
-  top: 0%;
-  right: 0%;
+  top: 0;
+  right: 0;
   margin-top: 1.4rem;
-  margin-right: 8rem;
+  margin-right: 7rem;
   font-size: 2rem;
   background-color: #282828;
   border: none;
-  -webkit-transition: background-color 0.2s linear, color 0.2s linear, border 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, border 0.2s linear, -webkit-box-shadow 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear;
-  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, border 0.2s linear, -webkit-box-shadow 0.2s linear;
+  -webkit-transition: color 0.2s linear;
+  transition: color 0.2s linear;
   color: #E2CA78;
 }
 
@@ -52,32 +50,40 @@
   opacity: 0;
   -webkit-transform: translateY(-20vh);
           transform: translateY(-20vh);
-  -webkit-animation: slideInOption 0.25s 0.1s linear forwards;
-          animation: slideInOption 0.25s 0.1s linear forwards;
+  -webkit-animation: slideInOption 0.25s 0.75s linear forwards;
+          animation: slideInOption 0.25s 0.75s linear forwards;
 }
 
 .option-item-in-1 {
   opacity: 0;
   -webkit-transform: translateY(-20vh);
           transform: translateY(-20vh);
-  -webkit-animation: slideInOption 0.25s 0.35s linear forwards;
-          animation: slideInOption 0.25s 0.35s linear forwards;
+  -webkit-animation: slideInOption 0.25s 1s linear forwards;
+          animation: slideInOption 0.25s 1s linear forwards;
 }
 
 .option-item-in-2 {
   opacity: 0;
   -webkit-transform: translateY(-20vh);
           transform: translateY(-20vh);
-  -webkit-animation: slideInOption 0.25s 0.6s linear forwards;
-          animation: slideInOption 0.25s 0.6s linear forwards;
+  -webkit-animation: slideInOption 0.25s 1.25s linear forwards;
+          animation: slideInOption 0.25s 1.25s linear forwards;
 }
 
 .option-item-in-3 {
   opacity: 0;
   -webkit-transform: translateY(-20vh);
           transform: translateY(-20vh);
-  -webkit-animation: slideInOption 0.25s 0.85s linear forwards;
-          animation: slideInOption 0.25s 0.85s linear forwards;
+  -webkit-animation: slideInOption 0.25s 1.5s linear forwards;
+          animation: slideInOption 0.25s 1.5s linear forwards;
+}
+
+.option-item-in-4 {
+  opacity: 0;
+  -webkit-transform: translateY(-20vh);
+          transform: translateY(-20vh);
+  -webkit-animation: slideInOption 0.25s 1.75s linear forwards;
+          animation: slideInOption 0.25s 1.75s linear forwards;
 }
 
 .option-item-out-0 {
@@ -110,6 +116,14 @@
           transform: translateY(0);
   -webkit-animation: slideOutOption 0.1s 0.3s linear forwards;
           animation: slideOutOption 0.1s 0.3s linear forwards;
+}
+
+.option-item-out-4 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-animation: slideOutOption 0.1s 0.4s linear forwards;
+          animation: slideOutOption 0.1s 0.4s linear forwards;
 }
 
 @-webkit-keyframes slideInOption {

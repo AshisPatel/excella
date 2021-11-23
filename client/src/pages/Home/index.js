@@ -59,7 +59,7 @@ const Home = () => {
                         {loggedIn ? 
                             "Hello, <username>! Let's have a wonderful day!" 
                         : 
-                            <> Hi, friend! <span className="emphasized-text">Excellence</span> starts with you, and I'm here to <span className="emphasized-text">help</span>.</>
+                            <><span className="emphasized-text">Excellence</span> starts with you. My name is <span className="emphasized-text">Excella</span> and I'm here to help.</>
                         }
                         </p>
                 </div>
