@@ -16,7 +16,8 @@ $right-container-left-margin: 4*$central-spacing;
 
 
 .task-container {
-    background-color: $gold; 
+    background-color: darken($black,6%); 
+    color: $gold; 
     margin-top: 2*$central-spacing;
     margin-bottom: 2*$central-spacing;
     border-radius: 0.5rem; 

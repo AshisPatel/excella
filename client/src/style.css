@@ -1289,6 +1289,11 @@
     --bs-gutter-y: 3rem;
   }
 }
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: #282828;
 }
@@ -1316,11 +1321,12 @@ body {
 
 .modal-form {
   background: #282828;
+  color: #EBECE9;
   padding: 2rem;
   border-radius: 0.5rem;
   max-width: 30rem;
-  height: 32rem;
-  width: 85%;
+  max-height: 32rem;
+  width: 80%;
   position: absolute;
   top: 0;
   left: 0;
@@ -1373,8 +1379,42 @@ body {
 }
 .modal-form .radio-btn-wrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  color: #EBECE9;
+  font-size: 1.4rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+.modal-form .radio-btn-wrapper label {
+  margin-right: 1rem;
+  margin-left: 1rem;
+  transition: all 0.2s linear;
+}
+.modal-form .radio-btn-wrapper label:hover {
+  color: #E2CA78 !important;
+}
+.modal-form .radio-btn-wrapper label:hover input {
+  border-color: #E2CA78;
+}
+.modal-form .radio-btn-wrapper .label-checked {
+  color: #D8B646 !important;
+}
+.modal-form .radio-btn-wrapper input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 0.4rem;
+  background-color: #282828;
+  border: 2px solid #EBECE9;
+  transition: all 0.2s linear;
+  transform: translateY(0.2rem);
+  margin-right: 0.25rem;
+}
+.modal-form .radio-btn-wrapper input:checked {
+  border-color: #D8B646;
+  background-color: #D8B646;
 }
 .modal-form .warning {
   font-size: 1.25rem;

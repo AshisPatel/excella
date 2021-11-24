@@ -10,7 +10,14 @@ $blue: #283143;
 $gold: #D8B646;
 $light-gold: #E2CA78;
 
+// custom variables
+$radio-btn-md-fs: 1.4rem;
+$radio-btn-sm-fs: 1rem; 
 
+* {
+    margin: 0;
+    padding: 0; 
+}
 
 
 body {
@@ -41,13 +48,12 @@ body {
 
 .modal-form {
     background: $black;
-    // background-color: $white; 
+    color: $white; 
     padding: 2rem; 
     border-radius: 0.5rem; 
-    // max-height: 30rem;
     max-width: 30rem; 
-    height: 32rem; 
-    width: 85%;
+    max-height: 32rem; 
+    width: 80%;
     position: absolute; 
     top: 0;
     left: 0;
@@ -94,8 +100,45 @@ body {
 
     & .radio-btn-wrapper {
         display: flex;
-        justify-content: space-between;
         align-items: center; 
+        color: $white; 
+        font-size: $radio-btn-md-fs; 
+        margin-right: auto;
+        margin-left: auto; 
+
+        & label {
+            margin-right: 1rem;
+            margin-left: 1rem; 
+            transition: all 0.2s linear; 
+            &:hover {
+                color: $light-gold !important;
+                & input {
+                    border-color: $light-gold; 
+                }
+            }
+        }
+
+        & .label-checked {
+            color: $gold !important; 
+        }
+
+
+        & input {
+            appearance: none; 
+            width: $radio-btn-md-fs;
+            height: $radio-btn-md-fs;
+            border-radius: 0.4rem;
+            background-color: $black;
+            border: 2px solid $white; 
+            transition: all 0.2s linear; 
+            transform: translateY(0.2rem);
+            margin-right: 0.25rem;
+
+            &:checked {
+                border-color: $gold; 
+                background-color: $gold; 
+            }
+        }
     }
 
     & .warning {

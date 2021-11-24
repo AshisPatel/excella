@@ -79,30 +79,42 @@ const TaskModal = (props) => {
                     />
                     <label for="category">Choose a category:</label>
                     <div className="radio-btn-wrapper">
-                        <input
-                            type="radio"
-                            name="category"
-                            value="do"
-                            onChange={handleChange}
-                        /> Do
-                        <input
-                            type="radio"
-                            name="category"
-                            value="doLater"
-                            onChange={handleChange}
-                        />Do Later
-                        <input
-                            type="radio"
-                            name="category"
-                            value="delegate"
-                            onChange={handleChange}
-                        />Delegate
-                        <input
-                            type="radio"
-                            name="category"
-                            value="delete"
-                            onChange={handleChange}
-                        />Delete
+                        <label>
+                            <input
+                                type="radio"
+                                name="category"
+                                value="do"
+                                className="radio-input"
+                                onChange={handleChange}
+                            />Do
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="category"
+                                value="doLater"
+                                className="radio-input"
+                                onChange={handleChange}
+                            />Do Later
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="category"
+                                value="delegate"
+                                className="radio-input"
+                                onChange={handleChange}
+                            />Delegate
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="category"
+                                value="delete"
+                                className="radio-input"
+                                onChange={handleChange}
+                            />Delete
+                        </label>
                     </div>
                     <button
                         className="button"

@@ -94,6 +94,7 @@
   font-size: 5rem;
 }
 .info-bubble p {
+  margin-top: 0.75rem;
   font-weight: bold;
   align-self: start;
   font-size: 1.1rem;
@@ -127,6 +128,7 @@
 }
 
 .info-description {
+  margin-top: 0.75rem;
   font-size: 1.25rem;
   font-weight: bold;
   text-align: center;
@@ -150,7 +152,8 @@
   color: #EBECE9;
 }
 
-.index-btn-wrapper {
+.index-btn-container {
+  margin-top: 0.75rem;
   align-self: center;
 }
 
