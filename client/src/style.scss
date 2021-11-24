@@ -39,7 +39,7 @@ body {
     overflow: hidden; 
 }
 
-.sl-form {
+.modal-form {
     background: $black;
     // background-color: $white; 
     padding: 2rem; 
@@ -92,6 +92,12 @@ body {
         }
     }
 
+    & .radio-btn-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+    }
+
     & .warning {
         font-size: 1.25rem;
         font-weight: bold;
@@ -112,6 +118,9 @@ body {
 
         &:focus {
             background-color: $light-gold;
+        }
+        & svg {
+            margin-right: 0.5rem;
         }
     }
 

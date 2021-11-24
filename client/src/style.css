@@ -1314,7 +1314,7 @@ body {
   overflow: hidden;
 }
 
-.sl-form {
+.modal-form {
   background: #282828;
   padding: 2rem;
   border-radius: 0.5rem;
@@ -1332,17 +1332,17 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.sl-form h2 {
+.modal-form h2 {
   font-weight: bold;
   text-align: center;
   color: #EBECE9;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
 }
-.sl-form h2 span {
+.modal-form h2 span {
   color: #D8B646;
 }
-.sl-form .text-input {
+.modal-form .text-input {
   width: 100%;
   z-index: 2;
   border-radius: 0.5rem;
@@ -1355,43 +1355,51 @@ body {
   text-align: center;
   font-size: 1.2rem;
 }
-.sl-form .text-input:focus {
+.modal-form .text-input:focus {
   outline: none;
   background-color: rgba(235, 236, 233, 0.5);
 }
-.sl-form .text-input::-moz-placeholder {
+.modal-form .text-input::-moz-placeholder {
   text-align: center;
   color: #EBECE9;
 }
-.sl-form .text-input:-ms-input-placeholder {
+.modal-form .text-input:-ms-input-placeholder {
   text-align: center;
   color: #EBECE9;
 }
-.sl-form .text-input::placeholder {
+.modal-form .text-input::placeholder {
   text-align: center;
   color: #EBECE9;
 }
-.sl-form .warning {
+.modal-form .radio-btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-form .warning {
   font-size: 1.25rem;
   font-weight: bold;
   text-align: center;
   margin-top: 0;
   color: #E2CA78;
 }
-.sl-form .button {
+.modal-form .button {
   border: none;
   font-size: 1.5rem;
   border-radius: 0.5rem;
   height: 3rem;
   transition: background-color 0.2s linear;
 }
-.sl-form .button:hover {
+.modal-form .button:hover {
   background-color: #E2CA78;
 }
-.sl-form .button:focus {
+.modal-form .button:focus {
   background-color: #E2CA78;
 }
-.sl-form .success {
+.modal-form .button svg {
+  margin-right: 0.5rem;
+}
+.modal-form .success {
   background-color: #D8B646 !important;
   color: #EBECE9 !important;
 }

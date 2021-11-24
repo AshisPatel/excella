@@ -23,14 +23,14 @@
   position: absolute;
   top: 0;
   right: 0;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.4rem;
   margin-right: 1rem;
   margin-top: 1rem;
-  height: 2rem;
   -webkit-animation: fade-in 0.2s linear forwards;
           animation: fade-in 0.2s linear forwards;
+  transition: color 0.2s linear;
+}
+.task-container .clear-btn:hover {
+  color: #EBECE9;
 }
 
 .em-left-box {
@@ -46,7 +46,7 @@
   padding-right: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .task-container {
     padding-left: 1rem;
     padding-right: 1rem;

@@ -95,7 +95,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
         <>
             <div className="modal-wrapper">
                 <form 
-                    className={`sl-form ${fadeOut ? 'slide-out' : 'slide-in'}`}
+                    className={`modal-form ${fadeOut ? 'slide-out' : 'slide-in'}`}
                     onSubmit={handleSubmit}
                 >
                     <span 

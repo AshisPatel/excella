@@ -54,7 +54,7 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
     .option-item-in-#{$i}{
         opacity: 0;
         transform: translateY(-20vh);
-        animation: slideInOption 0.25s .75s + $i*0.25s linear forwards; 
+        animation: slideInOption 0.1s (.1s + $i*0.1s) linear forwards; 
     }
 }
 
@@ -139,10 +139,10 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 
     .side-nav {
-        background-color: rgba($black,0.8);
+        background-color: rgba($blue,0.8);
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -159,6 +159,7 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
 
     .side-nav-btn{
         background-color: $black; 
+        // box-shadow: none; 
         &:hover {
             background-color: $blue; 
         }

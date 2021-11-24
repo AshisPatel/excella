@@ -315,7 +315,7 @@
     transform: translateX(-20vw) rotate(45deg);
   }
   75% {
-    transform: translateX(0) rotate(-45deg);
+    transform: translateX(0) rotate(-15deg);
   }
   100% {
     transform: translateX(0) rotate(0deg);
@@ -326,7 +326,7 @@
     transform: translateX(-20vw) rotate(45deg);
   }
   75% {
-    transform: translateX(0) rotate(-45deg);
+    transform: translateX(0) rotate(-15deg);
   }
   100% {
     transform: translateX(0) rotate(0deg);

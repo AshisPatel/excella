@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './style.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 const TaskContainer = (props) => {
     // create a boolean state variable to see if the object is being hovered -> will allow for conditional rendering of delete all tasks in current category
     const [hovered, setHovered] = useState(false);
@@ -21,10 +22,9 @@ const TaskContainer = (props) => {
             <div className="title-wrapper"> 
                 <h2>{title}</h2>
                 {hovered &&
-                    <button className="clear-btn">
+                    <span className="clear-btn">
                         <FontAwesomeIcon icon='trash' />
-                        Clear
-                    </button>
+                    </span>
                 }
             </div>
 

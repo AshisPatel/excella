@@ -15,7 +15,7 @@ const SideNav = () => {
     const [clickOff, setClickOff] = useState(false); 
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
-    const transitionWidth = 768.1;
+    const transitionWidth = 1000;
 
     const handleClick = (e) => {
         // grab the name of the clicked object

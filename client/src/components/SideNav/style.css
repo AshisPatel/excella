@@ -39,36 +39,36 @@
 .option-item-in-0 {
   opacity: 0;
   transform: translateY(-20vh);
-  -webkit-animation: slideInOption 0.25s 0.75s linear forwards;
-          animation: slideInOption 0.25s 0.75s linear forwards;
+  -webkit-animation: slideInOption 0.1s 0.1s linear forwards;
+          animation: slideInOption 0.1s 0.1s linear forwards;
 }
 
 .option-item-in-1 {
   opacity: 0;
   transform: translateY(-20vh);
-  -webkit-animation: slideInOption 0.25s 1s linear forwards;
-          animation: slideInOption 0.25s 1s linear forwards;
+  -webkit-animation: slideInOption 0.1s 0.2s linear forwards;
+          animation: slideInOption 0.1s 0.2s linear forwards;
 }
 
 .option-item-in-2 {
   opacity: 0;
   transform: translateY(-20vh);
-  -webkit-animation: slideInOption 0.25s 1.25s linear forwards;
-          animation: slideInOption 0.25s 1.25s linear forwards;
+  -webkit-animation: slideInOption 0.1s 0.3s linear forwards;
+          animation: slideInOption 0.1s 0.3s linear forwards;
 }
 
 .option-item-in-3 {
   opacity: 0;
   transform: translateY(-20vh);
-  -webkit-animation: slideInOption 0.25s 1.5s linear forwards;
-          animation: slideInOption 0.25s 1.5s linear forwards;
+  -webkit-animation: slideInOption 0.1s 0.4s linear forwards;
+          animation: slideInOption 0.1s 0.4s linear forwards;
 }
 
 .option-item-in-4 {
   opacity: 0;
   transform: translateY(-20vh);
-  -webkit-animation: slideInOption 0.25s 1.75s linear forwards;
-          animation: slideInOption 0.25s 1.75s linear forwards;
+  -webkit-animation: slideInOption 0.1s 0.5s linear forwards;
+          animation: slideInOption 0.1s 0.5s linear forwards;
 }
 
 .option-item-out-0 {
@@ -193,9 +193,9 @@
     height: 4.25rem;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .side-nav {
-    background-color: rgba(40, 40, 40, 0.8);
+    background-color: rgba(40, 49, 67, 0.8);
     position: absolute;
     display: flex;
     flex-direction: column;
