@@ -22,11 +22,11 @@
   color: #E2CA78;
 }
 .options:hover {
-  color: #D8B646;
+  color: #bc992B;
 }
 
 .op-selected {
-  color: #D8B646 !important;
+  color: #bc992B !important;
 }
 .op-selected:hover {
   color: #E2CA78 !important;
@@ -172,12 +172,12 @@
   transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear, box-shadow 0.2s linear;
 }
 .side-nav-btn:hover {
-  color: #D8B646;
+  color: #bc992B;
   background-color: rgba(235, 236, 233, 0.1);
 }
 
 .sn-selected {
-  background-color: #D8B646 !important;
+  background-color: #bc992B !important;
   color: #282828 !important;
   box-shadow: 0.4rem 0.4rem rgba(226, 202, 120, 0.3);
 }

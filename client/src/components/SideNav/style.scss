@@ -1,7 +1,8 @@
 $black: #282828;
 $white: #EBECE9;
 $blue: #283143;
-$gold: #D8B646;
+// $gold: #D8B646;
+$gold: #bc992B; 
 $light-gold: #E2CA78;
 $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
 
@@ -109,6 +110,7 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
     padding: 0;
     margin-bottom: 1rem; 
     background-color: rgba($white, 0.05); 
+    // background-color: darken($black, 7%);
     color: $light-gold;
     border: none; 
     box-shadow: $depth-box-shadow;

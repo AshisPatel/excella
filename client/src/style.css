@@ -1319,6 +1319,11 @@ body {
   overflow: hidden;
 }
 
+.task-modal {
+  justify-content: flex-start !important;
+  max-height: 28rem !important;
+}
+
 .modal-form {
   background: #282828;
   color: #EBECE9;
@@ -1346,7 +1351,7 @@ body {
   margin-bottom: 0.2rem;
 }
 .modal-form h2 span {
-  color: #D8B646;
+  color: #bc992B;
 }
 .modal-form .text-input {
   width: 100%;
@@ -1377,6 +1382,66 @@ body {
   text-align: center;
   color: #EBECE9;
 }
+.modal-form .excella-speech-label {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.modal-form .excella-speech-label svg {
+  fill: #bc992B;
+  width: 5rem;
+  height: 5rem;
+}
+.modal-form .excella-speech-label h2 {
+  text-align: left;
+  position: relative;
+  background: #bc992B;
+  color: #282828;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+}
+.modal-form .excella-speech-label h2::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  border: 0.6rem solid transparent;
+  border-right-color: #bc992B;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -0.3rem;
+  margin-left: -0.6rem;
+}
+.modal-form textarea {
+  width: 100%;
+  z-index: 2;
+  border-radius: 0.5rem;
+  height: 3rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  color: #EBECE9;
+  background-color: rgba(235, 236, 233, 0.3);
+  font-size: 1.2rem;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+}
+.modal-form textarea::-moz-placeholder {
+  color: #EBECE9;
+}
+.modal-form textarea:-ms-input-placeholder {
+  color: #EBECE9;
+}
+.modal-form textarea::placeholder {
+  color: #EBECE9;
+}
+.modal-form textarea:focus {
+  outline: none;
+  background-color: rgba(235, 236, 233, 0.4);
+}
 .modal-form .radio-btn-wrapper {
   display: flex;
   align-items: center;
@@ -1384,6 +1449,7 @@ body {
   font-size: 1.4rem;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 2rem;
 }
 .modal-form .radio-btn-wrapper label {
   margin-right: 1rem;
@@ -1397,7 +1463,7 @@ body {
   border-color: #E2CA78;
 }
 .modal-form .radio-btn-wrapper .label-checked {
-  color: #D8B646 !important;
+  color: #bc992B !important;
 }
 .modal-form .radio-btn-wrapper input {
   -webkit-appearance: none;
@@ -1413,8 +1479,8 @@ body {
   margin-right: 0.25rem;
 }
 .modal-form .radio-btn-wrapper input:checked {
-  border-color: #D8B646;
-  background-color: #D8B646;
+  border-color: #bc992B;
+  background-color: #bc992B;
 }
 .modal-form .warning {
   font-size: 1.25rem;
@@ -1440,12 +1506,13 @@ body {
   margin-right: 0.5rem;
 }
 .modal-form .success {
-  background-color: #D8B646 !important;
+  background-color: #bc992B !important;
   color: #EBECE9 !important;
 }
 
 .close-btn {
   position: absolute;
+  font-size: 1.5rem;
   color: white;
   top: 1rem;
   right: 0;
@@ -1453,7 +1520,7 @@ body {
   transition: color 0.2s linear;
 }
 .close-btn:hover {
-  color: #D8B646;
+  color: #bc992B;
 }
 
 .inputs {

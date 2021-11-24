@@ -8,7 +8,7 @@
   margin: auto 0 auto 0;
 }
 #top-nav h1 {
-  color: #D8B646;
+  color: #bc992B;
 }
 
 .nav-btn {
@@ -23,7 +23,7 @@
   transition: background-color 0.2s linear, color 0.2s linear;
 }
 .nav-btn:hover {
-  color: #D8B646;
-  border-color: #D8B646;
+  color: #bc992B;
+  border-color: #bc992B;
   background: #282828;
 }/*# sourceMappingURL=style.css.map */
