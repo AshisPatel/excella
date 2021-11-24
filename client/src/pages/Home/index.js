@@ -46,8 +46,8 @@ const Home = () => {
     }
     // will handle 'pagination' clicks
     const indexButtonClick = (e) => {
-        const dataIndex = e.target.getAttribute('dataIndex');
-        setFI(parseInt(dataIndex));
+        const dataindex = e.target.getAttribute('dataindex');
+        setFI(parseInt(dataindex));
     }
 
     // useEffect to switch an animation variable for Excella -> sliding in to hovering 
@@ -106,7 +106,7 @@ const Home = () => {
                             return (
                                 <button
                                     className={`index-btn ${fi === index ? 'selected-index' : ''}`}
-                                    dataIndex={index}
+                                    dataindex={index}
                                     onClick={indexButtonClick}
                                     key={index}
                                 >

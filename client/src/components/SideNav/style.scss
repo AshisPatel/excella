@@ -113,11 +113,10 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
     // background-color: darken($black, 7%);
     color: $light-gold;
     border: none; 
-    box-shadow: $depth-box-shadow;
-    transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear, box-shadow 0.2s linear;
+    transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear, box-shadow 0.2s ease-in-out;
     &:hover {
         color: $gold;
-        background-color: rgba($white, 0.1); 
+        box-shadow: inset 0 0 0 6rem rgba($white, 0.1); 
     }
 }
 
@@ -125,7 +124,6 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
 .sn-selected {
     background-color: $gold !important;
     color: $black !important; 
-    box-shadow: 0.4rem 0.4rem rgba($light-gold,0.3) ; 
 }
 
 @media screen and (max-width: 1440px) {

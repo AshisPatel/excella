@@ -20,10 +20,11 @@
   height: 2.5rem;
   margin-right: 1rem;
   width: 5rem;
-  transition: background-color 0.2s linear, color 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
 }
 .nav-btn:hover {
-  color: #bc992B;
+  color: #282828;
   border-color: #bc992B;
   background: #282828;
+  box-shadow: inset 0 0 0 5rem #bc992B;
 }/*# sourceMappingURL=style.css.map */

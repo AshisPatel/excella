@@ -168,18 +168,16 @@
   background-color: rgba(235, 236, 233, 0.05);
   color: #E2CA78;
   border: none;
-  box-shadow: 0.4rem 0.4rem rgba(235, 236, 233, 0.08);
-  transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear, box-shadow 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear, box-shadow 0.2s ease-in-out;
 }
 .side-nav-btn:hover {
   color: #bc992B;
-  background-color: rgba(235, 236, 233, 0.1);
+  box-shadow: inset 0 0 0 6rem rgba(235, 236, 233, 0.1);
 }
 
 .sn-selected {
   background-color: #bc992B !important;
   color: #282828 !important;
-  box-shadow: 0.4rem 0.4rem rgba(226, 202, 120, 0.3);
 }
 
 @media screen and (max-width: 1440px) {

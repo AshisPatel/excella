@@ -1308,7 +1308,7 @@ body {
 
 .modal-backdrop {
   background: rgba(40, 49, 67, 0.9);
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   position: absolute;
   top: 0;
@@ -1325,7 +1325,7 @@ body {
 
 .task-modal {
   justify-content: flex-start !important;
-  max-height: 30rem !important;
+  max-height: 32rem !important;
   width: 75% !important;
 }
 
@@ -1450,9 +1450,6 @@ body {
   background-color: rgba(235, 236, 233, 0.4);
 }
 .modal-form .char-count {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.5rem;
   color: #EBECE9;
   font-size: 1rem;
   align-self: flex-end;
@@ -1497,11 +1494,31 @@ body {
   border-color: #bc992B;
   background-color: #bc992B;
 }
+.modal-form select {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  background-color: rgba(235, 236, 233, 0.02);
+  padding: 0.5rem;
+  border-color: #E2CA78;
+  border-radius: 0.5rem;
+  color: #E2CA78;
+  transition: all 0.2s linear;
+}
+.modal-form select:hover, .modal-form select :focus {
+  color: #bc992B;
+  border-color: #bc992B;
+  background-color: rgba(235, 236, 233, 0.1);
+}
+.modal-form select option {
+  background-color: #282828;
+  color: #bc992B;
+}
 .modal-form .warning {
   font-size: 1.25rem;
   font-weight: bold;
   text-align: center;
   margin-top: 0;
+  margin-bottom: 1rem;
   color: #E2CA78;
 }
 .modal-form .button {
@@ -1519,6 +1536,9 @@ body {
 }
 .modal-form .button svg {
   margin-right: 0.5rem;
+}
+.modal-form .button:active {
+  background-color: #bc992B;
 }
 .modal-form .success {
   background-color: #bc992B !important;
@@ -1600,17 +1620,20 @@ body {
 }
 
 @media screen and (max-width: 425px) {
-  .sl-form .text-input {
+  .modal-form .text-input {
     font-size: 1rem;
   }
-  .sl-form .text-input::-moz-placeholder {
+  .modal-form .text-input::-moz-placeholder {
     font-size: 1rem;
   }
-  .sl-form .text-input:-ms-input-placeholder {
+  .modal-form .text-input:-ms-input-placeholder {
     font-size: 1rem;
   }
-  .sl-form .text-input::placeholder {
+  .modal-form .text-input::placeholder {
     font-size: 1rem;
+  }
+  .modal-form .close-btn {
+    left: 87%;
   }
 
   .show-btn {
@@ -1718,5 +1741,10 @@ body {
   }
   100% {
     transform: translateY(-0.1rem);
+  }
+}
+@media screen and (max-width: 767px) {
+  .modal-form .excella-speech-label h2 {
+    font-size: 1.2rem;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -38,7 +38,7 @@ body {
 
 .modal-backdrop {
     background: rgba($blue, 0.9);
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     position: absolute;
     top: 0;
@@ -54,7 +54,7 @@ body {
 
 .task-modal {
     justify-content:flex-start !important;
-    max-height: 30rem !important;  
+    max-height: 32rem !important;  
     width: 75% !important; 
 }
 
@@ -178,9 +178,6 @@ body {
     }
 
     & .char-count { 
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem; 
-        border-radius: 0.5rem; 
         color: $white;
         font-size: 1rem; 
         align-self: flex-end; 
@@ -230,11 +227,32 @@ body {
         }
     }
 
+    & select {
+        font-size: 1.2rem; 
+        margin-bottom: 0.5rem; 
+        background-color: rgba($white, 0.02);
+        padding: 0.5rem; 
+        border-color: $light-gold; 
+        border-radius: 0.5rem; 
+        color: $light-gold; 
+        transition: all 0.2s linear; 
+        &:hover ,:focus{
+            color: $gold;
+            border-color: $gold; 
+            background-color: rgba($white, 0.1); 
+        }
+        & option {
+            background-color: $black;
+            color: $gold; 
+        }
+    }
+
     & .warning {
         font-size: 1.25rem;
         font-weight: bold;
         text-align: center;
         margin-top: 0;
+        margin-bottom: 1rem; 
         color: $light-gold;
     }
 
@@ -253,6 +271,9 @@ body {
         }
         & svg {
             margin-right: 0.5rem;
+        }
+        &:active {
+            background-color: $gold; 
         }
     }
 
@@ -336,13 +357,17 @@ body {
 
 @media screen and (max-width: 425px) {
 
-    .sl-form {
+    .modal-form {
 
         & .text-input {
             font-size: 1rem;
             &::placeholder {
                 font-size: 1rem; 
             }
+        }
+        
+        & .close-btn{
+            left: 87%; 
         }
     }
 
@@ -429,6 +454,16 @@ body {
     }
 }
 
+@media screen and (max-width: 767px) {
 
+    .modal-form {
+        & .excella-speech-label {
+            & h2 {
+                font-size: 1.2rem; 
+            }
+        }
+
+    }
+}
 
 

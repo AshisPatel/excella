@@ -1,20 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import validatePassword from '../../utils/validatePassword';
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExcellaIcon from '../ExcellaIcon';
+
+
 const TaskModal = (props) => {
+    const { width } = useWindowDimensions();
+    const transitionWidth = 767.9;
     // manipulate state variable to show task modal 
-    const { setShowTaskModal, content, category } = props;
+    const { setShowTaskModal, originalContent, originalCategory } = props;
     // set modal fade in or fade out animation
     const [fadeOut, setFadeOut] = useState(false);
     // track form variables
     // use passed in variables for updating a task 
     const [formState, setFormState] = useState({
-        content: content ? content : '',
-        category: category ? category : ''
+        content: originalContent ? originalContent : '',
+        category: originalCategory ? originalCategory : ''
     });
     // warning message on form submission
-    const { warning, setWarning } = useState('');
+    const [warning, setWarning] = useState('');
     // array for setting radio buttons
     const categories = [
         { name: 'do', label: 'Do' },
@@ -24,22 +29,24 @@ const TaskModal = (props) => {
     ];
     // enforce character limit on tasks
     // if the modal is being used to update a task use the passed in content.length otherwise use 0. 
-    const [characterCount, setCharacterCount] = useState( content ? content.length : 0);
-    const maxChars = 100; 
+    const [characterCount, setCharacterCount] = useState(originalContent ? originalContent.length : 0);
+    const maxChars = 100;
 
     // useRef to track if textarea is focused
     const textRef = useRef();
     // see if textArea is focused
-    const [focused, setFocused] = useState(true); 
+    const [focused, setFocused] = useState(true);
     // track change in form inputs
     const handleChange = (e) => {
         const { name, value } = e.target;
 
         // check content length 
-        if(name === 'content' && value.length <= maxChars) {
-            setCharacterCount(value.length);
-        } else {
-            return;
+        if (name === 'content') {
+            if (value.length <= maxChars) {
+                setCharacterCount(value.length);
+            } else {
+                return;
+            }
         }
         setFormState(prevFormState => (
             {
@@ -53,12 +60,14 @@ const TaskModal = (props) => {
 
     // check inputs and then process task submission
     const handleSubmit = (e) => {
+        console.log('oi')
         // prevent page refresh
         e.preventDefault();
 
         const { content, category } = formState;
         // make sure content is not blank and that it is a valid input
         // using the validatePassword regex temporarily 
+        console.log(category);
         if (!content || !validatePassword(content)) {
             return setWarning('Content is empty or invalid');
         }
@@ -105,43 +114,62 @@ const TaskModal = (props) => {
                         <ExcellaIcon />
                         <h2>What do you need to do?</h2>
                     </div>
-                    
+
                     <textarea
                         name="content"
                         value={formState.content}
                         ref={textRef}
-                        onFocus = {() => setFocused(true)}
-                        onBlur = {() => setFocused(false)}
+                        onFocus={() => setFocused(true)}
+                        onBlur={() => setFocused(false)}
                         onChange={handleChange}
-                        disabled ={ characterCount > maxChars}
+                        disabled={characterCount > maxChars}
                         placeholder="Enter task here..."
                         rows='4'
                     />
                     <span className={`char-count ${!focused && 'hide'}`}>
-                        {characterCount} / {maxChars} 
+                        {characterCount} / {maxChars}
                     </span>
                     <div className="excella-speech-label">
                         <ExcellaIcon />
                         <h2 className="excella-speech-label">Select a category for this task!</h2>
                     </div>
-                    <div className="radio-btn-wrapper">
+                    {width > transitionWidth ?
+                        <div className="radio-btn-wrapper">
 
-                        {categories.map(category => (
-                            <label className={formState.category === category.name ? 'label-checked' : undefined} key={category.name}>
-                                <input
-                                    type="radio"
-                                    name="category"
-                                    value={category.name}
-                                    className="radio-input"
-                                    onChange={handleChange}
-                                />{category.label}
-                            </label>
-                        ))}
-                    </div>
+                            {categories.map(category => (
+                                <label className={formState.category === category.name ? 'label-checked' : null} key={category.name}>
+                                    <input
+                                        type="radio"
+                                        name="category"
+                                        value={category.name}
+                                        className="radio-input"
+                                        checked={formState.category === category.name}
+                                        onChange={handleChange}
+                                    />{category.label}
+                                </label>
+                            ))}
+                        </div>
+
+                        :   
+                        <select 
+                            value={formState.category}
+                            name="category"
+                        >
+                            <option value="">Select a category</option>
+                            <option value="do">Do</option>
+                            <option value="doLater">Do Later</option>
+                            <option value="delegate">Delegate</option>
+                            <option value="delete">Delete</option>
+                        </select>
+                    }
+
+                    <p className="warning">
+                        {warning}
+                    </p>
                     <button
                         className="button"
                         type="button"
-                        onClick={closeModal}
+                        onClick={handleSubmit}
                     >
                         <FontAwesomeIcon icon="save" />
                         Save
