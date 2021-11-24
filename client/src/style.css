@@ -1302,6 +1302,10 @@ body {
   overflow: hidden;
 }
 
+.hide {
+  visibility: hidden;
+}
+
 .modal-backdrop {
   background: rgba(40, 49, 67, 0.9);
   height: 100vh;
@@ -1321,7 +1325,8 @@ body {
 
 .task-modal {
   justify-content: flex-start !important;
-  max-height: 28rem !important;
+  max-height: 30rem !important;
+  width: 75% !important;
 }
 
 .modal-form {
@@ -1388,6 +1393,8 @@ body {
   align-items: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  -webkit-animation: excella-modal-hover 2s ease-in-out infinite;
+          animation: excella-modal-hover 2s ease-in-out infinite;
 }
 .modal-form .excella-speech-label svg {
   fill: #bc992B;
@@ -1416,18 +1423,18 @@ body {
   margin-left: -0.6rem;
 }
 .modal-form textarea {
-  width: 100%;
+  width: 98%;
   z-index: 2;
   border-radius: 0.5rem;
-  height: 3rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  margin-right: auto;
+  margin-left: auto;
   border: none;
   color: #EBECE9;
   background-color: rgba(235, 236, 233, 0.3);
   font-size: 1.2rem;
-  padding-left: 0.5rem;
-  padding-top: 0.5rem;
+  padding: 0.5rem;
 }
 .modal-form textarea::-moz-placeholder {
   color: #EBECE9;
@@ -1441,6 +1448,14 @@ body {
 .modal-form textarea:focus {
   outline: none;
   background-color: rgba(235, 236, 233, 0.4);
+}
+.modal-form .char-count {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  color: #EBECE9;
+  font-size: 1rem;
+  align-self: flex-end;
 }
 .modal-form .radio-btn-wrapper {
   display: flex;
@@ -1681,5 +1696,27 @@ body {
   to {
     transform: translateY(-50vh);
     opacity: 0;
+  }
+}
+@-webkit-keyframes excella-modal-hover {
+  0% {
+    transform: translateY(-0.1rem);
+  }
+  50% {
+    transform: translateY(0.1rem);
+  }
+  100% {
+    transform: translateY(-0.1rem);
+  }
+}
+@keyframes excella-modal-hover {
+  0% {
+    transform: translateY(-0.1rem);
+  }
+  50% {
+    transform: translateY(0.1rem);
+  }
+  100% {
+    transform: translateY(-0.1rem);
   }
 }/*# sourceMappingURL=style.css.map */

@@ -32,6 +32,10 @@ body {
 
 // signup and login modal CSS
 
+.hide {
+    visibility: hidden;
+}
+
 .modal-backdrop {
     background: rgba($blue, 0.9);
     height: 100vh;
@@ -50,7 +54,8 @@ body {
 
 .task-modal {
     justify-content:flex-start !important;
-    max-height: 28rem !important;  
+    max-height: 30rem !important;  
+    width: 75% !important; 
 }
 
 .modal-form {
@@ -113,6 +118,7 @@ body {
         align-items: center; 
         margin-top: 1rem;
         margin-bottom: 1rem; 
+        animation: excella-modal-hover 2s ease-in-out infinite; 
         & svg {
             fill: $gold; 
             width: 5rem;
@@ -148,18 +154,19 @@ body {
     }
 
     & textarea {
-        width: 100%; 
+        width: 98%;
         z-index: 2;
         border-radius: 0.5rem; 
-        height: 3rem; 
+        // height: 3rem; 
         margin-top: 0.5rem;
         margin-bottom: 0.5rem; 
+        margin-right: auto;
+        margin-left: auto; 
         border: none; 
         color: $white;
         background-color: rgba($white, 0.3);
         font-size: 1.2rem;
-        padding-left: 0.5rem;
-        padding-top: 0.5rem; 
+        padding: 0.5rem; 
         &::placeholder {
             color: $white; 
         }
@@ -168,6 +175,15 @@ body {
             outline: none;
             background-color: rgba($white, 0.4);
         }
+    }
+
+    & .char-count { 
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; 
+        border-radius: 0.5rem; 
+        color: $white;
+        font-size: 1rem; 
+        align-self: flex-end; 
     }
 
     & .radio-btn-wrapper {
@@ -396,6 +412,20 @@ body {
     to {
         transform: translateY(-50vh);
         opacity: 0;  
+    }
+}
+
+@keyframes excella-modal-hover {
+    0% {
+        transform: translateY(-0.1rem);
+    }
+
+    50% {
+        transform: translateY(0.1rem);
+    }
+
+    100% {
+        transform: translateY(-0.1rem); 
     }
 }
 
