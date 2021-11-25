@@ -1,7 +1,5 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
-
-const { Schema } = mongoose;
 
 //creates the taskSchema which we'll import into our User schema
 const taskSchema = new Schema({
@@ -21,11 +19,17 @@ const taskSchema = new Schema({
         type: Boolean,
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now,
         get: timestamp => dateFormat(timestamp)
     }
-})
+});
 
-module.exports = taskSchema;
+const Task = model('Task', taskSchema);
+
+module.exports = Task;

@@ -1,15 +1,13 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat')
-
-const { Schema, Types } = mongoose;
 
 const contactSchema = new Schema({
 //add 'follow-up' array of user contact notes each time they reach out to one of their contacts (feature later? or MVP capability?)
-    contactId: {
-        //_id for each contact
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
-    },
+    // contactId: {
+    //     //_id for each contact
+    //     type: Schema.Types.ObjectId,
+    //     default: () => new Types.ObjectId()
+    // },
     name: {
         type: String,
         require: "Please enter your contact's name",
@@ -50,13 +48,13 @@ const jobSchema = new Schema({
     },
     contacts: [contactSchema]
 },
-    {
-        toJSON: {
+{
+    toJSON: {
             getters: true
-        }
     }
+}
 );
 
 const Job = model('Job', jobSchema);
 
-module.exports = {Job, jobSchema};
+module.exports = Job;
