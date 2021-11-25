@@ -12,8 +12,15 @@ const resolvers = {
       test: async () => {
         return 'This is a test'
       },
-      jobs: async () => {
-        return Job.find()
+      jobs: async (parent, { username }) => {
+        //allow for GET jobdata based on username
+        const params = username ? { username } : {};
+        return Job.find(params)
+      }
+    },
+    Mutation: {
+      addJob: async(parent, args) => {
+        const job = await Job.create(args)
       }
     }
   };

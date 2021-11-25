@@ -35,7 +35,7 @@ const jobSchema = new Schema({
     applicationDate: {
         type: Date,
         default: Date.now,
-        get: appDate => dateFormat(appDate)
+        // get: appDate => dateFormat(appDate)
     },
     applicationStatus: {
         type: String,
@@ -48,11 +48,11 @@ const jobSchema = new Schema({
     },
     contacts: [contactSchema]
 },
-{
-    toJSON: {
-            getters: true
-    }
-}
+// {
+//     toJSON: {
+//             getters: true
+//     }
+// }
 );
 
 const Job = model('Job', jobSchema);

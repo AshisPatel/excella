@@ -28,7 +28,11 @@ const typeDefs = gql`
     type Query {
         users: [User]
         test: String
-        jobs: [Job]
+        jobs(username: String): [Job]
+    }
+
+    type Mutation {
+        addJob(username: String!, jobTitle: String!, applicationStatus: String!): Job
     }
 `
 
