@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React , { useState } from "react";
+import { Routes, Route } from 'react-router-dom';
+import Home from "./pages/Home";
+import EisenHowerMatrix from './pages/EisenhowerMatrix';
+import JobCRM from './pages/JobCRM';
+import PomodoroTimer from './pages/PomodoroTimer';
+import Nav from './components/Nav';
+import SideNav from "./components/SideNav";
+import LoginModal from "./components/LoginModal";
+import SignupModal from "./components/SignupModal";
+import { useSelector } from "react-redux";
+
+
 
 function App() {
+
+  // initialize visibility of signup/login modal
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false); 
+
+  // delete once authentication exists 
+  const loggedIn = useSelector(state => state.loggedIn);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="content">
+      {loggedIn && <SideNav />}
+      {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin}/>}
+      {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}
+      <Nav 
+        setShowLogin={setShowLogin}
+        setShowSignup={setShowSignup} 
+      />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/EisenhowerMatrix" element={<EisenHowerMatrix />} />
+        <Route path="/JobCRM" element={<JobCRM />} />
+        <Route path="/PomodoroTimer" element={<PomodoroTimer />} />
+      </Routes>
+     
     </div>
   );
 }

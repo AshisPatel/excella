@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 
 //import our schemas that will become part of the userSchema
-const jobSchema = require('./Job');
-const taskSchema = require('./Task');
+//const { jobSchema } = require('./Job');
+//const taskSchema = require('./Task');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
+    //username to identify user
     username: {
         type: String,
         required: true, 
-        trim: true
+        unique: true
     },
     email: {
         type: String, 
@@ -21,8 +22,21 @@ const userSchema = new Schema({
         required: true, 
         minLength: 5
     }, 
-    jobs: [jobSchema],
-    tasks: [taskSchema]
+    //references jobSchema which holds user's job data (employer, status, etc.)
+    jobs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Job'
+        }
+    ],
+
+    //references taskSchema which holds user's task data (eisenhower array, completed, createdAt, etc.)
+    tasks: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Task'
+        }
+    ]
 })
 
 const User = mongoose.model('User', userSchema);
