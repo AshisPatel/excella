@@ -32,6 +32,11 @@ const jobSchema = new Schema({
         required: 'Please enter the Job Title!',
         trim: true
     },
+    employer: {
+        type: String,
+        required: 'Please enter the job employer name',
+        trim: true
+    },
     applicationDate: {
         type: Date,
         default: Date.now,
