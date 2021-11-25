@@ -61,6 +61,11 @@ body {
     width: 75% !important; 
 }
 
+.add-job-modal {
+    justify-content:flex-start !important;
+    max-height: 25rem !important; 
+}
+
 .modal-form {
     background: $black;
     color: $white; 

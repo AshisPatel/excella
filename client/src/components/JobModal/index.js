@@ -1,0 +1,145 @@
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ExcellaIcon from '../ExcellaIcon';
+
+const JobModal = (props) => {
+    const job = {};
+    const update = false; 
+    // temporary show and hide modal state from JobCRM
+    const { setShowJobModal } = props;
+    // use state to manage fade-in or fade-out of modal
+    const [fadeOut, setFadeOut] = useState(false);
+    // track warnings
+    const [warning, setWarning] = useState('');
+    // track form variables
+    // use passed in variables for updating a task 
+    const [formState, setFormState] = useState({
+        title: job ? job.title : '',
+        employer: job ? job.employer : '',
+        status: job ? job.status : '',
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormState(prevFormState => (
+            {
+                ...prevFormState,
+                [name]: value
+            }
+        ));
+        console.log(formState);
+    }
+
+    const handleSubmit = (e) => {
+        // check if inputs are present and valid
+        const { title ,employer, status} = formState;
+        e.preventDefault();
+        if(!title) {
+            return setWarning('Job title cannot be left blank!');
+        }
+        if(!employer) {
+            return setWarning('Employer cannot be left blank!');
+        }
+        if(!status) {
+            return setWarning('Status cannot be left blank!');
+        }
+
+        setWarning('');
+        closeModal(); 
+    }
+
+    const closeModal = () => {
+        setFadeOut(true);
+        setTimeout(() => {
+            setShowJobModal(false);
+        }, 300);
+    }
+
+    return (
+        <>
+            <div className="modal-wrapper">
+                <form
+                    className={`modal-form add-job-modal ${fadeOut ? 'slide-out' : 'slide-in'}`}
+                    onSubmit={handleSubmit}
+                >
+                    <span
+                        className="close-btn"
+                        aria-label="close"
+                        onClick={closeModal}
+                    >
+                        <FontAwesomeIcon icon="window-close" />
+                    </span>
+                    <div className="excella-speech-label">
+                        <ExcellaIcon />
+                        <h2>Enter job information below!</h2>
+                    </div>
+                    <div className="inputs">
+                        <div className="input-wrapper">
+                            <input
+                                aria-label='title'
+                                name='title'
+                                type="text"
+                                className="text-input"
+                                value={formState.title}
+                                onChange={handleChange}
+                                placeholder='Job Title'
+                                autoComplete="off"
+                            />
+                            <span className="icon-wrapper">
+                                <FontAwesomeIcon icon='hard-hat'/>
+                            </span>
+                        </div>
+
+                        <div className="input-wrapper">
+                            <input
+                                aria-label='employer'
+                                name='employer'
+                                type="text"
+                                className="text-input"
+                                value={formState.employer}
+                                onChange={handleChange}
+                                placeholder='Employer'
+                                autoComplete="off"
+                            />
+                            <span className="icon-wrapper">
+                                <FontAwesomeIcon icon='briefcase'/>
+                            </span>
+                        </div>
+
+                        <div className="input-wrapper">
+                            <input
+                                aria-label='status'
+                                name='status'
+                                type="text"
+                                className="text-input"
+                                value={formState.status}
+                                onChange={handleChange}
+                                placeholder='Application Status'
+                                autoComplete="off"
+                            />
+                            <span className="icon-wrapper">
+                                <FontAwesomeIcon icon='clipboard'/>
+                            </span>
+                        </div>
+                    </div>
+                    <p className="warning">
+                        {warning}
+                    </p>
+                    <button
+                        className="button"
+                        // type="button"
+                        onClick={handleSubmit}
+                    >
+                        <FontAwesomeIcon icon="save" />
+                        {update ? 'Update' : 'Create'}
+                    </button>
+                </form>
+            </div>
+            <div className="modal-backdrop"></div>
+        </>
+    );
+
+};
+
+export default JobModal;

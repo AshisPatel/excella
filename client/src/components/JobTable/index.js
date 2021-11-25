@@ -10,7 +10,7 @@ const JobTable = () => {
         <table id='jobs'>
             <tr>
                 <th>Title</th>
-                <th>Company</th>
+                <th>Employer</th>
                 
                 {width > 767 && 
                 <>
