@@ -1,15 +1,3 @@
-.em-title {
-  text-align: center;
-  color: #282828;
-  background-color: #bc992B;
-  font-size: 2rem;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
-  margin-top: -1.5rem;
-  margin-bottom: 1.5rem;
-}
-
 .em-main-btn {
   padding: 1rem;
   font-size: 1rem;
@@ -54,19 +42,9 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .em-title {
-    margin-top: 1rem;
-    font-size: 1.75rem;
-  }
-
   .em-main-btn {
     font-size: 0.8rem;
     padding: 0.75rem;
-  }
-}
-@media screen and (max-width: 768px) {
-  .em-title {
-    margin-top: 1rem;
   }
 }
 @media screen and (max-width: 425px) {

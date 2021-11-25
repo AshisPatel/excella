@@ -37,7 +37,7 @@ const EisenHowerMatrix = () => {
         <>
         <div className="container">
             <div className="row">
-                <h1 className={`${columnSizing} em-title`}>Eisenhower Matrix</h1>
+                <h1 className={`${columnSizing} page-title`}>Eisenhower Matrix</h1>
             </div>
             <div className="row">
                 <div className={`${columnSizing} em-main-btn-wrapper`}>

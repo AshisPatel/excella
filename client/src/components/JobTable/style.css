@@ -1,0 +1,70 @@
+#jobs {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: #282828;
+  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+}
+#jobs th {
+  text-align: left;
+  padding: 0.5rem;
+  background-color: #856D1E;
+  color: #282828;
+}
+#jobs td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  border: 1px solid #282828;
+}
+#jobs tr {
+  transition: all 0.2s linear;
+}
+#jobs tr:hover {
+  background-color: #bc992B !important;
+  color: #282828 !important;
+}
+#jobs tr:first-child {
+  color: #bc992B;
+  background-color: #161616;
+}
+#jobs tr:first-child th:first-child {
+  border-top-left-radius: 0.5rem;
+  border-right: 1px solid #282828;
+}
+#jobs tr:first-child th:last-child {
+  border-top-right-radius: 0.5rem;
+  border-left: 1px solid #282828;
+}
+#jobs tr:first-child th {
+  border-bottom: 1px solid #282828;
+}
+#jobs tr:nth-child(2) {
+  border-top: 0;
+}
+#jobs tr:nth-child(even) {
+  color: #282828;
+  background-color: #E2CA78;
+}
+#jobs tr:nth-child(2n+3) {
+  color: #282828;
+  background-color: #856D1E;
+}
+#jobs tr:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+#jobs tr:last-child td:first-child {
+  border-bottom-left-radius: 0.5rem;
+}
+#jobs tr:last-child td:last-child {
+  border-bottom-right-radius: 0.5rem;
+}
+
+@media screen and (max-width: 425px) {
+  #jobs td {
+    font-size: 0.8rem;
+  }
+}/*# sourceMappingURL=style.css.map */

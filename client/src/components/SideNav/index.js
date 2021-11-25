@@ -68,7 +68,7 @@ const SideNav = () => {
                     className={`options ${display && 'op-selected'}`}
                     onClick={() => toggleDropDown()}
                 >
-                    <FontAwesomeIcon icon="bars" />
+                     <FontAwesomeIcon icon={display ? "window-close" : "bars"} />
                 </button>
             }
             {display ?

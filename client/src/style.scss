@@ -15,6 +15,9 @@ $light-gold: #E2CA78;
 // custom variables
 $radio-btn-md-fs: 1.4rem;
 $radio-btn-sm-fs: 1rem; 
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+$center-x: 0 auto auto 0;  
 
 * {
     margin: 0;
@@ -355,6 +358,44 @@ body {
     }
 }
 
+.divider {
+    display: flex;
+    color: $white;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    &:before{
+        content: "";
+        flex: 1 1;
+        border-bottom: 1px solid $white;
+        margin: auto; 
+        margin-right: 0.75rem;
+    }
+
+    &:after {
+        content: "";
+        flex: 1 1;
+        border-bottom: 1px solid $white;
+        margin: auto; 
+        margin-left: 0.75rem; 
+    }
+}
+
+.page-title {
+    text-align: center; 
+    color: $black;
+    background-color: $gold;
+    font-size: 2rem; 
+    border-radius: 0.5rem; 
+    padding: 1rem; 
+    box-shadow: $box-shadow;
+    margin-top: -1.5rem;
+    margin-bottom: 1.5rem; 
+    margin-right: auto;
+    margin-left: auto; 
+}
+
 @media screen and (max-width: 425px) {
 
     .modal-form {
@@ -384,29 +425,31 @@ body {
     }
 }
 
-.divider {
-    display: flex;
-    color: $white;
-    font-size: 1.25rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-
-    &:before{
-        content: "";
-        flex: 1 1;
-        border-bottom: 1px solid $white;
-        margin: auto; 
-        margin-right: 0.75rem;
-    }
-
-    &:after {
-        content: "";
-        flex: 1 1;
-        border-bottom: 1px solid $white;
-        margin: auto; 
-        margin-left: 0.75rem; 
+@media screen and (max-width: 1024px) {
+    .page-title {
+        margin-top: 1rem; 
+        font-size: 1.75rem; 
     }
 }
+
+@media screen and (max-width: 767px) {
+
+    // this cut off was originally at 768px for page-title
+    .page-title {
+        margin-top: 1rem; 
+    }
+
+    .modal-form {
+        & .excella-speech-label {
+            & h2 {
+                font-size: 1.2rem; 
+            }
+        }
+
+    }
+}
+
+
 
 // keyframe animations
 
@@ -454,16 +497,6 @@ body {
     }
 }
 
-@media screen and (max-width: 767px) {
 
-    .modal-form {
-        & .excella-speech-label {
-            & h2 {
-                font-size: 1.2rem; 
-            }
-        }
-
-    }
-}
 
 

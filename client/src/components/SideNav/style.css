@@ -14,10 +14,10 @@
   position: fixed;
   top: 0;
   right: 0;
-  margin-top: 0.7rem;
-  margin-right: 0.7rem;
   font-size: 2rem;
-  background-color: transparent;
+  background-color: #282828;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
   border: none;
   transition: color 0.2s linear;
   color: #E2CA78;
@@ -28,6 +28,9 @@
 
 .op-selected {
   color: #bc992B !important;
+  padding: 0;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
 }
 .op-selected:hover {
   color: #E2CA78 !important;
