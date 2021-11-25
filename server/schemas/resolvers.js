@@ -1,6 +1,7 @@
 const { User, Job } = require('../models');
 //import custom scalar resolver to format date-time responses in a human-readable format
 const { GraphQLDateTime } = require('graphql-iso-date');
+const { update } = require('../models/User');
 
 
 const resolvers = {
@@ -35,7 +36,8 @@ const resolvers = {
         return job;
       },
       deleteJob: async(parent,  jobId /* ,username */ ) => {
-        const deletedJob = await Job.findOneAndDelete({ id_: jobId })
+        console.log(jobId);
+        const deletedJob = await Job.findOneAndDelete({ _id: jobId });
           //once User resolver is finished, will pass in username as well to update User
 
           // .then(() => {
@@ -48,15 +50,37 @@ const resolvers = {
 
           return deletedJob;
       },
-      // updateJob: async() => {
+      updateJob: async(parent, {_id, ...jobArgs} ) => {
+        const updatedJob = await Job.findOneAndUpdate({ _id: _id  }, jobArgs, {new: true, runValidators: true });
 
-      // },
-      // addContact: async() => {
+        return updatedJob;
+      },
+      addContact: async(parent, {_id, ...contactArgs}) => {
+        const newContact = await Job.findOneAndUpdate(
+          { _id: _id }, 
+          { $push: {contacts: contactArgs}}, 
+          {new: true, runValidators: true }
+          );
+        
+        return newContact;
+      },
+      updateContact: async(parent, { name, ...updateArgs }) => {
+        //update a specific contact by name within a Job
+        console.log(`Hello my name is ${name}`);
+        console.log(updateArgs);
+        const updatedJob = await Job.findOneAndUpdate(
+          { "contacts.name": name },
+          { "$set":{
+              "contacts.$.email": updateArgs.email,
+              "contacts.$.phone": updateArgs.phone
+            } 
+          },
+          {new: true, runValidators: true }
+          );
 
-      // },
-      // updateContact: async() => {
-
-      // }
+        console.log(updatedJob);
+        return updatedJob.contacts[0];
+      }
     }
   };
 

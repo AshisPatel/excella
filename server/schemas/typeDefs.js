@@ -34,11 +34,10 @@ const typeDefs = gql`
     type Mutation {
         addJob(username: String!, jobTitle: String!, applicationStatus: String!): Job
         deleteJob(_id: ID!): Job
+        updateJob(_id: ID, jobTitle: String, applicationStatus: String): Job
+        addContact(_id: ID!, name: String!, email: String!, phone: String!): Job
+        updateContact(name: String!, email: String!, phone: String!): Contact
     }
 `
-//to be added to mutations
-// updateJob(_id: ID!): Job
-// addContact(): Contact
-// updateContact(): Contact
 
 module.exports = typeDefs
