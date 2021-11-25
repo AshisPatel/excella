@@ -1,3 +1,21 @@
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 0.5rem;
+  background-color: #E2CA78;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #282828;
+  height: 0.5rem;
+  border-radius: 0.5rem;
+}
+
 .task-container {
   color: #282828;
   background-color: #bc992B;
@@ -5,8 +23,8 @@
   margin-bottom: 2rem;
   border-radius: 0.5rem;
   box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
-  min-height: 13rem;
-  padding: 0;
+  height: 13rem;
+  padding-right: 0.25rem;
   position: relative;
 }
 .task-container h2 {
@@ -34,6 +52,14 @@
   color: #EBECE9;
 }
 
+.task-list {
+  list-style: none;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  height: 9rem;
+  overflow-y: auto;
+}
+
 .em-left-box {
   margin-left: -2rem;
   margin-right: 0rem;
@@ -53,6 +79,13 @@
     padding-right: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
+  }
+  .task-container h2 {
+    margin-left: 0rem;
+  }
+
+  .task-list {
+    margin-left: 0;
   }
 
   .em-right-box {

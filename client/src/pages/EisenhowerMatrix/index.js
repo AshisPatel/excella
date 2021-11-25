@@ -57,7 +57,7 @@ const EisenHowerMatrix = () => {
                 </div>
             </div>
             <div className="row">
-                {categories.map((category, index) => <TaskContainer categoryData={category} index={index} key={category.title}/>)}
+                {categories.map((category, index) => <TaskContainer setShowTaskModal = {setShowTaskModal} categoryData={category} index={index} key={category.title}/>)}
             </div>
 
         </div>

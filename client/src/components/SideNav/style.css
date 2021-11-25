@@ -5,18 +5,19 @@
   justify-content: space-between;
   top: 15%;
   right: 0%;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   z-index: 10;
 }
 
 .options {
+  z-index: 20;
   position: fixed;
   top: 0;
   right: 0;
-  margin-top: 1.4rem;
-  margin-right: 2rem;
+  margin-top: 0.7rem;
+  margin-right: 0.7rem;
   font-size: 2rem;
-  background-color: #282828;
+  background-color: transparent;
   border: none;
   transition: color 0.2s linear;
   color: #E2CA78;
@@ -186,9 +187,9 @@
   }
 
   .side-nav-btn {
-    font-size: 0.8rem;
-    width: 4.25rem;
-    height: 4.25rem;
+    font-size: 0.6rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 }
 @media screen and (max-width: 1000px) {

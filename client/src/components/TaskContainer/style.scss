@@ -15,7 +15,23 @@ $left-container-left-margin: -2*$central-spacing;
 // thus we need to move the left-container by a total of 4x the central spacing to the right to make up for the lost space
 $right-container-left-margin: 4*$central-spacing; 
 
-
+/* width */
+::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 0.5rem;
+    background-color: $light-gold; ; 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $black;
+    height: 0.5rem; 
+    border-radius: 0.5rem; 
+  }
 
 .task-container {
     // background-color: darken($black,6%); 
@@ -26,8 +42,8 @@ $right-container-left-margin: 4*$central-spacing;
     margin-bottom: 2*$central-spacing;
     border-radius: 0.5rem; 
     box-shadow: $box-shadow; 
-    min-height: 13rem; 
-    padding: 0; 
+    height: 13rem; 
+    padding-right: 0.25rem; 
     position: relative; 
     
     & h2 {
@@ -54,9 +70,15 @@ $right-container-left-margin: 4*$central-spacing;
         &:hover {
             color: $white; 
         }
-    }
+    } 
+}
 
- 
+.task-list {
+    list-style: none; 
+    margin-left: 1rem; 
+    margin-top: 0.5rem; 
+    height: 9rem; 
+    overflow-y: auto; 
 }
 
 .em-left-box {
@@ -81,6 +103,14 @@ $right-container-left-margin: 4*$central-spacing;
         padding-right: 1rem; 
         margin-top: $central-spacing;
         margin-bottom: $central-spacing; 
+
+        & h2 {
+            margin-left: 0rem; 
+        }
+    }
+
+    .task-list {
+        margin-left: 0; 
     }
 
     .em-right-box {

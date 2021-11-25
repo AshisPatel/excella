@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
     currentPage: currentPageReducer,
     // remove the loggedIn slice when server and auth are implemented
     loggedIn: loggedInReducer,
-    tasks: eisenhowerMatrixReducer
+    eisenhowerMatrix: eisenhowerMatrixReducer
 });
 
 

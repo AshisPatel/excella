@@ -17,19 +17,20 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
     justify-content: space-between;  
     top: 15%; 
     right: 0%; 
-    margin-right: 1rem; 
+    margin-right: 0.5rem; 
     z-index: 10; 
 
 }
 
 .options {
+    z-index: 20; 
     position: fixed;
     top: 0;
     right: 0;
-    margin-top: 1.4rem;
-    margin-right: 2rem;   
+    margin-top: 0.7rem;
+    margin-right: 0.7rem;   
     font-size: 2rem; 
-    background-color: $black; 
+    background-color: transparent; 
     border: none;   
     transition: color 0.2s linear;
     color: $light-gold;  
@@ -133,9 +134,9 @@ $depth-box-shadow: 0.4rem 0.4rem rgba($white, 0.08);
     }
 
     .side-nav-btn {
-        font-size: 0.8rem; 
-        width: 4.25rem;
-        height: 4.25rem; 
+        font-size: 0.6rem; 
+        width: 3.5rem;
+        height: 3.5rem; 
     }
 }
 

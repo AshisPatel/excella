@@ -12,14 +12,14 @@ const TaskModal = (props) => {
     const { width } = useWindowDimensions();
     const transitionWidth = 767.9;
     // manipulate state variable to show task modal 
-    const { setShowTaskModal, originalContent, originalCategory } = props;
+    const { setShowTaskModal, task } = props;
     // set modal fade in or fade out animation
     const [fadeOut, setFadeOut] = useState(false);
     // track form variables
     // use passed in variables for updating a task 
     const [formState, setFormState] = useState({
-        content: originalContent ? originalContent : '',
-        category: originalCategory ? originalCategory : ''
+        content: task ? task.content : '',
+        category: task ? task.category : ''
     });
     // warning message on form submission
     const [warning, setWarning] = useState('');
@@ -32,7 +32,7 @@ const TaskModal = (props) => {
     ];
     // enforce character limit on tasks
     // if the modal is being used to update a task use the passed in content.length otherwise use 0. 
-    const [characterCount, setCharacterCount] = useState(originalContent ? originalContent.length : 0);
+    const [characterCount, setCharacterCount] = useState(formState.content ? formState.content.length : 0);
     const maxChars = 100;
 
     // useRef to track if textarea is focused
@@ -123,7 +123,7 @@ const TaskModal = (props) => {
 
                     <div className="excella-speech-label">
                         <ExcellaIcon />
-                        <h2>What do you need to do?</h2>
+                        <h2>What's your task?</h2>
                     </div>
 
                     <textarea

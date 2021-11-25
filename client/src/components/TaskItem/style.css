@@ -1,0 +1,42 @@
+.task-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.taks-item-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.task-item-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.task-item-content-wrapper span {
+  margin-left: 0.5rem;
+}
+
+.task-item-btn {
+  background-color: transparent;
+  border: none;
+  transition: all 0.2s linear;
+}
+.task-item-btn:hover, .task-item-btn :active {
+  color: #EBECE9;
+}
+
+.task-item-btn-wrapper {
+  margin-right: 1rem;
+}
+.task-item-btn-wrapper button:first-child {
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .task-item-btn-wrapper {
+    margin-right: 0;
+  }
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,55 @@
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+// $gold: #D8B646;
+
+$gold: #bc992B; 
+$light-gold: #E2CA78;
+
+.task-list-item {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; 
+}
+
+.taks-item-content {
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.task-item-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+   
+
+    & span {
+        margin-left: 0.5rem; 
+    }
+}
+
+.task-item-btn {
+    background-color: transparent;
+    border: none; 
+    transition: all 0.2s linear; 
+
+    &:hover,:active{
+        color: $white; 
+    }
+}
+
+.task-item-btn-wrapper {
+    margin-right: 1rem; 
+
+    & button:first-child {
+        margin-right: 1rem; 
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .task-item-btn-wrapper {
+        margin-right: 0; 
+    }
+}
