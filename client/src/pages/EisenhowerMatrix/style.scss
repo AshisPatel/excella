@@ -45,10 +45,21 @@ $central-spacing: 4rem;
    
 }
 
+.clean-btn {
+    color: $white; 
+    background-color: darken($black, 7%);
+    transition: all 0.2s linear; 
+    &:hover {
+        color: $black;
+        background-color: $gold;
+    }
+}
+
 .delete-btn {
     background-color: $white; 
     &:hover {
-        background-color: rgba($white, 0.8);
+        background-color: $gold;
+        color: $black; 
     }
 }
 
@@ -77,5 +88,18 @@ $central-spacing: 4rem;
 @media screen and (max-width:768px) {
     .em-title {
         margin-top: 1rem; 
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .em-main-btn-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .em-main-btn {
+        width: 100%; 
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; 
     }
 }

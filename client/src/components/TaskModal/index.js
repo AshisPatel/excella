@@ -83,7 +83,7 @@ const TaskModal = () => {
             username: 'Ashis',
             content: formState.content,
             category: formState.category,
-            completed: update ? task.completed : false
+            completed: false
         }
         // update task if this is an update modal, else add task
         update ? dispatch(updateTask(newTask)) : dispatch(addTask(newTask));
@@ -182,7 +182,7 @@ const TaskModal = () => {
                         onClick={handleSubmit}
                     >
                         <FontAwesomeIcon icon="save" />
-                        Save
+                        {update ? 'Update' : 'Create'}
                     </button>
                 </form>
             </div>

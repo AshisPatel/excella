@@ -6,6 +6,11 @@ $blue: #283143;
 $gold: #bc992B; 
 $light-gold: #E2CA78;
 
+.line-through {
+    text-decoration: line-through;
+    color: rgba($black, 0.7); 
+}
+
 .task-list-item {
     display: flex;
     justify-content: space-between; 

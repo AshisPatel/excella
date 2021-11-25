@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAllTasks} from "../../redux/eisenhowerMatrix";
+import { deleteAllTasks, deleteCompletedTasks} from "../../redux/eisenhowerMatrix";
 import { newTaskModal } from "../../redux/taskModal";
 import './style.css';
 import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
@@ -47,6 +47,13 @@ const EisenHowerMatrix = () => {
                     >   
                         <FontAwesomeIcon icon="plus" />
                         Add Task
+                    </button>
+                    <button
+                        className="em-main-btn clean-btn"
+                        onClick={() => dispatch(deleteCompletedTasks())}
+                    >
+                        <FontAwesomeIcon icon="broom" />
+                        Clean
                     </button>
                     <button
                         className="em-main-btn delete-btn"

@@ -38,6 +38,13 @@ export const deleteCategoryTasks = (category) => {
     };
 };
 
+// delete all completed tasks
+export const deleteCompletedTasks = () => {
+    return {
+        type: 'DELETE_COMPLETED_TASKS'
+    };
+};
+
 // update a task
 // task will contain all information about the task like in add task
 export const updateTask = (task) => {
@@ -85,6 +92,13 @@ export default function eisenhowerMatrixReducer(eisenhowerMatrix = initialState,
                 return {
                     tasks: [...newTasks]
                 };
+            }
+        case 'DELETE_COMPLETED_TASKS':
+            {
+                const newTasks = eisenhowerMatrix.tasks.filter(task => !task.completed);
+                return {
+                    tasks: [...newTasks]
+                }
             }
         case 'UPDATE_TASK':
             // sets task we want to update to the data coming in the payload

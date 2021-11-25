@@ -38,7 +38,7 @@ const TaskItem = (props) => {
                     >
                         {completed ? <FontAwesomeIcon icon="check-square" /> : <FontAwesomeIcon icon="square" />}
                     </button>
-                    <span className="task-item-content">{content}</span>
+                    <span className={`task-item-content ${completed && 'line-through'}`}>{content}</span>
                 </div>
 
 
