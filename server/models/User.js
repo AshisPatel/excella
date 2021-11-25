@@ -6,10 +6,11 @@ const taskSchema = require('./Task');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
+    //username to identify user
     username: {
         type: String,
         required: true, 
-        trim: true
+        unique: true
     },
     email: {
         type: String, 
@@ -21,7 +22,9 @@ const userSchema = new Schema({
         required: true, 
         minLength: 5
     }, 
+    //references jobSchema which holds user's job data (employer, status, etc.)
     jobs: [jobSchema],
+    //references taskSchema which holds user's task data (eisenhower array, completed, createdAt, etc.)
     tasks: [taskSchema]
 })
 

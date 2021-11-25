@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './style.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom"
+import store from "./redux";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
