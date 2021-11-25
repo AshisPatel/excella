@@ -20,8 +20,43 @@ const resolvers = {
     },
     Mutation: {
       addJob: async(parent, args) => {
-        const job = await Job.create(args)
-      }
+        const job = await Job.create(args);
+
+        //User.findOneAndUpdate here... $push job to User jobs: []
+
+          // .then(() => {
+          //  return User.findOneAndUpdate(
+          //    { userName: username },
+          //    { $push: { jobs: { _id: jobId} } },
+          //    { new: true },
+          //  )
+          // });
+
+        return job;
+      },
+      deleteJob: async(parent,  jobId /* ,username */ ) => {
+        const deletedJob = await Job.findOneAndDelete({ id_: jobId })
+          //once User resolver is finished, will pass in username as well to update User
+
+          // .then(() => {
+          //  return User.findOneAndUpdate(
+          //    { userName: username },
+          //    { $pull: { jobs: { _id: jobId} } },
+          //    { new: true },
+          //  )
+          // });
+
+          return deletedJob;
+      },
+      // updateJob: async() => {
+
+      // },
+      // addContact: async() => {
+
+      // },
+      // updateContact: async() => {
+
+      // }
     }
   };
 
