@@ -1,13 +1,30 @@
 const mongoose = require('mongoose');
 const dateFormat = require('../utils/dateFormat')
 
-const { Schema } = mongoose;
+const { Schema, Types } = mongoose;
 
 const contactSchema = new Schema({
-//name => required
-//email => required, validate
-//phone => required, validate
 //add 'follow-up' array of user contact notes each time they reach out to one of their contacts (feature later? or MVP capability?)
+    contactId: {
+        //_id for each contact
+        type: Schema.Types.ObjectId,
+        default: () => new Types.ObjectId()
+    },
+    name: {
+        type: String,
+        require: "Please enter your contact's name",
+        trim: true
+    },
+    email: {
+        type: String,
+        require: "Please enter your contact's email",
+        trim: true
+    },
+    phone: {
+        type: String,
+        require: "Please enter your contact's phone",
+        trim: true
+    }
 });
 
 const jobSchema = new Schema({
@@ -31,11 +48,6 @@ const jobSchema = new Schema({
         type: String,
         required: 'Please enter your username!'
     },
-    //or could we do this...
-    // user: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
     contacts: [contactSchema]
 },
     {
@@ -45,10 +57,6 @@ const jobSchema = new Schema({
     }
 );
 
-//would adding a virtual here for 'contacts' benefit us in any way
-    //i.e. # of contacts
-    //contact names...etc,etc.
-
 const Job = model('Job', jobSchema);
 
-module.exports = jobSchema;
+module.exports = {Job, jobSchema};
