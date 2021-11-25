@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import validateString from '../../utils/validateString';
 import ExcellaIcon from '../ExcellaIcon';
 
 const JobModal = (props) => {
@@ -32,19 +33,19 @@ const JobModal = (props) => {
     }
 
     const handleSubmit = (e) => {
-        // check if inputs are present and valid
+        // check if inputs are present and valid add validators!!!
         const { title ,employer, status} = formState;
         e.preventDefault();
-        if(!title) {
-            return setWarning('Job title cannot be left blank!');
+        if(!title || !validateString(title)) {
+            return setWarning('Job title is blank or invalid');
         }
-        if(!employer) {
-            return setWarning('Employer cannot be left blank!');
+        if(!employer || !validateString(employer)) {
+            return setWarning('Employer is blank or invalid');
         }
-        if(!status) {
-            return setWarning('Status cannot be left blank!');
+        if(!status || !validateString(status)) {
+            return setWarning('Status is blank or invalid');
         }
-
+        // submit here using graphQL and then trim the values prior to submission!
         setWarning('');
         closeModal(); 
     }
