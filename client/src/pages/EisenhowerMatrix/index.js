@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { deleteAllTasks } from "../../redux/eisenhowerMatrix";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAllTasks} from "../../redux/eisenhowerMatrix";
+import { newTaskModal } from "../../redux/taskModal";
 import './style.css';
 import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
 import TaskContainer from "../../components/TaskContainer";
@@ -8,9 +9,9 @@ import ExcellaIcon from "../../components/ExcellaIcon";
 import TaskModal from "../../components/TaskModal";
 
 const EisenHowerMatrix = () => {
-    // create stateVariable to use to display modal for creating / editting tasks
-    const [showTaskModal, setShowTaskModal] = useState(false);
+
     const columnSizing = 'offset-1 col-9 offset-md-3 col-md-5 offset-lg-4 col-lg-4';
+    const { showTaskModal } = useSelector(state => state.taskModal); 
     const dispatch = useDispatch();
 
     const categories = [
@@ -42,7 +43,7 @@ const EisenHowerMatrix = () => {
                 <div className={`${columnSizing} em-main-btn-wrapper`}>
                     <button
                         className="em-main-btn"
-                        onClick={() => setShowTaskModal(true)}
+                        onClick={() => dispatch(newTaskModal())}
                     >   
                         <FontAwesomeIcon icon="plus" />
                         Add Task
@@ -57,11 +58,11 @@ const EisenHowerMatrix = () => {
                 </div>
             </div>
             <div className="row">
-                {categories.map((category, index) => <TaskContainer setShowTaskModal = {setShowTaskModal} categoryData={category} index={index} key={category.title}/>)}
+                {categories.map((category, index) => <TaskContainer categoryData={category} index={index} key={category.title}/>)}
             </div>
 
         </div>
-        {showTaskModal && <TaskModal setShowTaskModal={setShowTaskModal}/>}
+        {showTaskModal && <TaskModal />}
         </>
     );
 };

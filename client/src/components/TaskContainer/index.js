@@ -11,7 +11,7 @@ const TaskContainer = (props) => {
 
     // create a boolean state variable to see if the object is being hovered -> will allow for conditional rendering of delete all tasks in current category
     const [hovered, setHovered] = useState(false);
-    const { categoryData, index, setShowTaskModal, showTaskModal } = props;
+    const { categoryData, index } = props;
     const { title, category } = categoryData;
     const { tasks } = useSelector(state => state.eisenhowerMatrix);
     const relevantTasks = tasks.filter(task => task.category === category);
@@ -42,7 +42,7 @@ const TaskContainer = (props) => {
                 </div>
                 <ul className="task-list">
                     {
-                        tasks.filter(task => task.category === category).map(task => <TaskItem  setShowTaskModal={setShowTaskModal} task={task} />)
+                        tasks.filter(task => task.category === category).map((task, index) => <TaskItem task={task} key={index} />)
                     }
                 </ul>
             </div>

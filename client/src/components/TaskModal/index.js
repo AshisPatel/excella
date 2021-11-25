@@ -3,16 +3,17 @@ import validatePassword from '../../utils/validatePassword';
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExcellaIcon from '../ExcellaIcon';
-import { useDispatch } from 'react-redux';
-import { addTask } from '../../redux/eisenhowerMatrix';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTask, updateTask } from '../../redux/eisenhowerMatrix';
+import { closeTaskModal } from "../../redux/taskModal";
 
 
-const TaskModal = (props) => {
+const TaskModal = () => {
     const dispatch = useDispatch();
+    const {showTaskModal, task, update} = useSelector(state => state.taskModal); 
     const { width } = useWindowDimensions();
     const transitionWidth = 767.9;
     // manipulate state variable to show task modal 
-    const { setShowTaskModal, task } = props;
     // set modal fade in or fade out animation
     const [fadeOut, setFadeOut] = useState(false);
     // track form variables
@@ -57,8 +58,6 @@ const TaskModal = (props) => {
                 [name]: value
             }
         ));
-
-        console.log(formState);
     };
 
     // check inputs and then process task submission
@@ -69,7 +68,6 @@ const TaskModal = (props) => {
         const { content, category } = formState;
         // make sure content is not blank and that it is a valid input
         // using the validatePassword regex temporarily 
-        console.log(category);
         if (!content) {
             return setWarning('Content is empty or invalid');
         }
@@ -80,15 +78,15 @@ const TaskModal = (props) => {
         // reset variables and close form
         // trim content before sending the value!!!
         // this will be replaced when we can pass in the data from the useMutation hook
-        const _id = Math.round(Math.random()*1000);
         const newTask = {
-            _id,
+            _id: update ? task._id : Math.round(Math.random()*1000),
             username: 'Ashis',
             content: formState.content,
             category: formState.category,
-            completed: false
+            completed: update ? task.completed : false
         }
-        dispatch(addTask(newTask));
+        // update task if this is an update modal, else add task
+        update ? dispatch(updateTask(newTask)) : dispatch(addTask(newTask));
         setWarning('');
         closeModal();
     }
@@ -97,7 +95,7 @@ const TaskModal = (props) => {
     const closeModal = () => {
         setFadeOut(true);
         setTimeout(() => {
-            setShowTaskModal(false);
+            dispatch(closeTaskModal());
         }, 300);
     }
 

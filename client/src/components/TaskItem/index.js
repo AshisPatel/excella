@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 import { updateTask, deleteTask } from '../../redux/eisenhowerMatrix';
+import { updateTaskModal } from '../../redux/taskModal';
 import TaskModal from '../TaskModal';
 import './style.css';
 
@@ -46,7 +47,7 @@ const TaskItem = (props) => {
                     <div className="task-item-btn-wrapper">
                         <button
                             className="task-item-btn"
-                            onClick={() => setShowTaskModal(true)}
+                            onClick={() => dispatch(updateTaskModal(task))}
                         >
                             <FontAwesomeIcon icon="edit" />
                         </button>
