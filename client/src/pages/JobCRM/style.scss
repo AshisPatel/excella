@@ -38,6 +38,10 @@ $box-shadow: $box-shadow-depth rgba($white, 0.08);
         box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $gold; 
         color: $black; 
     }
+    &:active {
+        box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $white; 
+        color: $black; 
+    }
 
     & svg {
         margin-right: 0.5rem; 

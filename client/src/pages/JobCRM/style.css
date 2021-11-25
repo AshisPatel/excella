@@ -26,6 +26,10 @@
   box-shadow: 0.6rem 0.6rem rgba(226, 202, 120, 0.5), inset 0 0 0 2rem #bc992B;
   color: #282828;
 }
+.jc-main-btn:active {
+  box-shadow: 0.6rem 0.6rem rgba(226, 202, 120, 0.5), inset 0 0 0 2rem #EBECE9;
+  color: #282828;
+}
 .jc-main-btn svg {
   margin-right: 0.5rem;
 }
