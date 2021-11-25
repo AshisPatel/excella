@@ -8,7 +8,7 @@
   font-size: 3rem;
 }
 #logo svg {
-  width: 3rem;
+  width: 4rem;
   fill: #EBECE9;
 }
 
@@ -356,6 +356,9 @@
   #logo {
     font-size: 1.75rem;
   }
+  #logo svg {
+    width: 3rem;
+  }
 
   .speech-bubble {
     font-size: 1.2rem;
@@ -371,6 +374,9 @@
     margin-top: 4rem;
   }
 
+  .info-bubble {
+    margin-top: 2rem;
+  }
   .info-bubble p {
     font-size: 0.9rem;
   }

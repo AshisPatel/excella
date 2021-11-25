@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteAllTasks } from "../../redux/eisenhowerMatrix";
 import './style.css';
 import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
 import TaskContainer from "../../components/TaskContainer";
@@ -8,20 +10,25 @@ import TaskModal from "../../components/TaskModal";
 const EisenHowerMatrix = () => {
     // create stateVariable to use to display modal for creating / editting tasks
     const [showTaskModal, setShowTaskModal] = useState(false);
-    const columnSizing = 'offset-1 col-9 offset-md-3 col-md-5 offset-lg-4 col-lg-4'
+    const columnSizing = 'offset-1 col-9 offset-md-3 col-md-5 offset-lg-4 col-lg-4';
+    const dispatch = useDispatch();
 
     const categories = [
         {
-            title: 'Do'
+            title: 'Do',
+            category: 'do'
         },
         {
-            title: 'Do Later'
+            title: 'Do Later',
+            category: 'doLater'
         },
         {
-            title: 'Delegate'
+            title: 'Delegate',
+            category: 'delegate'
         },
         {
-            title: 'Delete'
+            title: 'Delete',
+            category: 'delete'
         }
     ]
 
@@ -42,6 +49,7 @@ const EisenHowerMatrix = () => {
                     </button>
                     <button
                         className="em-main-btn delete-btn"
+                        onClick = {() => dispatch(deleteAllTasks())}
                     >
                         <FontAwesomeIcon icon="trash" />
                         Delete All
@@ -49,7 +57,7 @@ const EisenHowerMatrix = () => {
                 </div>
             </div>
             <div className="row">
-                {categories.map((category, index) => <TaskContainer title={category.title} index={index} key={category.title}/>)}
+                {categories.map((category, index) => <TaskContainer categoryData={category} index={index} key={category.title}/>)}
             </div>
 
         </div>

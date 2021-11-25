@@ -3,9 +3,12 @@ import validatePassword from '../../utils/validatePassword';
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExcellaIcon from '../ExcellaIcon';
+import { useDispatch } from 'react-redux';
+import { addTask } from '../../redux/eisenhowerMatrix';
 
 
 const TaskModal = (props) => {
+    const dispatch = useDispatch();
     const { width } = useWindowDimensions();
     const transitionWidth = 767.9;
     // manipulate state variable to show task modal 
@@ -60,7 +63,6 @@ const TaskModal = (props) => {
 
     // check inputs and then process task submission
     const handleSubmit = (e) => {
-        console.log('oi')
         // prevent page refresh
         e.preventDefault();
 
@@ -68,7 +70,7 @@ const TaskModal = (props) => {
         // make sure content is not blank and that it is a valid input
         // using the validatePassword regex temporarily 
         console.log(category);
-        if (!content || !validatePassword(content)) {
+        if (!content) {
             return setWarning('Content is empty or invalid');
         }
         // check category
@@ -77,7 +79,16 @@ const TaskModal = (props) => {
         }
         // reset variables and close form
         // trim content before sending the value!!!
-        // insert dispatch to update state here
+        // this will be replaced when we can pass in the data from the useMutation hook
+        const _id = Math.round(Math.random()*1000);
+        const newTask = {
+            _id,
+            username: 'Ashis',
+            content: formState.content,
+            category: formState.category,
+            completed: false
+        }
+        dispatch(addTask(newTask));
         setWarning('');
         closeModal();
     }
@@ -153,6 +164,7 @@ const TaskModal = (props) => {
                         :   
                         <select 
                             value={formState.category}
+                            onChange={handleChange}
                             name="category"
                         >
                             <option value="">Select a category</option>

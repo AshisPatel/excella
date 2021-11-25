@@ -15,7 +15,7 @@ $light-gold: #E2CA78;
     margin-left: 1rem;  
     font-size: 3rem; 
     & svg {
-        width: 3rem; 
+        width: 4rem; 
         fill: $white; 
     }
 }
@@ -295,6 +295,9 @@ $light-gold: #E2CA78;
 @media screen and (max-width: 700px) {
     #logo {
         font-size: 1.75rem; 
+        & svg {
+            width: 3rem; 
+        }
     }
 
     .speech-bubble {
@@ -312,6 +315,7 @@ $light-gold: #E2CA78;
     }
 
     .info-bubble {
+        margin-top: 2rem; 
         & p {
             font-size: 0.9rem; 
         }

@@ -9,7 +9,7 @@
 export const addTask = (task) => {
     return {
         type: 'ADD_TASK',
-        payload: task 
+        payload: task
     };
 };
 
@@ -61,35 +61,40 @@ const initialState = {
 // }
 
 
-export default function eisenhowerMatrixReducer(eisenhowerMatrix = initialState, { type, payload}) {
-    switch(type) {
+export default function eisenhowerMatrixReducer(eisenhowerMatrix = initialState, { type, payload }) {
+    switch (type) {
         case 'ADD_TASK':
             return {
                 tasks: [...eisenhowerMatrix.tasks, payload]
             };
         case 'DELETE_TASK':
             // returns all items that do not match the _id of the task we want to delete 
-            const newTasks = eisenhowerMatrix.tasks.filter(task => task._id !== payload);
-            return {
-                tasks: [...newTasks]
-            };
+            {
+                const newTasks = eisenhowerMatrix.tasks.filter(task => task._id !== payload);
+                return {
+                    tasks: [...newTasks]
+                };
+            }
         case 'DELETE_ALL_TASKS':
             return {
                 tasks: []
             }
         case 'DELETE_CATEGORY_TASKS':
-            // returns all items that do not match the category name
-            const newTasks = eisenhowerMatrix.tasks.filter(task => task.category !== payload);
-            return {
-                tasks: [...newTasks]
-            };
+            {  // returns all items that do not match the category name
+                const newTasks = eisenhowerMatrix.tasks.filter(task => task.category !== payload);
+                return {
+                    tasks: [...newTasks]
+                };
+            }
         case 'UPDATE_TASK':
             // sets task we want to update to the data coming in the payload
+          {  
             const newTasks = eisenhowerMatrix.tasks.map(task => task._id === payload._id ? task = payload : task);
             return {
                 tasks: [...newTasks]
             };
-        default: 
-            return eisenhowerMatrix; 
+        }
+        default:
+            return eisenhowerMatrix;
     }
 }

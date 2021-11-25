@@ -125,7 +125,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                     <div className="inputs">
                         <div className="input-wrapper">
                             <input
-                                aria-aria-label='username'
+                                aria-label='username'
                                 name="username"
                                 type="text"
                                 className="text-input"
