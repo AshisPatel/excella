@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector, useDispatch } from 'react-redux';
+import { closeJobModal } from '../../redux/jobModal';
 import validateString from '../../utils/validateString';
 import ExcellaIcon from '../ExcellaIcon';
 
-const JobModal = (props) => {
-    const job = {};
-    const update = false; 
-    // temporary show and hide modal state from JobCRM
-    const { setShowJobModal } = props;
+const JobModal = () => {
+    const dispatch = useDispatch();
+    const { job, update } = useSelector(state => state.jobModal);
+
     // use state to manage fade-in or fade-out of modal
     const [fadeOut, setFadeOut] = useState(false);
     // track warnings
@@ -53,7 +54,7 @@ const JobModal = (props) => {
     const closeModal = () => {
         setFadeOut(true);
         setTimeout(() => {
-            setShowJobModal(false);
+            dispatch(closeJobModal());
         }, 300);
     }
 

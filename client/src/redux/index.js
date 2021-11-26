@@ -3,6 +3,7 @@ import { createStore, combineReducers } from "redux";
 import currentPageReducer from "./currentPage";
 import eisenhowerMatrixReducer from "./eisenhowerMatrix";
 import taskModalReducer from "./taskModal";
+import jobModalReducer from "./jobModal";
 // remove once authentication is added
 import loggedInReducer from "./loggedIn";
 
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     // remove the loggedIn slice when server and auth are implemented
     loggedIn: loggedInReducer,
     eisenhowerMatrix: eisenhowerMatrixReducer,
-    taskModal: taskModalReducer
+    taskModal: taskModalReducer,
+    jobModal: jobModalReducer
 });
 
 

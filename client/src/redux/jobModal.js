@@ -1,52 +1,52 @@
 // action calls
 
-// action call to open a blank modal for new task
-export const newTaskModal = () => {
+// action call to open a blank modal for new job
+export const newJobModal = () => {
     return {
         type: 'OPEN_NEW_MODAL'
     };
 };
-// action call to open a modal to update an existing task
-export const updateTaskModal = (task) => {
+// action call to open a modal to update an existing job
+export const updateJobModal = (job) => {
     return {
         type: 'OPEN_UPDATE_MODAL',
-        payload: task 
+        payload: job 
     };
 };
 // action call to close modal
-export const closeTaskModal = () => {
+export const closeJobModal = () => {
     return {
         type: 'CLOSE_MODAL'
     };
 };
 
 const initialState = {
-    showTaskModal: false,
+    showJobModal: false,
     update: false,
-    task: {}
+    job: {}
 };
 
-export default function taskModalReducer(taskModal = initialState, { type, payload }) {
+export default function jobModalReducer(jobModal = initialState, { type, payload }) {
     switch(type) {
         case 'OPEN_NEW_MODAL':
             return {
-                task: {},
+                job: {},
                 update: false,
-                showTaskModal:true
+                showJobModal:true
             };
         case 'OPEN_UPDATE_MODAL':
             return {
-                showTaskModal:true,
+                showJobModal:true,
                 update: true, 
-                task: payload
+                job: payload
             };
         case 'CLOSE_MODAL':
             return {
-                showTaskModal:false,
+                showJobModal:false,
                 update: false, 
-                task: {}
+                job: {}
             }
         default: 
-            return taskModal; 
+            return jobModal; 
     }
 };

@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import './style.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { newJobModal } from "../../redux/jobModal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobTable from "../../components/JobTable";
 import JobModal from '../../components/JobModal';
 
 const JobCRM = () => {
-    const job = {};
+    const dispatch = useDispatch();
+    const { showJobModal } = useSelector(state => state.jobModal);
     const columnSizing = 'col-9 col-md-5 col-lg-4'
-    // temp state to manage view of JobModal
-    const [showJobModal, setShowJobModal] = useState(false); 
 
     return (
         <div className="container">
@@ -26,7 +27,7 @@ const JobCRM = () => {
                 <div className={`jc-btn-wrapper ${columnSizing}`}>
                     <button
                         className='jc-main-btn'
-                        onClick={() => setShowJobModal(true)}
+                        onClick={() => dispatch(newJobModal())}
                     >
                         <FontAwesomeIcon icon="plus" />
                         Add Job
@@ -44,7 +45,7 @@ const JobCRM = () => {
                     <JobTable />
                 </div>
             </div>
-            {showJobModal && <JobModal setShowJobModal={setShowJobModal}/>}
+            {showJobModal && <JobModal />}
         </div>
     );
 };
