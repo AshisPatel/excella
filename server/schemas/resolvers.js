@@ -16,7 +16,12 @@ const resolvers = {
       jobs: async (parent, { username }) => {
         //allow for GET jobdata based on username
         const params = username ? { username } : {};
-        return Job.find(params)
+        return Job.find(params);
+      },
+      singleJob: async (parent, { _id } ) => {
+        console.log(__dirname);
+        //search for a single Job based on it's _id
+        return Job.findById({ _id: _id });
       }
     },
     Mutation: {
@@ -64,13 +69,27 @@ const resolvers = {
         
         return newContact;
       },
-      updateContact: async(parent, { name, ...updateArgs }) => {
-        //update a specific contact by name within a Job
-        console.log(`Hello my name is ${name}`);
+      deleteContact: async(parent, contactId) => {
+        //update a specific contact by _id within a Job
+        console.log('-----------contactId to Delete--------------');
+        console.log(contactId);
+        const updatedJob = await Job.findOneAndUpdate(
+          { "contacts._id": contactId },
+          { $pull: { contacts: { _id: contactId }}},
+          {new: true, runValidators: true }
+          );
+
+          return updatedJob;
+      },
+      updateContact: async(parent, { _id, ...updateArgs }) => {
+        //update a specific contact by _id within a Job
+        console.log('-----------updateArguments--------------');
         console.log(updateArgs);
         const updatedJob = await Job.findOneAndUpdate(
-          { "contacts.name": name },
+          { "contacts._id": _id },
           { "$set":{
+              "contacts.$.firstName": updateArgs.firstName,
+              "contacts.$.lastName": updateArgs.lastName,
               "contacts.$.email": updateArgs.email,
               "contacts.$.phone": updateArgs.phone
             } 
@@ -78,8 +97,25 @@ const resolvers = {
           {new: true, runValidators: true }
           );
 
+        console.log('-----------updatedJob--------------');
         console.log(updatedJob);
-        return updatedJob.contacts[0];
+        
+        let contactsArray = updatedJob.contacts;
+
+        //filter through contacts array to find the contact that was updated by the mutation
+        let updatedContact = contactsArray.filter(contact => {
+          if(contact._id.toString() === _id.toString()){
+            return true;
+          } else {
+            return false;
+          }
+        }).map(contact => {
+          console.log('-----------updatedContact--------------');
+          console.log(contact);
+          return contact;
+        })
+
+        return updatedContact[0];
       }
     }
   };

@@ -8,9 +8,14 @@ const contactSchema = new Schema({
     //     type: Schema.Types.ObjectId,
     //     default: () => new Types.ObjectId()
     // },
-    name: {
+    firstName: {
         type: String,
-        require: "Please enter your contact's name",
+        require: "Please enter your contact's first name",
+        trim: true
+    },
+    lastName: {
+        type: String,
+        require: "Please enter your contact's  last name",
         trim: true
     },
     email: {
@@ -37,10 +42,12 @@ const jobSchema = new Schema({
         required: 'Please enter the job employer name',
         trim: true
     },
-    applicationDate: {
+    lastUpdated: {
         type: Date,
-        default: Date.now,
-        // get: appDate => dateFormat(appDate)
+        required: 'Please enter a the updated Date',
+        trim: true,
+        default: Date.now
+        //get: appDate => dateFormat(appDate)
     },
     applicationStatus: {
         type: String,
