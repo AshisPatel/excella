@@ -24,6 +24,11 @@ $center-x: 0 auto auto 0;
     padding: 0; 
 }
 
+button {
+    &:hover {
+        cursor: pointer;
+    }
+}
 
 body {
     background: $black;  
@@ -343,6 +348,7 @@ body {
     transition: color 0.2s linear; 
     &:hover {
         color: $gold;
+        cursor: pointer;
     }
 }
 

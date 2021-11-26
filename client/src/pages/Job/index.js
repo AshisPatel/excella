@@ -27,9 +27,9 @@ const Job = (props) => {
     useEffect(async () => {
         const dbJobs = [...jobs];
         let foundJob = {};
-        for (let i=0; i < dbJobs.length; i++) {
-            if(dbJobs[i]._id === parseInt(_id)) {
-                foundJob = {...dbJobs[i]};
+        for (let i = 0; i < dbJobs.length; i++) {
+            if (dbJobs[i]._id === parseInt(_id)) {
+                foundJob = { ...dbJobs[i] };
                 break;
             }
         }
@@ -109,33 +109,43 @@ const Job = (props) => {
                         <ul className="job-options-list">
                             <li>
                                 <button
+                                    className="job-card-btn"
                                     onClick={() => dispatch(updateJobModal(job))}
-                                >Update</button>
-                            </li>
-                            <li>
-                                <button
-                                    onClick={() => deleteBtnHandler()}
                                 >
-                                    Delete
+                                    <FontAwesomeIcon icon="edit" />
+                                    Update
                                 </button>
                             </li>
                             <li>
-                                <button>Add Contact</button>
+                                <button
+                                    className="job-card-btn"
+                                    onClick={() => deleteBtnHandler()}
+                                >
+                                     <FontAwesomeIcon icon="trash" />
+                                    Delete
+                                </button>
                             </li>
                         </ul>
                     </div>
                     <hr className="job-card-divider" />
                     <div className="job-contacts">
                         <span className="contact-header-wrapper">
-                            <h3>
-                                Contacts
-                            </h3>
-                            <button
-                                className={`show-contact-btn ${showContacts ? 'rotate-up' : 'rotate-down'}`}
-                                onClick={() => showContactHandler()}
-                            >
-                                <FontAwesomeIcon icon="caret-right" />
-                            </button>
+                            <div>
+                                <h3>
+                                    Contacts
+                                </h3>
+                                <button
+                                    className={`show-contact-btn ${showContacts ? 'rotate-up' : 'rotate-down'}`}
+                                    onClick={() => showContactHandler()}
+                                >
+                                    <FontAwesomeIcon icon="caret-right" />
+                                </button>
+                            </div>
+                            <div>
+                                <button className="new-contact-btn job-card-btn">
+                                    <FontAwesomeIcon icon="plus" /> New Contact
+                                </button>
+                            </div>
                         </span>
                         {showContacts &&
                             <>

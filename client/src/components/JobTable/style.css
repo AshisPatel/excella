@@ -10,7 +10,7 @@
 #jobs th {
   text-align: left;
   padding: 0.5rem;
-  background-color: #856D1E;
+  background-color: #C99200;
   color: #0f0f0f;
 }
 #jobs td {
@@ -19,6 +19,9 @@
   padding-left: 0.5rem;
   border: 1px solid #282828;
   font-size: 1.2rem;
+}
+#jobs tbody {
+  border: none;
 }
 #jobs tr {
   transition: all 0.2s linear;
@@ -48,13 +51,13 @@
 #jobs tr:nth-child(2) {
   border-top: 0;
 }
-#jobs tr:nth-child(even) {
+#jobs tr:nth-child(odd) {
   color: #282828;
   background-color: #E2CA78;
 }
-#jobs tr:nth-child(2n+3) {
+#jobs tr:nth-child(even) {
   color: #0f0f0f;
-  background-color: #856D1E;
+  background-color: #C99200;
 }
 #jobs tr:last-child {
   border-bottom-left-radius: 0.5rem;

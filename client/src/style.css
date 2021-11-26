@@ -1295,6 +1295,10 @@
   padding: 0;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 body {
   background: #282828;
 }
@@ -1601,6 +1605,7 @@ body {
 }
 .close-btn:hover {
   color: #bc992B;
+  cursor: pointer;
 }
 
 .inputs {

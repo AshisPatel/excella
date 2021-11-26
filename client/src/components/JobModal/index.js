@@ -61,8 +61,8 @@ const JobModal = () => {
             jobTitle: jobTitle.trim(),
             employer: employer.trim(),
             applicationStatus: applicationStatus.trim(),
-            // if updateDate is true, use current date else use date passed in from job
-            lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated ? job.lastUpdated : 'no date',
+            // if updateDate is true replace with current date, if false and the job exists, use previous value -> if the job does not exist use current date
+            lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated ? job.lastUpdated : dayjs().format('MM/DD/YYYY') ,
             contacts: []
         };
         // check if update or adding new job

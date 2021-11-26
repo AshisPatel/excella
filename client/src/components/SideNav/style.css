@@ -169,7 +169,7 @@
   height: 6rem;
   padding: 0;
   margin-bottom: 1rem;
-  background-color: rgba(235, 236, 233, 0.05);
+  background-color: #161616;
   color: #E2CA78;
   border: none;
   transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear, box-shadow 0.2s ease-in-out;

@@ -66,7 +66,6 @@
 
 .job-options-list {
   list-style: none;
-  margin-top: auto;
   margin-bottom: auto;
 }
 .job-options-list li:first-child {
@@ -79,20 +78,12 @@
 }
 .job-options-list button {
   width: 95%;
-  text-align: center;
-  font-size: 1rem;
-  border: 1px solid #282828;
-  background-color: #bc992B;
-  color: #282828;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.2s linear;
 }
-.job-options-list button:hover, .job-options-list button :focus {
-  background-color: #E2CA78;
-}
-.job-options-list button:active {
-  background-color: #EBECE9;
+.job-options-list button svg {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0.25rem;
 }
 
 .contact-list-container {
@@ -116,6 +107,7 @@
   padding: 0;
   background-color: transparent;
   margin-left: 0.5rem;
+  margin-top: 0.25rem;
   transition: all 0.2s linear;
 }
 .show-contact-btn:hover, .show-contact-btn :focus {
@@ -125,11 +117,38 @@
   color: #EBECE9;
 }
 
+.job-card-btn {
+  background-color: #bc992B;
+  border: 2px solid black;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  transition: all 0.2s linear;
+}
+.job-card-btn:hover, .job-card-btn :focus {
+  background-color: rgba(40, 40, 40, 0.15);
+}
+.job-card-btn:active {
+  background-color: #282828;
+  color: #bc992B;
+}
+
+.new-contact-btn {
+  margin-top: 0.25rem;
+}
+
 .contact-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.contact-header-wrapper div:first-child {
   display: flex;
   flex-direction: start;
   align-items: center;
-  font-size: 1.1rem;
 }
 
 .rotate-up {

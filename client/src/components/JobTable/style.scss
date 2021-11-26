@@ -2,7 +2,7 @@ $black: #282828;
 $white: #EBECE9;
 $blue: #283143;
 $gold: #bc992B; 
-$dark-gold: #856D1E;
+$dark-gold: #C99200;
 $light-gold: #E2CA78;
 $box-shadow-depth: 0.6rem 0.6rem; 
 $box-shadow: $box-shadow-depth rgba($white, 0.08);
@@ -29,6 +29,10 @@ $box-shadow: $box-shadow-depth rgba($white, 0.08);
         padding-left: 0.5rem; 
         border: 1px solid $black; 
         font-size: 1.2rem; 
+    }
+    
+    & tbody {
+        border: none; 
     }
 
     & tr {
@@ -62,12 +66,12 @@ $box-shadow: $box-shadow-depth rgba($white, 0.08);
         border-top: 0;
     }
 
-    & tr:nth-child(even) {
+    & tr:nth-child(odd) {
         color :$black;
         background-color: $light-gold;
     }
 
-    & tr:nth-child(2n+3) {
+    & tr:nth-child(even) {
         color: darken($black, 10%); 
         background-color: $dark-gold; 
     }

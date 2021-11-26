@@ -24,7 +24,9 @@ const JobTable = () => {
                         }
                     </tr>
                 </thead>
-                {jobs.map(job => <JobItem job={job} key={job._id}/>)}
+                <tbody>
+                    {jobs.map(job => <JobItem job={job} key={job._id}/>)}
+                </tbody>
         </table>
     )
 }
