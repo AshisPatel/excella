@@ -7,9 +7,9 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom"
 import store from "./redux";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt, faPlus, faTrash, faSave, faEdit, faSquare, faCheckSquare, faBroom, faSearch, faEye, faBriefcase, faHardHat, faClipboard, faHandPointLeft, faCaretUp, faCaretDown} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt, faPlus, faTrash, faSave, faEdit, faSquare, faCheckSquare, faBroom, faSearch, faEye, faBriefcase, faHardHat, faClipboard, faHandPointLeft, faCaretRight} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt, faPlus, faTrash, faSave, faEdit, faSquare, faCheckSquare, faBroom, faSearch, faEye, faBriefcase,faHardHat, faClipboard, faHandPointLeft, faCaretDown );
+library.add(faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt, faPlus, faTrash, faSave, faEdit, faSquare, faCheckSquare, faBroom, faSearch, faEye, faBriefcase,faHardHat, faClipboard, faHandPointLeft, faCaretRight );
 
 ReactDOM.render(
   <React.StrictMode>

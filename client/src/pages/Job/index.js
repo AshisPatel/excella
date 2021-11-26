@@ -130,7 +130,7 @@ const Job = () => {
                                 className={`show-contact-btn ${showContacts ? 'rotate-up' : 'rotate-down'}`}
                                 onClick={() => showContactHandler()}
                             >
-                                <FontAwesomeIcon icon="caret-down"/>
+                                <FontAwesomeIcon icon="caret-right"/>
                             </button>
                         </span>
                         {showContacts && 

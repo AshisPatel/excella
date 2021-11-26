@@ -133,7 +133,7 @@
 }
 
 .rotate-up {
-  transform: rotate(180deg);
+  transform: rotate(90deg);
 }
 
 .rotate-down {
