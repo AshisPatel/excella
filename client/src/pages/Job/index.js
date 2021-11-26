@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import './style.css';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentPage } from '../../redux/currentPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Job = () => {
+    const dispatch = useDispatch();
     const { _id } = useParams();
     const currentDate = dayjs().format('MM/DD/YYYY');
     const job = {
@@ -45,17 +48,17 @@ const Job = () => {
 
     // manage show / hide contacts
     const [showContacts, setShowContacts] = useState(false); 
-    const [animationState, setAnimationState] = useState('expand');
+    const [expand, setExpand] = useState(true);
 
     const showContactHandler = () => {
         if (showContacts) {
-            setAnimationState('collapse');
+            setExpand(false);
             setTimeout(() => {
                 setShowContacts(false);
             },200);
         } else {
             setShowContacts(true);
-            setAnimationState('expand');
+            setExpand(true);
         }
     }
     return (
@@ -64,6 +67,7 @@ const Job = () => {
                 <Link
                     to="/JobCRM"
                     className="return-link"
+                    onClick={() => dispatch(setCurrentPage('/JobCRM'))}
                 >
                     <FontAwesomeIcon icon="hand-point-left" />
                     Return to Job CRM
@@ -74,24 +78,28 @@ const Job = () => {
                     <div className="job-info-container">
                         <ul className='job-info-list'>
                             <li>
-                                <h2>
-                                    Title: {title}
-                                </h2>
+                                <h3>
+                                    <label>Title:</label> 
+                                    {title}
+                                </h3>
                             </li>
 
                             <li>
                                 <h3>
-                                    Employer: {employer}
+                                    <label>Employer:</label>
+                                     {employer}
                                 </h3>
                             </li>
                             <li>
                                 <h3>
-                                    Status: {status}
+                                    <label>Status:</label>
+                                    {status}
                                 </h3>
                             </li>
                             <li>
                                 <h3>
-                                    Last Update: {date}
+                                    <label>Last Updated:</label>
+                                    {date}
                                 </h3>
                             </li>
                         </ul>
@@ -110,9 +118,9 @@ const Job = () => {
                     <hr className="job-card-divider"/>
                     <div className="job-contacts">
                         <span className="contact-header-wrapper">
-                            <h2>
+                            <h3>
                                 Contacts 
-                            </h2>
+                            </h3>
                             <button
                                 className={`show-contact-btn ${showContacts ? 'rotate-up' : 'rotate-down'}`}
                                 onClick={() => showContactHandler()}
@@ -123,7 +131,7 @@ const Job = () => {
                         {showContacts && 
                         <>
                             <hr className="job-card-divider"/>
-                            <div className={`contact-list-container ${animationState === 'expand' ? 'expand' : 'collapse'}`}>
+                            <div className={`contact-list-container ${expand ? 'expand' : 'collapse'}`}>
                                 {contacts.map(contact => (
                                     <ul className="contact-list">
                                         <li>

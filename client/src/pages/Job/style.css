@@ -25,6 +25,7 @@
 .job-card {
   padding: 1rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   margin-right: auto;
   margin-left: auto;
   background-color: #bc992B;
@@ -45,10 +46,14 @@
 .job-info-container {
   display: flex;
   justify-content: space-between;
+  font-size: 1.1rem;
 }
 
 .job-info-list {
   list-style: none;
+}
+.job-info-list label {
+  display: block;
 }
 .job-info-list li:first-child {
   margin-bottom: 0.5rem;
@@ -73,7 +78,7 @@
   margin-bottom: 0.5rem;
 }
 .job-options-list button {
-  width: 100%;
+  width: 95%;
   text-align: center;
   font-size: 1rem;
   border: 1px solid #282828;
@@ -124,6 +129,7 @@
   display: flex;
   flex-direction: start;
   align-items: center;
+  font-size: 1.1rem;
 }
 
 .rotate-up {
@@ -175,5 +181,14 @@
   }
   to {
     height: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .job-info-container {
+    font-size: 1rem;
+  }
+
+  .contact-header-wrapper {
+    font-size: 1rem;
   }
 }/*# sourceMappingURL=style.css.map */
