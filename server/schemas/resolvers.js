@@ -19,7 +19,6 @@ const resolvers = {
         return Job.find(params);
       },
       singleJob: async (parent, { _id } ) => {
-        console.log(__dirname);
         //search for a single Job based on it's _id
         return Job.findById({ _id: _id });
       }
