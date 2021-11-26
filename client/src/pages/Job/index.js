@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import './style.css';
 import { Link, useParams } from 'react-router-dom';
@@ -11,59 +11,43 @@ import JobModal from "../../components/JobModal";
 const Job = () => {
     const dispatch = useDispatch();
     const { showJobModal } = useSelector(state => state.jobModal);
-    const { _id } = useParams();
-    const currentDate = dayjs().format('MM/DD/YYYY');
-    const job = {
-        title: 'Junior Developer',
-        employer: 'Google Inc.',
-        status: 'First Interview',
-        date: currentDate,
-        contacts: [
-            {
-                firstName: 'Ashis',
-                lastName: 'Patel',
-                number: '281-391-0069',
-                email: 'ashis.n.patel@gmail.com'
-            },
-            {
-                firstName: 'Ashis',
-                lastName: 'Patel'
-            },
-            {
-                firstName: 'Ashis',
-                lastName: 'Patel',
-                number: '281-391-0069',
-                email: 'ashis.n.patel@gmail.com'
-            },
-            {
-                firstName: 'Ashis',
-                lastName: 'Patel',
-                email: 'ashis.n.patel@gmail.com'
-            },
-            {
-                firstName: 'Ashis',
-                lastName: 'Patel',
-                phone: '281-391-0069'
-            }
-        ]
-    }
-    const { title, employer, status, date, contacts } = job;
-
     // manage show / hide contacts
-    const [showContacts, setShowContacts] = useState(false); 
+    const [showContacts, setShowContacts] = useState(false);
     const [expand, setExpand] = useState(true);
+    // replace with query to get specific job
+    const { jobs } = useSelector(state => state.jobCRM);
+    const [loading, setLoading] = useState(true);
+    const [job, setJob] = useState({jobTitle: '', applicationStatus: '', employer: '', lastUpdated: ''});
+
+    const { _id } = useParams();
+    
+    useEffect(async () => {
+        console.log(jobs);
+        const foundJob = await jobs.filter(job => job._id = _id);
+        setJob(foundJob[0]);
+        // setTimeout(() => {setJob(foundJob[0])},1000);
+        setTimeout(() => {setLoading(false)},500);
+    }, []);
+    
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
+
+
 
     const showContactHandler = () => {
         if (showContacts) {
             setExpand(false);
             setTimeout(() => {
                 setShowContacts(false);
-            },200);
+            }, 200);
         } else {
             setShowContacts(true);
             setExpand(true);
         }
     }
+
     return (
         <div className="container">
             <div className="row">
@@ -82,27 +66,27 @@ const Job = () => {
                         <ul className='job-info-list'>
                             <li>
                                 <h3>
-                                    <label>Title:</label> 
-                                    {title}
+                                    <label>Title:</label>
+                                    {job.jobTitle}
                                 </h3>
                             </li>
 
                             <li>
                                 <h3>
                                     <label>Employer:</label>
-                                     {employer}
+                                    {job.employer}
                                 </h3>
                             </li>
                             <li>
                                 <h3>
                                     <label>Status:</label>
-                                    {status}
+                                    {job.applicationStatus}
                                 </h3>
                             </li>
                             <li>
                                 <h3>
                                     <label>Last Updated:</label>
-                                    {date}
+                                    {job.lastUpdated}
                                 </h3>
                             </li>
                         </ul>
@@ -120,42 +104,42 @@ const Job = () => {
                             </li>
                         </ul>
                     </div>
-                    <hr className="job-card-divider"/>
+                    <hr className="job-card-divider" />
                     <div className="job-contacts">
                         <span className="contact-header-wrapper">
                             <h3>
-                                Contacts 
+                                Contacts
                             </h3>
                             <button
                                 className={`show-contact-btn ${showContacts ? 'rotate-up' : 'rotate-down'}`}
                                 onClick={() => showContactHandler()}
                             >
-                                <FontAwesomeIcon icon="caret-right"/>
+                                <FontAwesomeIcon icon="caret-right" />
                             </button>
                         </span>
-                        {showContacts && 
-                        <>
-                            <hr className="job-card-divider"/>
-                            <div className={`contact-list-container ${expand ? 'expand' : 'collapse'}`}>
-                                {contacts.map(contact => (
-                                    <ul className="contact-list">
-                                        <li>
-                                            First: {contact.firstName}
-                                        </li>
-                                        <li>
-                                            Last: {contact.lastName}
-                                        </li>
-                                        <li>
-                                            Phone: {contact.number ? contact.number : 'N/A'}
-                                        </li>
-                                        <li>
-                                            Email: {contact.email ? contact.email : 'N/A'}
-                                        </li>
-                                    </ul>
-                                ))
-                                }
-                            </div>
-                        </>
+                        {showContacts &&
+                            <>
+                                <hr className="job-card-divider" />
+                                <div className={`contact-list-container ${expand ? 'expand' : 'collapse'}`}>
+                                    {job.contacts.map(contact => (
+                                        <ul className="contact-list">
+                                            <li>
+                                                First: {contact.firstName}
+                                            </li>
+                                            <li>
+                                                Last: {contact.lastName}
+                                            </li>
+                                            <li>
+                                                Phone: {contact.number ? contact.number : 'N/A'}
+                                            </li>
+                                            <li>
+                                                Email: {contact.email ? contact.email : 'N/A'}
+                                            </li>
+                                        </ul>
+                                    ))
+                                    }
+                                </div>
+                            </>
                         }
                     </div>
                 </div>

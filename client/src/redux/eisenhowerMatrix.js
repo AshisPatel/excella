@@ -6,6 +6,8 @@
 
 // adding a task
 // task should contain all the info required content, category, _id, username, and completed 
+
+// might need an add multiple tasks for when the user signs on
 export const addTask = (task) => {
     return {
         type: 'ADD_TASK',

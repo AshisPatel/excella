@@ -4,6 +4,7 @@ import currentPageReducer from "./currentPage";
 import eisenhowerMatrixReducer from "./eisenhowerMatrix";
 import taskModalReducer from "./taskModal";
 import jobModalReducer from "./jobModal";
+import jobCRMReducer from "./jobCRM";
 // remove once authentication is added
 import loggedInReducer from "./loggedIn";
 
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     loggedIn: loggedInReducer,
     eisenhowerMatrix: eisenhowerMatrixReducer,
     taskModal: taskModalReducer,
-    jobModal: jobModalReducer
+    jobModal: jobModalReducer,
+    jobCRM: jobCRMReducer
 });
 
 

@@ -1,25 +1,30 @@
 import React from 'react';
 import './style.css';
+import { useSelector } from 'react-redux';
 import JobItem from '../JobItem';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const JobTable = () => {
     const { width } = useWindowDimensions();
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 9, 10];
+    // Get jobs array from the global state jobCRM
+    const { jobs } = useSelector(state => state.jobCRM);
+    console.log(jobs);
     return (
         <table id='jobs'>
-            <tr>
-                <th>Title</th>
-                <th>Employer</th>
-                
-                {width > 767 && 
-                <>
-                    <th>Status</th>
-                    <th> Date</th>
-                </>
-                }
-            </tr>
-            {numbers.map(number => <JobItem />)}
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Employer</th>
+                        
+                        {width > 767 && 
+                        <>
+                            <th>Status</th>
+                            <th> Date</th>
+                        </>
+                        }
+                    </tr>
+                </thead>
+                {jobs.map(job => <JobItem job={job} key={job._id}/>)}
         </table>
     )
 }
