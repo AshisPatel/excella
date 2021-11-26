@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import './style.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateJobModal } from "../../redux/jobModal";
+import { deleteJob } from '../../redux/jobCRM';
 import { setCurrentPage } from '../../redux/currentPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobModal from "../../components/JobModal";
 
 const Job = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { showJobModal } = useSelector(state => state.jobModal);
     // manage show / hide contacts
     const [showContacts, setShowContacts] = useState(false);
@@ -17,18 +19,18 @@ const Job = () => {
     // replace with query to get specific job
     const { jobs } = useSelector(state => state.jobCRM);
     const [loading, setLoading] = useState(true);
-    const [job, setJob] = useState({jobTitle: '', applicationStatus: '', employer: '', lastUpdated: ''});
+    const [job, setJob] = useState({ jobTitle: '', applicationStatus: '', employer: '', lastUpdated: '', _id: '' });
 
     const { _id } = useParams();
-    
+    // run this query to see if the job information has updated or not between the user upading the modal information 
+    // triggered on showJobModal change
     useEffect(async () => {
         console.log(jobs);
         const foundJob = await jobs.filter(job => job._id = _id);
         setJob(foundJob[0]);
-        // setTimeout(() => {setJob(foundJob[0])},1000);
-        setTimeout(() => {setLoading(false)},500);
-    }, []);
-    
+        setLoading(false);
+    }, [showJobModal]);
+
 
     if (loading) {
         return <div>Loading...</div>
@@ -46,6 +48,13 @@ const Job = () => {
             setShowContacts(true);
             setExpand(true);
         }
+    }
+
+    const deleteBtnHandler = () => {
+
+        dispatch(deleteJob(job._id));
+        dispatch(setCurrentPage('/JobCRM'));
+        navigate('/JobCRM');
     }
 
     return (
@@ -97,7 +106,11 @@ const Job = () => {
                                 >Update</button>
                             </li>
                             <li>
-                                <button>Delete</button>
+                                <button
+                                    onClick={() => deleteBtnHandler()}
+                                >
+                                    Delete
+                                </button>
                             </li>
                             <li>
                                 <button>Add Contact</button>
