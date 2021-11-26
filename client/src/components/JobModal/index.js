@@ -84,7 +84,7 @@ const JobModal = (props) => {
                                 className="text-input"
                                 value={formState.title}
                                 onChange={handleChange}
-                                placeholder='Job Title'
+                                placeholder='Job Title(*)'
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -100,7 +100,7 @@ const JobModal = (props) => {
                                 className="text-input"
                                 value={formState.employer}
                                 onChange={handleChange}
-                                placeholder='Employer'
+                                placeholder='Employer(*)'
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -116,7 +116,7 @@ const JobModal = (props) => {
                                 className="text-input"
                                 value={formState.status}
                                 onChange={handleChange}
-                                placeholder='Application Status'
+                                placeholder='Application Status(*)'
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">

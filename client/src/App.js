@@ -8,6 +8,7 @@ import Nav from './components/Nav';
 import SideNav from "./components/SideNav";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
+import Job from "./pages/Job";
 import { useSelector } from "react-redux";
 
 
@@ -33,7 +34,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/EisenhowerMatrix" element={<EisenHowerMatrix />} />
-        <Route path="/JobCRM" element={<JobCRM />} />
+        <Route path="/JobCRM">
+          <Route path="" element={<JobCRM />} />
+          <Route path=":_id" element={<Job />} />
+        </Route>
+         
         <Route path="/PomodoroTimer" element={<PomodoroTimer />} />
       </Routes>
      
