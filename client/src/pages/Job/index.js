@@ -3,11 +3,14 @@ import dayjs from 'dayjs';
 import './style.css';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { updateJobModal } from "../../redux/jobModal";
 import { setCurrentPage } from '../../redux/currentPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import JobModal from "../../components/JobModal";
 
 const Job = () => {
     const dispatch = useDispatch();
+    const { showJobModal } = useSelector(state => state.jobModal);
     const { _id } = useParams();
     const currentDate = dayjs().format('MM/DD/YYYY');
     const job = {
@@ -105,7 +108,9 @@ const Job = () => {
                         </ul>
                         <ul className="job-options-list">
                             <li>
-                                <button>Update</button>
+                                <button
+                                    onClick={() => dispatch(updateJobModal(job))}
+                                >Update</button>
                             </li>
                             <li>
                                 <button>Delete</button>
@@ -155,6 +160,7 @@ const Job = () => {
                     </div>
                 </div>
             </div>
+            {showJobModal && <JobModal />}
         </div>
     );
 };
