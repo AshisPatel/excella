@@ -66,6 +66,11 @@ body {
     max-height: 25rem !important; 
 }
 
+.update-job-modal {
+    justify-content:flex-start !important;
+    max-height: 27rem !important; 
+}
+
 .modal-form {
     background: $black;
     color: $white; 
@@ -289,6 +294,43 @@ body {
         background-color: $gold !important;
         color: $white !important; 
     }
+
+    & .checkbox-label {
+        font-size: 1.25rem; 
+        margin-left: 0.25rem; 
+    }
+
+    & .input-checkbox {
+        margin-top: 1rem;
+        appearance: none;
+        width: 1rem;
+        height: 1rem; 
+        border: 2px solid $light-gold; 
+        transform: translateY(0.1rem) translateX(-0.25rem);
+        border-radius: 0.15rem; 
+        transition: all 0.2s linear; 
+        position: relative; 
+        &::before {
+            content: '';
+            color: $black; 
+            // background-color: $gold; 
+            transform: scale(0);
+            transition: all 0.2s linear; 
+            position: absolute; 
+            top: -25%;
+            left: 10%; 
+        }
+
+        &:checked {
+            border-color: $gold; 
+            background-color: $gold; 
+        }
+
+        &:checked::before {
+            content: '✓';
+            transform: scale(1);
+        }
+    }
 }
 
 .close-btn {
@@ -427,6 +469,10 @@ body {
         width: 2rem;
         font-size: .5rem; 
         font-weight: bold;
+    }
+
+    .icon-wrapper {
+        font-size: 1.25rem; 
     }
 }
 

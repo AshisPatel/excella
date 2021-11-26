@@ -8,14 +8,14 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const JobItem = ({ job }) => {
     // destructure job item 
-    
+    console.log(job);
     const { jobTitle, employer, applicationStatus, lastUpdated, _id } = job;
     const dispatch = useDispatch();
     const { width } = useWindowDimensions();
-    // const _id = 10000; 
     return (
         <tr>
-            <td><Link to ={`/JobCRM/${_id}`} onClick={() => dispatch(setCurrentPage(`/JobCRM/${_id}`))}>{jobTitle}</Link></td>
+            {/* onClick={() => dispatch(setCurrentPage(`/JobCRM/${_id}`))} */}
+            <td><Link to ={`/JobCRM/${_id}`} >{jobTitle}</Link></td>
             <td>{employer}</td>
             
             {width > 767 && 

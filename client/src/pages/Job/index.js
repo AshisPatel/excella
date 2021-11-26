@@ -9,7 +9,7 @@ import { setCurrentPage } from '../../redux/currentPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobModal from "../../components/JobModal";
 
-const Job = () => {
+const Job = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { showJobModal } = useSelector(state => state.jobModal);
@@ -25,14 +25,21 @@ const Job = () => {
     // run this query to see if the job information has updated or not between the user upading the modal information 
     // triggered on showJobModal change
     useEffect(async () => {
-        console.log(jobs);
-        const foundJob = await jobs.filter(job => job._id = _id);
-        setJob(foundJob[0]);
+        const dbJobs = [...jobs];
+        let foundJob = {};
+        for (let i=0; i < dbJobs.length; i++) {
+            if(dbJobs[i]._id === parseInt(_id)) {
+                foundJob = {...dbJobs[i]};
+                break;
+            }
+        }
+        setJob(foundJob);
         setLoading(false);
     }, [showJobModal]);
 
 
     if (loading) {
+        console.log(jobs);
         return <div>Loading...</div>
     }
 

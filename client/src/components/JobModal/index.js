@@ -21,7 +21,8 @@ const JobModal = () => {
         employer: job ? job.employer : '',
         applicationStatus: job ? job.applicationStatus : '',
     });
-
+    // state variable to track the updateDate checkbox 
+    const [updateDate, setUpdateDate] = useState(update);
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -32,6 +33,10 @@ const JobModal = () => {
             }
         ));
         console.log(formState);
+    }
+
+    const toggleUpdateDate = () => {
+        setUpdateDate(prevState => !prevState);
     }
 
     const handleSubmit = (e) => {
@@ -50,12 +55,14 @@ const JobModal = () => {
         // submit here using graphQL and then trim the values prior to submission!
         // submit changes to global state
         // form object... (this will be replaced by the returned object from graphQL)
+        const randId = Math.round(Math.random()*10000000000000);
         const jobItem = {
-            _id: update ? job._id : Math.round(Math.random()*1000),
+            _id: update ? job._id : randId,
             jobTitle: jobTitle.trim(),
             employer: employer.trim(),
             applicationStatus: applicationStatus.trim(),
-            lastUpdated: dayjs().format('MM/DD/YYYY'),
+            // if updateDate is true, use current date else use date passed in from job
+            lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated ? job.lastUpdated : 'no date',
             contacts: []
         };
         // check if update or adding new job
@@ -75,7 +82,7 @@ const JobModal = () => {
         <>
             <div className="modal-wrapper">
                 <form
-                    className={`modal-form add-job-modal ${fadeOut ? 'slide-out' : 'slide-in'}`}
+                    className={`modal-form ${update ? 'update-job-modal' : 'add-job-modal'} ${fadeOut ? 'slide-out' : 'slide-in'}`}
                     onSubmit={handleSubmit}
                 >
                     <span
@@ -137,6 +144,21 @@ const JobModal = () => {
                                 <FontAwesomeIcon icon='clipboard'/>
                             </span>
                         </div>
+                        {update && 
+                        <div className="input-wrapper">
+                            <label
+                                className="checkbox-label"
+                            >
+                                <input
+                                    name='updateDate'
+                                    type='checkbox'
+                                    className = 'input-checkbox'
+                                    checked = {updateDate}
+                                    onChange={() => toggleUpdateDate()}
+                                /> Update date?
+                            </label>
+                        </div>
+                        }
                     </div>
                     <p className="warning">
                         {warning}
