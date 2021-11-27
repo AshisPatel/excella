@@ -5,7 +5,7 @@ import { newJobModal } from "../../redux/jobModal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobTable from "../../components/JobTable";
 import JobModal from '../../components/JobModal';
-import NavError from "../../components/NavError.js";
+import NavError from "../../components/NavError";
 import Auth from "../../utils/Auth";
 
 const JobCRM = () => {

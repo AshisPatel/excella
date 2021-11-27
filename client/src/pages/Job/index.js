@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobModal from "../../components/JobModal";
 import ContactModal from '../../components/ContactModal';
 import ContactItem from '../../components/ContactItem';
-import NavError from '../../components/NavError.js';
+import NavError from '../../components/NavError';
 import { newContactModal, updateContactModal } from '../../redux/contactModal';
 import Auth from '../../utils/Auth';
 

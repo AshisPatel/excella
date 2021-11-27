@@ -6,7 +6,7 @@ import './style.css';
 import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
 import TaskContainer from "../../components/TaskContainer";
 import TaskModal from "../../components/TaskModal";
-import NavError from '../../components/NavError.js';
+import NavError from '../../components/NavError';
 import Auth from "../../utils/Auth";
 
 const EisenHowerMatrix = () => {

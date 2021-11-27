@@ -29,7 +29,6 @@ const Home = () => {
         }
     ];
 
-    // const username = Auth.getTokenData().data.token.username; 
     const username = Auth.loggedIn() && Auth.getTokenData().username ;
 
     // chooses which feature will be displayed in the info box

@@ -11,6 +11,7 @@ import SideNav from "./components/SideNav";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
 import Job from "./pages/Job";
+import NoMatch from "./pages/NoMatch";
 import Auth from "./utils/Auth";
 
 // create link to graphql server at its endpoint in our server-side code
@@ -62,6 +63,7 @@ function App() {
           <Route path="/JobCRM" element={<JobCRM />} />
           <Route path="/JobCRM/:_id" element={<Job />} />
           <Route path="/PomodoroTimer" element={<PomodoroTimer />} />
+          <Route path="*" element={<NoMatch />} />
         </Routes>
 
       </div>

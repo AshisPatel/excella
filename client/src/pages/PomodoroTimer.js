@@ -1,6 +1,6 @@
 import React from "react";
 import Auth from "../utils/Auth";
-import NavError from '../components/NavError.js';
+import NavError from '../components/NavError';
 
 const PomodoroTimer = () => {
     if(!Auth.loggedIn()) {
