@@ -1,0 +1,28 @@
+.contact-item {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.contact-item ul {
+  list-style: none;
+}
+.contact-item ul:last-child {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 1rem;
+}
+.contact-item ul:last-child li:first-child {
+  margin-bottom: 1rem;
+}
+.contact-item ul:last-child button {
+  background-color: #bc992B;
+  border: none;
+  font-size: 1.25rem;
+  transition: all 0.2s linear;
+}
+.contact-item ul:last-child button:focus, .contact-item ul:last-child button :hover {
+  color: rgba(40, 40, 40, 0.6);
+}
+.contact-item ul:last-child button:active {
+  color: #EBECE9;
+}/*# sourceMappingURL=style.css.map */

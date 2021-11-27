@@ -87,18 +87,8 @@
 }
 
 .contact-list-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   height: 0;
   overflow-y: auto;
-}
-
-.contact-list {
-  list-style: none;
-  margin-bottom: 0.5rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .show-contact-btn {

@@ -9,6 +9,7 @@ import { setCurrentPage } from '../../redux/currentPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobModal from "../../components/JobModal";
 import ContactModal from '../../components/ContactModal';
+import ContactItem from '../../components/ContactItem';
 import { newContactModal, updateContactModal } from '../../redux/contactModal';
 
 const Job = () => {
@@ -26,7 +27,7 @@ const Job = () => {
 
     const { _id } = useParams();
     // run this query to see if the job information has updated or not between the user upading the modal information 
-    // triggered on showJobModal change
+    // triggered on showJobModal change or  showContactModal change
     useEffect(() => {
         const dbJobs = [...jobs];
         let foundJob = {};
@@ -38,7 +39,7 @@ const Job = () => {
         }
         setJob(foundJob);
         setLoading(false);
-    }, [showJobModal]);
+    }, [showJobModal, showContactModal]);
 
 
     if (loading) {
@@ -158,20 +159,7 @@ const Job = () => {
                                 <hr className="job-card-divider" />
                                 <div className={`contact-list-container ${expand ? 'expand' : 'collapse'}`}>
                                     {job.contacts.map(contact => (
-                                        <ul className="contact-list">
-                                            <li>
-                                                First: {contact.firstName}
-                                            </li>
-                                            <li>
-                                                Last: {contact.lastName}
-                                            </li>
-                                            <li>
-                                                Phone: {contact.number ? contact.number : 'N/A'}
-                                            </li>
-                                            <li>
-                                                Email: {contact.email ? contact.email : 'N/A'}
-                                            </li>
-                                        </ul>
+                                        <ContactItem key={contact._id} contact={contact} job_id={_id} />
                                     ))
                                     }
                                 </div>

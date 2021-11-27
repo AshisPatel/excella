@@ -110,12 +110,16 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
         }
         case 'UPDATE_CONTACT': {
             // payload is an object that contains job_id and contact 
+           
             const newJobs = jobCRM.jobs.map(job => {
+                console.log(payload.contact);
                 if(job._id.toString() === payload.job_id) {
                     const newContacts = job.contacts.map(contact => {
                         if (contact._id === payload.contact._id) {
+                            console.log('updating!');
                             contact = payload.contact;
                         } 
+                        console.log(contact);
                         return contact; 
                     });
                     job = {

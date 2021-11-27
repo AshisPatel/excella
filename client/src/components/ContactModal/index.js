@@ -6,7 +6,7 @@ import validateEmail from '../../utils/validateEmail';
 import validateNumber from '../../utils/validateNumber';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeContactModal } from '../../redux/contactModal';
-import { addContact } from '../../redux/jobCRM';
+import { addContact, updateContact } from '../../redux/jobCRM';
 
 const ContactModal = (props) => {
     const { job_id } = props; 
@@ -55,7 +55,7 @@ const ContactModal = (props) => {
             email: email?.trim() || '',
             phone: phone?.trim() || ''
         };
-        dispatch(addContact(job_id, contactItem));
+        update ? dispatch(updateContact(job_id, contactItem)) : dispatch(addContact(job_id, contactItem));
         setWarning('');
         closeModal();
     }
