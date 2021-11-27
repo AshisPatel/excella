@@ -1,0 +1,13 @@
+.nav-error-margins {
+    margin-top: 10%;
+    margin-left: 20%; 
+    padding-bottom: 5rem; 
+}
+
+@media screen and (max-width: 500px){
+    .nav-error-margins {
+        margin-top: 30%;
+        margin-left: 10%; 
+    }
+    
+}
