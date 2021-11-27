@@ -18,14 +18,7 @@ const Nav = (props) => {
             <h1 id="logo">E<ExcellaIcon />cella</h1>
 
             <div className='btn-container'>
-                {loggedIn ?
-                    <button
-                        className='nav-btn'
-                        onClick={() => dispatch(logout())}
-                    >
-                        Logout
-                    </button>
-                    :
+                {!loggedIn &&
                     <>
                         <button
                             className='nav-btn'

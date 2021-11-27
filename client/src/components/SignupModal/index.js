@@ -109,7 +109,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
         <>
             <div className="modal-wrapper">
                 <form 
-                    className={`sl-form ${fadeOut ? 'slide-out' : 'slide-in'}`}
+                    className={`modal-form ${fadeOut ? 'slide-out' : 'slide-in'}`}
                     onSubmit={handleSubmit}
                 >
                     <span 
@@ -125,7 +125,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                     <div className="inputs">
                         <div className="input-wrapper">
                             <input
-                                aria-aria-label='username'
+                                aria-label='username'
                                 name="username"
                                 type="text"
                                 className="text-input"

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../redux/currentPage';
 import { Link } from "react-router-dom";
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import { logout } from '../../redux/loggedIn';
 
 const SideNav = () => {
 
@@ -14,7 +15,7 @@ const SideNav = () => {
     const [clickOff, setClickOff] = useState(false); 
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
-    const transitionWidth = 768.1;
+    const transitionWidth = 1000;
 
     const handleClick = (e) => {
         // grab the name of the clicked object
@@ -30,6 +31,14 @@ const SideNav = () => {
             toggleDropDown();
         }
     }
+
+    const logoutHandler = async () => {
+        dispatch(setCurrentPage('/'));
+        if(width < transitionWidth) {
+             toggleDropDown();
+        }
+        setTimeout(() => dispatch(logout()), 600);
+    };
 
     const toggleDropDown = async () => {
     //   setDisplay(prevDisplay => !prevDisplay);
@@ -59,7 +68,7 @@ const SideNav = () => {
                     className={`options ${display && 'op-selected'}`}
                     onClick={() => toggleDropDown()}
                 >
-                    <FontAwesomeIcon icon="cog" />
+                     <FontAwesomeIcon icon={display ? "window-close" : "bars"} />
                 </button>
             }
             {display ?
@@ -113,6 +122,18 @@ const SideNav = () => {
                             <FontAwesomeIcon icon="clock" name='/PomodoroTimer' />
                             <span className="label">
                                 Pomodoro Timer
+                            </span>
+                        </button>
+                    </Link>
+
+                    <Link to="/">
+                        <button
+                            className={`side-nav-btn pt-btn ${width < transitionWidth ? !fadeOut ? 'option-item-in-4' : 'option-item-out-4' : 'option-item-in-4'}`}
+                            onClick={() => logoutHandler()}
+                        >
+                            <FontAwesomeIcon icon="sign-out-alt"/>
+                            <span className="label">
+                                Logout
                             </span>
                         </button>
                     </Link>

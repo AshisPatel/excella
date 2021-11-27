@@ -1,28 +1,41 @@
 $black: #282828;
 $white: #EBECE9;
 $blue: #283143;
-$gold: #D8B646;
+// $gold: #D8B646;
+
+$gold: #bc992B; 
 $light-gold: #E2CA78;
 
 #logo {
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    margin-top: -0.25rem;
+    margin-top: auto;
+    margin-bottom: auto; 
     margin-left: 1rem;  
+    font-size: 3rem; 
     & svg {
-        width: 3rem; 
+        width: 4rem; 
         fill: $white; 
     }
 }
 
+#top-nav {
+    display: flex; 
+    align-items: center; 
+}
+
 .home-sprite-wrapper {
-    animation: hover-1 5s ease-in-out infinite;  
+    
 
     svg {
         fill: $gold;
         stroke:$gold; 
     }
+}
+
+.hover-1 {
+    animation: hover-1 5s linear infinite;  
 }
 
 .optional-margin {
@@ -85,12 +98,13 @@ $light-gold: #E2CA78;
     justify-content: space-between; 
     align-items: center; 
     position: relative; 
-    animation: fade-in 0.75s 0.75s linear forwards; 
+    animation: fade-in 0.75s 1s linear forwards; 
     & .info-icon {
         font-size: 5rem; 
     }
 
     & p {
+        margin-top: 0.75rem; 
         font-weight: bold; 
         align-self: start; 
         font-size: 1.1rem; 
@@ -127,6 +141,7 @@ $light-gold: #E2CA78;
 }
 
 .info-description {
+    margin-top: 0.75rem; 
     font-size: 1.25rem;
     font-weight:bold;
     text-align: center; 
@@ -150,7 +165,8 @@ $light-gold: #E2CA78;
         }
     }
 }
-.index-btn-wrapper {
+.index-btn-container {
+    margin-top: 0.75rem; 
     align-self: center; 
 }
 
@@ -169,11 +185,15 @@ $light-gold: #E2CA78;
 }
 
 .speech-bubble-fade-in {
-    animation: hover-2 5s linear infinite, fade-in 0.75s linear forwards; 
+    animation: hover-2 5s linear infinite, fade-in 0.75s 0.5s linear forwards; 
 }
 
 .speech-bubble-fade-out {
     animation: hover-2 5s linear infinite, fade-out 0.5s linear forwards; 
+}
+
+.excella-slide-in {
+    animation: excella-slide-in 0.5s linear forwards; 
 }
 
 @keyframes fade-in {
@@ -195,13 +215,16 @@ $light-gold: #E2CA78;
 
 @keyframes hover-1 {
     0%{
-        transform: translateY(0.75rem);
+        transform: translateY(0);
     }
-    50% {
+    25% {
         transform: translateY(-0.75rem); 
     }
-    100% {
+    75% {
         transform: translateY(0.75rem); 
+    }
+    100% {
+        transform: translateY(0); 
     }
 }
 
@@ -240,6 +263,18 @@ $light-gold: #E2CA78;
     }
 }
 
+@keyframes excella-slide-in {
+    0% {
+        transform: translateX(-20vw) rotate(45deg);
+    }
+    75% {
+        transform: translateX(0) rotate(-15deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg); 
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .optional-margin {
         margin-top: 4rem; 
@@ -258,6 +293,13 @@ $light-gold: #E2CA78;
 }
 // this used to be 500
 @media screen and (max-width: 700px) {
+    #logo {
+        font-size: 1.75rem; 
+        & svg {
+            width: 3rem; 
+        }
+    }
+
     .speech-bubble {
         font-size: 1.2rem; 
         &::before {
@@ -273,6 +315,7 @@ $light-gold: #E2CA78;
     }
 
     .info-bubble {
+        margin-top: 2rem; 
         & p {
             font-size: 0.9rem; 
         }
@@ -312,6 +355,11 @@ $light-gold: #E2CA78;
         &::after{
            display: none; 
         }
+    }
+    
+    .nav-btn {
+        width: 4rem !important; 
+        font-size: 1rem !important; 
     }
 
     .optional-margin {

@@ -7,11 +7,28 @@
 $black: #282828;
 $white: #EBECE9;
 $blue: #283143;
-$gold: #D8B646;
+// $gold: #D8B646;
+
+$gold: #bc992B; 
 $light-gold: #E2CA78;
 
+// custom variables
+$radio-btn-md-fs: 1.4rem;
+$radio-btn-sm-fs: 1rem; 
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+$center-x: 0 auto auto 0;  
 
+* {
+    margin: 0;
+    padding: 0; 
+}
 
+button {
+    &:hover {
+        cursor: pointer;
+    }
+}
 
 body {
     background: $black;  
@@ -21,15 +38,21 @@ body {
     overflow: hidden; 
 }
 
+// signup and login modal CSS
+
+.hide {
+    visibility: hidden;
+}
+
 .modal-backdrop {
     background: rgba($blue, 0.9);
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     position: absolute;
     top: 0;
     right: 0;
     left:0;
-    z-index: 1;
+    z-index: 29;
     animation: fadeIn 0.25s linear forwards; 
 }
 
@@ -37,25 +60,42 @@ body {
     overflow: hidden; 
 }
 
-.sl-form {
+.task-modal {
+    justify-content:flex-start !important;
+    max-height: 32rem !important;  
+    width: 75% !important; 
+}
+
+.add-job-modal {
+    justify-content:flex-start !important;
+    max-height: 25rem !important; 
+}
+
+.update-job-modal {
+    justify-content:flex-start !important;
+    max-height: 27rem !important; 
+}
+
+.modal-form {
     background: $black;
-    // background-color: $white; 
+    color: $white; 
     padding: 2rem; 
     border-radius: 0.5rem; 
-    // max-height: 30rem;
     max-width: 30rem; 
-    height: 32rem; 
-    width: 85%;
+    max-height: 32rem; 
+    width: 80%;
     position: absolute; 
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto; 
-    z-index: 10; 
+    z-index: 30; 
     display: flex;
     flex-direction: column; 
     justify-content: space-between; 
+
+   
 
     & h2 {
         font-weight: bold; 
@@ -90,11 +130,147 @@ body {
         }
     }
 
+    & .excella-speech-label {
+        display: flex;
+        justify-content: start; 
+        align-items: center; 
+        margin-top: 1rem;
+        margin-bottom: 1rem; 
+        animation: excella-modal-hover 2s ease-in-out infinite; 
+        & svg {
+            fill: $gold; 
+            width: 5rem;
+            height: 5rem; 
+
+        }
+
+        & h2 {
+            text-align: left; 
+            position: relative; 
+            background: $gold;
+            color: $black; 
+            border-radius: 0.5rem; 
+            padding: 0.5rem; 
+            margin-left: 0.5rem; 
+            &::before {
+                // creating a box with only the border
+                // the entire box is made transparent
+                // We give a color to the right corner - right border
+                // Then we remove the top and left to only display the bottom and right corners to make a half triangle 
+                position: absolute; 
+                content: '';
+                top: 50%;
+                left: 0;
+                border: 0.6rem solid transparent;
+                border-right-color: $gold; 
+                border-left: 0;
+                border-top: 0; 
+                margin-top: -0.3rem;
+                margin-left: -0.6rem; 
+            }
+        }
+    }
+
+    & textarea {
+        width: 98%;
+        z-index: 2;
+        border-radius: 0.5rem; 
+        // height: 3rem; 
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; 
+        margin-right: auto;
+        margin-left: auto; 
+        border: none; 
+        color: $white;
+        background-color: rgba($white, 0.3);
+        font-size: 1.2rem;
+        padding: 0.5rem; 
+        &::placeholder {
+            color: $white; 
+        }
+
+        &:focus {
+            outline: none;
+            background-color: rgba($white, 0.4);
+        }
+    }
+
+    & .char-count { 
+        color: $white;
+        font-size: 1rem; 
+        align-self: flex-end; 
+    }
+
+    & .radio-btn-wrapper {
+        display: flex;
+        align-items: center; 
+        color: $white; 
+        font-size: $radio-btn-md-fs; 
+        margin-right: auto;
+        margin-left: auto; 
+        margin-bottom: 2rem; 
+
+        & label {
+            margin-right: 1rem;
+            margin-left: 1rem; 
+            transition: all 0.2s linear; 
+            &:hover {
+                color: $light-gold !important;
+                & input {
+                    border-color: $light-gold; 
+                }
+            }
+        }
+
+        & .label-checked {
+            color: $gold !important; 
+        }
+
+
+        & input {
+            appearance: none; 
+            width: $radio-btn-md-fs;
+            height: $radio-btn-md-fs;
+            border-radius: 0.4rem;
+            background-color: $black;
+            border: 2px solid $white; 
+            transition: all 0.2s linear; 
+            transform: translateY(0.2rem);
+            margin-right: 0.25rem;
+
+            &:checked {
+                border-color: $gold; 
+                background-color: $gold; 
+            }
+        }
+    }
+
+    & select {
+        font-size: 1.2rem; 
+        margin-bottom: 0.5rem; 
+        background-color: rgba($white, 0.02);
+        padding: 0.5rem; 
+        border-color: $light-gold; 
+        border-radius: 0.5rem; 
+        color: $light-gold; 
+        transition: all 0.2s linear; 
+        &:hover ,:focus{
+            color: $gold;
+            border-color: $gold; 
+            background-color: rgba($white, 0.1); 
+        }
+        & option {
+            background-color: $black;
+            color: $gold; 
+        }
+    }
+
     & .warning {
         font-size: 1.25rem;
         font-weight: bold;
         text-align: center;
         margin-top: 0;
+        margin-bottom: 1rem; 
         color: $light-gold;
     }
 
@@ -111,16 +287,60 @@ body {
         &:focus {
             background-color: $light-gold;
         }
+        & svg {
+            margin-right: 0.5rem;
+        }
+        &:active {
+            background-color: $gold; 
+        }
     }
 
     & .success {
         background-color: $gold !important;
         color: $white !important; 
     }
+
+    & .checkbox-label {
+        font-size: 1.25rem; 
+        margin-left: 0.25rem; 
+    }
+
+    & .input-checkbox {
+        margin-top: 1rem;
+        appearance: none;
+        width: 1rem;
+        height: 1rem; 
+        border: 2px solid $light-gold; 
+        transform: translateY(0.1rem) translateX(-0.25rem);
+        border-radius: 0.15rem; 
+        transition: all 0.2s linear; 
+        position: relative; 
+        &::before {
+            content: '';
+            color: $black; 
+            // background-color: $gold; 
+            transform: scale(0);
+            transition: all 0.2s linear; 
+            position: absolute; 
+            top: -25%;
+            left: 10%; 
+        }
+
+        &:checked {
+            border-color: $gold; 
+            background-color: $gold; 
+        }
+
+        &:checked::before {
+            content: '✓';
+            transform: scale(1);
+        }
+    }
 }
 
 .close-btn {
     position: absolute;
+    font-size: 1.5rem; 
     color: white;
     top: 1rem;
     right: 0;
@@ -128,6 +348,7 @@ body {
     transition: color 0.2s linear; 
     &:hover {
         color: $gold;
+        cursor: pointer;
     }
 }
 
@@ -190,31 +411,6 @@ body {
     }
 }
 
-@media screen and (max-width: 425px) {
-
-    .sl-form {
-
-        & .text-input {
-            font-size: 1rem;
-            &::placeholder {
-                font-size: 1rem; 
-            }
-        }
-    }
-
-    .show-btn {
-        width: 2rem; 
-        font-size: .5rem; 
-        font-weight: bold;
-    }
-
-    .show-btn-clicked {
-        width: 2rem;
-        font-size: .5rem; 
-        font-weight: bold;
-    }
-}
-
 .divider {
     display: flex;
     color: $white;
@@ -238,6 +434,79 @@ body {
         margin-left: 0.75rem; 
     }
 }
+
+.page-title {
+    text-align: center; 
+    color: $black;
+    background-color: $gold;
+    font-size: 2rem; 
+    border-radius: 0.5rem; 
+    padding: 1rem; 
+    box-shadow: $box-shadow;
+    margin-top: -1.5rem;
+    margin-bottom: 1.5rem; 
+    margin-right: auto;
+    margin-left: auto; 
+}
+
+@media screen and (max-width: 425px) {
+
+    .modal-form {
+
+        & .text-input {
+            font-size: 1rem;
+            &::placeholder {
+                font-size: 1rem; 
+            }
+        }
+        
+        & .close-btn{
+            left: 87%; 
+        }
+    }
+
+    .show-btn {
+        width: 2rem; 
+        font-size: .5rem; 
+        font-weight: bold;
+    }
+
+    .show-btn-clicked {
+        width: 2rem;
+        font-size: .5rem; 
+        font-weight: bold;
+    }
+
+    .icon-wrapper {
+        font-size: 1.25rem; 
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .page-title {
+        margin-top: 1rem; 
+        font-size: 1.75rem; 
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    // this cut off was originally at 768px for page-title
+    .page-title {
+        margin-top: 1rem; 
+    }
+
+    .modal-form {
+        & .excella-speech-label {
+            & h2 {
+                font-size: 1.2rem; 
+            }
+        }
+
+    }
+}
+
+
 
 // keyframe animations
 
@@ -270,6 +539,21 @@ body {
         opacity: 0;  
     }
 }
+
+@keyframes excella-modal-hover {
+    0% {
+        transform: translateY(-0.1rem);
+    }
+
+    50% {
+        transform: translateY(0.1rem);
+    }
+
+    100% {
+        transform: translateY(-0.1rem); 
+    }
+}
+
 
 
 

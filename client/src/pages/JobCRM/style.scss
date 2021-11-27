@@ -1,0 +1,72 @@
+// custom colors
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+$gold: #bc992B; 
+$dark-gold: #C99200;
+$light-gold: #E2CA78;
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+
+
+.jc-btn-wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
+    
+    & button:first-child {
+        transform: translateX(-1rem);
+    }
+
+    & button:last-child {
+        transform: translateX(1rem);
+    }
+}
+
+.jc-main-btn {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none; 
+    color: $black;
+    background-color: $light-gold; 
+    transition: all 0.2s linear;
+    border-radius: 0.5rem; 
+    box-shadow: $box-shadow-depth rgba($white, 0.08);
+    &:hover,:focus {
+        box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $gold; 
+        color: $black; 
+    }
+    &:active {
+        box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $white; 
+        color: $black; 
+    }
+
+    & svg {
+        margin-right: 0.5rem; 
+    }
+
+}
+
+.notification-wrapper {
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: center; 
+    color: darken($black, 10%);
+    font-size: 1.25rem; 
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem; 
+    background-color: $dark-gold; 
+    padding: 1rem; 
+    border-radius: 0.5rem; 
+    box-shadow: $box-shadow; 
+}
+
+.job-table-wrapper {
+    margin-left: auto;
+    margin-right: auto; 
+    margin-top: 1rem; 
+    padding-bottom: 2rem;
+
+}

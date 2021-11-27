@@ -1,0 +1,56 @@
+.jc-btn-wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.jc-btn-wrapper button:first-child {
+  transform: translateX(-1rem);
+}
+.jc-btn-wrapper button:last-child {
+  transform: translateX(1rem);
+}
+
+.jc-main-btn {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  color: #282828;
+  background-color: #E2CA78;
+  transition: all 0.2s linear;
+  border-radius: 0.5rem;
+  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+}
+.jc-main-btn:hover, .jc-main-btn :focus {
+  box-shadow: 0.6rem 0.6rem rgba(226, 202, 120, 0.5), inset 0 0 0 2rem #bc992B;
+  color: #282828;
+}
+.jc-main-btn:active {
+  box-shadow: 0.6rem 0.6rem rgba(226, 202, 120, 0.5), inset 0 0 0 2rem #EBECE9;
+  color: #282828;
+}
+.jc-main-btn svg {
+  margin-right: 0.5rem;
+}
+
+.notification-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #0f0f0f;
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #C99200;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+}
+
+.job-table-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  padding-bottom: 2rem;
+}/*# sourceMappingURL=style.css.map */

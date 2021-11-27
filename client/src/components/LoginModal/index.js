@@ -48,11 +48,11 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
             setSuccess(true);
             // remove this once authentication is added
             dispatch(login());
-        }, 3000)
+        }, 1000)
 
         setTimeout(() => {
             closeHandler();
-        }, 3500);
+        }, 1500);
 
      
 
@@ -95,7 +95,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
         <>
             <div className="modal-wrapper">
                 <form 
-                    className={`sl-form ${fadeOut ? 'slide-out' : 'slide-in'}`}
+                    className={`modal-form ${fadeOut ? 'slide-out' : 'slide-in'}`}
                     onSubmit={handleSubmit}
                 >
                     <span 

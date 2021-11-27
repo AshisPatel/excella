@@ -1,0 +1,97 @@
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+$gold: #bc992B; 
+$dark-gold: #C99200;
+$light-gold: #E2CA78;
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+
+#jobs {
+    width: 100%; 
+    border-collapse: collapse; 
+    border-radius: 0.5rem;
+    border: none; 
+    background-color: transparent;
+    color: $black;  
+    box-shadow: $box-shadow; 
+
+    & th {
+        text-align: left; 
+        padding: 0.5rem;
+        background-color: $dark-gold;
+        color: darken($black, 10%); 
+    }
+
+    & td {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem; 
+        padding-left: 0.5rem; 
+        border: 1px solid $black; 
+        font-size: 1.2rem; 
+    }
+    
+    & tbody {
+        border: none; 
+    }
+
+    & tr {
+        transition: all 0.2s linear;
+        &:hover {
+            background-color: $gold !important; 
+            color: $black !important; 
+        }
+    }
+
+    & tr:first-child {
+        color: $gold;
+        background-color: darken($black, 7%);
+        & th:first-child {
+            border-top-left-radius: 0.5rem; 
+            border-right: 1px solid $black; 
+        }
+        & th:last-child {
+            border-top-right-radius: 0.5rem; 
+            border-left: 1px solid $black; 
+        }
+        & th:nth-child(2) {
+            border-right: 1px solid $black; 
+        }
+        & th {
+            border-bottom: 1px solid $black; 
+        };
+    }
+
+    & tr:nth-child(2) {
+        border-top: 0;
+    }
+
+    & tr:nth-child(odd) {
+        color :$black;
+        background-color: $light-gold;
+    }
+
+    & tr:nth-child(even) {
+        color: darken($black, 10%); 
+        background-color: $dark-gold; 
+    }
+
+    & tr:last-child {
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem; 
+        & td:first-child {
+            border-bottom-left-radius: 0.5rem; 
+        }
+        & td:last-child {
+            border-bottom-right-radius: 0.5rem; 
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+    #jobs {
+        & td {
+            font-size: 1rem; 
+        }
+    }
+}

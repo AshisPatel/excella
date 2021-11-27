@@ -1,0 +1,41 @@
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+$gold: #bc992B; 
+$dark-gold: #C99200;
+$light-gold: #E2CA78;
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+
+.contact-item {
+    margin-bottom: 0.5rem; 
+    display: flex;
+    justify-content: space-between; 
+    & ul {
+        list-style: none; 
+    }
+    & ul:last-child {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 1rem; 
+        & li:first-child {
+            margin-bottom: 1rem; 
+        }
+
+        & button {
+            background-color: $gold;
+            border: none; 
+            font-size: 1.25rem;
+            transition: all 0.2s linear; 
+            
+            &:focus,:hover {
+                color: rgba($black, 0.6);
+            }
+
+            &:active {
+                color: $white; 
+            }
+        }
+    }
+   
+}

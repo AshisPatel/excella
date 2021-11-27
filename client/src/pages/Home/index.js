@@ -9,7 +9,9 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Home = () => {
     const loggedIn = useSelector(state => state.loggedIn);
-    const [fi, setFI] = useState(0)
+    // instantiate variable to switch Excella's animations after a second
+    const [slideIn, setSlideIn] = useState(true); 
+    const [fi, setFI] = useState(0);
     const speechBubbleText = loggedIn ? "Hello, <username>! Let's have a wonderful day!" : "Hi, Friend! Excellence starts with you, and I'm here to help.";
     const features = [
         {
@@ -44,14 +46,23 @@ const Home = () => {
     }
     // will handle 'pagination' clicks
     const indexButtonClick = (e) => {
-        const dataIndex = e.target.getAttribute('dataIndex');
-        setFI(parseInt(dataIndex));
+        const dataindex = e.target.getAttribute('dataindex');
+        setFI(parseInt(dataindex));
     }
+
+    // useEffect to switch an animation variable for Excella -> sliding in to hovering 
+    // timeout duration is with reference to the animation length for .slide-in
+    useEffect(() => {
+        setTimeout(() => {
+            setSlideIn(false); 
+        },500);
+    }, []);
+
 
     return (
         <section className="container">
             <div className="row optional-margin">
-                <div className="col-4 col-lg-2 offset-1 home-sprite-wrapper">
+                <div className={`col-4 col-lg-2 offset-1 home-sprite-wrapper ${slideIn ? 'excella-slide-in' : 'hover-1'}`}>
                     <ExcellaShadowIcon />
                 </div>
                 <div className="col-4">
@@ -59,7 +70,7 @@ const Home = () => {
                         {loggedIn ? 
                             "Hello, <username>! Let's have a wonderful day!" 
                         : 
-                            <> Hi, friend! <span className="emphasized-text">Excellence</span> starts with you, and I'm here to <span className="emphasized-text">help</span>.</>
+                            <><span className="emphasized-text">Excellence</span> starts with you. My name is <span className="emphasized-text">Excella</span> and I'm here to help.</>
                         }
                         </p>
                 </div>
@@ -95,7 +106,7 @@ const Home = () => {
                             return (
                                 <button
                                     className={`index-btn ${fi === index ? 'selected-index' : ''}`}
-                                    dataIndex={index}
+                                    dataindex={index}
                                     onClick={indexButtonClick}
                                     key={index}
                                 >
