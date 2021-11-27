@@ -27,7 +27,7 @@ const Job = () => {
 
     const { _id } = useParams();
     // run this query to see if the job information has updated or not between the user upading the modal information 
-    // triggered on showJobModal change or  showContactModal change
+    // whenever the job state changes, as something has been modified with it
     useEffect(() => {
         const dbJobs = [...jobs];
         let foundJob = {};
@@ -39,7 +39,7 @@ const Job = () => {
         }
         setJob(foundJob);
         setLoading(false);
-    }, [showJobModal, showContactModal]);
+    }, [jobs]);
 
 
     if (loading) {

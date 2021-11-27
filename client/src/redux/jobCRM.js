@@ -62,7 +62,7 @@ export const updateContact = (job_id, contact) => {
 export const deleteContact = (job_id, _id) => {
     return {
         type: 'DELETE_CONTACT',
-        payload: {job_id, _id}
+        payload: { job_id, _id }
     };
 };
 
@@ -110,24 +110,24 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
         }
         case 'UPDATE_CONTACT': {
             // payload is an object that contains job_id and contact 
-           
+
             const newJobs = jobCRM.jobs.map(job => {
                 console.log(payload.contact);
-                if(job._id.toString() === payload.job_id) {
+                if (job._id.toString() === payload.job_id) {
                     const newContacts = job.contacts.map(contact => {
                         if (contact._id === payload.contact._id) {
                             console.log('updating!');
                             contact = payload.contact;
-                        } 
+                        }
                         console.log(contact);
-                        return contact; 
+                        return contact;
                     });
                     job = {
                         ...job,
                         contacts: [...newContacts]
                     };
                 }
-                return job; 
+                return job;
             });
             return {
                 jobs: [...newJobs]
@@ -136,19 +136,25 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
         case 'DELETE_CONTACT': {
             // payload is an object that contains job_id and _id(for the contact)
             const newJobs = jobCRM.jobs.map(job => {
-                if(job._id.toString() === payload.job_id) {
+                if (job._id.toString() === payload.job_id) {
+                    console.log('Job found!');
+                    console.log(payload._id, typeof payload._id);
+                    console.log( job.contacts );
                     const newContacts = job.contacts.filter(contact => contact._id !== payload._id);
-                    job = {
+                    console.log ({newContacts});
+                    return job = {
                         ...job,
                         contacts: [...newContacts]
                     };
                 }
+                return job;
             });
+            console.log({newJobs});
             return {
                 jobs: [...newJobs]
             };
         }
-        default: 
+        default:
             return jobCRM;
     }
 }
