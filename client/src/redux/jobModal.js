@@ -3,20 +3,20 @@
 // action call to open a blank modal for new job
 export const newJobModal = () => {
     return {
-        type: 'OPEN_NEW_MODAL'
+        type: 'OPEN_NEW_JOB_MODAL'
     };
 };
 // action call to open a modal to update an existing job
 export const updateJobModal = (job) => {
     return {
-        type: 'OPEN_UPDATE_MODAL',
+        type: 'OPEN_UPDATE_JOB_MODAL',
         payload: job 
     };
 };
 // action call to close modal
 export const closeJobModal = () => {
     return {
-        type: 'CLOSE_MODAL'
+        type: 'CLOSE_JOB_MODAL'
     };
 };
 
@@ -28,19 +28,19 @@ const initialState = {
 
 export default function jobModalReducer(jobModal = initialState, { type, payload }) {
     switch(type) {
-        case 'OPEN_NEW_MODAL':
+        case 'OPEN_NEW_JOB_MODAL':
             return {
                 job: {},
                 update: false,
                 showJobModal:true
             };
-        case 'OPEN_UPDATE_MODAL':
+        case 'OPEN_UPDATE_JOB_MODAL':
             return {
                 showJobModal:true,
                 update: true, 
                 job: payload
             };
-        case 'CLOSE_MODAL':
+        case 'CLOSE_JOB_MODAL':
             return {
                 showJobModal:false,
                 update: false, 

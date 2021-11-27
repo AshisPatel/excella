@@ -17,9 +17,9 @@ const JobModal = () => {
     // track form variables
     // use passed in variables for updating a task 
     const [formState, setFormState] = useState({
-        jobTitle: job ? job.jobTitle : '',
-        employer: job ? job.employer : '',
-        applicationStatus: job ? job.applicationStatus : '',
+        jobTitle: job.jobTitle ? job.jobTitle : '',
+        employer: job.employer ? job.employer : '',
+        applicationStatus: job.applicationStatus ? job.applicationStatus : '',
     });
     // state variable to track the updateDate checkbox 
     const [updateDate, setUpdateDate] = useState(update);
@@ -32,7 +32,6 @@ const JobModal = () => {
                 [name]: value
             }
         ));
-        console.log(formState);
     }
 
     const toggleUpdateDate = () => {
@@ -63,7 +62,7 @@ const JobModal = () => {
             applicationStatus: applicationStatus.trim(),
             // if updateDate is true replace with current date, if false and the job exists, use previous value -> if the job does not exist use current date
             lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated ? job.lastUpdated : dayjs().format('MM/DD/YYYY') ,
-            contacts: []
+            contacts: update ? job.contacts : []
         };
         // check if update or adding new job
         update ? dispatch(updateJob(jobItem)) : dispatch(addJob(jobItem));

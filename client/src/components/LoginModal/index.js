@@ -48,11 +48,11 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
             setSuccess(true);
             // remove this once authentication is added
             dispatch(login());
-        }, 3000)
+        }, 1000)
 
         setTimeout(() => {
             closeHandler();
-        }, 3500);
+        }, 1500);
 
      
 

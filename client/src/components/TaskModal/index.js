@@ -19,8 +19,8 @@ const TaskModal = () => {
     // track form variables
     // use passed in variables for updating a task 
     const [formState, setFormState] = useState({
-        content: task ? task.content : '',
-        category: task ? task.category : ''
+        content: task.content ? task.content : '',
+        category: task.category ? task.category : ''
     });
     // warning message on form submission
     const [warning, setWarning] = useState('');

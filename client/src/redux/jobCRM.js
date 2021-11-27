@@ -96,14 +96,14 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
             };
         }
         case 'ADD_CONTACT': {
-            // payload is an object that contains job_id and contact 
+            // payload is an object that contains job_id and contact
             const newJobs = jobCRM.jobs.map(job => {
-                if (job._id === payload.job_id) {
+                if (job._id.toString() === payload.job_id) {
                     job.contacts.push(payload.contact);
                 }
                 return job;
             });
-
+            console.log(newJobs);
             return {
                 jobs: [...newJobs]
             };
@@ -111,7 +111,7 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
         case 'UPDATE_CONTACT': {
             // payload is an object that contains job_id and contact 
             const newJobs = jobCRM.jobs.map(job => {
-                if(job._id === payload.job_id) {
+                if(job._id.toString() === payload.job_id) {
                     const newContacts = job.contacts.map(contact => {
                         if (contact._id === payload.contact._id) {
                             contact = payload.contact;
@@ -132,7 +132,7 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
         case 'DELETE_CONTACT': {
             // payload is an object that contains job_id and _id(for the contact)
             const newJobs = jobCRM.jobs.map(job => {
-                if(job._id === payload.job_id) {
+                if(job._id.toString() === payload.job_id) {
                     const newContacts = job.contacts.filter(contact => contact._id !== payload._id);
                     job = {
                         ...job,

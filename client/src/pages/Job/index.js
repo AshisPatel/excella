@@ -8,11 +8,14 @@ import { deleteJob } from '../../redux/jobCRM';
 import { setCurrentPage } from '../../redux/currentPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobModal from "../../components/JobModal";
+import ContactModal from '../../components/ContactModal';
+import { newContactModal, updateContactModal } from '../../redux/contactModal';
 
-const Job = (props) => {
+const Job = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { showJobModal } = useSelector(state => state.jobModal);
+    const { showContactModal } = useSelector(state => state.contactModal);
     // manage show / hide contacts
     const [showContacts, setShowContacts] = useState(false);
     const [expand, setExpand] = useState(true);
@@ -24,11 +27,11 @@ const Job = (props) => {
     const { _id } = useParams();
     // run this query to see if the job information has updated or not between the user upading the modal information 
     // triggered on showJobModal change
-    useEffect(async () => {
+    useEffect(() => {
         const dbJobs = [...jobs];
         let foundJob = {};
         for (let i = 0; i < dbJobs.length; i++) {
-            if (dbJobs[i]._id === parseInt(_id)) {
+            if (dbJobs[i]._id.toString() === _id) {
                 foundJob = { ...dbJobs[i] };
                 break;
             }
@@ -121,7 +124,7 @@ const Job = (props) => {
                                     className="job-card-btn"
                                     onClick={() => deleteBtnHandler()}
                                 >
-                                     <FontAwesomeIcon icon="trash" />
+                                    <FontAwesomeIcon icon="trash" />
                                     Delete
                                 </button>
                             </li>
@@ -142,7 +145,10 @@ const Job = (props) => {
                                 </button>
                             </div>
                             <div>
-                                <button className="new-contact-btn job-card-btn">
+                                <button
+                                    className="new-contact-btn job-card-btn"
+                                    onClick={() => dispatch(newContactModal())}
+                                >
                                     <FontAwesomeIcon icon="plus" /> New Contact
                                 </button>
                             </div>
@@ -175,6 +181,7 @@ const Job = (props) => {
                 </div>
             </div>
             {showJobModal && <JobModal />}
+            {showContactModal && <ContactModal job_id = {_id}/>}
         </div>
     );
 };
