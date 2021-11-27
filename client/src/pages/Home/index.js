@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Auth from "../../utils/Auth";
 
 const Home = () => {
+
+    
     // instantiate variable to switch Excella's animations after a second
     const [slideIn, setSlideIn] = useState(true); 
     const [fi, setFI] = useState(0);
@@ -28,7 +30,7 @@ const Home = () => {
     ];
 
     // const username = Auth.getTokenData().data.token.username; 
-    const username = 'Ashis';
+    const username = Auth.loggedIn() && Auth.getTokenData().username ;
 
     // chooses which feature will be displayed in the info box
     let currentFeature = features[fi];
