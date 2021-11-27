@@ -59,7 +59,7 @@ function App() {
           showTopNavBtns={showTopNavBtns}
         />}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home showTopNavBtns={showTopNavBtns}/>} />
           <Route path="/EisenhowerMatrix" element={<EisenHowerMatrix />} />
           <Route path="/JobCRM" element={<JobCRM />} />
           <Route path="/JobCRM/:_id" element={<Job />} />

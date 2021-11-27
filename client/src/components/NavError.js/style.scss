@@ -4,6 +4,23 @@
     padding-bottom: 5rem; 
 }
 
+.excella-slide-in-nav-error {
+    animation: excella-slide-in-nav-error 0.5s linear forwards; 
+}
+
+
+@keyframes excella-slide-in-nav-error {
+    0% {
+        transform: translateX(-50vw) rotate(45deg);
+    }
+    75% {
+        transform: translateX(0) rotate(-15deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg); 
+    }
+}
+
 @media screen and (max-width: 500px){
     .nav-error-margins {
         margin-top: 30%;

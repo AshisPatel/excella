@@ -10,9 +10,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobModal from "../../components/JobModal";
 import ContactModal from '../../components/ContactModal';
 import ContactItem from '../../components/ContactItem';
+import NavError from '../../components/NavError.js';
 import { newContactModal, updateContactModal } from '../../redux/contactModal';
+import Auth from '../../utils/Auth';
 
 const Job = () => {
+ 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { showJobModal } = useSelector(state => state.jobModal);
@@ -37,10 +40,10 @@ const Job = () => {
                 break;
             }
         }
+            
         setJob(foundJob);
         setLoading(false);
     }, [jobs]);
-
 
     if (loading) {
         console.log(jobs);
@@ -66,6 +69,12 @@ const Job = () => {
         dispatch(deleteJob(job._id));
         dispatch(setCurrentPage('/JobCRM'));
         navigate('/JobCRM');
+    }
+
+    if(!Auth.loggedIn()) {
+        return (
+            <NavError message={'You need to be logged in to view this page!'}/>
+        )
     }
 
     return (

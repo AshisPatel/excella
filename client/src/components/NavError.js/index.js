@@ -12,7 +12,7 @@ const NavError = ({ message }) => {
     return (
         <section className="container">
             <div className="row nav-error-margins">
-                <div className={`col-4 col-lg-3 home-sprite-wrapper  ${slideIn ? 'excella-slide-in' : 'hover-1'}`}>
+                <div className={`col-4 col-lg-3 home-sprite-wrapper  ${slideIn ? 'excella-slide-in-nav-error' : 'hover-1'}`}>
                     <ExcellaShadowIcon />
                 </div>
                 <div className="col-4">
