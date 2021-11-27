@@ -37,12 +37,11 @@ const SideNav = () => {
         if(width < transitionWidth) {
              toggleDropDown();
         }
+        setFadeOut(true);
         setTimeout(() => dispatch(logout()), 600);
     };
 
     const toggleDropDown = async () => {
-    //   setDisplay(prevDisplay => !prevDisplay);
-
         if(display) {
             setFadeOut(true);
             setClickOff(true);
@@ -76,7 +75,7 @@ const SideNav = () => {
                     
                     <Link to="/">
                         <button
-                            className={`side-nav-btn help-btn ${currentPage === '/' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-0' : 'option-item-out-0' : 'option-item-in-0'}`}
+                            className={`side-nav-btn help-btn ${currentPage === '/' && 'sn-selected'} ${width < transitionWidth ? (!fadeOut ? 'option-item-in-0' : 'option-item-out-0') : (!fadeOut ? 'option-item-in-0' : 'option-item-out-0')}`}
                             name="/"
                             onClick={handleClick}
                         >
@@ -89,7 +88,7 @@ const SideNav = () => {
 
                     <Link to="/EisenhowerMatrix">
                         <button
-                            className={`side-nav-btn em-btn ${currentPage === '/EisenhowerMatrix' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-1' : 'option-item-out-1' : 'option-item-in-1'}`}
+                            className={`side-nav-btn em-btn ${currentPage === '/EisenhowerMatrix' && 'sn-selected'} ${width < transitionWidth ? (!fadeOut ? 'option-item-in-1' : 'option-item-out-1') : (!fadeOut ? 'option-item-in-1' : 'option-item-out-1')}`}
                             name='/EisenhowerMatrix'
                             onClick={handleClick}
                         >
@@ -102,7 +101,7 @@ const SideNav = () => {
 
                     <Link to="/JobCRM">
                         <button
-                            className={`side-nav-btn jc-btn ${currentPage === '/JobCRM' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-2' : 'option-item-out-2' : 'option-item-in-2'}`}
+                            className={`side-nav-btn jc-btn ${currentPage === '/JobCRM' && 'sn-selected'} ${width < transitionWidth ? (!fadeOut ? 'option-item-in-2' : 'option-item-out-2') : (!fadeOut ? 'option-item-in-2' : 'option-item-out-2')}`}
                             name="/JobCRM"
                             onClick={handleClick}
                         >
@@ -115,7 +114,7 @@ const SideNav = () => {
 
                     <Link to="/PomodoroTimer">
                         <button
-                            className={`side-nav-btn pt-btn ${currentPage === '/PomodoroTimer' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-3' : 'option-item-out-3' : 'option-item-in-3'}`}
+                            className={`side-nav-btn pt-btn ${currentPage === '/PomodoroTimer' && 'sn-selected'} ${width < transitionWidth ? (!fadeOut ? 'option-item-in-3' : 'option-item-out-3') : (!fadeOut ? 'option-item-in-3' : 'option-item-out-3')}`}
                             name='/PomodoroTimer'
                             onClick={handleClick}
                         >
@@ -128,7 +127,7 @@ const SideNav = () => {
 
                     <Link to="/">
                         <button
-                            className={`side-nav-btn pt-btn ${width < transitionWidth ? !fadeOut ? 'option-item-in-4' : 'option-item-out-4' : 'option-item-in-4'}`}
+                            className={`side-nav-btn pt-btn ${width < transitionWidth ? (!fadeOut ? 'option-item-in-4' : 'option-item-out-4') : (!fadeOut ? 'option-item-in-4' : 'option-item-out-4')}`}
                             onClick={() => logoutHandler()}
                         >
                             <FontAwesomeIcon icon="sign-out-alt"/>
