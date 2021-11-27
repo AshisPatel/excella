@@ -37,14 +37,12 @@ class AuthService {
     // set token to localStorageand reload page to homepage
     login(idToken) {
         localStorage.setItem('id_token', idToken);
-        window.location.assign('/');
         // may need to set currentPage to '/' as well in reduxStore
     }
     
     // delete token from localStorage and take user back to homepage
     logout() {
         localStorage.removeItem('id_token');
-        window.location.assign('/');
         // may need to set currentPage to '/' as well in reduxStore
     }
 }

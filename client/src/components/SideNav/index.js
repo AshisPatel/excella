@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../redux/currentPage';
 import { Link } from "react-router-dom";
 import useWindowDimensions from '../../hooks/useWindowDimensions';
-import { logout } from '../../redux/loggedIn';
+import Auth from '../../utils/Auth';
 
-const SideNav = () => {
-
-    const { height, width } = useWindowDimensions();
+const SideNav = (props) => {
+    const { setShowTopNavBtns } = props; 
+    const { width } = useWindowDimensions();
     const [display, setDisplay] = useState(true);
     const [fadeOut, setFadeOut] = useState(false);
     const [clickOff, setClickOff] = useState(false); 
@@ -38,7 +38,10 @@ const SideNav = () => {
              toggleDropDown();
         }
         setFadeOut(true);
-        setTimeout(() => dispatch(logout()), 600);
+        setTimeout(() => {
+            setShowTopNavBtns(true);
+            Auth.logout()
+        }, 600);
     };
 
     const toggleDropDown = async () => {

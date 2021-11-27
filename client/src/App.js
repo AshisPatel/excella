@@ -11,7 +11,7 @@ import SideNav from "./components/SideNav";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
 import Job from "./pages/Job";
-import { useSelector } from "react-redux";
+import Auth from "./utils/Auth";
 
 // create link to graphql server at its endpoint in our server-side code
 const httpLink = createHttpLink({
@@ -44,20 +44,20 @@ function App() {
   // initialize visibility of signup/login modal
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-
-  // delete once authentication exists 
-  const loggedIn = useSelector(state => state.loggedIn);
+  const [showTopNavBtns, setShowTopNavBtns] = useState(!Auth.loggedIn()); 
 
   return (
     <ApolloProvider client={client}>
       <div className="content">
-        {loggedIn && <SideNav />}
-        {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}
-        {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}
-        <Nav
+        {Auth.loggedIn() && <SideNav setShowTopNavBtns = {setShowTopNavBtns}/>}
+        {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} setShowTopNavBtns={setShowTopNavBtns}/>}
+        {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} setShowTopNavBtns={setShowTopNavBtns}/>}
+        {
+          <Nav
           setShowLogin={setShowLogin}
           setShowSignup={setShowSignup}
-        />
+          showTopNavBtns={showTopNavBtns}
+        />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/EisenhowerMatrix" element={<EisenHowerMatrix />} />
