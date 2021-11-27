@@ -5,7 +5,7 @@ import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
 import Auth from "../../utils/Auth";
 
-const LoginModal = ({ setShowSignup, setShowLogin, setShowTopNavBtns }) => {
+const LoginModal = ({ setShowSignup, setShowLogin }) => {
 
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -41,7 +41,6 @@ const LoginModal = ({ setShowSignup, setShowLogin, setShowTopNavBtns }) => {
         setTimeout(() => {
             setLoading(false);
             setSuccess(true);
-            setShowTopNavBtns(false);
             // replace with data returned by login mutation 
             const data = { 
                 login: {

@@ -7,7 +7,7 @@ import validateUsername from "../../utils/validateUsername";
 
 import Auth from "../../utils/Auth";
 
-const SignupModal = ({ setShowSignup, setShowLogin, setShowTopNavBtns }) => {
+const SignupModal = ({ setShowSignup, setShowLogin }) => {
 
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -53,7 +53,6 @@ const SignupModal = ({ setShowSignup, setShowLogin, setShowTopNavBtns }) => {
         setWarning('');
         setTimeout(() => {
             setLoading(false);
-            setShowTopNavBtns(false);
             // replace with data returned by mutation 
             const data = { 
                 login: {

@@ -44,22 +44,20 @@ function App() {
   // initialize visibility of signup/login modal
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const [showTopNavBtns, setShowTopNavBtns] = useState(!Auth.loggedIn()); 
 
   return (
     <ApolloProvider client={client}>
       <div className="content">
-        {Auth.loggedIn() && <SideNav setShowTopNavBtns = {setShowTopNavBtns}/>}
-        {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} setShowTopNavBtns={setShowTopNavBtns}/>}
-        {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} setShowTopNavBtns={setShowTopNavBtns}/>}
+        {Auth.loggedIn() && <SideNav />}
+        {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}
+        {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}
         {
           <Nav
           setShowLogin={setShowLogin}
           setShowSignup={setShowSignup}
-          showTopNavBtns={showTopNavBtns}
         />}
         <Routes>
-          <Route path="/" element={<Home showTopNavBtns={showTopNavBtns}/>} />
+          <Route path="/" element={<Home />} />
           <Route path="/EisenhowerMatrix" element={<EisenHowerMatrix />} />
           <Route path="/JobCRM" element={<JobCRM />} />
           <Route path="/JobCRM/:_id" element={<Job />} />

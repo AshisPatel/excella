@@ -7,12 +7,11 @@ import { Link } from "react-router-dom";
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import Auth from '../../utils/Auth';
 
-const SideNav = (props) => {
-    const { setShowTopNavBtns } = props; 
+const SideNav = () => {
     const { width } = useWindowDimensions();
     const [display, setDisplay] = useState(true);
     const [fadeOut, setFadeOut] = useState(false);
-    const [clickOff, setClickOff] = useState(false); 
+    const [clickOff, setClickOff] = useState(false);
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
     const transitionWidth = 1000;
@@ -26,33 +25,33 @@ const SideNav = (props) => {
             name = e.target.parentNode.getAttribute('name');
         }
         dispatch(setCurrentPage(name));
-        
-        if(width < transitionWidth) {
+
+        if (width < transitionWidth) {
             toggleDropDown();
         }
     }
 
-    const logoutHandler = async () => {
+    const logoutHandler = () => {
         dispatch(setCurrentPage('/'));
-        if(width < transitionWidth) {
-             toggleDropDown();
+            if(width < transitionWidth) {
+            toggleDropDown();
         }
         setFadeOut(true);
+
         setTimeout(() => {
-            setShowTopNavBtns(true);
-            Auth.logout()
+            Auth.logout();
         }, 600);
     };
 
     const toggleDropDown = async () => {
-        if(display) {
+        if (display) {
             setFadeOut(true);
             setClickOff(true);
             setTimeout(() => {
-                setDisplay(false) 
+                setDisplay(false)
                 setClickOff(false);
             }, 400);
-            
+
         } else {
             setFadeOut(false);
             setDisplay(true);
@@ -70,12 +69,12 @@ const SideNav = (props) => {
                     className={`options ${display && 'op-selected'}`}
                     onClick={() => toggleDropDown()}
                 >
-                     <FontAwesomeIcon icon={display ? "window-close" : "bars"} />
+                    <FontAwesomeIcon icon={display ? "window-close" : "bars"} />
                 </button>
             }
             {display ?
                 <div className={`side-nav ${clickOff && 'click-off'}`}>
-                    
+
                     <Link to="/">
                         <button
                             className={`side-nav-btn help-btn ${currentPage === '/' && 'sn-selected'} ${width < transitionWidth ? (!fadeOut ? 'option-item-in-0' : 'option-item-out-0') : (!fadeOut ? 'option-item-in-0' : 'option-item-out-0')}`}
@@ -128,21 +127,21 @@ const SideNav = (props) => {
                         </button>
                     </Link>
 
-                    <Link to="/">
-                        <button
-                            className={`side-nav-btn pt-btn ${width < transitionWidth ? (!fadeOut ? 'option-item-in-4' : 'option-item-out-4') : (!fadeOut ? 'option-item-in-4' : 'option-item-out-4')}`}
-                            onClick={() => logoutHandler()}
-                        >
-                            <FontAwesomeIcon icon="sign-out-alt"/>
-                            <span className="label">
-                                Logout
-                            </span>
-                        </button>
-                    </Link>
+
+                    <button
+                        className={`side-nav-btn pt-btn ${width < transitionWidth ? (!fadeOut ? 'option-item-in-4' : 'option-item-out-4') : (!fadeOut ? 'option-item-in-4' : 'option-item-out-4')}`}
+                        onClick={() => logoutHandler()}
+                    >
+                        <FontAwesomeIcon icon="sign-out-alt" />
+                        <span className="label">
+                            Logout
+                        </span>
+                    </button>
+
 
                 </div>
-            :
-            <></>}
+                :
+                <></>}
 
         </>
     );

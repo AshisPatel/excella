@@ -5,14 +5,14 @@ import Auth from "../../utils/Auth";
 
 const Nav = (props) => {
     
-    const { setShowLogin, setShowSignup, showTopNavBtns } = props;
+    const { setShowLogin, setShowSignup } = props;
 
     return (
         <nav id='top-nav'>
             <h1 id="logo">E<ExcellaIcon />cella</h1>
 
             <div className='btn-container'>
-                {showTopNavBtns &&
+                {!Auth.loggedIn() &&
                     <>
                         <button
                             className='nav-btn'

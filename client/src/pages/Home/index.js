@@ -5,7 +5,7 @@ import ExcellaShadowIcon from '../../components/ExcellaShadowIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Auth from "../../utils/Auth";
 
-const Home = ({ showTopNavBtns }) => {
+const Home = () => {
     // instantiate variable to switch Excella's animations after a second
     const [slideIn, setSlideIn] = useState(true); 
     const [fi, setFI] = useState(0);
@@ -66,7 +66,7 @@ const Home = ({ showTopNavBtns }) => {
                 </div>
                 <div className="col-4">
                     <p className='speech-bubble speech-bubble-fade-in'>
-                        {!showTopNavBtns ? 
+                        {Auth.loggedIn() ? 
                             `Hello, ${username}! Let's have a wonderful day!`
                         : 
                             <><span className="emphasized-text">Excellence</span> starts with you. My name is <span className="emphasized-text">Excella</span> and I'm here to help.</>
