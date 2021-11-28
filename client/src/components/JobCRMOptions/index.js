@@ -75,19 +75,19 @@ const JobCRMSearch = () => {
         dispatch(clearJobFilters());
     }
 
-    useEffect(() =>{ 
+    useEffect(() => {
         // console.log(formState)
-        const { jobTitle, employer} = formState; 
+        const { jobTitle, employer } = formState;
         dispatch(setJobFilters(jobTitle, employer));
     }, [formState]);
 
-    if(loading) {
+    if (loading) {
         return (
             <div>Loading...</div>
         )
     }
 
-    if(!jobTitleOptions && !employerOptions) {
+    if (!jobTitleOptions && !employerOptions) {
         return (
             <div>No options to filter from!</div>
         )
@@ -98,7 +98,7 @@ const JobCRMSearch = () => {
         <>
             <form
                 className={`search-form ${columnSizing}`}
-                // onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
             >
                 <select
                     name="jobTitle"
@@ -139,34 +139,32 @@ const JobCRMSearch = () => {
                     }
 
                 </select>
-                
+
                 {/* <button
                     type="button"
                     onClick={handleSubmit}
                 >
                     Submit
                 </button> */}
-
-            </form>
-            <div className="row">
-                <div className={`jc-btn-wrapper ${columnSizing}`}>
                     <button
                         className='jc-main-btn'
+                        type="button"
                         onClick={() => clearFilters()}
                     >
-                        <FontAwesomeIcon icon="broom" />
-                        Clear
+                        <FontAwesomeIcon icon="redo-alt" />
+                        Reset
                     </button>
                     <button
                         className='jc-main-btn'
+                        type="button"
                         onClick={() => dispatch(newJobModal())}
                     >
                         <FontAwesomeIcon icon="plus" />
                         Add Job
                     </button>
 
-                </div>
-            </div>
+            </form>
+
         </>
     );
 };
