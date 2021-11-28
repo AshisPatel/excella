@@ -169,4 +169,4 @@ const JobCRMSearch = () => {
     );
 };
 
-export default JobCRMSearch
+export default JobCRMSearch;

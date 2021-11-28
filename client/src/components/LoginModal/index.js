@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import validateEmail from "../../utils/validateEmail";
 import validatePassword from "../../utils/validatePassword";
@@ -18,6 +18,10 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
         email: '',
         password: '',
     });
+    // useRef to target the first input, username
+    const usernameRef = useRef();
+    // auto focus username input on load
+    useEffect(() => { usernameRef.current.focus()}, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -114,6 +118,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                     <div className="inputs">
                         <div className="input-wrapper">
                             <input
+                                ref={usernameRef}
                                 aria-label='username'
                                 name="username"
                                 type="text"

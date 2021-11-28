@@ -9,7 +9,7 @@ const JobTable = () => {
     // Get jobs array from the global state jobCRM
     const { jobs, jobTitleFilter, employerFilter } = useSelector(state => state.jobCRM);
     const [displayedJobs, setDisplayedJobs] = useState(jobs); 
-
+    // run this useEffect to update displayedJobs when anything that could change the relevant jobs to our search update, this is the filter that we impose on the employer / job title or the overall jobs list
     useEffect(() => {
 
         // if there are no filters, return out of function 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeJobModal } from '../../redux/jobModal';
@@ -9,6 +9,8 @@ import ExcellaIcon from '../ExcellaIcon';
 
 const JobModal = () => {
     const dispatch = useDispatch();
+    // useRef to track first text input (job title);
+    const titleInputRef = useRef();
     const { job, update } = useSelector(state => state.jobModal);
     // use state to manage fade-in or fade-out of modal
     const [fadeOut, setFadeOut] = useState(false);
@@ -77,6 +79,11 @@ const JobModal = () => {
         }, 300);
     }
 
+    // auto focus job title on open
+    useEffect(() => {
+        titleInputRef.current.focus();
+    }, []);
+
     return (
         <>
             <div className="modal-wrapper">
@@ -98,13 +105,14 @@ const JobModal = () => {
                     <div className="inputs">
                         <div className="input-wrapper">
                             <input
+                                ref={titleInputRef}
                                 aria-label='jobTitle'
                                 name='jobTitle'
                                 type="text"
                                 className="text-input"
                                 value={formState.jobTitle}
                                 onChange={handleChange}
-                                placeholder='Job Title(*)'
+                                placeholder='Job Title (*)'
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -120,7 +128,7 @@ const JobModal = () => {
                                 className="text-input"
                                 value={formState.employer}
                                 onChange={handleChange}
-                                placeholder='Employer(*)'
+                                placeholder='Employer (*)'
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -136,7 +144,7 @@ const JobModal = () => {
                                 className="text-input"
                                 value={formState.applicationStatus}
                                 onChange={handleChange}
-                                placeholder='Application Status(*)'
+                                placeholder='Application Status (*)'
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
