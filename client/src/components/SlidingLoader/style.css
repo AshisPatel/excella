@@ -1,0 +1,43 @@
+.sl-container {
+  width: auto;
+  height: auto;
+  padding: 1.25rem;
+  background-color: #282828;
+  -webkit-transform: translateY(-2.5rem);
+          transform: translateY(-2.5rem);
+}
+
+.sl-icon-wrapper {
+  animation: traverse 1.5s ease-in-out alternate-reverse infinite;
+}
+
+.sl-icon-wrapper svg {
+  margin-top: 0.25rem;
+  width: 4rem;
+  height: 4rem;
+  fill: #bc992B;
+  stroke: #bc992B;
+}
+
+@-webkit-keyframes traverse {
+  from {
+    -webkit-transform: translateX(-40%) rotate(30deg);
+            transform: translateX(-40%) rotate(30deg);
+  }
+  to {
+    -webkit-transform: translateX(40%) rotate(-30deg);
+            transform: translateX(40%) rotate(-30deg);
+  }
+}
+
+@keyframes traverse {
+  from {
+    -webkit-transform: translateX(-40%) rotate(30deg);
+            transform: translateX(-40%) rotate(30deg);
+  }
+  to {
+    -webkit-transform: translateX(40%) rotate(-30deg);
+            transform: translateX(40%) rotate(-30deg);
+  }
+}
+/*# sourceMappingURL=style.css.map */

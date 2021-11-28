@@ -1,0 +1,32 @@
+$gold: #bc992B; 
+$black: #282828;
+
+.sl-container {
+    width: auto;
+    height: auto; 
+    padding: 1.25rem; 
+    background-color: $black;
+    transform: translateY(-2.5rem);
+}
+
+.sl-icon-wrapper {
+   
+    animation: traverse 1.5s ease-in-out alternate-reverse infinite; 
+
+    & svg {
+        margin-top: 0.25rem; 
+        width: 4rem; 
+        height: 4rem; 
+        fill: $gold;
+        stroke: $gold; 
+    }
+}
+
+@keyframes traverse {
+    from {
+        transform: translateX(-40%) rotate(30deg);
+    }
+    to {
+        transform: translateX(40%) rotate(-30deg);
+    }
+}

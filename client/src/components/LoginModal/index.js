@@ -4,6 +4,7 @@ import validateEmail from "../../utils/validateEmail";
 import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
 import Auth from "../../utils/Auth";
+import SlidingLoader from "../SlidingLoader";
 
 const LoginModal = ({ setShowSignup, setShowLogin }) => {
 
@@ -169,7 +170,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                     </p>
                     <button className={success ? 'button success' : 'button'}>
                         {
-                            success ? <FontAwesomeIcon icon="check" /> : loading ? "Logging You In..." : "Login"
+                            success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : "Login"
                         }
                     </button>
                     <span className="divider">Need to create an account?</span>

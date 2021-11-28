@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import validateEmail from "../../utils/validateEmail";
 import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
-
+import SlidingLoader from "../SlidingLoader";
 
 import Auth from "../../utils/Auth";
 
@@ -63,10 +63,10 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
             };
             Auth.login(data.login.token);
             setSuccess(true);
-        }, 3000);
+        }, 100000);
         setTimeout(() => {
             closeHandler();
-        }, 3500);
+        }, 100500);
     }
 
     const handleChange = (e) => {
@@ -206,7 +206,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                         {warning}
                     </p>
                     <button className={success ? 'button success' : 'button'}>
-                        {success ? <FontAwesomeIcon icon="check" /> : loading ? "Creation In Progress..." : "Create Account"}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : "Create Account"}
                     </button>
                     <span className="divider">Already have an account?</span>
                     <button 
