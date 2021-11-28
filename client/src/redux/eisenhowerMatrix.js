@@ -15,6 +15,14 @@ export const addTask = (task) => {
     };
 };
 
+// will take in an array of task objects
+export const addMultipleTasks = (tasks) => {
+    return {
+        type: 'ADD_MULTIPLE_TASKS',
+        payload: tasks
+    };
+};
+
 // delete a task
 // id will contain the task _id
 export const deleteTask = (_id) => {
@@ -76,6 +84,12 @@ export default function eisenhowerMatrixReducer(eisenhowerMatrix = initialState,
             return {
                 tasks: [...eisenhowerMatrix.tasks, payload]
             };
+
+        case 'ADD_MULTIPLE_TASKS':
+            return {
+                tasks: [...eisenhowerMatrix.tasks, ...payload]
+            };
+
         case 'DELETE_TASK':
             // returns all items that do not match the _id of the task we want to delete 
             {

@@ -132,7 +132,7 @@ const TaskModal = () => {
                         onBlur={() => setFocused(false)}
                         onChange={handleChange}
                         disabled={characterCount > maxChars}
-                        placeholder="Enter task here..."
+                        placeholder="Enter task here... (*)"
                         rows='4'
                     />
                     <span className={`char-count ${!focused && 'hide'}`}>

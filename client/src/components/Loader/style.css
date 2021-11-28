@@ -1,0 +1,44 @@
+.loading-container {
+  width: 5rem;
+  height: 5rem;
+  position: relative;
+}
+
+.loading-container span {
+  position: absolute;
+  display: block;
+  margin: auto;
+  color: #bc992B;
+}
+
+.loader-wrapper {
+  offset-path: path("M170,43.59a125,125,0,1,1-125-125A125,125,0,0,1,170,43.59Z");
+  -webkit-animation: loop 3s ease-in-out infinite;
+          animation: loop 3s ease-in-out infinite;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.loader-wrapper svg {
+  fill: #bc992B;
+  stroke: #bc992B;
+}
+
+@-webkit-keyframes loop {
+  from {
+    offset-distance: 0;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes loop {
+  from {
+    offset-distance: 0;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+/*# sourceMappingURL=style.css.map */

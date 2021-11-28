@@ -11,30 +11,38 @@
 
 @-webkit-keyframes excella-slide-in-nav-error {
   0% {
-    transform: translateX(-50vw) rotate(45deg);
+    -webkit-transform: translateX(-50vw) rotate(45deg);
+            transform: translateX(-50vw) rotate(45deg);
   }
   75% {
-    transform: translateX(0) rotate(-15deg);
+    -webkit-transform: translateX(0) rotate(-15deg);
+            transform: translateX(0) rotate(-15deg);
   }
   100% {
-    transform: translateX(0) rotate(0deg);
+    -webkit-transform: translateX(0) rotate(0deg);
+            transform: translateX(0) rotate(0deg);
   }
 }
 
 @keyframes excella-slide-in-nav-error {
   0% {
-    transform: translateX(-50vw) rotate(45deg);
+    -webkit-transform: translateX(-50vw) rotate(45deg);
+            transform: translateX(-50vw) rotate(45deg);
   }
   75% {
-    transform: translateX(0) rotate(-15deg);
+    -webkit-transform: translateX(0) rotate(-15deg);
+            transform: translateX(0) rotate(-15deg);
   }
   100% {
-    transform: translateX(0) rotate(0deg);
+    -webkit-transform: translateX(0) rotate(0deg);
+            transform: translateX(0) rotate(0deg);
   }
 }
+
 @media screen and (max-width: 500px) {
   .nav-error-margins {
     margin-top: 30%;
     margin-left: 10%;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */

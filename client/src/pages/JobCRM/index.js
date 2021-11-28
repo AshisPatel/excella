@@ -1,21 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import './style.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { newJobModal } from "../../redux/jobModal";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
 import JobTable from "../../components/JobTable";
 import JobModal from '../../components/JobModal';
+import JobCRMOptions from "../../components/JobCRMOptions";
 import NavError from "../../components/NavError";
 import Auth from "../../utils/Auth";
 
 const JobCRM = () => {
-    const dispatch = useDispatch();
     const { showJobModal } = useSelector(state => state.jobModal);
     const columnSizing = 'col-9 col-md-5 col-lg-4'
 
-    if(!Auth.loggedIn()) {
+    if (!Auth.loggedIn()) {
         return (
-            <NavError message={'You need to be logged in to view this page!'}/>
+            <NavError message={'You need to be logged in to view this page!'} />
         )
     }
 
@@ -26,28 +24,16 @@ const JobCRM = () => {
                     Job CRM
                 </h1>
             </div>
-            <div className="row">
+            {/* <div className="row">
                 <div className={`notification-wrapper ${columnSizing}`}>
                     Notifications will go here!
                 </div>
-            </div>
+            </div> */}
             <div className="row">
-                <div className={`jc-btn-wrapper ${columnSizing}`}>
-                    <button
-                        className='jc-main-btn'
-                        onClick={() => dispatch(newJobModal())}
-                    >
-                        <FontAwesomeIcon icon="plus" />
-                        Add Job
-                    </button>
-                    <button
-                        className='jc-main-btn'
-                    >
-                        <FontAwesomeIcon icon="search" />
-                        Search
-                    </button>
-                </div>
+                <JobCRMOptions />
             </div>
+      
+
             <div className="row">
                 <div className={`col-10 col-md-8 col-lg-6 job-table-wrapper`}>
                     <JobTable />
