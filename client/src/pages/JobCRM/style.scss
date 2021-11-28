@@ -8,47 +8,6 @@ $light-gold: #E2CA78;
 $box-shadow-depth: 0.6rem 0.6rem; 
 $box-shadow: $box-shadow-depth rgba($white, 0.08);
 
-
-.jc-btn-wrapper {
-    margin-right: auto;
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;  
-    
-    & button:first-child {
-        transform: translateX(-1rem);
-    }
-
-    & button:last-child {
-        transform: translateX(1rem);
-    }
-}
-
-.jc-main-btn {
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: none; 
-    color: $black;
-    background-color: $light-gold; 
-    transition: all 0.2s linear;
-    border-radius: 0.5rem; 
-    box-shadow: $box-shadow-depth rgba($white, 0.08);
-    &:hover,:focus {
-        box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $gold; 
-        color: $black; 
-    }
-    &:active {
-        box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $white; 
-        color: $black; 
-    }
-
-    & svg {
-        margin-right: 0.5rem; 
-    }
-
-}
-
 .notification-wrapper {
     margin-left: auto;
     margin-right: auto; 

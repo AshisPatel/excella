@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import validateEmail from "../../utils/validateEmail";
 import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
-// remove these once authentication is added
-import { login } from "../../redux/loggedIn";
-import { useDispatch } from "react-redux";
+import SlidingLoader from "../SlidingLoader";
+
+import Auth from "../../utils/Auth";
 
 const SignupModal = ({ setShowSignup, setShowLogin }) => {
-
-    // remove thse once authentication is added
-    const dispatch = useDispatch();
 
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -24,6 +21,10 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
         password: '',
         confirmPassword: ''
     });
+    // useRef to select first input, username
+    const usernameRef = useRef();
+    // auto focus username input on load
+    useEffect(() => { usernameRef.current.focus() }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -56,8 +57,15 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
         setWarning('');
         setTimeout(() => {
             setLoading(false);
-            // remove once authentication is added
-            dispatch(login());
+            // replace with data returned by mutation 
+            const data = { 
+                login: {
+                    token: {
+                        username
+                    }
+                }
+            };
+            Auth.login(data.login.token);
             setSuccess(true);
         }, 3000);
         setTimeout(() => {
@@ -125,13 +133,14 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                     <div className="inputs">
                         <div className="input-wrapper">
                             <input
+                                ref={usernameRef}
                                 aria-label='username'
                                 name="username"
                                 type="text"
                                 className="text-input"
                                 value={formState.username}
                                 onChange={handleChange}
-                                placeholder="Username"
+                                placeholder="Username (*)"
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -146,7 +155,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.email}
                                 onChange={handleChange}
-                                placeholder="Email"
+                                placeholder="Email (*)"
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -161,7 +170,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.password}
                                 onChange={handleChange}
-                                placeholder="Password"
+                                placeholder="Password (*)"
                             />
                             <span className="icon-wrapper">
                                 <FontAwesomeIcon icon="lock" />
@@ -183,7 +192,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.confirmPassword}
                                 onChange={handleChange}
-                                placeholder="Confirm Password"
+                                placeholder="Confirm Password (*)"
                             />
                             <span className="icon-wrapper">
                                 <FontAwesomeIcon icon="lock" />
@@ -202,7 +211,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                         {warning}
                     </p>
                     <button className={success ? 'button success' : 'button'}>
-                        {success ? <FontAwesomeIcon icon="check" /> : loading ? "Creation In Progress..." : "Create Account"}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : "Create Account"}
                     </button>
                     <span className="divider">Already have an account?</span>
                     <button 

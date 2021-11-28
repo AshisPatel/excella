@@ -1,16 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './style.css';
 import ExcellaIcon from "../ExcellaIcon";
-// remove these once authentication is added
-import { logout } from "../../redux/loggedIn";
-import { useSelector, useDispatch } from "react-redux";
+import Auth from "../../utils/Auth";
 
 const Nav = (props) => {
-
-    // remove these once authentication is added
-    const dispatch = useDispatch();
-    const loggedIn = useSelector(state => state.loggedIn);
-
+    
     const { setShowLogin, setShowSignup } = props;
 
     return (
@@ -18,7 +12,7 @@ const Nav = (props) => {
             <h1 id="logo">E<ExcellaIcon />cella</h1>
 
             <div className='btn-container'>
-                {!loggedIn &&
+                {!Auth.loggedIn() &&
                     <>
                         <button
                             className='nav-btn'

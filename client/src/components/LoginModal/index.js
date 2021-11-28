@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// remove these once authentication is added
-import { login } from "../../redux/loggedIn";
-import { useDispatch } from "react-redux";
 import validateEmail from "../../utils/validateEmail";
 import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
+import Auth from "../../utils/Auth";
+import SlidingLoader from "../SlidingLoader";
 
 const LoginModal = ({ setShowSignup, setShowLogin }) => {
-
-    // remove this once authentication is added
-    const dispatch = useDispatch();
 
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +18,10 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
         email: '',
         password: '',
     });
+    // useRef to target the first input, username
+    const usernameRef = useRef();
+    // auto focus username input on load
+    useEffect(() => { usernameRef.current.focus()}, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,13 +46,20 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
         setTimeout(() => {
             setLoading(false);
             setSuccess(true);
-            // remove this once authentication is added
-            dispatch(login());
-        }, 1000)
+            // replace with data returned by login mutation 
+            const data = { 
+                login: {
+                    token: {
+                        username
+                    }
+                }
+            };
+            Auth.login(data.login.token);
+        }, 3000)
 
         setTimeout(() => {
             closeHandler();
-        }, 1500);
+        }, 3500);
 
      
 
@@ -111,13 +118,14 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                     <div className="inputs">
                         <div className="input-wrapper">
                             <input
+                                ref={usernameRef}
                                 aria-label='username'
                                 name="username"
                                 type="text"
                                 className="text-input"
                                 value={formState.username}
                                 onChange={handleChange}
-                                placeholder="Username"
+                                placeholder="Username (*)"
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -147,7 +155,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.password}
                                 onChange={handleChange}
-                                placeholder="Password"
+                                placeholder="Password (*)"
                             />
                             <span className="icon-wrapper">
                                 <FontAwesomeIcon icon="lock" />
@@ -167,7 +175,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                     </p>
                     <button className={success ? 'button success' : 'button'}>
                         {
-                            success ? <FontAwesomeIcon icon="check" /> : loading ? "Logging You In..." : "Login"
+                            success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : "Login"
                         }
                     </button>
                     <span className="divider">Need to create an account?</span>

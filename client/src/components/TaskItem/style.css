@@ -4,22 +4,36 @@
 }
 
 .task-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
 .taks-item-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .task-item-content-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 .task-item-content-wrapper span {
   margin-left: 0.5rem;
 }
@@ -27,8 +41,10 @@
 .task-item-btn {
   background-color: transparent;
   border: none;
+  -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
+
 .task-item-btn:hover, .task-item-btn :active {
   color: #EBECE9;
 }
@@ -36,6 +52,7 @@
 .task-item-btn-wrapper {
   margin-right: 1rem;
 }
+
 .task-item-btn-wrapper button:first-child {
   margin-right: 1rem;
 }
@@ -44,4 +61,5 @@
   .task-item-btn-wrapper {
     margin-right: 0;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */

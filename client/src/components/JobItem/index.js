@@ -8,7 +8,6 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const JobItem = ({ job }) => {
     // destructure job item 
-    console.log(job);
     const { jobTitle, employer, applicationStatus, lastUpdated, _id } = job;
     const dispatch = useDispatch();
     const { width } = useWindowDimensions();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExcellaIcon from '../ExcellaIcon';
 import validateString from '../../utils/validateString';
@@ -22,6 +22,10 @@ const ContactModal = (props) => {
         email: contact?.email || '',
         phone: contact?.phone || ''
     });
+    // useRef to track first input -> firstName
+    const firstNameRef = useRef();
+    // on launch auto-focus firstName input
+    useEffect(() => { firstNameRef.current.focus() }, [])
 
     const handleSubmit = (e) => {
         // prevent refresh
@@ -100,13 +104,14 @@ const ContactModal = (props) => {
                     <div className="inputs">
                         <div className="input-wrapper">
                             <input
+                                ref={firstNameRef}
                                 aria-label='firstName'
                                 name="firstName"
                                 type="text"
                                 className="text-input"
                                 value={formState.firstName}
                                 onChange={handleChange}
-                                placeholder="First Name"
+                                placeholder="First Name (*)"
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -121,7 +126,7 @@ const ContactModal = (props) => {
                                 className="text-input"
                                 value={formState.lastName}
                                 onChange={handleChange}
-                                placeholder="Last Name"
+                                placeholder="Last Name (*)"
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">

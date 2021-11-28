@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import './style.css';
-import { useSelector } from "react-redux";
 import ExcellaIcon from '../../components/ExcellaIcon';
 import ExcellaShadowIcon from '../../components/ExcellaShadowIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useWindowDimensions from "../../hooks/useWindowDimensions";
-
+import Auth from "../../utils/Auth";
 
 const Home = () => {
-    const loggedIn = useSelector(state => state.loggedIn);
+
+    
     // instantiate variable to switch Excella's animations after a second
     const [slideIn, setSlideIn] = useState(true); 
     const [fi, setFI] = useState(0);
-    const speechBubbleText = loggedIn ? "Hello, <username>! Let's have a wonderful day!" : "Hi, Friend! Excellence starts with you, and I'm here to help.";
     const features = [
         {
             name: 'Eisenhower Matrix',
@@ -29,7 +27,9 @@ const Home = () => {
             icon: 'clock',
             description: 'Increase productivity and decrease burnout with the Pomodoro Timer!'
         }
-    ]
+    ];
+
+    const username = Auth.loggedIn() && Auth.getTokenData().username ;
 
     // chooses which feature will be displayed in the info box
     let currentFeature = features[fi];
@@ -67,8 +67,8 @@ const Home = () => {
                 </div>
                 <div className="col-4">
                     <p className='speech-bubble speech-bubble-fade-in'>
-                        {loggedIn ? 
-                            "Hello, <username>! Let's have a wonderful day!" 
+                        {Auth.loggedIn() ? 
+                            `Hello, ${username}! Let's have a wonderful day!`
                         : 
                             <><span className="emphasized-text">Excellence</span> starts with you. My name is <span className="emphasized-text">Excella</span> and I'm here to help.</>
                         }
