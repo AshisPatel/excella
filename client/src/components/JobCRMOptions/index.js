@@ -45,7 +45,7 @@ const JobCRMSearch = () => {
                 employerMap[employer] = 1;
             }
         }
-        setLoading(false);
+        
         // after jobs have been parsed through, spread the keys of each object and set the options state 
         // setJobTitleOptions([...Object.keys(jobTitleMap)]);
         // setEmployerOptions([...Object.keys(employerMap)]);
@@ -76,6 +76,7 @@ const JobCRMSearch = () => {
         // set state variables
         setJobTitleOptions([...sortedJobTitles]);
         setEmployerOptions([...sortedEmployers]);
+        setLoading(false);
 
     }, [jobs]);
 
