@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import './style.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { newJobModal } from "../../redux/jobModal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobTable from "../../components/JobTable";
 import JobModal from '../../components/JobModal';
+import JobCRMSearch from "../../components/JobCRMSearch";
 import NavError from "../../components/NavError";
 import Auth from "../../utils/Auth";
 
@@ -13,9 +14,9 @@ const JobCRM = () => {
     const { showJobModal } = useSelector(state => state.jobModal);
     const columnSizing = 'col-9 col-md-5 col-lg-4'
 
-    if(!Auth.loggedIn()) {
+    if (!Auth.loggedIn()) {
         return (
-            <NavError message={'You need to be logged in to view this page!'}/>
+            <NavError message={'You need to be logged in to view this page!'} />
         )
     }
 
@@ -47,6 +48,9 @@ const JobCRM = () => {
                         Search
                     </button>
                 </div>
+            </div>
+            <div className="row">
+                <JobCRMSearch />
             </div>
             <div className="row">
                 <div className={`col-10 col-md-8 col-lg-6 job-table-wrapper`}>

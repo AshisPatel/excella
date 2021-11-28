@@ -46,7 +46,6 @@ const Job = () => {
     }, [jobs]);
 
     if (loading) {
-        console.log(jobs);
         return <div>Loading...</div>
     }
 

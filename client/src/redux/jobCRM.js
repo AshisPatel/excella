@@ -74,19 +74,38 @@ export const deleteContact = (job_id, _id) => {
     };
 };
 
+// setting filters, takes in an object that contains the employer filter and job title filter
+export const setJobFilters = (jobTitleFilter, employerFilter) => {
+    return {
+        type: 'SET_JOB_SEARCH_FILTERS',
+        payload: {jobTitleFilter, employerFilter}
+    }
+}
+
+// clear job search filters
+export const clearJobFilters = () => {
+    return {
+        type: 'CLEAR_JOB_SEARCH_FILTERS'
+    }
+}
+
 const initialState = {
-    jobs: []
+    jobs: [],
+    employerFilter: '',
+    jobTitleFilter: ''
 };
 
 export default function jobCRMReducer(jobCRM = initialState, { type, payload }) {
     switch (type) {
         case 'ADD_JOB':
             return {
+                ...jobCRM, 
                 jobs: [...jobCRM.jobs, payload]
             };
-            
+
         case 'ADD_MULTIPLE_JOBS':
             return {
+                ...jobCRM, 
                 jobs: [...jobCRM.jobs, ...payload]
             };
 
@@ -100,12 +119,14 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
             });
 
             return {
+                ...jobCRM, 
                 jobs: [...newJobs]
             };
         }
         case 'DELETE_JOB': {
             const newJobs = jobCRM.jobs.filter(job => job._id !== payload);
             return {
+                ...jobCRM, 
                 jobs: [...newJobs]
             };
         }
@@ -119,6 +140,7 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
             });
             console.log(newJobs);
             return {
+                ...jobCRM, 
                 jobs: [...newJobs]
             };
         }
@@ -144,6 +166,7 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
                 return job;
             });
             return {
+                ...jobCRM, 
                 jobs: [...newJobs]
             };
         }
@@ -165,9 +188,27 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
             });
             console.log({newJobs});
             return {
+                ...jobCRM, 
                 jobs: [...newJobs]
             };
         }
+        
+        case 'SET_JOB_SEARCH_FILTERS': {
+            return {
+                ...jobCRM,
+                jobTitleFilter: payload.jobTitleFilter ? payload.jobTitleFilter : '',
+                employerFilter: payload.employerFilter ? payload.employerFilter : ''
+            };
+        }
+
+        case 'CLEAR_JOB_SEARCH_FILTERS': {
+            return {
+                ...jobCRM,
+                jobTitleFilter: '',
+                employerFilter: ''
+            }
+        }
+
         default:
             return jobCRM;
     }
