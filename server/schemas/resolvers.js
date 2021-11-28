@@ -7,6 +7,12 @@ const Task = require('../models/Task');
 
 const resolvers = {
     Date: GraphQLDateTime,
+    TaskCategory: {
+      DO: 'do',
+      DELEGATE: 'delegate',
+      DO_LATER: 'doLater',
+      DELETE: 'delete'
+    },
     Query: {
       users: async () => {
         return User.find()

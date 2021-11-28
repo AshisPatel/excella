@@ -10,13 +10,20 @@ const typeDefs = gql`
         jobs: [Job]
         tasks: [Task]
     }
+
+    enum TaskCategory {
+        DO
+        DELEGATE
+        DO_LATER
+        DELETE
+    }
     
     type Task {
         _id: ID,
-        Category: String,
+        Category: TaskCategory,
         taskContent: String,
         createdAt: String,
-        complete: String
+        complete: Boolean
     }
     
     type Contact {

@@ -12,7 +12,7 @@ const taskSchema = new Schema({
     category: {
         type: String,
         required: true,
-        enum: ['do', 'delegate', 'do_later', 'delete']
+        enum: ['do', 'delegate', 'doLater', 'delete']
     },
     //boolean value to show if task is completed or not for deletion
     complete: {
