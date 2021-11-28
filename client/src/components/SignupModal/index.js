@@ -63,10 +63,10 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
             };
             Auth.login(data.login.token);
             setSuccess(true);
-        }, 100000);
+        }, 3000);
         setTimeout(() => {
             closeHandler();
-        }, 100500);
+        }, 3500);
     }
 
     const handleChange = (e) => {

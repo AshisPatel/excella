@@ -51,11 +51,11 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                 }
             };
             Auth.login(data.login.token);
-        }, 1000)
+        }, 3000)
 
         setTimeout(() => {
             closeHandler();
-        }, 1500);
+        }, 3500);
 
      
 

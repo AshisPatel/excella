@@ -30,6 +30,14 @@ export const addJob = (job) => {
     };
 };
 
+// will take in array of job objects 
+export const addMultipleJobs = (jobs) => {
+    return {
+        type: 'ADD_MULTIPLE_JOBS',
+        payload: jobs
+    };
+};
+
 export const updateJob = (job) => {
     return {
         type: 'UPDATE_JOB',
@@ -76,6 +84,12 @@ export default function jobCRMReducer(jobCRM = initialState, { type, payload }) 
             return {
                 jobs: [...jobCRM.jobs, payload]
             };
+            
+        case 'ADD_MULTIPLE_JOBS':
+            return {
+                jobs: [...jobCRM.jobs, ...payload]
+            };
+
         case 'UPDATE_JOB': {
             const newJobs = jobCRM.jobs.map(job => {
                 if (job._id === payload._id) {
