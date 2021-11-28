@@ -47,8 +47,36 @@ const JobCRMSearch = () => {
         }
         setLoading(false);
         // after jobs have been parsed through, spread the keys of each object and set the options state 
-        setJobTitleOptions([...Object.keys(jobTitleMap)]);
-        setEmployerOptions([...Object.keys(employerMap)]);
+        // setJobTitleOptions([...Object.keys(jobTitleMap)]);
+        // setEmployerOptions([...Object.keys(employerMap)]);
+        // sort each object in the order of frequencies
+
+        // first convert objects to an array that can be sorted
+        let sortableJobTitles = [];
+        let sortableEmployers = [];
+        // loop through objects using for...in
+        for (let title in jobTitleMap) {
+            // creates an entry of the key name, key value
+            sortableJobTitles.push([title, jobTitleMap[title]]);
+        }
+
+        for (let employer in employerMap) {
+            sortableEmployers.push([employer, employerMap[employer]]);
+        }
+
+        // use sort method to sort each array
+        // we're sorting an array of arrays structured as [key name, key value] so we need to compare key value by accessing arr[1]
+        sortableJobTitles = sortableJobTitles.sort((a,b) => b[1] - a[1]);
+        sortableEmployers = sortableEmployers.sort((a,b) => b[1] - a[1]);
+
+        // create an array of the names in sorted order
+        let sortedJobTitles  = sortableJobTitles.map(entry => entry[0]);
+        let sortedEmployers = sortableEmployers.map(entry => entry[0]);
+
+        // set state variables
+        setJobTitleOptions([...sortedJobTitles]);
+        setEmployerOptions([...sortedEmployers]);
+
     }, [jobs]);
 
 
@@ -146,22 +174,22 @@ const JobCRMSearch = () => {
                 >
                     Submit
                 </button> */}
-                    <button
-                        className='jc-main-btn'
-                        type="button"
-                        onClick={() => clearFilters()}
-                    >
-                        <FontAwesomeIcon icon="redo-alt" />
-                        Reset
-                    </button>
-                    <button
-                        className='jc-main-btn'
-                        type="button"
-                        onClick={() => dispatch(newJobModal())}
-                    >
-                        <FontAwesomeIcon icon="plus" />
-                        Add Job
-                    </button>
+                <button
+                    className='jc-main-btn'
+                    type="button"
+                    onClick={() => clearFilters()}
+                >
+                    <FontAwesomeIcon icon="redo-alt" />
+                    Reset
+                </button>
+                <button
+                    className='jc-main-btn'
+                    type="button"
+                    onClick={() => dispatch(newJobModal())}
+                >
+                    <FontAwesomeIcon icon="plus" />
+                    Add Job
+                </button>
 
             </form>
 
