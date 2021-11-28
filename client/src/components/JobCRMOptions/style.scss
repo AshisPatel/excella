@@ -1,0 +1,118 @@
+// custom colors
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+$gold: #bc992B; 
+$dark-gold: #C99200;
+$light-gold: #E2CA78;
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+
+
+.jc-btn-wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
+}
+
+.jc-main-btn {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none; 
+    color: $black;
+    background-color: $light-gold; 
+    transition: all 0.2s linear;
+    border-radius: 0.5rem; 
+    box-shadow: $box-shadow-depth rgba($white, 0.08);
+    &:hover,:focus {
+        box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $gold; 
+        color: $black; 
+    }
+    &:active {
+        box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $white; 
+        color: $black; 
+    }
+
+    & svg {
+        margin-right: 0.5rem; 
+    }
+
+}
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap; 
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto; 
+    justify-content: space-between;
+    padding: 0; 
+
+    & select {
+        font-size: 1rem;
+        background-color: $light-gold;
+        color: $black; 
+        border: 2px solid $light-gold; 
+        border-radius: 0.5rem;
+        padding: 0.5rem; 
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; 
+        transition: all 0.2s linear; 
+        box-shadow: $box-shadow;
+        max-height: 3rem; 
+
+        & option {
+            background-color: $gold; 
+        }
+
+        &:hover,:focus {
+            box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $gold; 
+            border-color: $gold; 
+            color: $black; 
+        }
+        &:active {
+            box-shadow: $box-shadow-depth rgba($light-gold, 0.5), inset 0 0 0 2rem $white; 
+            border-color: $white; 
+            color: $black; 
+        }
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+    .search-form {
+        justify-content: center; 
+
+        & select:first-child {
+            margin-right: 1rem;
+        }
+
+        & select:last-child {
+            margin-left: 1rem; 
+        }
+    }
+
+    .jc-btn-wrapper {
+        justify-content: center; 
+
+        & button:first-child {
+            margin-right: 1rem;
+            margin-left: 2rem; 
+        }
+
+        & button:last-child {
+            margin-left: 1rem; 
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .search-form {
+        & select {
+            width: 100%; 
+        }
+    }
+}

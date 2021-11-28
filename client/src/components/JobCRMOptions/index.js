@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import './style.css';
 import { useSelector, useDispatch } from 'react-redux';
+import { newJobModal } from "../../redux/jobModal";
 import { setJobFilters, clearJobFilters } from "../../redux/jobCRM";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const JobCRMSearch = () => {
     const dispatch = useDispatch();
@@ -15,6 +17,8 @@ const JobCRMSearch = () => {
             employer: employerFilter
         }
     )
+
+    const columnSizing = 'col-9 col-md-8 col-lg-6'
 
     // get jobTitle and employer options
     const jobTitleMap = {};
@@ -58,10 +62,10 @@ const JobCRMSearch = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
-        const { jobTitle, employer} = formState; 
-        dispatch(setJobFilters(jobTitle, employer));
-    }
+    // const handleSubmit = (e) => {
+    //     const { jobTitle, employer} = formState; 
+    //     dispatch(setJobFilters(jobTitle, employer));
+    // }
 
     const clearFilters = () => {
         setFormState({
@@ -72,9 +76,9 @@ const JobCRMSearch = () => {
     }
 
     useEffect(() =>{ 
-        console.log(formState)
-        // const { jobTitle, employer} = formState; 
-        // dispatch(setJobFilters(jobTitle, employer));
+        // console.log(formState)
+        const { jobTitle, employer} = formState; 
+        dispatch(setJobFilters(jobTitle, employer));
     }, [formState]);
 
     if(loading) {
@@ -91,9 +95,10 @@ const JobCRMSearch = () => {
 
 
     return (
-        <div>
+        <>
             <form
-                onSubmit={handleSubmit}
+                className={`search-form ${columnSizing}`}
+                // onSubmit={handleSubmit}
             >
                 <select
                     name="jobTitle"
@@ -116,6 +121,7 @@ const JobCRMSearch = () => {
 
                 <select
                     name="employer"
+                    className="search-form-select"
                     value={formState.employer}
                     onChange={handleChange}
                 >
@@ -134,21 +140,34 @@ const JobCRMSearch = () => {
 
                 </select>
                 
-                <button
+                {/* <button
                     type="button"
                     onClick={handleSubmit}
                 >
                     Submit
-                </button>
+                </button> */}
 
             </form>
+            <div className="row">
+                <div className={`jc-btn-wrapper ${columnSizing}`}>
+                    <button
+                        className='jc-main-btn'
+                        onClick={() => clearFilters()}
+                    >
+                        <FontAwesomeIcon icon="broom" />
+                        Clear
+                    </button>
+                    <button
+                        className='jc-main-btn'
+                        onClick={() => dispatch(newJobModal())}
+                    >
+                        <FontAwesomeIcon icon="plus" />
+                        Add Job
+                    </button>
 
-            <button
-                onClick={() => clearFilters()}
-            >
-                Clear
-            </button>
-        </div>
+                </div>
+            </div>
+        </>
     );
 };
 
