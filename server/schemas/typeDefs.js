@@ -6,9 +6,9 @@ const typeDefs = gql`
         _id: ID
         userName: String
         email: String
-        password
+        password: String
         jobs: [Job]
-        tasks [Task]
+        tasks: [Task]
     }
     
     type Task {

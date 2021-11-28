@@ -15,15 +15,6 @@ const resolvers = {
       user: async (parent, { username }) => {
         return User.findOne({ username })
           .select('-__v -password')
-      },
-      tasks: async (parent, { username }) => {
-        const params = username ? { username } : {};
-        return Task.find(params)
-          .select('-__v -password')
-      },
-      task: async (parent, { _id } ) => {
-        //search for a task by its _id
-        return Task.findById({ _id: _id });
       },     
       jobs: async (parent, { username }) => {
         //allow for GET jobdata based on username
@@ -130,6 +121,6 @@ const resolvers = {
         return updatedContact[0];
       }
     }
-  };
+};
 
 module.exports = resolvers
