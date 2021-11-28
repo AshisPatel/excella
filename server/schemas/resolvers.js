@@ -2,17 +2,29 @@ const { User, Job } = require('../models');
 //import custom scalar resolver to format date-time responses in a human-readable format
 const { GraphQLDateTime } = require('graphql-iso-date');
 const { update } = require('../models/User');
+const Task = require('../models/Task');
 
 
 const resolvers = {
     Date: GraphQLDateTime,
     Query: {
       users: async () => {
-          return User.find()
+        return User.find()
+          .select('-__v -password')
       },
-      test: async () => {
-        return 'This is a test'
+      user: async (parent, { username }) => {
+        return User.findOne({ username })
+          .select('-__v -password')
       },
+      tasks: async (parent, { username }) => {
+        const params = username ? { username } : {};
+        return Task.find(params)
+          .select('-__v -password')
+      },
+      task: async (parent, { _id } ) => {
+        //search for a task by its _id
+        return Task.findById({ _id: _id });
+      },     
       jobs: async (parent, { username }) => {
         //allow for GET jobdata based on username
         const params = username ? { username } : {};

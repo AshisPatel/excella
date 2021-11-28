@@ -6,9 +6,19 @@ const typeDefs = gql`
         _id: ID
         userName: String
         email: String
+        password
         jobs: [Job]
+        tasks [Task]
     }
-
+    
+    type Task {
+        _id: ID,
+        Category: String,
+        taskContent: String,
+        createdAt: String,
+        complete: String
+    }
+    
     type Contact {
         _id: ID
         firstName: String,
@@ -29,7 +39,9 @@ const typeDefs = gql`
 
     type Query {
         users: [User]
-        test: String
+        user(username: String!): User
+        tasks(username: String!): Task
+        task( _id: ID!): Task
         jobs(username: String): [Job]
         singleJob(_id: ID!): Job
     }

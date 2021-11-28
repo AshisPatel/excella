@@ -9,13 +9,13 @@ const taskSchema = new Schema({
         required: true
     }, 
     //this will be the category in the eisenhower matrix which the user places taskContent to let them know where that task stands 
-    Category: {
+    category: {
         type: String,
         required: true,
         enum: ['do', 'delegate', 'do_later', 'delete']
     },
     //boolean value to show if task is completed or not for deletion
-    Complete: {
+    complete: {
         type: Boolean,
         required: true
     },
