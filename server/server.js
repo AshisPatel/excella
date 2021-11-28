@@ -2,6 +2,9 @@
 const path = require('path');
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const { authMiddleware } = require('./utils/auth');
+require('dotenv').config();
+
 
 //importing our graphql typeDefs and resolvers to use for server && importing db connection
 const { typeDefs, resolvers } = require('./schemas');
@@ -17,7 +20,8 @@ const startServer = async () => {
     const server = new ApolloServer({
         typeDefs, 
         resolvers, 
-        //context will go here once it authentication middleware is written
+        //context authentication middleware
+        context: authMiddleware
     });
 
     await server.start();
