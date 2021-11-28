@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './style.css';
 import { useSelector } from 'react-redux';
 import JobItem from '../JobItem';
+import NavError from "../NavError";
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const JobTable = () => {
@@ -33,6 +34,13 @@ const JobTable = () => {
     },[jobs, jobTitleFilter, employerFilter]);
 
     useEffect(() => console.log(displayedJobs), [displayedJobs]);
+
+    if (displayedJobs.length === 0) {
+        return (
+            <NavError message="No jobs found!" />
+        )
+    }
+
 
     return (
         <table id='jobs'>
