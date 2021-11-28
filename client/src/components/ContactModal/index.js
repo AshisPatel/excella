@@ -121,12 +121,12 @@ const ContactModal = (props) => {
                         <div className="input-wrapper">
                             <input
                                 aria-label='lastName'
-                                name="lastName (*)"
+                                name="lastName"
                                 type="text"
                                 className="text-input"
                                 value={formState.lastName}
                                 onChange={handleChange}
-                                placeholder="Last Name"
+                                placeholder="Last Name (*)"
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">

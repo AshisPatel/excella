@@ -140,7 +140,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.username}
                                 onChange={handleChange}
-                                placeholder="Username"
+                                placeholder="Username (*)"
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -155,7 +155,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.email}
                                 onChange={handleChange}
-                                placeholder="Email"
+                                placeholder="Email (*)"
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -170,7 +170,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.password}
                                 onChange={handleChange}
-                                placeholder="Password"
+                                placeholder="Password (*)"
                             />
                             <span className="icon-wrapper">
                                 <FontAwesomeIcon icon="lock" />
@@ -192,7 +192,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.confirmPassword}
                                 onChange={handleChange}
-                                placeholder="Confirm Password"
+                                placeholder="Confirm Password (*)"
                             />
                             <span className="icon-wrapper">
                                 <FontAwesomeIcon icon="lock" />

@@ -125,7 +125,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.username}
                                 onChange={handleChange}
-                                placeholder="Username"
+                                placeholder="Username (*)"
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
@@ -155,7 +155,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                                 className="text-input"
                                 value={formState.password}
                                 onChange={handleChange}
-                                placeholder="Password"
+                                placeholder="Password (*)"
                             />
                             <span className="icon-wrapper">
                                 <FontAwesomeIcon icon="lock" />
