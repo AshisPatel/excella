@@ -5,14 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../redux/currentPage';
 import { Link } from "react-router-dom";
 import useWindowDimensions from '../../hooks/useWindowDimensions';
-import { logout } from '../../redux/loggedIn';
+import Auth from '../../utils/Auth';
 
 const SideNav = () => {
-
-    const { height, width } = useWindowDimensions();
+    const { width } = useWindowDimensions();
     const [display, setDisplay] = useState(true);
     const [fadeOut, setFadeOut] = useState(false);
-    const [clickOff, setClickOff] = useState(false); 
+    const [clickOff, setClickOff] = useState(false);
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
     const transitionWidth = 1000;
@@ -26,31 +25,33 @@ const SideNav = () => {
             name = e.target.parentNode.getAttribute('name');
         }
         dispatch(setCurrentPage(name));
-        
-        if(width < transitionWidth) {
+
+        if (width < transitionWidth) {
             toggleDropDown();
         }
     }
 
-    const logoutHandler = async () => {
+    const logoutHandler = () => {
         dispatch(setCurrentPage('/'));
-        if(width < transitionWidth) {
-             toggleDropDown();
+            if(width < transitionWidth) {
+            toggleDropDown();
         }
-        setTimeout(() => dispatch(logout()), 600);
+        setFadeOut(true);
+
+        setTimeout(() => {
+            Auth.logout();
+        }, 600);
     };
 
     const toggleDropDown = async () => {
-    //   setDisplay(prevDisplay => !prevDisplay);
-
-        if(display) {
+        if (display) {
             setFadeOut(true);
             setClickOff(true);
             setTimeout(() => {
-                setDisplay(false) 
+                setDisplay(false)
                 setClickOff(false);
             }, 400);
-            
+
         } else {
             setFadeOut(false);
             setDisplay(true);
@@ -68,15 +69,15 @@ const SideNav = () => {
                     className={`options ${display && 'op-selected'}`}
                     onClick={() => toggleDropDown()}
                 >
-                     <FontAwesomeIcon icon={display ? "window-close" : "bars"} />
+                    <FontAwesomeIcon icon={display ? "window-close" : "bars"} />
                 </button>
             }
             {display ?
                 <div className={`side-nav ${clickOff && 'click-off'}`}>
-                    
+
                     <Link to="/">
                         <button
-                            className={`side-nav-btn help-btn ${currentPage === '/' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-0' : 'option-item-out-0' : 'option-item-in-0'}`}
+                            className={`side-nav-btn help-btn ${currentPage === '/' && 'sn-selected'} ${width < transitionWidth ? (!fadeOut ? 'option-item-in-0' : 'option-item-out-0') : (!fadeOut ? 'option-item-in-0' : 'option-item-out-0')}`}
                             name="/"
                             onClick={handleClick}
                         >
@@ -89,7 +90,7 @@ const SideNav = () => {
 
                     <Link to="/EisenhowerMatrix">
                         <button
-                            className={`side-nav-btn em-btn ${currentPage === '/EisenhowerMatrix' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-1' : 'option-item-out-1' : 'option-item-in-1'}`}
+                            className={`side-nav-btn em-btn ${currentPage === '/EisenhowerMatrix' && 'sn-selected'} ${width < transitionWidth ? (!fadeOut ? 'option-item-in-1' : 'option-item-out-1') : (!fadeOut ? 'option-item-in-1' : 'option-item-out-1')}`}
                             name='/EisenhowerMatrix'
                             onClick={handleClick}
                         >
@@ -102,7 +103,7 @@ const SideNav = () => {
 
                     <Link to="/JobCRM">
                         <button
-                            className={`side-nav-btn jc-btn ${currentPage === '/JobCRM' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-2' : 'option-item-out-2' : 'option-item-in-2'}`}
+                            className={`side-nav-btn jc-btn ${currentPage === '/JobCRM' && 'sn-selected'} ${width < transitionWidth ? (!fadeOut ? 'option-item-in-2' : 'option-item-out-2') : (!fadeOut ? 'option-item-in-2' : 'option-item-out-2')}`}
                             name="/JobCRM"
                             onClick={handleClick}
                         >
@@ -115,7 +116,7 @@ const SideNav = () => {
 
                     <Link to="/PomodoroTimer">
                         <button
-                            className={`side-nav-btn pt-btn ${currentPage === '/PomodoroTimer' && 'sn-selected'} ${width < transitionWidth ? !fadeOut ? 'option-item-in-3' : 'option-item-out-3' : 'option-item-in-3'}`}
+                            className={`side-nav-btn pt-btn ${currentPage === '/PomodoroTimer' && 'sn-selected'} ${width < transitionWidth ? (!fadeOut ? 'option-item-in-3' : 'option-item-out-3') : (!fadeOut ? 'option-item-in-3' : 'option-item-out-3')}`}
                             name='/PomodoroTimer'
                             onClick={handleClick}
                         >
@@ -126,21 +127,21 @@ const SideNav = () => {
                         </button>
                     </Link>
 
-                    <Link to="/">
-                        <button
-                            className={`side-nav-btn pt-btn ${width < transitionWidth ? !fadeOut ? 'option-item-in-4' : 'option-item-out-4' : 'option-item-in-4'}`}
-                            onClick={() => logoutHandler()}
-                        >
-                            <FontAwesomeIcon icon="sign-out-alt"/>
-                            <span className="label">
-                                Logout
-                            </span>
-                        </button>
-                    </Link>
+
+                    <button
+                        className={`side-nav-btn pt-btn ${width < transitionWidth ? (!fadeOut ? 'option-item-in-4' : 'option-item-out-4') : (!fadeOut ? 'option-item-in-4' : 'option-item-out-4')}`}
+                        onClick={() => logoutHandler()}
+                    >
+                        <FontAwesomeIcon icon="sign-out-alt" />
+                        <span className="label">
+                            Logout
+                        </span>
+                    </button>
+
 
                 </div>
-            :
-            <></>}
+                :
+                <></>}
 
         </>
     );

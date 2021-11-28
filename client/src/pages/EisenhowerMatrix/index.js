@@ -5,10 +5,12 @@ import { newTaskModal } from "../../redux/taskModal";
 import './style.css';
 import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
 import TaskContainer from "../../components/TaskContainer";
-import ExcellaIcon from "../../components/ExcellaIcon";
 import TaskModal from "../../components/TaskModal";
+import NavError from '../../components/NavError';
+import Auth from "../../utils/Auth";
 
 const EisenHowerMatrix = () => {
+
 
     const columnSizing = 'offset-1 col-9 offset-md-3 col-md-5 offset-lg-4 col-lg-4';
     const { showTaskModal } = useSelector(state => state.taskModal); 
@@ -32,6 +34,13 @@ const EisenHowerMatrix = () => {
             category: 'delete'
         }
     ]
+
+    
+    if(!Auth.loggedIn()) {
+        return (
+            <NavError message={'You need to be logged in to view this page!'}/>
+        )
+    }
 
     return (
         <>

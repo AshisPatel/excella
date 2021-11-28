@@ -5,11 +5,19 @@ import { newJobModal } from "../../redux/jobModal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JobTable from "../../components/JobTable";
 import JobModal from '../../components/JobModal';
+import NavError from "../../components/NavError";
+import Auth from "../../utils/Auth";
 
 const JobCRM = () => {
     const dispatch = useDispatch();
     const { showJobModal } = useSelector(state => state.jobModal);
     const columnSizing = 'col-9 col-md-5 col-lg-4'
+
+    if(!Auth.loggedIn()) {
+        return (
+            <NavError message={'You need to be logged in to view this page!'}/>
+        )
+    }
 
     return (
         <div className="container">

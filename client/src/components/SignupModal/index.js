@@ -3,14 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import validateEmail from "../../utils/validateEmail";
 import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
-// remove these once authentication is added
-import { login } from "../../redux/loggedIn";
-import { useDispatch } from "react-redux";
+
+
+import Auth from "../../utils/Auth";
 
 const SignupModal = ({ setShowSignup, setShowLogin }) => {
-
-    // remove thse once authentication is added
-    const dispatch = useDispatch();
 
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -56,8 +53,15 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
         setWarning('');
         setTimeout(() => {
             setLoading(false);
-            // remove once authentication is added
-            dispatch(login());
+            // replace with data returned by mutation 
+            const data = { 
+                login: {
+                    token: {
+                        username
+                    }
+                }
+            };
+            Auth.login(data.login.token);
             setSuccess(true);
         }, 3000);
         setTimeout(() => {
