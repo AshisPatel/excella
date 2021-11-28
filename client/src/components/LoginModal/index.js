@@ -5,8 +5,13 @@ import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
 import Auth from "../../utils/Auth";
 import SlidingLoader from "../SlidingLoader";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../../utils/mutations";
 
 const LoginModal = ({ setShowSignup, setShowLogin }) => {
+
+    // import LOGIN mutation
+    const [login, { error }] = useMutation(LOGIN);
 
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -18,50 +23,53 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
         email: '',
         password: '',
     });
-    // useRef to target the first input, username
-    const usernameRef = useRef();
+    // useRef to target the first input, email
+    const emailRef = useRef();
     // auto focus username input on load
-    useEffect(() => { usernameRef.current.focus()}, []);
+    useEffect(() => { emailRef.current.focus()}, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // check all inputs
         const {username, email, password} = formState; 
-        if(!username || !validateUsername(username)) {
-            return setWarning('Please include a valid username');
-        }
-
-        // if(!email || !validateEmail(email)) {
-        //     return setWarning('Please include a valid email');
+        // if(!username || !validateUsername(username)) {
+        //     return setWarning('Please include a valid username');
         // }
+
+        if(!email || !validateEmail(email)) {
+            return setWarning('Invalid login credentials');
+        }
 
          // check valid password
         if(!password || !validatePassword(password)) {
-            return setWarning('Please include a valid password');
+            return setWarning('Invalid login credentials');
         }
 
         // async query to see if this matches any valid user and then log in user 
         setLoading(true);
         setWarning('');
-        setTimeout(() => {
-            setLoading(false);
-            setSuccess(true);
-            // replace with data returned by login mutation 
-            const data = { 
-                login: {
-                    token: {
-                        username
-                    }
+        try {
+            const { data } = await login({
+                variables: {
+                    email,
+                    password
                 }
-            };
-            Auth.login(data.login.token);
-        }, 3000)
-
-        setTimeout(() => {
-            closeHandler();
-        }, 3500);
-
-     
+            });
+            console.log(data);
+            setTimeout(() => {
+                setLoading(false);
+                setSuccess(true); 
+                Auth.login(data.login.token);
+            },1000)
+           
+            setTimeout(() => {
+                closeHandler()
+            }, 1500);
+        } catch(err) {
+            console.error(error); 
+            setLoading(false); 
+            setWarning('Invalid login credentials');
+        }   
 
     }
 
@@ -116,7 +124,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                        <span>Excella</span> welcomes you!
                     </h2>
                     <div className="inputs">
-                        <div className="input-wrapper">
+                        {/* <div className="input-wrapper">
                             <input
                                 ref={usernameRef}
                                 aria-label='username'
@@ -131,9 +139,10 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                             <span className="icon-wrapper">
                                 <FontAwesomeIcon icon="user" />
                             </span>
-                        </div>
-                        {/* <div className="input-wrapper">
+                        </div> */}
+                        <div className="input-wrapper">
                             <input
+                                ref={emailRef}
                                 aria-label="email"
                                 name="email"
                                 type="email"
@@ -146,7 +155,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                             <span className="icon-wrapper">
                                 <FontAwesomeIcon icon="envelope" />
                             </span>
-                        </div> */}
+                        </div>
                         <div className="input-wrapper">
                             <input
                                 aria-label='password'
