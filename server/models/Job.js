@@ -20,12 +20,12 @@ const contactSchema = new Schema({
     },
     email: {
         type: String,
-        require: "Please enter your contact's email",
+        // require: "Please enter your contact's email",
         trim: true
     },
     phone: {
         type: String,
-        require: "Please enter your contact's phone",
+        // require: "Please enter your contact's phone",
         trim: true
     }
 });

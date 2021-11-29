@@ -65,3 +65,17 @@ mutation updateJob($_id: ID!, $jobTitle: String!, $employer: String!, $applicati
     }
 }
 `;
+
+export const ADD_CONTACT = gql`
+mutation addContact($_id: ID!, $firstName: String!, $lastName: String!, $email: String, $phone: String) {
+    addContact(_id: $_id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone) {
+        _id,
+        contacts {
+            firstName,
+            lastName,
+            phone,
+            email 
+        }
+    }
+}
+`;

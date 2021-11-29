@@ -34,8 +34,8 @@
 
 .loader {
   offset-path: path("M170,43.59a125,125,0,1,1-125-125A125,125,0,0,1,170,43.59Z");
-  -webkit-animation: loop 3s ease-in-out infinite;
-          animation: loop 3s ease-in-out infinite;
+  -webkit-animation: loop 1s ease-in-out infinite;
+          animation: loop 1s ease-in-out infinite;
   transform: rotate(90deg);
 }
 .loader svg {

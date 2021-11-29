@@ -51,7 +51,7 @@ const Job = () => {
     const { showJobModal } = useSelector(state => state.jobModal);
     const { showContactModal } = useSelector(state => state.contactModal);
     // manage show / hide contacts
-    const [showContacts, setShowContacts] = useState(false);
+    const [showContacts, setShowContacts] = useState(true);
     const [expand, setExpand] = useState(true);
 
 
@@ -187,8 +187,8 @@ const Job = () => {
                                 <div className={`contact-list-container ${expand ? 'expand' : 'collapse'}`}>
                                     {job.contacts.length >0 ?
                                     
-                                    job.contacts.map(contact => (
-                                        <ContactItem key={contact._id} contact={contact} job_id={_id} />
+                                    job.contacts.map((contact,index) => (
+                                        <ContactItem key={index} contact={contact} job_id={_id} />
                                     ))
                                     :
                                     'No contacts'

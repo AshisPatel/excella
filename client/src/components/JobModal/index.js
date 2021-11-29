@@ -255,12 +255,9 @@ const JobModal = () => {
                     </p>
                     <button
                         className={success ? 'button success' : 'button'}
-                        // type="button"
                         onClick={handleSubmit}
                     >
                         {success ? <FontAwesomeIcon icon="check" /> : loading ? <HorizontalLoader /> : <><FontAwesomeIcon icon="save" /> {update ? 'Update' : 'Create'}</>}
-                        {/* <FontAwesomeIcon icon="save" />
-                        {update ? 'Update' : 'Create'} */}
                     </button>
                 </form>
             </div>
