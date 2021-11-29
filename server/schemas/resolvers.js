@@ -1,6 +1,15 @@
 const { User, Job } = require('../models');
+//import GraphQL authentication error handling
+const { AuthenticationError } = require('apollo-server-express');
+//JWT function
+const { signToken } = require('../utils/auth');
 //import custom scalar resolver to format date-time responses in a human-readable format
 const { GraphQLDateTime } = require('graphql-iso-date');
+<<<<<<< HEAD
+=======
+//const { update } = require('../models/User');
+const { Types } = require('mongoose');
+>>>>>>> 990204f81cabc552a6c46265fdd9285418b2ee4a
 
 
 const resolvers = {
@@ -12,14 +21,33 @@ const resolvers = {
       DELETE: 'delete'
     },
     Query: {
+      //==========================Me Query==================================================
+      me: async (parent, args, context) => {
+        if(context.user) {
+          const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password')
+          .populate('jobs');
+          //populate tasks here
+
+          return userData;
+        }
+
+        throw new AuthenticationError('User not logged in!');
+
+      },
+      //==========================User Queries==================================================
       users: async () => {
         return User.find()
           .select('-__v -password')
       },
+<<<<<<< HEAD
       user: async (parent, { username }) => {
         return User.findOne({ username })
           .select('-__v -password')
       },     
+=======
+    //==========================Job Queries==================================================
+>>>>>>> 990204f81cabc552a6c46265fdd9285418b2ee4a
       jobs: async (parent, { username }) => {
         //allow for GET jobdata based on username
         const params = username ? { username } : {};
@@ -32,54 +60,124 @@ const resolvers = {
       }
     },
     Mutation: {
+<<<<<<< HEAD
       addTask: async(parent, { username, ...args }) => {
         const task = Task.create({args, username})
       },
       addJob: async(parent, args) => {
         const job = await Job.create(args);
+=======
+      //=========================User Mutations==============================================
+      addUser: async (parent, args) => {
+        const user = await User.create(args);
+        //create JWT token
+        const token = signToken(user);
 
-        //User.findOneAndUpdate here... $push job to User jobs: []
-
-          // .then(() => {
-          //  return User.findOneAndUpdate(
-          //    { userName: username },
-          //    { $push: { jobs: { _id: jobId} } },
-          //    { new: true },
-          //  )
-          // });
-
-        return job;
+        //return obj including user and token
+        return { user, token };
       },
-      deleteJob: async(parent,  jobId /* ,username */ ) => {
-        console.log(jobId);
-        const deletedJob = await Job.findOneAndDelete({ _id: jobId });
-          //once User resolver is finished, will pass in username as well to update User
+      //=======================Auth Mutation================================================
+      login: async (parent, { email, password }) => {
+        const user = await User.findOne({ email });
+>>>>>>> 990204f81cabc552a6c46265fdd9285418b2ee4a
 
-          // .then(() => {
-          //  return User.findOneAndUpdate(
-          //    { userName: username },
-          //    { $pull: { jobs: { _id: jobId} } },
-          //    { new: true },
-          //  )
-          // });
+        if(!user) {
+          throw new AuthenticationError('Incorrect credentials');
+        }
 
-          return deletedJob;
+        const correctPw = await user.isCorrectPassword(password);
+
+        if(!correctPw) {
+          throw new AuthenticationError('Incorrect credentials');
+        }
+
+        const token = signToken(user);
+        return { user, token };
       },
-      updateJob: async(parent, {_id, ...jobArgs} ) => {
-        const updatedJob = await Job.findOneAndUpdate({ _id: _id  }, jobArgs, {new: true, runValidators: true });
+      //=======================Job Mutations===============================================
+      addJob: async(parent, args, context) => {
 
-        return updatedJob;
-      },
-      addContact: async(parent, {_id, ...contactArgs}) => {
-        const newContact = await Job.findOneAndUpdate(
-          { _id: _id }, 
-          { $push: {contacts: contactArgs}}, 
-          {new: true, runValidators: true }
-          );
+        console.log(context.user);
         
-        return newContact;
+        //if user is logged in, allow them to create a job
+        if(context.user) {
+          const job = await Job.create({...args, username: context.user.username});
+
+          //update User with the added Job
+          
+          console.log('Here '+ context.user._id);
+
+          _id = Types.ObjectId(context.user._id);
+
+          console.log(_id.toString());
+
+          console.log(_id);
+
+
+            await User.findOneAndUpdate(
+               { username: context.user.username },
+               { $push: { jobs: { _id: job._id} } },
+               { new: true },
+             );
+  
+          return job;
+        }
+
+        throw new AuthenticationError('You need to be logged in to add a Job!');
+
       },
-      deleteContact: async(parent, contactId) => {
+      deleteJob: async(parent, jobId, context ) => {
+
+        //if user is logged in, allow them to delete a job
+        if(context.user) {
+          console.log(jobId);
+          const deletedJob = await Job.findOneAndDelete({ _id: jobId });
+
+
+            //once User resolver is finished, will pass in username as well to update User
+            await User.findOneAndUpdate(
+              { username: context.user.username },
+              { $pull: { jobs: { _id: deletedJob._id} } },
+              { new: true },
+            );
+  
+            return deletedJob;
+        }
+
+        throw new AuthenticationError('You need to be logged in to delete a Job!')
+
+      },
+      updateJob: async(parent, {_id, ...jobArgs}, context ) => {
+
+        //allow user to update a current job entry if logged in
+        if(context.user) {
+          const updatedJob = await Job.findOneAndUpdate({ _id: _id  }, jobArgs, {new: true, runValidators: true });
+
+          return updatedJob;
+        }
+
+        throw new AuthenticationError('You need to be logged in to updated a Job!');
+
+      },
+      addContact: async(parent, {_id, ...contactArgs}, context) => {
+
+        //if logged in, allow users to add a contact
+        if(context.user) {
+          const newContact = await Job.findOneAndUpdate(
+            { _id: _id }, 
+            { $push: {contacts: contactArgs}}, 
+            {new: true, runValidators: true }
+            );
+          
+          return newContact;
+        }
+
+        throw new AuthenticationError('You need to be logged in to add a Contact!');
+      },
+      deleteContact: async(parent, contactId, context) => {
+
+        //if logged in, allow user to delete a current contact entry
+        if(context.user) {
         //update a specific contact by _id within a Job
         console.log('-----------contactId to Delete--------------');
         console.log(contactId);
@@ -90,42 +188,52 @@ const resolvers = {
           );
 
           return updatedJob;
+        }
+
+        throw new AuthenticationError('You must be logged in to delete a Contact!');
+
       },
-      updateContact: async(parent, { _id, ...updateArgs }) => {
+      updateContact: async(parent, { _id, ...updateArgs }, context) => {
+
+        //allow user to updated a current contact if logged in
+        if(context.user) {
         //update a specific contact by _id within a Job
-        console.log('-----------updateArguments--------------');
-        console.log(updateArgs);
-        const updatedJob = await Job.findOneAndUpdate(
-          { "contacts._id": _id },
-          { "$set":{
-              "contacts.$.firstName": updateArgs.firstName,
-              "contacts.$.lastName": updateArgs.lastName,
-              "contacts.$.email": updateArgs.email,
-              "contacts.$.phone": updateArgs.phone
-            } 
-          },
-          {new: true, runValidators: true }
-          );
+          console.log('-----------updateArguments--------------');
+          console.log(updateArgs);
+          const updatedJob = await Job.findOneAndUpdate(
+            { "contacts._id": _id },
+            { "$set":{
+                "contacts.$.firstName": updateArgs.firstName,
+                "contacts.$.lastName": updateArgs.lastName,
+                "contacts.$.email": updateArgs.email,
+                "contacts.$.phone": updateArgs.phone
+              } 
+            },
+            {new: true, runValidators: true }
+            );
 
-        console.log('-----------updatedJob--------------');
-        console.log(updatedJob);
+          console.log('-----------updatedJob--------------');
+          console.log(updatedJob);
         
-        let contactsArray = updatedJob.contacts;
+          let contactsArray = updatedJob.contacts;
 
-        //filter through contacts array to find the contact that was updated by the mutation
-        let updatedContact = contactsArray.filter(contact => {
-          if(contact._id.toString() === _id.toString()){
-            return true;
-          } else {
-            return false;
-          }
-        }).map(contact => {
-          console.log('-----------updatedContact--------------');
-          console.log(contact);
-          return contact;
-        })
+          //filter through contacts array to find the contact that was updated by the mutation
+          let updatedContact = contactsArray.filter(contact => {
+            if(contact._id.toString() === _id.toString()){
+              return true;
+            } else {
+              return false;
+            }
+          }).map(contact => {
+            console.log('-----------updatedContact--------------');
+            console.log(contact);
+            return contact;
+          });
 
-        return updatedContact[0];
+          return updatedContact[0];
+        }
+
+        throw new AuthenticationError('You must be logged in to update a Contact!');
       }
     }
 };
