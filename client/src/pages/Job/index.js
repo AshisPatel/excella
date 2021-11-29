@@ -18,7 +18,7 @@ import { DELETE_JOB } from '../../utils/mutations';
 import Auth from '../../utils/Auth';
 
 const Job = () => {
-    const username = Auth.getTokenData().data.username; 
+    const username = Auth.loggedIn() ? Auth.getTokenData().data.username : ''; 
     const { _id } = useParams();
     const { loading, data } = useQuery(QUERY_SINGLE_JOB, {
         variables: {

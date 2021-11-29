@@ -13,7 +13,8 @@ const JobCRM = () => {
     const { showJobModal } = useSelector(state => state.jobModal);
     const columnSizing = 'col-9 col-md-5 col-lg-4'
 
-    const username = Auth.getTokenData().data.username; 
+    const username = Auth.loggedIn() ? Auth.getTokenData().data.username : ''; 
+
     const { loading, data } = useQuery(QUERY_JOBS, {
         variables: {
             username

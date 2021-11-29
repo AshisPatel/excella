@@ -35,7 +35,7 @@ const JobModal = () => {
         }
     });
 
-    // Not 100% sure why I don't need to update anything here
+    // Should any issues arise with updating a job -> look into updating cache of QUERY_SINGLE_JOB and QUERY_JOBS here
     const [updateJob] = useMutation(UPDATE_JOB); 
     // set loading and success state for submitting data
     const [loading, setLoading] = useState(false);
