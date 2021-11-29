@@ -1,8 +1,6 @@
 const { User, Job } = require('../models');
 //import custom scalar resolver to format date-time responses in a human-readable format
 const { GraphQLDateTime } = require('graphql-iso-date');
-const { update } = require('../models/User');
-const Task = require('../models/Task');
 
 
 const resolvers = {
@@ -34,6 +32,9 @@ const resolvers = {
       }
     },
     Mutation: {
+      addTask: async(parent, { username, ...args }) => {
+        const task = Task.create({args, username})
+      },
       addJob: async(parent, args) => {
         const job = await Job.create(args);
 

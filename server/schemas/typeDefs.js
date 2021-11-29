@@ -20,7 +20,7 @@ const typeDefs = gql`
     
     type Task {
         _id: ID,
-        Category: TaskCategory,
+        category: TaskCategory,
         taskContent: String,
         createdAt: String,
         complete: Boolean
@@ -54,6 +54,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
+        addTask(taskContent: String!, category: String!, complete: Boolean!, username: String!): Task
         addJob(username: String!, jobTitle: String!, employer: String!, applicationStatus: String!, lastUpdated: String!): Job
         deleteJob(_id: ID!): Job
         updateJob(_id: ID!, jobTitle: String, employer: String, applicationStatus: String, lastUpdated: String): Job
