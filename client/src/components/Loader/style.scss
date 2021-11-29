@@ -33,7 +33,7 @@ $gold: #bc992B;
 .loader {
     // change path to appropriate size for where it will be used to determine loading
     offset-path: path("M170,43.59a125,125,0,1,1-125-125A125,125,0,0,1,170,43.59Z");
-    animation: loop 1s ease-in-out infinite;
+    animation: loop 0.75s ease-in-out infinite;
     transform: rotate(90deg);
    
     & svg {

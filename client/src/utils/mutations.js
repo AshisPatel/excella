@@ -71,10 +71,34 @@ mutation addContact($_id: ID!, $firstName: String!, $lastName: String!, $email: 
     addContact(_id: $_id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone) {
         _id,
         contacts {
+            _id, 
             firstName,
             lastName,
             phone,
             email 
+        }
+    }
+}
+`;
+
+export const UPDATE_CONTACT = gql`
+mutation updateContact($_id: ID!, $firstName: String!, $lastName: String!, $email: String, $phone: String) {
+    updateContact(_id: $_id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone) {
+        _id,
+        firstName,
+        lastName,
+        phone,
+        email 
+    }
+}
+`;
+
+export const DELETE_CONTACT = gql`
+mutation deleteContact($_id: ID!) {
+    deleteContact(_id: $_id) {
+        _id,
+        contacts {
+            _id
         }
     }
 }

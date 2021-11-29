@@ -22,6 +22,7 @@ query singleJob($_id: ID!) {
         lastUpdated
         applicationStatus
         contacts {
+            _id
             firstName
             lastName
             phone
