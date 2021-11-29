@@ -4,7 +4,7 @@ import validateEmail from "../../utils/validateEmail";
 import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
 import Auth from "../../utils/Auth";
-import SlidingLoader from "../SlidingLoader";
+import HorizontalLoader from "../HorizontalLoader";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../../utils/mutations";
 
@@ -60,11 +60,12 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                 setLoading(false);
                 setSuccess(true); 
                 Auth.login(data.login.token);
+                setTimeout(() => {
+                    closeHandler()
+                }, 500);
             },1000)
            
-            setTimeout(() => {
-                closeHandler()
-            }, 1500);
+            
         } catch(err) {
             console.error(error); 
             setLoading(false); 
@@ -184,7 +185,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                     </p>
                     <button className={success ? 'button success' : 'button'}>
                         {
-                            success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : "Login"
+                            success ? <FontAwesomeIcon icon="check" /> : loading ? <HorizontalLoader /> : "Login"
                         }
                     </button>
                     <span className="divider">Need to create an account?</span>

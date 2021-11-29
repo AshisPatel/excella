@@ -40,7 +40,7 @@ const SideNav = () => {
 
         setTimeout(() => {
             Auth.logout();
-        }, 600);
+        }, 400);
     };
 
     const toggleDropDown = async () => {

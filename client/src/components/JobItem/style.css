@@ -1,10 +1,6 @@
 .job-item-btn-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   margin-right: 0.25rem;
 }
 
@@ -12,15 +8,11 @@
   background-color: transparent;
   border: none;
   font-size: 1rem;
-  -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
-
 .job-item-btn:hover, .job-item-btn :focus {
   color: rgba(40, 40, 40, 0.7);
 }
-
 .job-item-btn:active {
   color: #EBECE9;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

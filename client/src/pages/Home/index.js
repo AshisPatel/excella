@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import './style.css';
-import ExcellaIcon from '../../components/ExcellaIcon';
 import ExcellaShadowIcon from '../../components/ExcellaShadowIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Auth from "../../utils/Auth";
@@ -61,6 +60,7 @@ const Home = () => {
 
     return (
         <section className="container">
+           
             <div className="row optional-margin">
                 <div className={`col-4 col-lg-2 offset-1 home-sprite-wrapper ${slideIn ? 'excella-slide-in' : 'hover-1'}`}>
                     <ExcellaShadowIcon />

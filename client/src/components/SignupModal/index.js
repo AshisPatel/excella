@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import validateEmail from "../../utils/validateEmail";
 import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
-import SlidingLoader from "../SlidingLoader";
+import HorizontalLoader from "../HorizontalLoader";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 
@@ -70,12 +70,14 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
             });
             console.log(data); 
             // store token in localStorage
-            setLoading(false); 
-            setSuccess(true);
-            Auth.login(data.addUser.token);
             setTimeout(() => {
-                closeHandler();
-            },500);  
+                setLoading(false);
+                setSuccess(true); 
+                Auth.login(data.addUser.token);
+                setTimeout(() => {
+                    closeHandler()
+                }, 500);
+            },1000) 
         } catch(err) {
             console.error(err)
             setLoading(false);
@@ -221,7 +223,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                         {warning}
                     </p>
                     <button className={success ? 'button success' : 'button'}>
-                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : "Create Account"}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <HorizontalLoader /> : "Create Account"}
                     </button>
                     <span className="divider">Already have an account?</span>
                     <button 

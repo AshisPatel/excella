@@ -5,6 +5,7 @@ import JobTable from "../../components/JobTable";
 import JobModal from '../../components/JobModal';
 import JobCRMOptions from "../../components/JobCRMOptions";
 import NavError from "../../components/NavError";
+import Loader from '../../components/Loader';
 import { useQuery } from '@apollo/client';
 import { QUERY_JOBS } from '../../utils/queries';
 import Auth from "../../utils/Auth";
@@ -45,12 +46,13 @@ const JobCRM = () => {
                 <JobCRMOptions jobs={jobs}/>
             </div>
       
-
-            <div className="row">
+            {loading ? 
+                <Loader />    
+                :
                 <div className={`col-10 col-md-8 col-lg-6 job-table-wrapper`}>
                     <JobTable jobs={jobs}/>
                 </div>
-            </div>
+            }
             {showJobModal && <JobModal />}
         </div>
     );

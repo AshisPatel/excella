@@ -9,8 +9,7 @@
   background-color: #C99200;
   padding: 1rem;
   border-radius: 0.5rem;
-  -webkit-box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
-          box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
 }
 
 .job-table-wrapper {
@@ -18,5 +17,4 @@
   margin-right: auto;
   margin-top: 1rem;
   padding-bottom: 2rem;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

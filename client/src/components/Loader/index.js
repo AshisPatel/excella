@@ -4,11 +4,13 @@ import './style.css';
 
 const Loader = () => {
     return (
-        <div className="loading-container">
-             <span>Loading...</span>
-            <div className="loader-wrapper">
-               
-                <ExcellaIcon />
+        <div className="loading-container" >
+            <div className="loading-wrapper">
+                <span>Loading</span>
+                <div className="loader">
+
+                    <ExcellaIcon />
+                </div>
             </div>
         </div>
     );

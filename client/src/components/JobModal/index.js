@@ -5,7 +5,7 @@ import { closeJobModal } from '../../redux/jobModal';
 import dayjs from 'dayjs';
 import validateString from '../../utils/validateString';
 import ExcellaIcon from '../ExcellaIcon';
-import SlidingLoader from '../SlidingLoader';
+import HorizontalLoader from '../HorizontalLoader';
 import { useMutation } from '@apollo/client';
 import { ADD_JOB, UPDATE_JOB } from '../../utils/mutations';
 import { QUERY_JOBS } from "../../utils/queries";
@@ -258,7 +258,7 @@ const JobModal = () => {
                         // type="button"
                         onClick={handleSubmit}
                     >
-                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : <><FontAwesomeIcon icon="save" /> {update ? 'Update' : 'Create'}</>}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <HorizontalLoader /> : <><FontAwesomeIcon icon="save" /> {update ? 'Update' : 'Create'}</>}
                         {/* <FontAwesomeIcon icon="save" />
                         {update ? 'Update' : 'Create'} */}
                     </button>
