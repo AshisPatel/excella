@@ -99,6 +99,8 @@ const resolvers = {
             args, 
             { new: true, runValidators: true }
           );
+
+          return updatedTask;
         }
       },
       deleteTask: async(parent, taskId, context) => {
@@ -111,9 +113,19 @@ const resolvers = {
             { $pull: { tasks: { _id: deletedTask._id }}},
             { new: true },
           );
+
+          return deletedTask;
         }
 
         throw new AuthenticationError('You need to be logged in to delete a task!');
+      },
+      deleteAllTasks: async(parent, context) => {
+        if (context.user) {
+           await Task.deleteMany(
+             { username: context.user.username },
+           );
+
+        }
       },
       //=======================Job Mutations===============================================
       addJob: async(parent, args, context) => {
