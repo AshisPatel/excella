@@ -29,7 +29,7 @@ const Home = () => {
         }
     ];
 
-    const username = Auth.loggedIn() && Auth.getTokenData().username ;
+    const username = Auth.loggedIn() && Auth.getTokenData().data.username ;
 
     // chooses which feature will be displayed in the info box
     let currentFeature = features[fi];

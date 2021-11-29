@@ -25,3 +25,16 @@ mutation login($email: String!, $password: String!) {
     }
 }
 `;
+
+export const ADD_JOB = gql`
+mutation addJob($username: String!, $jobTitle: String!, $employer: String!, $applicationStatus: String!, $lastUpdated: String!) {
+    addJob(username: $username, jobTitle: $jobTitle, employer: $employer, applicationStatus: $applicationStatus, lastUpdated: $lastUpdated) {
+        _id
+        jobTitle
+        employer
+        lastUpdated
+        applicationStatus
+        username
+    }
+}
+`;

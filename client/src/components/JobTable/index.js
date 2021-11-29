@@ -4,41 +4,62 @@ import { useSelector } from 'react-redux';
 import JobItem from '../JobItem';
 import NavError from "../NavError";
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import { useQuery } from '@apollo/client';
+import { QUERY_JOBS } from '../../utils/queries';
+import Auth from "../../utils/Auth";
 
 const JobTable = () => {
+    // query for the user's jobs
+    console.log(Auth.getTokenData().data.username); 
+    const { loading, data } = useQuery(QUERY_JOBS, {
+        variables: {
+            username: Auth.getTokenData().data.username
+        }
+    }); 
+
+    const jobs = data?.jobs || []; 
+
+    console.log(jobs); 
+
+  
+
     const { width } = useWindowDimensions();
     // Get jobs array from the global state jobCRM
-    const { jobs, jobTitleFilter, employerFilter } = useSelector(state => state.jobCRM);
+    const { jobTitleFilter, employerFilter } = useSelector(state => state.jobCRM);
     const [displayedJobs, setDisplayedJobs] = useState(jobs); 
     // run this useEffect to update displayedJobs when anything that could change the relevant jobs to our search update, this is the filter that we impose on the employer / job title or the overall jobs list
-    useEffect(() => {
+    // useEffect(() => {
 
-        // if there are no filters, return out of function 
-        if(!jobTitleFilter && !employerFilter) {
-            return setDisplayedJobs([...jobs]); 
-        }
+    //     // if there are no filters, return out of function 
+    //     if(!jobTitleFilter && !employerFilter) {
+    //         return setDisplayedJobs([...jobs]); 
+    //     }
 
-        let relevantJobs = [...jobs];
-        // parse through jobs array and check all job title's agains the filter
-        if (jobTitleFilter) {
-            relevantJobs = relevantJobs.filter(job => job.jobTitle.toLowerCase().trim() === jobTitleFilter);
-        } 
-         // parse remaining jobs through employer filter
-        if (employerFilter) {
-            relevantJobs = relevantJobs.filter(job => job.employer.toLowerCase().trim() === employerFilter); 
-        }
+    //     let relevantJobs = [...jobs];
+    //     // parse through jobs array and check all job title's agains the filter
+    //     if (jobTitleFilter) {
+    //         relevantJobs = relevantJobs.filter(job => job.jobTitle.toLowerCase().trim() === jobTitleFilter);
+    //     } 
+    //      // parse remaining jobs through employer filter
+    //     if (employerFilter) {
+    //         relevantJobs = relevantJobs.filter(job => job.employer.toLowerCase().trim() === employerFilter); 
+    //     }
         
-        // set searchedJobs equal to relevantJobs
-        setDisplayedJobs([...relevantJobs]);
+    //     // set searchedJobs equal to relevantJobs
+    //     setDisplayedJobs([...relevantJobs]);
         
-    },[jobs, jobTitleFilter, employerFilter]);
+    // },[jobs, jobTitleFilter, employerFilter]);
 
     useEffect(() => console.log(displayedJobs), [displayedJobs]);
 
-    if (displayedJobs.length === 0) {
-        return (
-            <NavError message="No jobs found!" />
-        )
+    // if (displayedJobs.length === 0) {
+    //     return (
+    //         <NavError message="No jobs found!" />
+    //     )
+    // }
+
+    if (loading) {
+        return (<div>Loading</div>)
     }
 
 
@@ -58,7 +79,7 @@ const JobTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {displayedJobs.map(job => <JobItem job={job} key={job._id}/>)}
+                    {jobs.map(job => <JobItem job={job} key={job._id}/>)}
                 </tbody>
         </table>
     )

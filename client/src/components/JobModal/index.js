@@ -2,12 +2,50 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeJobModal } from '../../redux/jobModal';
-import { addJob, updateJob } from '../../redux/jobCRM';
+// import { addJob, updateJob } from '../../redux/jobCRM';
 import dayjs from 'dayjs';
 import validateString from '../../utils/validateString';
 import ExcellaIcon from '../ExcellaIcon';
+import SlidingLoader from '../SlidingLoader';
+import { useMutation } from '@apollo/client';
+import { ADD_JOB } from '../../utils/mutations';
+import { QUERY_JOBS } from "../../utils/queries"; 
+import Auth from '../../utils/Auth';
 
 const JobModal = () => {
+
+    const username = Auth.getTokenData().data.username; 
+    // import addJob mutation
+    // may need to updateCache here
+    const [addJob, { error }] = useMutation(ADD_JOB, {
+        update(cache, { data : { addJob }}) {
+            try {
+                console.log(cache.readQuery({ query: QUERY_JOBS })); 
+                // read what is currently in the cache
+                const { jobs } = cache.readQuery(
+                    { query: QUERY_JOBS, 
+                        variables: {
+                            username
+                        } 
+                    });
+                console.log(jobs); 
+                // add our new job to the cache
+                cache.writeQuery({
+                    query: QUERY_JOBS,
+                    data: { jobs: [addJob, ...jobs]},
+                    variables: { 
+                        username
+                    }
+                });
+
+            } catch (err) {
+                console.error(err); 
+            }
+        }
+    });
+    // set loading and success state for submitting data
+    const [loading, setLoading] = useState(false); 
+    const [success, setSuccess] = useState(false); 
     const dispatch = useDispatch();
     // useRef to track first text input (job title);
     const titleInputRef = useRef();
@@ -40,7 +78,7 @@ const JobModal = () => {
         setUpdateDate(prevState => !prevState);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         // check if inputs are present and valid add validators!!!
         const { jobTitle ,employer, applicationStatus} = formState;
         e.preventDefault();
@@ -56,20 +94,46 @@ const JobModal = () => {
         // submit here using graphQL and then trim the values prior to submission!
         // submit changes to global state
         // form object... (this will be replaced by the returned object from graphQL)
-        const randId = Math.round(Math.random()*10000000000000);
-        const jobItem = {
-            _id: update ? job._id : randId,
-            jobTitle: jobTitle.trim(),
-            employer: employer.trim(),
-            applicationStatus: applicationStatus.trim(),
-            // if updateDate is true replace with current date, if false and the job exists, use previous value -> if the job does not exist use current date
-            lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated ? job.lastUpdated : dayjs().format('MM/DD/YYYY') ,
-            contacts: update ? job.contacts : []
-        };
+        // const randId = Math.round(Math.random()*10000000000000);
+        // const jobItem = {
+        //     _id: update ? job._id : randId,
+        //     jobTitle: jobTitle.trim(),
+        //     employer: employer.trim(),
+        //     applicationStatus: applicationStatus.trim(),
+        //     // if updateDate is true replace with current date, if false and the job exists, use previous value -> if the job does not exist use current date
+        //     lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated ? job.lastUpdated : dayjs().format('MM/DD/YYYY') ,
+        //     contacts: update ? job.contacts : []
+        // };
         // check if update or adding new job
-        update ? dispatch(updateJob(jobItem)) : dispatch(addJob(jobItem));
+        // update ? dispatch(updateJob(jobItem)) : dispatch(addJob(jobItem));
         setWarning('');
-        closeModal(); 
+        try {
+            setLoading(true); 
+            const { data } = await addJob({
+                variables: {
+                    username, 
+                    jobTitle: jobTitle.trim(),
+                    employer: employer.trim(),
+                    applicationStatus: applicationStatus.trim(),
+                    lastUpdated: dayjs().format('MM/DD/YYYY'),
+                    contacts: []
+                }
+            });
+            // console.log(data); 
+            setTimeout(() => {
+                setLoading(false); 
+                setSuccess(true); 
+                setTimeout(() => {
+                    closeModal(); 
+                }, 500);
+            }, 1000);
+            
+        } catch (err) {
+            console.log(JSON.stringify(err, null, 2));
+            setWarning('Problem submitting job info');
+            setLoading(false); 
+        }
+        
     }
 
     const closeModal = () => {
@@ -171,12 +235,13 @@ const JobModal = () => {
                         {warning}
                     </p>
                     <button
-                        className="button"
+                        className={ success ? 'button success' : 'button'}
                         // type="button"
                         onClick={handleSubmit}
                     >
-                        <FontAwesomeIcon icon="save" />
-                        {update ? 'Update' : 'Create'}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> :  <><FontAwesomeIcon icon="save" /> Create</>}
+                        {/* <FontAwesomeIcon icon="save" />
+                        {update ? 'Update' : 'Create'} */}
                     </button>
                 </form>
             </div>

@@ -52,7 +52,7 @@ const jobSchema = new Schema({
     applicationStatus: {
         type: String,
         required: 'Please enter a job application status',
-        enum: ['submitted', 'interview', 'closed-no offer', 'offer']
+        // enum: ['submitted', 'interview', 'closed-no offer', 'offer']
     },
     username: {
         type: String,
