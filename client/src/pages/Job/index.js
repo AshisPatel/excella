@@ -28,13 +28,19 @@ const Job = () => {
     // updateCache to remove the deleted job 
     const [deleteJob, { error }] = useMutation(DELETE_JOB, {
         update(cache, { data: { deleteJob }}) {
+            // the user could potentially navigate directly to the job page and delete the job, thus preventing QUERY_JOBS from ever having been called -> so we need to wrap this in a try...catch
+            try {
+                cache.updateQuery({
+                    query: QUERY_JOBS,
+                    variables: {
+                        username
+                    }
+                }, (data) => ({ jobs: data.jobs.filter(job => job._id !== deleteJob._id)}))
+            } catch(err) {
+                console.error(err); 
+            }
             // we will get all the jobs from the QUERY_JOBS query and set the jobs key equal to the array of all jobs that do not contain the _id of the deleted job. 
-            cache.updateQuery({
-                query: QUERY_JOBS,
-                variables: {
-                    username
-                }
-            }, (data) => ({ jobs: data.jobs.filter(job => job._id !== deleteJob._id)}))
+         
         }
     });
 
