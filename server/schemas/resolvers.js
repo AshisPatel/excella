@@ -77,7 +77,44 @@ const resolvers = {
         return { user, token };
       },
       //=======================Task Mutations===============================================
-      
+      addTask: async(parent, args, context) => {
+        if (context.user) {
+          const task = await Task.create({ ...args, username: context.user.username })
+
+          await User.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $push: { tasks: task._id } },
+            { new: true }
+          );
+
+          return task;
+        }
+
+        throw new AuthenticationError('You need to be logged in to add a task!');
+      },
+      updateTask: async(parent, {_id, ...args}, context) => {
+        if (context.user) {
+          const updatedTask = await Task.findOneAndUpdate(
+            { _id: _id}, 
+            args, 
+            { new: true, runValidators: true }
+          );
+        }
+      },
+      deleteTask: async(parent, taskId, context) => {
+        if(context.user) {
+          //if the user is logged in, find task and delete it
+          const deletedTask = await Task.findOneAndDelete({ _id: taskId });
+
+          await User.findOneAndUpdate(
+            { username: context.user.username },
+            { $pull: { tasks: { _id: deletedTask._id }}},
+            { new: true },
+          );
+        }
+
+        throw new AuthenticationError('You need to be logged in to delete a task!');
+      },
       //=======================Job Mutations===============================================
       addJob: async(parent, args, context) => {
 

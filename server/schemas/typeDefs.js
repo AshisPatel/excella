@@ -62,6 +62,9 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
+        addTask(username: String!, taskContent: String!, category: String!, complete: Boolean!): Task
+        deleteTask(_id: ID!): Task
+        updateTask(_id: ID!): Task
         addJob(username: String!, jobTitle: String!, employer: String!, applicationStatus: String!, lastUpdated: String!): Job
         deleteJob(_id: ID!): Job
         updateJob(_id: ID!, jobTitle: String, employer: String, applicationStatus: String, lastUpdated: String): Job
