@@ -12,7 +12,7 @@ import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
 import Job from "./pages/Job";
 import NoMatch from "./pages/NoMatch";
-import Auth from "./utils/auth";
+import Auth from "./utils/Auth";
 
 // create link to graphql server at its endpoint in our server-side code
 const httpLink = createHttpLink({
@@ -27,7 +27,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorizaton: token ? `Bearer ${token}` : ''
+      authorization: token ? `Bearer ${token}` : ''
     }
   };
 });

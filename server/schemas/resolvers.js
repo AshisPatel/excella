@@ -5,11 +5,8 @@ const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 //import custom scalar resolver to format date-time responses in a human-readable format
 const { GraphQLDateTime } = require('graphql-iso-date');
-<<<<<<< HEAD
-=======
 //const { update } = require('../models/User');
 const { Types } = require('mongoose');
->>>>>>> 990204f81cabc552a6c46265fdd9285418b2ee4a
 
 
 const resolvers = {
@@ -40,14 +37,7 @@ const resolvers = {
         return User.find()
           .select('-__v -password')
       },
-<<<<<<< HEAD
-      user: async (parent, { username }) => {
-        return User.findOne({ username })
-          .select('-__v -password')
-      },     
-=======
     //==========================Job Queries==================================================
->>>>>>> 990204f81cabc552a6c46265fdd9285418b2ee4a
       jobs: async (parent, { username }) => {
         //allow for GET jobdata based on username
         const params = username ? { username } : {};
@@ -60,13 +50,6 @@ const resolvers = {
       }
     },
     Mutation: {
-<<<<<<< HEAD
-      addTask: async(parent, { username, ...args }) => {
-        const task = Task.create({args, username})
-      },
-      addJob: async(parent, args) => {
-        const job = await Job.create(args);
-=======
       //=========================User Mutations==============================================
       addUser: async (parent, args) => {
         const user = await User.create(args);
@@ -79,7 +62,6 @@ const resolvers = {
       //=======================Auth Mutation================================================
       login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
->>>>>>> 990204f81cabc552a6c46265fdd9285418b2ee4a
 
         if(!user) {
           throw new AuthenticationError('Incorrect credentials');
@@ -94,6 +76,8 @@ const resolvers = {
         const token = signToken(user);
         return { user, token };
       },
+      //=======================Task Mutations===============================================
+      
       //=======================Job Mutations===============================================
       addJob: async(parent, args, context) => {
 

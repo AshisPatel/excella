@@ -6,12 +6,12 @@ const typeDefs = gql`
         token: ID!
         user: User
     }
+    
     type User {
         _id: ID
         username: String
         password: String
         email: String
-        password: String
         jobs: [Job]
         tasks: [Task]
     }
@@ -60,12 +60,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-<<<<<<< HEAD
-        addTask(taskContent: String!, category: String!, complete: Boolean!, username: String!): Task
-=======
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
->>>>>>> 990204f81cabc552a6c46265fdd9285418b2ee4a
         addJob(username: String!, jobTitle: String!, employer: String!, applicationStatus: String!, lastUpdated: String!): Job
         deleteJob(_id: ID!): Job
         updateJob(_id: ID!, jobTitle: String, employer: String, applicationStatus: String, lastUpdated: String): Job
