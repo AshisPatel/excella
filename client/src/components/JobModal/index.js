@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeJobModal } from '../../redux/jobModal';
-// import { addJob, updateJob } from '../../redux/jobCRM';
 import dayjs from 'dayjs';
 import validateString from '../../utils/validateString';
 import ExcellaIcon from '../ExcellaIcon';
 import SlidingLoader from '../SlidingLoader';
 import { useMutation } from '@apollo/client';
-import { ADD_JOB } from '../../utils/mutations';
+import { ADD_JOB, UPDATE_JOB } from '../../utils/mutations';
 import { QUERY_JOBS } from "../../utils/queries";
 import Auth from '../../utils/Auth';
 
@@ -21,35 +20,23 @@ const JobModal = () => {
     const [addJob, { error }] = useMutation(ADD_JOB, {
         update(cache, { data: { addJob } }) {
             try {
-                // read what is currently in the cache
-                // const { jobs } = cache.readQuery({
-                //     query: QUERY_JOBS,
-                //     variables: {
-                //         username
-                //     }
-                // });
-                // // add our new job to the cache
-                // cache.writeQuery({
-                //     query: QUERY_JOBS,
-                //     data: { jobs: [addJob, ...jobs] },
-                //     variables: {
-                //         username
-                //     }
-                // });
                 // we run the updateQuery function and pass in the query that we need to update along with any necessary variables for that query
                 // we then run an update function on the data returned from the query, in this case we are going to update the jobs entry of the query by adding in all the previous jobs and the new job returned in addJob
-                cache.updateQuery({ 
+                cache.updateQuery({
                     query: QUERY_JOBS,
                     variables: {
                         username
                     }
-                }, (data) => ({ jobs: [...data.jobs, addJob]}))
+                }, (data) => ({ jobs: [...data.jobs, addJob] }))
 
             } catch (err) {
                 console.error(err);
             }
         }
     });
+
+    // Not 100% sure why I don't need to update anything here
+    const [updateJob] = useMutation(UPDATE_JOB); 
     // set loading and success state for submitting data
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -114,31 +101,56 @@ const JobModal = () => {
         // check if update or adding new job
         // update ? dispatch(updateJob(jobItem)) : dispatch(addJob(jobItem));
         setWarning('');
-        try {
-            setLoading(true);
-            const { data } = await addJob({
-                variables: {
-                    username,
-                    jobTitle: jobTitle.trim(),
-                    employer: employer.trim(),
-                    applicationStatus: applicationStatus.trim(),
-                    lastUpdated: dayjs().format('MM/DD/YYYY'),
-                    contacts: []
-                }
-            });
-            // console.log(data); 
-            setTimeout(() => {
-                setLoading(false);
-                setSuccess(true);
+        if (!update) {
+            try {
+                setLoading(true);
+                const { data } = await addJob({
+                    variables: {
+                        username,
+                        jobTitle: jobTitle.trim(),
+                        employer: employer.trim(),
+                        applicationStatus: applicationStatus.trim(),
+                        lastUpdated: dayjs().format('MM/DD/YYYY'),
+                        contacts: []
+                    }
+                });
+                // console.log(data); 
                 setTimeout(() => {
-                    closeModal();
-                }, 500);
-            }, 1000);
+                    setLoading(false);
+                    setSuccess(true);
+                    setTimeout(() => {
+                        closeModal();
+                    }, 500);
+                }, 1000);
 
-        } catch (err) {
-            console.log(JSON.stringify(err, null, 2));
-            setWarning('Problem submitting job info');
-            setLoading(false);
+            } catch (err) {
+                console.log(JSON.stringify(err, null, 2));
+                setWarning('Problem submitting job info');
+                setLoading(false);
+            }
+        } else {
+            try {
+                setLoading(true);
+                const { data } = await updateJob({
+                    variables: {
+                        _id: job._id, 
+                        jobTitle: jobTitle.trim(),
+                        employer: employer.trim(),
+                        applicationStatus: applicationStatus.trim(),
+                        lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated
+                    }
+                });
+                console.log(data); 
+                setTimeout(() => {
+                    setLoading(false);
+                    setSuccess(true);
+                    setTimeout(() => {
+                        closeModal();
+                    }, 500);
+                }, 1000);
+            } catch (err) {
+
+            }
         }
 
     }
@@ -246,7 +258,7 @@ const JobModal = () => {
                         // type="button"
                         onClick={handleSubmit}
                     >
-                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : <><FontAwesomeIcon icon="save" /> Create</>}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : <><FontAwesomeIcon icon="save" /> {update ? 'Update' : 'Create'}</>}
                         {/* <FontAwesomeIcon icon="save" />
                         {update ? 'Update' : 'Create'} */}
                     </button>

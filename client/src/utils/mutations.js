@@ -47,3 +47,21 @@ mutation deleteJob($_id: ID!) {
     }
 }
 `;
+
+export const UPDATE_JOB = gql`
+mutation updateJob($_id: ID!, $jobTitle: String!, $employer: String!, $applicationStatus: String!, $lastUpdated: String! ) {
+    updateJob(_id: $_id, jobTitle: $jobTitle, employer: $employer, applicationStatus: $applicationStatus, lastUpdated: $lastUpdated) {
+        _id
+        jobTitle
+        employer
+        lastUpdated
+        applicationStatus
+        contacts {
+            firstName
+            lastName
+            phone
+            email
+        }
+    }
+}
+`;

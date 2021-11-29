@@ -11,7 +11,7 @@ import ContactModal from '../../components/ContactModal';
 import ContactItem from '../../components/ContactItem';
 import NavError from '../../components/NavError';
 import Loader from '../../components/Loader'; 
-import { newContactModal, updateContactModal } from '../../redux/contactModal';
+import { newContactModal } from '../../redux/contactModal';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_JOBS, QUERY_SINGLE_JOB } from '../../utils/queries';
 import { DELETE_JOB } from '../../utils/mutations';
