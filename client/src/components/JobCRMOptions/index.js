@@ -4,10 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { newJobModal } from "../../redux/jobModal";
 import { setJobFilters, clearJobFilters } from "../../redux/jobCRM";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Auth from '../../utils/Auth'; 
 
-const JobCRMSearch = () => {
+const JobCRMSearch = ({ jobs }) => {
+  
+
     const dispatch = useDispatch();
-    const { jobTitleFilter, employerFilter, jobs } = useSelector(state => state.jobCRM);
+    const { jobTitleFilter, employerFilter } = useSelector(state => state.jobCRM);
     const [jobTitleOptions, setJobTitleOptions] = useState([]);
     const [employerOptions, setEmployerOptions] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -113,12 +116,6 @@ const JobCRMSearch = () => {
     if (loading) {
         return (
             <div>Loading...</div>
-        )
-    }
-
-    if (!jobTitleOptions && !employerOptions) {
-        return (
-            <div>No options to filter from!</div>
         )
     }
 

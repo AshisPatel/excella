@@ -38,3 +38,12 @@ mutation addJob($username: String!, $jobTitle: String!, $employer: String!, $app
     }
 }
 `;
+
+export const DELETE_JOB = gql`
+mutation deleteJob($_id: ID!) {
+    deleteJob(_id: $_id) {
+        _id
+        jobTitle
+    }
+}
+`;

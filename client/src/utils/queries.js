@@ -12,3 +12,21 @@ query jobs($username: String) {
     }
 }
 `;
+
+export const QUERY_SINGLE_JOB = gql`
+query singleJob($_id: ID!) {
+    singleJob(_id:$_id) {
+        _id
+        jobTitle
+        employer
+        lastUpdated
+        applicationStatus
+        contacts {
+            firstName
+            lastName
+            phone
+            email 
+        }
+    }
+}
+`;

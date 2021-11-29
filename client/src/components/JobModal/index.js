@@ -9,43 +9,50 @@ import ExcellaIcon from '../ExcellaIcon';
 import SlidingLoader from '../SlidingLoader';
 import { useMutation } from '@apollo/client';
 import { ADD_JOB } from '../../utils/mutations';
-import { QUERY_JOBS } from "../../utils/queries"; 
+import { QUERY_JOBS } from "../../utils/queries";
 import Auth from '../../utils/Auth';
 
 const JobModal = () => {
-
-    const username = Auth.getTokenData().data.username; 
+    // get username from token 
+    const username = Auth.getTokenData().data.username;
     // import addJob mutation
-    // may need to updateCache here
+    // need to update cache so new jobs on the JobTable component render 
+    // update method will access our cache, and destructure out the data returned from the addJob mutation 
     const [addJob, { error }] = useMutation(ADD_JOB, {
-        update(cache, { data : { addJob }}) {
+        update(cache, { data: { addJob } }) {
             try {
-                console.log(cache.readQuery({ query: QUERY_JOBS })); 
                 // read what is currently in the cache
-                const { jobs } = cache.readQuery(
-                    { query: QUERY_JOBS, 
-                        variables: {
-                            username
-                        } 
-                    });
-                console.log(jobs); 
-                // add our new job to the cache
-                cache.writeQuery({
+                // const { jobs } = cache.readQuery({
+                //     query: QUERY_JOBS,
+                //     variables: {
+                //         username
+                //     }
+                // });
+                // // add our new job to the cache
+                // cache.writeQuery({
+                //     query: QUERY_JOBS,
+                //     data: { jobs: [addJob, ...jobs] },
+                //     variables: {
+                //         username
+                //     }
+                // });
+                // we run the updateQuery function and pass in the query that we need to update along with any necessary variables for that query
+                // we then run an update function on the data returned from the query, in this case we are going to update the jobs entry of the query by adding in all the previous jobs and the new job returned in addJob
+                cache.updateQuery({ 
                     query: QUERY_JOBS,
-                    data: { jobs: [addJob, ...jobs]},
-                    variables: { 
+                    variables: {
                         username
                     }
-                });
+                }, (data) => ({ jobs: [...data.jobs, addJob]}))
 
             } catch (err) {
-                console.error(err); 
+                console.error(err);
             }
         }
     });
     // set loading and success state for submitting data
-    const [loading, setLoading] = useState(false); 
-    const [success, setSuccess] = useState(false); 
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
     // useRef to track first text input (job title);
     const titleInputRef = useRef();
@@ -79,16 +86,16 @@ const JobModal = () => {
     }
 
     const handleSubmit = async (e) => {
-        // check if inputs are present and valid add validators!!!
-        const { jobTitle ,employer, applicationStatus} = formState;
+        // check if inputs are present and validators
+        const { jobTitle, employer, applicationStatus } = formState;
         e.preventDefault();
-        if(!jobTitle || !validateString(jobTitle)) {
+        if (!jobTitle || !validateString(jobTitle)) {
             return setWarning('Job title is blank or invalid');
         }
-        if(!employer || !validateString(employer)) {
+        if (!employer || !validateString(employer)) {
             return setWarning('Employer is blank or invalid');
         }
-        if(!applicationStatus || !validateString(applicationStatus)) {
+        if (!applicationStatus || !validateString(applicationStatus)) {
             return setWarning('Status is blank or invalid');
         }
         // submit here using graphQL and then trim the values prior to submission!
@@ -108,10 +115,10 @@ const JobModal = () => {
         // update ? dispatch(updateJob(jobItem)) : dispatch(addJob(jobItem));
         setWarning('');
         try {
-            setLoading(true); 
+            setLoading(true);
             const { data } = await addJob({
                 variables: {
-                    username, 
+                    username,
                     jobTitle: jobTitle.trim(),
                     employer: employer.trim(),
                     applicationStatus: applicationStatus.trim(),
@@ -121,19 +128,19 @@ const JobModal = () => {
             });
             // console.log(data); 
             setTimeout(() => {
-                setLoading(false); 
-                setSuccess(true); 
+                setLoading(false);
+                setSuccess(true);
                 setTimeout(() => {
-                    closeModal(); 
+                    closeModal();
                 }, 500);
             }, 1000);
-            
+
         } catch (err) {
             console.log(JSON.stringify(err, null, 2));
             setWarning('Problem submitting job info');
-            setLoading(false); 
+            setLoading(false);
         }
-        
+
     }
 
     const closeModal = () => {
@@ -180,7 +187,7 @@ const JobModal = () => {
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
-                                <FontAwesomeIcon icon='hard-hat'/>
+                                <FontAwesomeIcon icon='hard-hat' />
                             </span>
                         </div>
 
@@ -196,7 +203,7 @@ const JobModal = () => {
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
-                                <FontAwesomeIcon icon='briefcase'/>
+                                <FontAwesomeIcon icon='briefcase' />
                             </span>
                         </div>
 
@@ -212,34 +219,34 @@ const JobModal = () => {
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
-                                <FontAwesomeIcon icon='clipboard'/>
+                                <FontAwesomeIcon icon='clipboard' />
                             </span>
                         </div>
-                        {update && 
-                        <div className="input-wrapper">
-                            <label
-                                className="checkbox-label"
-                            >
-                                <input
-                                    name='updateDate'
-                                    type='checkbox'
-                                    className = 'input-checkbox'
-                                    checked = {updateDate}
-                                    onChange={() => toggleUpdateDate()}
-                                /> Update date?
-                            </label>
-                        </div>
+                        {update &&
+                            <div className="input-wrapper">
+                                <label
+                                    className="checkbox-label"
+                                >
+                                    <input
+                                        name='updateDate'
+                                        type='checkbox'
+                                        className='input-checkbox'
+                                        checked={updateDate}
+                                        onChange={() => toggleUpdateDate()}
+                                    /> Update date?
+                                </label>
+                            </div>
                         }
                     </div>
                     <p className="warning">
                         {warning}
                     </p>
                     <button
-                        className={ success ? 'button success' : 'button'}
+                        className={success ? 'button success' : 'button'}
                         // type="button"
                         onClick={handleSubmit}
                     >
-                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> :  <><FontAwesomeIcon icon="save" /> Create</>}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : <><FontAwesomeIcon icon="save" /> Create</>}
                         {/* <FontAwesomeIcon icon="save" />
                         {update ? 'Update' : 'Create'} */}
                     </button>
