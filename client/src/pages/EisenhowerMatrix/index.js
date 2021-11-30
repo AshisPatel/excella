@@ -8,9 +8,22 @@ import TaskContainer from "../../components/TaskContainer";
 import TaskModal from "../../components/TaskModal";
 import NavError from '../../components/NavError';
 import Auth from "../../utils/Auth";
+import { useQuery } from "@apollo/client";
+import { QUERY_TASKS } from '../../utils/queries';
 
 const EisenHowerMatrix = () => {
+    // query graphQL for task data
 
+    const username = Auth.loggedIn() ? Auth.getTokenData().data.username : '';
+    const { loading, data } = useQuery(QUERY_TASKS, {
+        variables: {
+            username
+        }
+    });
+    
+    const tasks = data?.tasks || [];
+
+    console.log({tasks});
 
     const columnSizing = 'offset-1 col-9 offset-md-3 col-md-5 offset-lg-4 col-lg-4';
     const { showTaskModal } = useSelector(state => state.taskModal); 
@@ -19,19 +32,19 @@ const EisenHowerMatrix = () => {
     const categories = [
         {
             title: 'Do',
-            category: 'do'
+            category: 'DO'
         },
         {
             title: 'Do Later',
-            category: 'doLater'
+            category: 'DO_LATER'
         },
         {
             title: 'Delegate',
-            category: 'delegate'
+            category: 'DELEGATE'
         },
         {
             title: 'Delete',
-            category: 'delete'
+            category: 'DELETE'
         }
     ]
 
@@ -74,7 +87,7 @@ const EisenHowerMatrix = () => {
                 </div>
             </div>
             <div className="row">
-                {categories.map((category, index) => <TaskContainer categoryData={category} index={index} key={category.title}/>)}
+                {categories.map((category, index) => <TaskContainer categoryData={category} tasks = {tasks} index={index} key={category.title}/>)}
             </div>
 
         </div>

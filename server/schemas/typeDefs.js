@@ -28,7 +28,8 @@ const typeDefs = gql`
         category: TaskCategory,
         taskContent: String,
         createdAt: String,
-        complete: Boolean
+        complete: Boolean,
+        username: String
     }
     
     type Contact {

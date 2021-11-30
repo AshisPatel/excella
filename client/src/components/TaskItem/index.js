@@ -8,7 +8,7 @@ import './style.css';
 
 const TaskItem = (props) => {
     const { task } = props;
-    const { content, completed, _id, category } = task;
+    const { taskContent, complete, _id } = task;
     const [showTaskModal, setShowTaskModal] = useState(false); 
     const [hovered, setHovered] = useState(false);
 
@@ -16,7 +16,7 @@ const TaskItem = (props) => {
 
     // update task status to be complete 
     const updateTaskStatus = () => {
-        const newTask = { ...task, completed: !completed };
+        const newTask = { ...task, complete: !complete };
         dispatch(updateTask(newTask));
     }
 
@@ -36,9 +36,9 @@ const TaskItem = (props) => {
                         className="task-item-btn"
                         onClick={() => updateTaskStatus()}
                     >
-                        {completed ? <FontAwesomeIcon icon="check-square" /> : <FontAwesomeIcon icon="square" />}
+                        {complete ? <FontAwesomeIcon icon="check-square" /> : <FontAwesomeIcon icon="square" />}
                     </button>
-                    <span className={`task-item-content ${completed && 'line-through'}`}>{content}</span>
+                    <span className={`task-item-content ${complete && 'line-through'}`}>{taskContent}</span>
                 </div>
 
 

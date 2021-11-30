@@ -3,19 +3,44 @@ import validatePassword from '../../utils/validatePassword';
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExcellaIcon from '../ExcellaIcon';
+import HorizontalLoader from '../HorizontalLoader';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask, updateTask } from '../../redux/eisenhowerMatrix';
 import { closeTaskModal } from "../../redux/taskModal";
+import { useMutation } from '@apollo/client';
+import { ADD_TASK } from '../../utils/mutations';
+import { QUERY_TASKS } from '../../utils/queries';
+import Auth from '../../utils/Auth';
 
 
 const TaskModal = () => {
+    // get username from token
+    const username = Auth.getTokenData().data.username;
+    // import mutation to add tasks to DB
+    // update cache of QUERY_TASKS
+    const [addTask] = useMutation(ADD_TASK, {
+        update(cache, { data: { addTask } }) {
+            try {
+                cache.updateQuery({
+                    query: QUERY_TASKS,
+                    variables: {
+                        username
+                    }
+                }, (data) => ({ tasks: [...data.tasks, addTask]}))
+            } catch(err) {
+                console.error(err); 
+            }
+        }
+    });
     const dispatch = useDispatch();
-    const {showTaskModal, task, update} = useSelector(state => state.taskModal); 
+    const { showTaskModal, task, update } = useSelector(state => state.taskModal);
     const { width } = useWindowDimensions();
     const transitionWidth = 767.9;
     // manipulate state variable to show task modal 
     // set modal fade in or fade out animation
     const [fadeOut, setFadeOut] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     // track form variables
     // use passed in variables for updating a task 
     const [formState, setFormState] = useState({
@@ -61,7 +86,7 @@ const TaskModal = () => {
     };
 
     // check inputs and then process task submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         // prevent page refresh
         e.preventDefault();
 
@@ -79,16 +104,49 @@ const TaskModal = () => {
         // trim content before sending the value!!!
         // this will be replaced when we can pass in the data from the useMutation hook
         const newTask = {
-            _id: update ? task._id : Math.round(Math.random()*1000),
-            username: 'Ashis',
-            content: formState.content,
+            username,
+            taskContent: formState.content,
             category: formState.category,
-            completed: false
+            complete: false
         }
+        console.log(newTask);
         // update task if this is an update modal, else add task
-        update ? dispatch(updateTask(newTask)) : dispatch(addTask(newTask));
-        setWarning('');
-        closeModal();
+        // update ? dispatch(updateTask(newTask)) : dispatch(addTask(newTask));
+        try {
+            setLoading(true);
+            if (!update) {
+                const { data } = await addTask({
+                    variables: {
+                        ...newTask
+                    }
+                });
+                console.log(data);
+                // } else {
+                //     const { data } = await updateContact({
+                //         variables: {
+                //             _id: contact._id,
+                //             firstName: firstName.trim(),
+                //             lastName: lastName.trim(),
+                //             email: email?.trim() || '',
+                //             phone: phone?.trim() || ''
+                //         }
+                //     })
+                // console.log(data);
+            }
+            setWarning('');
+            setTimeout(() => {
+                setLoading(false);
+                setSuccess(true);
+                setTimeout(() => {
+                    closeModal();
+                }, 500);
+            }, 1000);
+
+        } catch (err) {
+            console.log(JSON.stringify(err, null, 2));
+            setLoading(false);
+            setWarning('There was a problem adding the task.')
+        }
     }
 
     // close modal 
@@ -159,8 +217,8 @@ const TaskModal = () => {
                             ))}
                         </div>
 
-                        :   
-                        <select 
+                        :
+                        <select
                             value={formState.category}
                             onChange={handleChange}
                             name="category"
@@ -177,12 +235,11 @@ const TaskModal = () => {
                         {warning}
                     </p>
                     <button
-                        className="button"
-                        type="button"
+                        className={success ? 'button success' : 'button'}
+                        // type="button"
                         onClick={handleSubmit}
                     >
-                        <FontAwesomeIcon icon="save" />
-                        {update ? 'Update' : 'Create'}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <HorizontalLoader /> : <><FontAwesomeIcon icon="save" /> {update ? 'Update' : 'Create'}</>}
                     </button>
                 </form>
             </div>
