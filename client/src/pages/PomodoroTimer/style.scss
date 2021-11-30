@@ -1,0 +1,15 @@
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+$gold: #bc992B; 
+$light-gold: #E2CA78;
+
+// custom variables
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+$center-x: 0 auto auto 0;  
+
+
+.timer {
+    color: $gold; 
+}

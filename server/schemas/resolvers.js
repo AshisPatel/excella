@@ -76,9 +76,6 @@ const resolvers = {
       },
       //=======================Job Mutations===============================================
       addJob: async(parent, args, context) => {
-        console.log('You are trying to add a job!');
-        console.log(context.user);
-        
         //if user is logged in, allow them to create a job
         if(context.user) {
           const job = await Job.create({...args, username: context.user.username});
