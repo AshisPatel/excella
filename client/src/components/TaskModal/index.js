@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addTask, updateTask } from '../../redux/eisenhowerMatrix';
 import { closeTaskModal } from "../../redux/taskModal";
 import { useMutation } from '@apollo/client';
-import { ADD_TASK } from '../../utils/mutations';
+import { ADD_TASK, UPDATE_TASK } from '../../utils/mutations';
 import { QUERY_TASKS } from '../../utils/queries';
 import Auth from '../../utils/Auth';
 
@@ -32,8 +32,12 @@ const TaskModal = () => {
             }
         }
     });
+    // import mutation to update task in DB
+    const [updateTask] = useMutation(UPDATE_TASK); 
     const dispatch = useDispatch();
     const { showTaskModal, task, update } = useSelector(state => state.taskModal);
+    console.log('---------------taskModal---------------------')
+    console.log({task});
     const { width } = useWindowDimensions();
     const transitionWidth = 767.9;
     // manipulate state variable to show task modal 
@@ -41,12 +45,29 @@ const TaskModal = () => {
     const [fadeOut, setFadeOut] = useState(false);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+    
+    // convert from enum categories to regular categories 
+    const categoryConvert = (category) => {
+        switch (category){
+            case('DO'):
+                return 'do';
+            case('DO_LATER'):
+                return 'doLater';
+            case('DELEGATE'):
+                return 'delegate';
+            case('DELETE'):
+                return 'delete';
+            default:
+                return 'do'
+        };
+    };
     // track form variables
     // use passed in variables for updating a task 
     const [formState, setFormState] = useState({
-        content: task.content ? task.content : '',
-        category: task.category ? task.category : ''
+        content: task.taskContent ? task.taskContent : '',
+        category: task.category ? categoryConvert(task.category) : ''
     });
+    
     // warning message on form submission
     const [warning, setWarning] = useState('');
     // array for setting radio buttons
@@ -107,11 +128,10 @@ const TaskModal = () => {
             username,
             taskContent: formState.content,
             category: formState.category,
-            complete: false
+            complete: task.complete ? task.complete : false
         }
         console.log(newTask);
         // update task if this is an update modal, else add task
-        // update ? dispatch(updateTask(newTask)) : dispatch(addTask(newTask));
         try {
             setLoading(true);
             if (!update) {
@@ -121,17 +141,14 @@ const TaskModal = () => {
                     }
                 });
                 console.log(data);
-                // } else {
-                //     const { data } = await updateContact({
-                //         variables: {
-                //             _id: contact._id,
-                //             firstName: firstName.trim(),
-                //             lastName: lastName.trim(),
-                //             email: email?.trim() || '',
-                //             phone: phone?.trim() || ''
-                //         }
-                //     })
-                // console.log(data);
+                } else {
+                    const { data } = await updateTask({
+                        variables: {
+                            _id: task._id, 
+                          ...newTask
+                        }
+                    })
+                console.log(data);
             }
             setWarning('');
             setTimeout(() => {

@@ -9,7 +9,6 @@ import './style.css';
 const TaskItem = (props) => {
     const { task } = props;
     const { taskContent, complete, _id } = task;
-    const [showTaskModal, setShowTaskModal] = useState(false); 
     const [hovered, setHovered] = useState(false);
 
     const dispatch = useDispatch();

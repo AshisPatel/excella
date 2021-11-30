@@ -40,6 +40,18 @@ mutation addTask($username: String!, $taskContent: String!, $category: String!, 
 }
 `;
 
+export const UPDATE_TASK = gql`
+mutation updateTask($_id: ID!, $taskContent: String!, $category: String!, $complete: Boolean!) {
+    updateTask(_id: $_id, taskContent: $taskContent, category: $category, complete: $complete) {
+        _id,
+        username,
+        category,
+        taskContent,
+        complete
+    }
+}
+`;
+
 // Job Mutations
 export const ADD_JOB = gql`
 mutation addJob($username: String!, $jobTitle: String!, $employer: String!, $applicationStatus: String!, $lastUpdated: String!) {
