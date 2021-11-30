@@ -139,7 +139,6 @@ const resolvers = {
            const deletedTasks = await Task.deleteMany(
              { username: context.user.username}
            )
-           .populate('tasks')
 
             return deletedTasks;
         }
@@ -151,7 +150,6 @@ const resolvers = {
           const deletedTasks = await Task.deleteMany(
             { username: context.user.username, complete: true }
             )
-            .populate('tasks')
 
           return deletedTasks;
         }
@@ -163,7 +161,6 @@ const resolvers = {
           const deletedTasks = await Task.deleteMany(
             { username: context.user.username, category: category}
           )
-          .populate('tasks')
           
           return deletedTasks;
         }
