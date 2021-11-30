@@ -52,6 +52,16 @@ mutation updateTask($_id: ID!, $taskContent: String!, $category: String!, $compl
 }
 `;
 
+export const DELETE_TASK = gql`
+mutation deleteTask($_id: ID!){
+    deleteTask(_id: $_id) {
+        _id,
+        taskContent,
+        category
+    }
+}
+`;
+
 
 // Job Mutations
 export const ADD_JOB = gql`

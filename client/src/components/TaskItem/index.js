@@ -1,15 +1,35 @@
 import React, { useState } from 'react';
+import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 import { updateTask, deleteTask } from '../../redux/eisenhowerMatrix';
 import { updateTaskModal } from '../../redux/taskModal';
 import { useMutation } from '@apollo/client';
-import { UPDATE_TASK } from '../../utils/mutations';
-import './style.css';
+import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';
+import { QUERY_TASKS } from '../../utils/queries';
+import Auth from '../../utils/Auth';
+
 
 const TaskItem = (props) => {
+    const username = Auth.getTokenData().data.username;
     // import mutation to update tasks in db
     const [updateTask] = useMutation(UPDATE_TASK);
+    // import mutation to delete tasks in db
+    // update cache of QUERY_TASKS to not include the deleted task
+    const [deleteTask] = useMutation(DELETE_TASK, {
+        update(cache, { data: { deleteTask }} ) {
+            try {
+                cache.updateQuery({
+                    query: QUERY_TASKS,
+                    variables: {
+                        username
+                    }
+                }, (data) => ({ tasks: data.tasks.filter(task => task._id !== deleteTask._id) }))
+            } catch(err) {
+                console.error(err); 
+            }
+        }
+    }); 
     const { task } = props;
     const { taskContent, complete, _id } = task;
     const [hovered, setHovered] = useState(false);
@@ -49,8 +69,17 @@ const TaskItem = (props) => {
     }
 
     // delete this specific task
-    const deleteTaskHandler = () => {
-        dispatch(deleteTask(_id));
+    const deleteTaskHandler = async () => {
+        try {
+            const { data } = await deleteTask({
+                variables: {
+                    _id
+                }
+            });
+            console.log(data); 
+        } catch (err) {
+            console.error(err); 
+        }
     }
 
     return (
