@@ -6,10 +6,17 @@ import validateEmail from '../../utils/validateEmail';
 import validateNumber from '../../utils/validateNumber';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeContactModal } from '../../redux/contactModal';
-import { addContact, updateContact } from '../../redux/jobCRM';
+import { useMutation } from '@apollo/client';
+import { ADD_CONTACT, UPDATE_CONTACT } from '../../utils/mutations';
+import HorizontalLoader from '../HorizontalLoader';
 
 const ContactModal = (props) => {
-    const { job_id } = props; 
+    const { job_id } = props;
+    // import mutation to addContacts or update contacts in DB
+    const [addContact] = useMutation(ADD_CONTACT);
+    const [updateContact] = useMutation(UPDATE_CONTACT);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
     // get update boolean and passed in contact if modal is being opened to update a contact
     const { contact, update } = useSelector(state => state.contactModal);
@@ -27,7 +34,7 @@ const ContactModal = (props) => {
     // on launch auto-focus firstName input
     useEffect(() => { firstNameRef.current.focus() }, [])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         // prevent refresh
         e.preventDefault();
 
@@ -49,20 +56,48 @@ const ContactModal = (props) => {
             return setWarning('The entered number is invalid')
         }
 
-        // temporarily test the adding of a contact - replace with the object returend by graphQL
 
-        const randId = Math.round(Math.random()*1000000000000000);
-        const contactItem = {
-            _id: update ? contact._id : randId,
-            firstName: firstName.trim(),
-            lastName: lastName.trim(),
-            email: email?.trim() || '',
-            phone: phone?.trim() || ''
-        };
-        update ? dispatch(updateContact(job_id, contactItem)) : dispatch(addContact(job_id, contactItem));
-        setWarning('');
-        closeModal();
+        console.log(contact); 
+        try {
+            setLoading(true);
+            if (!update) {
+                const { data } = await addContact({
+                    variables: {
+                        _id: job_id,
+                        firstName: firstName.trim(),
+                        lastName: lastName.trim(),
+                        email: email?.trim() || '',
+                        phone: phone?.trim() || ''
+                    }
+                });
+                console.log(data);
+            } else {
+                const { data } = await updateContact({
+                    variables: {
+                        _id: contact._id,
+                        firstName: firstName.trim(),
+                        lastName: lastName.trim(),
+                        email: email?.trim() || '',
+                        phone: phone?.trim() || ''
+                    }
+                })
+                console.log(data);
+            }
+            setTimeout(() => {
+                setLoading(false);
+                setSuccess(true);
+                setTimeout(() => {
+                    closeModal();
+                }, 500);
+            }, 1000);
+            
+        } catch (err) {
+            console.log(JSON.stringify(err, null, 2));
+            setLoading(false);
+            setWarning('There was a problem adding the contact.')
+        }
     }
+
     // make action call to global store to close contactModal
     const closeModal = () => {
         setFadeOut(true);
@@ -169,11 +204,10 @@ const ContactModal = (props) => {
                         {warning}
                     </p>
                     <button
-                        className="button"
+                        className={success ? 'button success' : 'button'}
                         onClick={handleSubmit}
                     >
-                        <FontAwesomeIcon icon="save" />
-                        {update ? 'Update' : 'Create'}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <HorizontalLoader /> : <><FontAwesomeIcon icon="save" /> {update ? 'Update' : 'Create'}</>}
                     </button>
                 </form>
                 <div className="modal-backdrop"></div>

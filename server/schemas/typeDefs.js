@@ -46,9 +46,9 @@ const typeDefs = gql`
         addJob(username: String!, jobTitle: String!, employer: String!, applicationStatus: String!, lastUpdated: String!): Job
         deleteJob(_id: ID!): Job
         updateJob(_id: ID!, jobTitle: String, employer: String, applicationStatus: String, lastUpdated: String): Job
-        addContact(_id: ID!, firstName: String!, lastName: String! email: String!, phone: String!): Job
+        addContact(_id: ID!, firstName: String!, lastName: String! email: String, phone: String): Job
         deleteContact(_id: ID!): Job
-        updateContact(_id: ID!, firstName: String, lastName: String, email: String, phone: String): Contact
+        updateContact(_id: ID!, firstName: String!, lastName: String!, email: String, phone: String): Contact
     }
 `
 

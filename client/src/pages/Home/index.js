@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import './style.css';
-import ExcellaIcon from '../../components/ExcellaIcon';
 import ExcellaShadowIcon from '../../components/ExcellaShadowIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Auth from "../../utils/Auth";
 
 const Home = () => {
 
-    
     // instantiate variable to switch Excella's animations after a second
     const [slideIn, setSlideIn] = useState(true); 
     const [fi, setFI] = useState(0);
@@ -29,7 +27,7 @@ const Home = () => {
         }
     ];
 
-    const username = Auth.loggedIn() && Auth.getTokenData().username ;
+    const username = Auth.loggedIn() && Auth.getTokenData().data.username ;
 
     // chooses which feature will be displayed in the info box
     let currentFeature = features[fi];
@@ -58,9 +56,9 @@ const Home = () => {
         },500);
     }, []);
 
-
     return (
         <section className="container">
+           
             <div className="row optional-margin">
                 <div className={`col-4 col-lg-2 offset-1 home-sprite-wrapper ${slideIn ? 'excella-slide-in' : 'hover-1'}`}>
                     <ExcellaShadowIcon />

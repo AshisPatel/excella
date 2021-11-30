@@ -36,6 +36,8 @@ const resolvers = {
     //==========================Job Queries==================================================
       jobs: async (parent, { username }) => {
         //allow for GET jobdata based on username
+        console.log('GETTING JOBS!');
+        console.log({ username }); 
         const params = username ? { username } : {};
         return Job.find(params);
       },
@@ -74,7 +76,7 @@ const resolvers = {
       },
       //=======================Job Mutations===============================================
       addJob: async(parent, args, context) => {
-
+        console.log('You are trying to add a job!');
         console.log(context.user);
         
         //if user is logged in, allow them to create a job

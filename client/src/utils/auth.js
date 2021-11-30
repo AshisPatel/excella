@@ -3,7 +3,7 @@ import decode from 'jwt-decode';
 class AuthService {
     // retrieve data stored in token
     getTokenData() {
-        return this.getToken();
+        return decode(this.getToken());
     }
 
     // check if the user is still logged in by finding a token that is unexpired
@@ -32,14 +32,14 @@ class AuthService {
     // retrieve token from localStorage
     getToken() {
         // currently parsing as token is being stored as string
-        return JSON.parse(localStorage.getItem('id_token'));
+        return localStorage.getItem('id_token');
     }
 
     // set token to localStorageand reload page to homepage
     login(idToken) {
         // stringifying until actual signature of token is placed in
-        localStorage.setItem('id_token', JSON.stringify(idToken));
-        window.location.assign('/');
+        localStorage.setItem('id_token', idToken);
+        // window.location.assign('/');
         // may need to set currentPage to '/' as well in reduxStore
     }
     

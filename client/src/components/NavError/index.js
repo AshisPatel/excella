@@ -5,9 +5,13 @@ import ExcellaShadowIcon from '../ExcellaShadowIcon';
 const NavError = ({ message }) => {
     const [slideIn, setSlideIn] = useState(true);
     useEffect(() => {
-        setTimeout(() => {
+        let timer1 = setTimeout(() => {
             setSlideIn(false);
         }, 500);
+        // clearing timeout on unmount
+        return () => {
+            clearTimeout(timer1); 
+        }
     }, []);
     return (
         <section className="container">

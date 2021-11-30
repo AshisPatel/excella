@@ -3,11 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import validateEmail from "../../utils/validateEmail";
 import validatePassword from "../../utils/validatePassword";
 import validateUsername from "../../utils/validateUsername";
-import SlidingLoader from "../SlidingLoader";
+import HorizontalLoader from "../HorizontalLoader";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../../utils/mutations";
 
 import Auth from "../../utils/Auth";
 
 const SignupModal = ({ setShowSignup, setShowLogin }) => {
+
+    // import ADD_USER mutation
+    const [addUser, { error }] = useMutation(ADD_USER);
 
     const [warning, setWarning] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -26,7 +31,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
     // auto focus username input on load
     useEffect(() => { usernameRef.current.focus() }, [])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // check all inputs
         const {username, email, password, confirmPassword} = formState; 
@@ -55,22 +60,29 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
         // async query to create account here and set user to be logged in
         setLoading(true)
         setWarning('');
-        setTimeout(() => {
-            setLoading(false);
-            // replace with data returned by mutation 
-            const data = { 
-                login: {
-                    token: {
-                        username
-                    }
+        try {
+            const { data } = await addUser({
+                variables: {
+                    email,
+                    username,
+                    password
                 }
-            };
-            Auth.login(data.login.token);
-            setSuccess(true);
-        }, 3000);
-        setTimeout(() => {
-            closeHandler();
-        }, 3500);
+            });
+            console.log(data); 
+            // store token in localStorage
+            setTimeout(() => {
+                setLoading(false);
+                setSuccess(true); 
+                Auth.login(data.addUser.token);
+                setTimeout(() => {
+                    closeHandler()
+                }, 500);
+            },1000) 
+        } catch(err) {
+            console.error(err)
+            setLoading(false);
+            setWarning('There was a problem creating an account.');
+        }
     }
 
     const handleChange = (e) => {
@@ -211,7 +223,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                         {warning}
                     </p>
                     <button className={success ? 'button success' : 'button'}>
-                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <SlidingLoader /> : "Create Account"}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <HorizontalLoader /> : "Create Account"}
                     </button>
                     <span className="divider">Already have an account?</span>
                     <button 

@@ -20,7 +20,7 @@ module.exports = {
             token = token
                 .slice(7)
                 .trim()
-
+            // token = token.split(' ').pop().trim();
                 console.log(token);
         }
 

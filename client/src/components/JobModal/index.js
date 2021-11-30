@@ -2,12 +2,44 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeJobModal } from '../../redux/jobModal';
-import { addJob, updateJob } from '../../redux/jobCRM';
 import dayjs from 'dayjs';
 import validateString from '../../utils/validateString';
 import ExcellaIcon from '../ExcellaIcon';
+import HorizontalLoader from '../HorizontalLoader';
+import { useMutation } from '@apollo/client';
+import { ADD_JOB, UPDATE_JOB } from '../../utils/mutations';
+import { QUERY_JOBS } from "../../utils/queries";
+import Auth from '../../utils/Auth';
 
 const JobModal = () => {
+    // get username from token 
+    const username = Auth.getTokenData().data.username;
+    // import addJob mutation
+    // need to update cache so new jobs on the JobTable component render 
+    // update method will access our cache, and destructure out the data returned from the addJob mutation 
+    const [addJob, { error }] = useMutation(ADD_JOB, {
+        update(cache, { data: { addJob } }) {
+            try {
+                // we run the updateQuery function and pass in the query that we need to update along with any necessary variables for that query
+                // we then run an update function on the data returned from the query, in this case we are going to update the jobs entry of the query by adding in all the previous jobs and the new job returned in addJob
+                cache.updateQuery({
+                    query: QUERY_JOBS,
+                    variables: {
+                        username
+                    }
+                }, (data) => ({ jobs: [...data.jobs, addJob] }))
+
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    });
+
+    // Should any issues arise with updating a job -> look into updating cache of QUERY_SINGLE_JOB and QUERY_JOBS here
+    const [updateJob] = useMutation(UPDATE_JOB); 
+    // set loading and success state for submitting data
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
     // useRef to track first text input (job title);
     const titleInputRef = useRef();
@@ -40,36 +72,87 @@ const JobModal = () => {
         setUpdateDate(prevState => !prevState);
     }
 
-    const handleSubmit = (e) => {
-        // check if inputs are present and valid add validators!!!
-        const { jobTitle ,employer, applicationStatus} = formState;
+    const handleSubmit = async (e) => {
+        // check if inputs are present and validators
+        const { jobTitle, employer, applicationStatus } = formState;
         e.preventDefault();
-        if(!jobTitle || !validateString(jobTitle)) {
+        if (!jobTitle || !validateString(jobTitle)) {
             return setWarning('Job title is blank or invalid');
         }
-        if(!employer || !validateString(employer)) {
+        if (!employer || !validateString(employer)) {
             return setWarning('Employer is blank or invalid');
         }
-        if(!applicationStatus || !validateString(applicationStatus)) {
+        if (!applicationStatus || !validateString(applicationStatus)) {
             return setWarning('Status is blank or invalid');
         }
         // submit here using graphQL and then trim the values prior to submission!
         // submit changes to global state
         // form object... (this will be replaced by the returned object from graphQL)
-        const randId = Math.round(Math.random()*10000000000000);
-        const jobItem = {
-            _id: update ? job._id : randId,
-            jobTitle: jobTitle.trim(),
-            employer: employer.trim(),
-            applicationStatus: applicationStatus.trim(),
-            // if updateDate is true replace with current date, if false and the job exists, use previous value -> if the job does not exist use current date
-            lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated ? job.lastUpdated : dayjs().format('MM/DD/YYYY') ,
-            contacts: update ? job.contacts : []
-        };
+        // const randId = Math.round(Math.random()*10000000000000);
+        // const jobItem = {
+        //     _id: update ? job._id : randId,
+        //     jobTitle: jobTitle.trim(),
+        //     employer: employer.trim(),
+        //     applicationStatus: applicationStatus.trim(),
+        //     // if updateDate is true replace with current date, if false and the job exists, use previous value -> if the job does not exist use current date
+        //     lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated ? job.lastUpdated : dayjs().format('MM/DD/YYYY') ,
+        //     contacts: update ? job.contacts : []
+        // };
         // check if update or adding new job
-        update ? dispatch(updateJob(jobItem)) : dispatch(addJob(jobItem));
+        // update ? dispatch(updateJob(jobItem)) : dispatch(addJob(jobItem));
         setWarning('');
-        closeModal(); 
+        if (!update) {
+            try {
+                setLoading(true);
+                const { data } = await addJob({
+                    variables: {
+                        username,
+                        jobTitle: jobTitle.trim(),
+                        employer: employer.trim(),
+                        applicationStatus: applicationStatus.trim(),
+                        lastUpdated: dayjs().format('MM/DD/YYYY'),
+                        contacts: []
+                    }
+                });
+                // console.log(data); 
+                setTimeout(() => {
+                    setLoading(false);
+                    setSuccess(true);
+                    setTimeout(() => {
+                        closeModal();
+                    }, 500);
+                }, 1000);
+
+            } catch (err) {
+                console.log(JSON.stringify(err, null, 2));
+                setWarning('Problem submitting job info');
+                setLoading(false);
+            }
+        } else {
+            try {
+                setLoading(true);
+                const { data } = await updateJob({
+                    variables: {
+                        _id: job._id, 
+                        jobTitle: jobTitle.trim(),
+                        employer: employer.trim(),
+                        applicationStatus: applicationStatus.trim(),
+                        lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated
+                    }
+                });
+                console.log(data); 
+                setTimeout(() => {
+                    setLoading(false);
+                    setSuccess(true);
+                    setTimeout(() => {
+                        closeModal();
+                    }, 500);
+                }, 1000);
+            } catch (err) {
+
+            }
+        }
+
     }
 
     const closeModal = () => {
@@ -116,7 +199,7 @@ const JobModal = () => {
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
-                                <FontAwesomeIcon icon='hard-hat'/>
+                                <FontAwesomeIcon icon='hard-hat' />
                             </span>
                         </div>
 
@@ -132,7 +215,7 @@ const JobModal = () => {
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
-                                <FontAwesomeIcon icon='briefcase'/>
+                                <FontAwesomeIcon icon='briefcase' />
                             </span>
                         </div>
 
@@ -148,35 +231,33 @@ const JobModal = () => {
                                 autoComplete="off"
                             />
                             <span className="icon-wrapper">
-                                <FontAwesomeIcon icon='clipboard'/>
+                                <FontAwesomeIcon icon='clipboard' />
                             </span>
                         </div>
-                        {update && 
-                        <div className="input-wrapper">
-                            <label
-                                className="checkbox-label"
-                            >
-                                <input
-                                    name='updateDate'
-                                    type='checkbox'
-                                    className = 'input-checkbox'
-                                    checked = {updateDate}
-                                    onChange={() => toggleUpdateDate()}
-                                /> Update date?
-                            </label>
-                        </div>
+                        {update &&
+                            <div className="input-wrapper">
+                                <label
+                                    className="checkbox-label"
+                                >
+                                    <input
+                                        name='updateDate'
+                                        type='checkbox'
+                                        className='input-checkbox'
+                                        checked={updateDate}
+                                        onChange={() => toggleUpdateDate()}
+                                    /> Update date?
+                                </label>
+                            </div>
                         }
                     </div>
                     <p className="warning">
                         {warning}
                     </p>
                     <button
-                        className="button"
-                        // type="button"
+                        className={success ? 'button success' : 'button'}
                         onClick={handleSubmit}
                     >
-                        <FontAwesomeIcon icon="save" />
-                        {update ? 'Update' : 'Create'}
+                        {success ? <FontAwesomeIcon icon="check" /> : loading ? <HorizontalLoader /> : <><FontAwesomeIcon icon="save" /> {update ? 'Update' : 'Create'}</>}
                     </button>
                 </form>
             </div>

@@ -3,6 +3,7 @@ import './style.css';
 import { useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../redux/currentPage';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 
@@ -20,7 +21,7 @@ const JobItem = ({ job }) => {
             {width > 767 && 
                 <>  
                     <td>{applicationStatus}</td>
-                    <td>{lastUpdated}</td>
+                    <td>{dayjs(lastUpdated).format('MM/DD/YYYY')}</td>
                 </>
             }
         </tr>

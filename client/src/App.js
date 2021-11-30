@@ -23,11 +23,12 @@ const httpLink = createHttpLink({
 const authLink = setContext((_, { headers }) => {
   // Access token in localStorage
   const token = localStorage.getItem('id_token');
+  console.log(token); 
   // should the token exist, pass in all other headers along with authorization header containing token
   return {
     headers: {
       ...headers,
-      authorizaton: token ? `Bearer ${token}` : ''
+      authorization: token ? `Bearer ${token}` : ''
     }
   };
 });
