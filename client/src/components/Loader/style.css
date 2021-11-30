@@ -9,13 +9,7 @@
   bottom: 0;
 }
 
-.loading-wrapper {
-  width: 7rem;
-  height: 7rem;
-  position: relative;
-}
-
-.loading-wrapper span {
+.loading-container span {
   position: absolute;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -33,12 +27,25 @@
   color: #bc992B;
 }
 
+.loading-wrapper {
+  width: 7rem;
+  height: 7rem;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
 .loader {
   offset-path: path("M170,43.59a125,125,0,1,1-125-125A125,125,0,0,1,170,43.59Z");
-  -webkit-animation: loop 0.75s ease-in-out infinite;
-          animation: loop 0.75s ease-in-out infinite;
+  -webkit-animation: loop 1s ease-in-out infinite;
+          animation: loop 1s ease-in-out infinite;
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
+  margin-left: 1.8rem;
+  margin-right: 0;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .loader svg {

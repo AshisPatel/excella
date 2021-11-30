@@ -6,7 +6,6 @@ import Auth from "../../utils/Auth";
 
 const Home = () => {
 
-    
     // instantiate variable to switch Excella's animations after a second
     const [slideIn, setSlideIn] = useState(true); 
     const [fi, setFI] = useState(0);
@@ -56,7 +55,6 @@ const Home = () => {
             setSlideIn(false); 
         },500);
     }, []);
-
 
     return (
         <section className="container">
