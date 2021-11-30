@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
-import { updateTask, deleteTask } from '../../redux/eisenhowerMatrix';
 import { updateTaskModal } from '../../redux/taskModal';
 import { useMutation } from '@apollo/client';
 import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';

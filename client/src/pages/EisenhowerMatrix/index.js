@@ -8,8 +8,9 @@ import TaskContainer from "../../components/TaskContainer";
 import TaskModal from "../../components/TaskModal";
 import NavError from '../../components/NavError';
 import Auth from "../../utils/Auth";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_TASKS } from '../../utils/queries';
+import { DELETE_ALL_TASKS } from "../../utils/mutations";
 
 const EisenHowerMatrix = () => {
     // query graphQL for task data
@@ -18,6 +19,18 @@ const EisenHowerMatrix = () => {
     const { loading, data } = useQuery(QUERY_TASKS, {
         variables: {
             username
+        }
+    });
+    // import mutation to delete all tasks
+    // update QUERY_TASKS to remove all tasks 
+    const [deleteAllTasks] = useMutation(DELETE_ALL_TASKS, {
+        update(cache,{ data: { deleteAllTasks }}) {
+            cache.updateQuery({
+                query: QUERY_TASKS,
+                variables: {
+                    username
+                }
+            }, (data) => ({ tasks: []}));
         }
     });
     
@@ -55,6 +68,20 @@ const EisenHowerMatrix = () => {
         )
     }
 
+    const deleteAllHandler = async () => {
+        try {
+            const { data } = await deleteAllTasks({
+                variables: {
+                    username 
+                }
+            });
+            console.log('==============Your tasks have been deleted=================');
+            console.log(data);
+        } catch (err) {
+            console.log(JSON.stringify(err, null, 2));
+        }
+    };
+
     return (
         <>
         <div className="container">
@@ -79,7 +106,7 @@ const EisenHowerMatrix = () => {
                     </button>
                     <button
                         className="em-main-btn delete-btn"
-                        onClick = {() => dispatch(deleteAllTasks())}
+                        onClick = {() => deleteAllHandler()}
                     >
                         <FontAwesomeIcon icon="trash" />
                         Delete All

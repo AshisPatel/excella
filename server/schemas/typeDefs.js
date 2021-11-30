@@ -50,6 +50,10 @@ const typeDefs = gql`
         contacts: [Contact]
     }
 
+    type DeletedTasks {
+        deletedCount: Int
+    }
+
     type Query {
         me: User
         users: [User]
@@ -66,7 +70,7 @@ const typeDefs = gql`
         addTask(username: String!, taskContent: String!, category: String!, complete: Boolean!): Task
         updateTask(_id: ID!, taskContent: String, category: String, complete: Boolean, username: String): Task
         deleteTask(_id: ID!): Task
-        deleteAllTasks(username: String!): Task
+        deleteAllTasks(username: String!): DeletedTasks
         deleteCompletedTasks(username: String!): Task
         deleteTasksByCategory(username: String!, category: String!): Task
         addJob(username: String!, jobTitle: String!, employer: String!, applicationStatus: String!, lastUpdated: String!): Job

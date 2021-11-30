@@ -62,6 +62,14 @@ mutation deleteTask($_id: ID!){
 }
 `;
 
+export const DELETE_ALL_TASKS = gql`
+mutation deleteAllTasks($username: String!) {
+    deleteAllTasks(username: $username) {
+        deletedCount 
+    }
+}
+`;
+
 
 // Job Mutations
 export const ADD_JOB = gql`

@@ -85,21 +85,7 @@ const JobModal = () => {
         if (!applicationStatus || !validateString(applicationStatus)) {
             return setWarning('Status is blank or invalid');
         }
-        // submit here using graphQL and then trim the values prior to submission!
-        // submit changes to global state
-        // form object... (this will be replaced by the returned object from graphQL)
-        // const randId = Math.round(Math.random()*10000000000000);
-        // const jobItem = {
-        //     _id: update ? job._id : randId,
-        //     jobTitle: jobTitle.trim(),
-        //     employer: employer.trim(),
-        //     applicationStatus: applicationStatus.trim(),
-        //     // if updateDate is true replace with current date, if false and the job exists, use previous value -> if the job does not exist use current date
-        //     lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated ? job.lastUpdated : dayjs().format('MM/DD/YYYY') ,
-        //     contacts: update ? job.contacts : []
-        // };
-        // check if update or adding new job
-        // update ? dispatch(updateJob(jobItem)) : dispatch(addJob(jobItem));
+
         setWarning('');
         if (!update) {
             try {
