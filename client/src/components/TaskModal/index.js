@@ -36,8 +36,6 @@ const TaskModal = () => {
     const [updateTask] = useMutation(UPDATE_TASK); 
     const dispatch = useDispatch();
     const { showTaskModal, task, update } = useSelector(state => state.taskModal);
-    console.log('---------------taskModal---------------------')
-    console.log({task});
     const { width } = useWindowDimensions();
     const transitionWidth = 767.9;
     // manipulate state variable to show task modal 
@@ -46,7 +44,7 @@ const TaskModal = () => {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     
-    // convert from enum categories to regular categories 
+    // category returned from the server will be as one of a few potential enums, we need to convert these to the appropriate name of input in the form
     const categoryConvert = (category) => {
         switch (category){
             case('DO'):
@@ -128,9 +126,8 @@ const TaskModal = () => {
             username,
             taskContent: formState.content,
             category: formState.category,
-            complete: task.complete ? task.complete : false
+            complete: false
         }
-        console.log(newTask);
         // update task if this is an update modal, else add task
         try {
             setLoading(true);
@@ -140,15 +137,16 @@ const TaskModal = () => {
                         ...newTask
                     }
                 });
-                console.log(data);
                 } else {
+                    // perform a shallow comparison to see if the objects are any different
+                    // currently assuming that if the task is being updated it will be marked as not complete -> do a comparison to actually evaluate this after integrating other mutations
+
                     const { data } = await updateTask({
                         variables: {
                             _id: task._id, 
                           ...newTask
                         }
-                    })
-                console.log(data);
+                    });
             }
             setWarning('');
             setTimeout(() => {
@@ -174,6 +172,8 @@ const TaskModal = () => {
         }, 300);
     }
 
+    // instantiate a variable to measure original content if the task is being opened for an update
+    let originalContent = {};
     // automatically focus the textarea on render
     useEffect(() => {
         textRef.current.focus();

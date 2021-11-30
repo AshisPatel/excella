@@ -3,20 +3,49 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 import { updateTask, deleteTask } from '../../redux/eisenhowerMatrix';
 import { updateTaskModal } from '../../redux/taskModal';
-import TaskModal from '../TaskModal';
+import { useMutation } from '@apollo/client';
+import { UPDATE_TASK } from '../../utils/mutations';
 import './style.css';
 
 const TaskItem = (props) => {
+    // import mutation to update tasks in db
+    const [updateTask] = useMutation(UPDATE_TASK);
     const { task } = props;
     const { taskContent, complete, _id } = task;
     const [hovered, setHovered] = useState(false);
 
     const dispatch = useDispatch();
+       // category returned from the server will be as one of a few potential enums, we need to convert these to the appropriate name of input in the form
+       const categoryConvert = (category) => {
+        switch (category){
+            case('DO'):
+                return 'do';
+            case('DO_LATER'):
+                return 'doLater';
+            case('DELEGATE'):
+                return 'delegate';
+            case('DELETE'):
+                return 'delete';
+            default:
+                return 'do'
+        };
+    };
 
     // update task status to be complete 
-    const updateTaskStatus = () => {
-        const newTask = { ...task, complete: !complete };
-        dispatch(updateTask(newTask));
+    const updateTaskStatus = async () => {
+        const newTask = { ...task, category: categoryConvert(task.category), complete: !complete };
+        try {
+            const { data } = await updateTask({
+                variables: {
+                    _id,
+                    ...newTask
+                }
+            });
+            console.log(data); 
+        } catch(err) {
+            console.error(err); 
+        }
+       
     }
 
     // delete this specific task

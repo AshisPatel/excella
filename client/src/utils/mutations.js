@@ -52,6 +52,7 @@ mutation updateTask($_id: ID!, $taskContent: String!, $category: String!, $compl
 }
 `;
 
+
 // Job Mutations
 export const ADD_JOB = gql`
 mutation addJob($username: String!, $jobTitle: String!, $employer: String!, $applicationStatus: String!, $lastUpdated: String!) {
