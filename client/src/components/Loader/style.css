@@ -14,6 +14,7 @@
   height: 7rem;
   position: relative;
 }
+
 .loading-wrapper span {
   position: absolute;
   width: -webkit-fit-content;
@@ -36,8 +37,10 @@
   offset-path: path("M170,43.59a125,125,0,1,1-125-125A125,125,0,0,1,170,43.59Z");
   -webkit-animation: loop 0.75s ease-in-out infinite;
           animation: loop 0.75s ease-in-out infinite;
-  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
+
 .loader svg {
   fill: #bc992B;
   stroke: #bc992B;
@@ -59,4 +62,5 @@
   to {
     offset-distance: 100%;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */
