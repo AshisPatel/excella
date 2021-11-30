@@ -53,7 +53,7 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        tasks(username: String!): Task
+        tasks(username: String!): [Task]
         task( _id: ID!): Task
         jobs(username: String): [Job]
         singleJob(_id: ID!): Job
@@ -65,7 +65,9 @@ const typeDefs = gql`
         addTask(username: String!, taskContent: String!, category: String!, complete: Boolean!): Task
         updateTask(_id: ID!): Task
         deleteTask(_id: ID!): Task
-        deleteAllTasks(username: String!): User
+        deleteAllTasks(username: String!): Task
+        deleteCompletedTasks(username: String!): Task
+        deleteTasksByCategory(username: String!, category: String!): Task
         addJob(username: String!, jobTitle: String!, employer: String!, applicationStatus: String!, lastUpdated: String!): Job
         deleteJob(_id: ID!): Job
         updateJob(_id: ID!, jobTitle: String, employer: String, applicationStatus: String, lastUpdated: String): Job

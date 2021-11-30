@@ -1,4 +1,4 @@
-const { User, Job } = require('../models');
+const { User, Job, Task } = require('../models');
 //import GraphQL authentication error handling
 const { AuthenticationError } = require('apollo-server-express');
 //JWT function
@@ -23,8 +23,8 @@ const resolvers = {
         if(context.user) {
           const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('jobs');
-          //populate tasks here
+          .populate('jobs')
+          .populate('tasks');
 
           return userData;
         }
@@ -36,6 +36,18 @@ const resolvers = {
       users: async () => {
         return User.find()
           .select('-__v -password')
+          .populate('jobs')
+          .populate('tasks');
+      },
+      //==========================Task Queries==================================================
+      tasks: async (parent, args, context) => {
+        if (context.user) {
+          const taskData = await Task.find(
+            { username: context.user.username }
+          )
+          
+          return taskData;
+        }
       },
     //==========================Job Queries==================================================
       jobs: async (parent, { username }) => {
@@ -74,10 +86,12 @@ const resolvers = {
         }
 
         const token = signToken(user);
+        console.log(user, token);
         return { user, token };
       },
       //=======================Task Mutations===============================================
       addTask: async(parent, args, context) => {
+        console.log(context);
         if (context.user) {
           const task = await Task.create({ ...args, username: context.user.username })
 
@@ -112,26 +126,55 @@ const resolvers = {
             { username: context.user.username },
             { $pull: { tasks: { _id: deletedTask._id }}},
             { new: true },
-          );
+          )
+          .populate('tasks')
 
           return deletedTask;
         }
 
         throw new AuthenticationError('You need to be logged in to delete a task!');
       },
-      deleteAllTasks: async(parent, context) => {
-        if (context.user) {
-           await Task.deleteMany(
-             { username: context.user.username },
-           );
+      deleteAllTasks: async(parent, args, context) => {
 
+        if (context.user) {
+           const deletedTasks = await Task.deleteMany(
+             { username: context.user.username}
+           )
+           .populate('tasks')
+
+            return deletedTasks;
         }
+        throw new AuthenticationError('You need to be logged in to delete a task!');
+      },
+      deleteCompletedTasks: async(parent, args, context) => {
+
+        if (context.user) {
+          const deletedTasks = await Task.deleteMany(
+            { username: context.user.username, complete: true }
+            )
+            .populate('tasks')
+
+          return deletedTasks;
+        }
+        throw new AuthenticationError('You need to be logged in to delete a task!');
+        
+      },
+      deleteTasksByCategory: async(parent, { category }, context) => {
+        if (context.user) {
+          const deletedTasks = await Task.deleteMany(
+            { username: context.user.username, category: category}
+          )
+          .populate('tasks')
+          
+          return deletedTasks;
+        }
+        throw new AuthenticationError('You need to be logged in to delete a task!');
       },
       //=======================Job Mutations===============================================
       addJob: async(parent, args, context) => {
 
         console.log(context.user);
-        
+
         //if user is logged in, allow them to create a job
         if(context.user) {
           const job = await Job.create({...args, username: context.user.username});
