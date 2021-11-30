@@ -4,9 +4,15 @@ import { deleteCategoryTasks } from "../../redux/eisenhowerMatrix";
 import './style.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TaskItem from "../TaskItem";
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_TASKS } from "../../utils/queries";
+import { DELETE_TASKS_BY_CATEGORY } from "../../utils/mutations";
 
 
 const TaskContainer = (props) => {
+    // import mutation to delete tasks by category
+    // update QUERY_TASKS to remove all tasks with the deleted category
+    const [deleteTaskByCategory] = useMutation(DELETE_TASKS_BY_CATEGORY);
     const dispatch = useDispatch();
 
     // create a boolean state variable to see if the object is being hovered -> will allow for conditional rendering of delete all tasks in current category
