@@ -127,7 +127,6 @@ const resolvers = {
             { $pull: { tasks: { _id: deletedTask._id }}},
             { new: true },
           )
-          .populate('tasks')
 
           return deletedTask;
         }

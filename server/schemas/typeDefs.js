@@ -63,7 +63,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         addTask(username: String!, taskContent: String!, category: String!, complete: Boolean!): Task
-        updateTask(_id: ID!): Task
+        updateTask(_id: ID!, taskContent: String, category: String, complete: Boolean, username: String): Task
         deleteTask(_id: ID!): Task
         deleteAllTasks(username: String!): Task
         deleteCompletedTasks(username: String!): Task
