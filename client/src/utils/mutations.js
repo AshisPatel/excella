@@ -70,6 +70,21 @@ mutation deleteAllTasks($username: String!) {
 }
 `;
 
+export const DELETE_COMPLETED_TASKS = gql`
+mutation deleteCompletedTasks($username: String!) {
+    deleteCompletedTasks(username: $username) {
+        deletedCount
+    }
+}`;
+
+export const DELETE_TASKS_BY_CATEGORY = gql`
+mutation deleteTasksByCategory($username: String!, $category: String!) {
+    deleteTasksByCategory(username: $username, category: $category) {
+        deletedCount
+    }
+}
+`;
+
 
 // Job Mutations
 export const ADD_JOB = gql`

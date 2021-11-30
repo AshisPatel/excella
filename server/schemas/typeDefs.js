@@ -71,8 +71,8 @@ const typeDefs = gql`
         updateTask(_id: ID!, taskContent: String, category: String, complete: Boolean, username: String): Task
         deleteTask(_id: ID!): Task
         deleteAllTasks(username: String!): DeletedTasks
-        deleteCompletedTasks(username: String!): Task
-        deleteTasksByCategory(username: String!, category: String!): Task
+        deleteCompletedTasks(username: String!): DeletedTasks
+        deleteTasksByCategory(username: String!, category: String!): DeletedTasks
         addJob(username: String!, jobTitle: String!, employer: String!, applicationStatus: String!, lastUpdated: String!): Job
         deleteJob(_id: ID!): Job
         updateJob(_id: ID!, jobTitle: String, employer: String, applicationStatus: String, lastUpdated: String): Job

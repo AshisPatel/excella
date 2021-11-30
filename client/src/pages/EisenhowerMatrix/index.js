@@ -10,7 +10,7 @@ import NavError from '../../components/NavError';
 import Auth from "../../utils/Auth";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_TASKS } from '../../utils/queries';
-import { DELETE_ALL_TASKS } from "../../utils/mutations";
+import { DELETE_ALL_TASKS, DELETE_COMPLETED_TASKS } from "../../utils/mutations";
 
 const EisenHowerMatrix = () => {
     // query graphQL for task data
@@ -33,10 +33,21 @@ const EisenHowerMatrix = () => {
             }, (data) => ({ tasks: []}));
         }
     });
+
+    // import mutation to delete completed tasks
+    // update QUERY_TASKS to remove all completed tasks
+    const [deleteCompletedTasks] = useMutation(DELETE_COMPLETED_TASKS, {
+        update(cache, {data : { deleteCompletedTasks}}) {
+            cache.updateQuery({
+                query: QUERY_TASKS,
+                variables: {
+                    username
+                }
+            }, (data) => ({ tasks: data.tasks.filter(task => !task.complete)}));
+        }
+    }); 
     
     const tasks = data?.tasks || [];
-
-    console.log({tasks});
 
     const columnSizing = 'offset-1 col-9 offset-md-3 col-md-5 offset-lg-4 col-lg-4';
     const { showTaskModal } = useSelector(state => state.taskModal); 
@@ -82,6 +93,20 @@ const EisenHowerMatrix = () => {
         }
     };
 
+    const deleteCompletedHandler = async () => {
+        try {
+            const { data } = await deleteCompletedTasks({
+                variables: {
+                    username
+                }
+            });
+            console.log('==============Your completed tasks have been deleted=================');
+            console.log(data); 
+        } catch (err) {
+            console.log(JSON.stringify(err, null, 2));
+        }
+    }
+
     return (
         <>
         <div className="container">
@@ -99,7 +124,7 @@ const EisenHowerMatrix = () => {
                     </button>
                     <button
                         className="em-main-btn clean-btn"
-                        onClick={() => dispatch(deleteCompletedTasks())}
+                        onClick={() => deleteCompletedHandler()}
                     >
                         <FontAwesomeIcon icon="broom" />
                         Clean
