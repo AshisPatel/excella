@@ -204,7 +204,7 @@ const ContactModal = (props) => {
                         {warning}
                     </p>
                     <button
-                        className="button"
+                        className={success ? 'button success' : 'button'}
                         onClick={handleSubmit}
                     >
                         {success ? <FontAwesomeIcon icon="check" /> : loading ? <HorizontalLoader /> : <><FontAwesomeIcon icon="save" /> {update ? 'Update' : 'Create'}</>}
