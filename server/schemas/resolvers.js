@@ -1,4 +1,4 @@
-const { User, Job } = require('../models');
+const { User, Job, Task } = require('../models');
 //import GraphQL authentication error handling
 const { AuthenticationError } = require('apollo-server-express');
 //JWT function
@@ -11,14 +11,20 @@ const { Types } = require('mongoose');
 
 const resolvers = {
     Date: GraphQLDateTime,
+    TaskCategory: {
+      DO: 'do',
+      DELEGATE: 'delegate',
+      DO_LATER: 'doLater',
+      DELETE: 'delete'
+    },
     Query: {
       //==========================Me Query==================================================
       me: async (parent, args, context) => {
         if(context.user) {
           const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('jobs');
-          //populate tasks here
+          .populate('jobs')
+          .populate('tasks');
 
           return userData;
         }
@@ -28,10 +34,20 @@ const resolvers = {
       },
       //==========================User Queries==================================================
       users: async () => {
-          return User.find()
+        return User.find()
+          .select('-__v -password')
+          .populate('jobs')
+          .populate('tasks');
       },
-      test: async () => {
-        return 'This is a test'
+      //==========================Task Queries==================================================
+      tasks: async (parent, args, context) => {
+        if (context.user) {
+          const taskData = await Task.find(
+            { username: context.user.username }
+          )
+          
+          return taskData;
+        }
       },
     //==========================Job Queries==================================================
       jobs: async (parent, { username }) => {
@@ -72,13 +88,91 @@ const resolvers = {
         }
 
         const token = signToken(user);
+        console.log(user, token);
         return { user, token };
+      },
+      //=======================Task Mutations===============================================
+      addTask: async(parent, args, context) => {
+        console.log(context);
+        if (context.user) {
+          const task = await Task.create({ ...args, username: context.user.username })
+
+          await User.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $push: { tasks: task._id } },
+            { new: true }
+          );
+
+          return task;
+        }
+
+        throw new AuthenticationError('You need to be logged in to add a task!');
+      },
+      updateTask: async(parent, {_id, ...args}, context) => {
+        if (context.user) {
+          const updatedTask = await Task.findOneAndUpdate(
+            { _id: _id}, 
+            args, 
+            { new: true, runValidators: true }
+          );
+
+          return updatedTask;
+        }
+      },
+      deleteTask: async(parent, taskId, context) => {
+        if(context.user) {
+          //if the user is logged in, find task and delete it
+          const deletedTask = await Task.findOneAndDelete({ _id: taskId });
+
+          await User.findOneAndUpdate(
+            { username: context.user.username },
+            { $pull: { tasks: { _id: deletedTask._id }}},
+            { new: true },
+          )
+
+          return deletedTask;
+        }
+
+        throw new AuthenticationError('You need to be logged in to delete a task!');
+      },
+      deleteAllTasks: async(parent, args, context) => {
+
+        if (context.user) {
+           const deletedTasks = await Task.deleteMany(
+             { username: context.user.username}
+           )
+
+            return deletedTasks;
+        }
+        throw new AuthenticationError('You need to be logged in to delete a task!');
+      },
+      deleteCompletedTasks: async(parent, args, context) => {
+
+        if (context.user) {
+          const deletedTasks = await Task.deleteMany(
+            { username: context.user.username, complete: true }
+            )
+
+          return deletedTasks;
+        }
+        throw new AuthenticationError('You need to be logged in to delete a task!');
+        
+      },
+      deleteTasksByCategory: async(parent, { category }, context) => {
+        if (context.user) {
+          const deletedTasks = await Task.deleteMany(
+            { username: context.user.username, category: category}
+          )
+          
+          return deletedTasks;
+        }
+        throw new AuthenticationError('You need to be logged in to delete a task!');
       },
       //=======================Job Mutations===============================================
       addJob: async(parent, args, context) => {
         console.log('You are trying to add a job!');
         console.log(context.user);
-        
+
         //if user is logged in, allow them to create a job
         if(context.user) {
           const job = await Job.create({...args, username: context.user.username});
@@ -216,6 +310,6 @@ const resolvers = {
         throw new AuthenticationError('You must be logged in to update a Contact!');
       }
     }
-  };
+};
 
 module.exports = resolvers
