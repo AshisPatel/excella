@@ -136,12 +136,11 @@ const resolvers = {
         throw new AuthenticationError('You need to be logged in to delete a task!');
       },
       deleteAllTasks: async(parent, args, context) => {
-
         if (context.user) {
            const deletedTasks = await Task.deleteMany(
              { username: context.user.username}
            )
-
+            console.log(deletedTasks); 
             return deletedTasks;
         }
         throw new AuthenticationError('You need to be logged in to delete a task!');

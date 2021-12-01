@@ -40,7 +40,7 @@ const JobTable = ({ jobs }) => {
 
     // useEffect(() => setDisplayedJobs([...jobs]), [loading]); 
 
-    useEffect(() => console.log(displayedJobs), [displayedJobs]);
+    // useEffect(() => console.log(displayedJobs), [displayedJobs]);
 
     if (displayedJobs.length === 0) {
         return (

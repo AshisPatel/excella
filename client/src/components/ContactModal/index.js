@@ -56,8 +56,6 @@ const ContactModal = (props) => {
             return setWarning('The entered number is invalid')
         }
 
-
-        console.log(contact); 
         try {
             setLoading(true);
             if (!update) {
@@ -70,7 +68,7 @@ const ContactModal = (props) => {
                         phone: phone?.trim() || ''
                     }
                 });
-                console.log(data);
+                // console.log(data);
             } else {
                 const { data } = await updateContact({
                     variables: {
@@ -81,7 +79,7 @@ const ContactModal = (props) => {
                         phone: phone?.trim() || ''
                     }
                 })
-                console.log(data);
+                // console.log(data);
             }
             setTimeout(() => {
                 setLoading(false);
@@ -115,7 +113,7 @@ const ContactModal = (props) => {
                 [name]: value
             }
         ));
-        console.log(formState);
+        // console.log(formState);
     }
 
     return (
