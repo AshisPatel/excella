@@ -1,0 +1,46 @@
+#top-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#top-nav .btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: auto 0 auto 0;
+}
+
+#top-nav h1 {
+  color: #bc992B;
+}
+
+.nav-btn {
+  color: #E2CA78;
+  font-size: 1.2rem;
+  background: transparent;
+  border: 2px solid #E2CA78;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+  width: 5rem;
+  -webkit-transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, -webkit-box-shadow 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
+}
+
+.nav-btn:hover {
+  color: #282828;
+  border-color: #bc992B;
+  background: #282828;
+  -webkit-box-shadow: inset 0 0 0 5rem #bc992B;
+          box-shadow: inset 0 0 0 5rem #bc992B;
+}
+/*# sourceMappingURL=style.css.map */

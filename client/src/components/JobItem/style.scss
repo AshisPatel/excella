@@ -1,0 +1,28 @@
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+$gold: #bc992B; 
+$dark-gold: #856D1E;
+$light-gold: #E2CA78;
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+
+.job-item-btn-wrapper {
+    display: flex;
+    justify-content: space-between; 
+    margin-right: 0.25rem; 
+}
+
+.job-item-btn {
+    background-color: transparent;
+    border: none; 
+    font-size: 1rem; 
+    transition: all 0.2s linear; 
+    &:hover,:focus {
+        
+        color: rgba($black, 0.7);
+    }
+    &:active {
+        color: $white; 
+    }
+}

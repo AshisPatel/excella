@@ -1,0 +1,47 @@
+$gold: #bc992B; 
+$black: #282828;
+
+.hl-container {
+    width: auto;
+    height: auto; 
+}
+
+
+.hl-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    & div:first-child {
+        margin-right: 0.5rem; 
+    }
+
+    & div:last-child {
+        margin-left: 0.5rem; 
+    }
+    & svg {
+        width: 3rem; 
+        height: 3rem; 
+        fill: $gold;
+        stroke: $gold; 
+    }
+}
+
+@for $i from 0 through 2 {
+    .icon-pulse-#{$i}{
+        animation: pulse 1.33s ($i*.33s) linear infinite; 
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    12% {
+        transform: scale(1.5);
+    }
+    25% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1); 
+    }
+}

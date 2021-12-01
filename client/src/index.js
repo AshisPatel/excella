@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './style.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom"
+import store from "./redux";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt, faPlus, faTrash, faSave, faEdit, faSquare, faCheckSquare, faBroom, faSearch, faEye, faBriefcase, faHardHat, faClipboard, faHandPointLeft, faCaretRight, faPhone, faRedoAlt, faHammer} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faUser, faEnvelope, faLock, faWindowClose, faCheck, faTasks, faQuestionCircle, faClock, faUsers, faCog, faHome, faChevronRight, faChevronLeft, faBars, faSignOutAlt, faPlus, faTrash, faSave, faEdit, faSquare, faCheckSquare, faBroom, faSearch, faEye, faBriefcase,faHardHat, faClipboard, faHandPointLeft, faCaretRight, faPhone, faRedoAlt, faHammer );
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

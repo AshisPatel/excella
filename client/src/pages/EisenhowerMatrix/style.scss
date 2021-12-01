@@ -1,0 +1,84 @@
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+// $gold: #D8B646;
+
+$gold: #bc992B; 
+$light-gold: #E2CA78;
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+$central-spacing: 4rem; 
+
+.em-main-btn {
+    // width: 10rem;
+    // height: 5rem;
+    padding: 1rem; 
+    font-size:1rem; 
+    border: none;
+    background-color: $light-gold; 
+    color: $black; 
+    border-radius: 0.5rem; 
+    box-shadow: $box-shadow; 
+    transition: background-color 0.2s linear, color 0.2s linear;
+    
+    &:hover {
+        color: $black;
+        background-color: $gold; 
+    }
+
+    & svg {
+        margin-right: 0.5rem; 
+    }
+
+   
+}
+
+.clean-btn {
+    color: $white; 
+    background-color: darken($black, 7%);
+    transition: all 0.2s linear; 
+    &:hover {
+        color: $black;
+        background-color: $gold;
+    }
+}
+
+.delete-btn {
+    background-color: $white; 
+    &:hover {
+        background-color: $gold;
+        color: $black; 
+    }
+}
+
+
+.em-main-btn-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem; 
+    margin-top: 0; 
+}
+
+
+@media screen and (max-width: 1024px) {
+ 
+
+    .em-main-btn {
+        font-size: 0.8rem; 
+        padding: 0.75rem; 
+    }
+    
+}
+
+@media screen and (max-width: 425px) {
+    .em-main-btn-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .em-main-btn {
+        width: 100%; 
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; 
+    }
+}

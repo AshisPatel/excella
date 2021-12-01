@@ -1,0 +1,214 @@
+$black: #282828;
+$white: #EBECE9;
+$blue: #283143;
+$gold: #bc992B; 
+$dark-gold: #C99200;
+$light-gold: #E2CA78;
+$box-shadow-depth: 0.6rem 0.6rem; 
+$box-shadow: $box-shadow-depth rgba($white, 0.08);
+
+.return-link {
+    color: $black;
+    text-decoration: none;
+    transition: all 0.2s linear;
+    padding: 1rem; 
+    border-radius: 0.5rem; 
+    margin-left: 2rem; 
+    margin-top: 3rem; 
+    background-color: $light-gold; 
+    box-shadow: $box-shadow; 
+    width: fit-content; 
+
+    & svg {
+        margin-right: 0.5rem; 
+    }
+    &:hover {
+        background-color: $gold; 
+    }
+    &:active {
+        background-color: $white; 
+    }
+}
+
+.job-card {
+    padding: 1rem; 
+    margin-top: -2.5rem; 
+    margin-bottom: 2rem; 
+    margin-right: auto;
+    margin-left: auto;
+    background-color: $gold;
+    border-radius: 0.5rem; 
+    color: $black; 
+    box-shadow: $box-shadow;  
+}
+
+.job-card-divider {
+    border-bottom: 2px solid $black; 
+    border-top: none; 
+    border-right: none;
+    border-left: none;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem; 
+}
+
+.job-info-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem; 
+}
+
+
+.job-info-list {
+    list-style: none;
+
+    & label {
+        display: block; 
+    }
+
+    & li:first-child {
+        margin-bottom: 0.5rem; 
+        margin-top: 0rem; 
+    }
+
+    & li {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; 
+    }
+
+}
+
+.job-options-list {
+    list-style: none; 
+    margin-bottom:auto;
+    & li:first-child {
+        margin-bottom:0.5rem; 
+        margin-top: 0;
+    }
+    & li {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; 
+    }
+    & button {
+        width: 95%;
+
+        & svg {
+            display: block; 
+            margin-right: auto;
+            margin-left: auto; 
+            margin-bottom: 0.25rem; 
+        }
+    }
+}
+
+.contact-list-container {
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: wrap; 
+    height: 0;
+    overflow-y: auto; 
+}
+
+.show-contact-btn {
+    font-size: 1.5rem;
+    border: none;
+    padding: 0;
+    background-color: transparent; 
+    margin-left: 0.5rem; 
+    margin-top: 0.25rem; 
+    transition: all 0.2s linear;
+    &:hover,:focus {
+        color: rgba($black, 0.8);
+    }
+    &:active {
+        color: $white; 
+    }
+}
+
+.job-card-btn {
+    background-color : $gold; 
+    border: 2px solid black; 
+    text-align: center;
+    font-weight: bold; 
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+
+    transition: all 0.2s linear; 
+    &:hover,:focus {
+        background-color: rgba($black, 0.15);
+    }
+    
+    &:active {
+        background-color: $black;
+        color: $gold; 
+    }
+
+}
+
+.new-contact-btn {
+    margin-top: .25rem; 
+}
+
+.contact-header-wrapper {
+    display: flex;
+    justify-content: space-between;  
+    font-size: 1.1rem; 
+    align-items: center;
+    margin-bottom: 0.5rem; 
+    & div:first-child {
+        display: flex;
+        flex-direction: start; 
+        align-items: center;
+    }
+}
+
+.rotate-up {
+    transform: rotate(90deg);
+}
+
+.rotate-down {
+    transform: rotate(0deg);
+}
+
+.expand {
+    animation: expand 0.2s linear forwards; 
+}
+
+.collapse {
+    animation: collapse 0.2s linear forwards; 
+}
+
+@keyframes expand {
+    from {
+        height: 0;
+    }
+    to {
+        height: 10rem; 
+    }
+}
+
+@keyframes collapse {
+    from {
+        height: 10rem; 
+    }
+    to {
+        height: 0; 
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .job-card {
+        margin-top: 2rem; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .job-info-container {
+        font-size: 1rem; 
+    }
+
+    .contact-header-wrapper {
+        font-size: 1rem; 
+    }
+}
+
+
