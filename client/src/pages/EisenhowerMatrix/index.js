@@ -86,8 +86,8 @@ const EisenHowerMatrix = () => {
                     username 
                 }
             });
-            console.log('==============Your tasks have been deleted=================');
-            console.log(data);
+            // console.log('==============Your tasks have been deleted=================');
+            // console.log(data);
         } catch (err) {
             console.log(JSON.stringify(err, null, 2));
         }
@@ -100,8 +100,8 @@ const EisenHowerMatrix = () => {
                     username
                 }
             });
-            console.log('==============Your completed tasks have been deleted=================');
-            console.log(data); 
+            // console.log('==============Your completed tasks have been deleted=================');
+            // console.log(data); 
         } catch (err) {
             console.log(JSON.stringify(err, null, 2));
         }

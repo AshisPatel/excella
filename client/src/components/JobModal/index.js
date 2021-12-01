@@ -126,7 +126,7 @@ const JobModal = () => {
                         lastUpdated: updateDate ? dayjs().format('MM/DD/YYYY') : job.lastUpdated
                     }
                 });
-                console.log(data); 
+                // console.log(data); 
                 setTimeout(() => {
                     setLoading(false);
                     setSuccess(true);

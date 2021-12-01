@@ -10,9 +10,7 @@ const PomodoroTimer = () => {
     }
 
     return (
-        <div>
-            There's going to be a Pomodoro Timer here!
-        </div>
+        <NavError message={'Under construction, check back soon!'} />
     );
 };
 

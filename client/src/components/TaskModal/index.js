@@ -59,6 +59,11 @@ const TaskModal = () => {
                 return 'do'
         };
     };
+    // track original input if this is an update modal
+    const [originalContent, setOriginalContent] = useState({
+        taskContent: task.taskContent ? task.taskContent : '',
+        category: task.category ? categoryConvert(task.category) : ''
+    });
     // track form variables
     // use passed in variables for updating a task 
     const [formState, setFormState] = useState({
@@ -125,8 +130,7 @@ const TaskModal = () => {
         const newTask = {
             username,
             taskContent: formState.content,
-            category: formState.category,
-            complete: false
+            category: formState.category
         }
         // update task if this is an update modal, else add task
         try {
@@ -134,16 +138,26 @@ const TaskModal = () => {
             if (!update) {
                 const { data } = await addTask({
                     variables: {
+                        complete: false,
                         ...newTask
                     }
                 });
                 } else {
                     // perform a shallow comparison to see if the objects are any different
                     // currently assuming that if the task is being updated it will be marked as not complete -> do a comparison to actually evaluate this after integrating other mutations
-
+                    
+                    let isContentSame = false; 
+                    if (originalContent.taskContent === newTask.taskContent && originalContent.category === newTask.category) {
+                        isContentSame = true; 
+                    } 
+                    // unless the task is already complete and the newTask category is delete 
+                    if(task.complete && newTask.category === 'delete') {
+                        isContentSame = true; 
+                    }
                     const { data } = await updateTask({
                         variables: {
                             _id: task._id, 
+                            complete: isContentSame,
                           ...newTask
                         }
                     });
@@ -172,8 +186,6 @@ const TaskModal = () => {
         }, 300);
     }
 
-    // instantiate a variable to measure original content if the task is being opened for an update
-    let originalContent = {};
     // automatically focus the textarea on render
     useEffect(() => {
         textRef.current.focus();

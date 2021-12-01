@@ -60,7 +60,7 @@ const TaskItem = (props) => {
                     ...newTask
                 }
             });
-            console.log(data); 
+            // console.log(data); 
         } catch(err) {
             console.error(err); 
         }
@@ -75,7 +75,7 @@ const TaskItem = (props) => {
                     _id
                 }
             });
-            console.log(data); 
+            // console.log(data); 
         } catch (err) {
             console.error(err); 
         }

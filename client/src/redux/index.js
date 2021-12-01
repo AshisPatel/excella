@@ -21,6 +21,6 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer);
 // console log message on every state update
 store.subscribe(() => {
-    console.log(store.getState());
+    // console.log(store.getState());
 });
 export default store; 

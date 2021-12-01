@@ -21,7 +21,7 @@ const ContactItem = ({ contact, job_id }) => {
                     _id
                 }
             })
-            console.log(data); 
+            // console.log(data); 
         } catch (err) {
             console.log(JSON.stringify(err, null, 2));
         }
