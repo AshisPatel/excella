@@ -5,8 +5,11 @@ import { updateContactModal } from '../../redux/contactModal';
 import { useMutation } from '@apollo/client';
 import { DELETE_CONTACT } from '../../utils/mutations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const ContactItem = ({ contact, job_id }) => {
+    const transitionWidth = 769; 
+    const { width } = useWindowDimensions(); 
     // import ability to delete contacts from the DB
     const [deleteContact] = useMutation(DELETE_CONTACT);
     const dispatch = useDispatch();
@@ -48,7 +51,25 @@ const ContactItem = ({ contact, job_id }) => {
                 </li>
             </ul>
             <ul>
-                {hovered &&
+                {width < transitionWidth ?
+                     <>
+                     <li>
+                         <button
+                             onClick={() => dispatch(updateContactModal(contact))}
+                         >
+                             <FontAwesomeIcon icon="edit" />
+                         </button>
+                     </li>
+                     <li>
+                         <button
+                             onClick={() => deleteContactHandler()}
+                         >
+                             <FontAwesomeIcon icon="trash" />
+                         </button>
+                     </li>
+                 </>
+                :
+                hovered &&
                     <>
                         <li>
                             <button

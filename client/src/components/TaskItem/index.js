@@ -7,16 +7,19 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';
 import { QUERY_TASKS } from '../../utils/queries';
 import Auth from '../../utils/Auth';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 
 const TaskItem = (props) => {
+    const transitionWidth = 769;
+    const { width } = useWindowDimensions();
     const username = Auth.getTokenData().data.username;
     // import mutation to update tasks in db
     const [updateTask] = useMutation(UPDATE_TASK);
     // import mutation to delete tasks in db
     // update cache of QUERY_TASKS to not include the deleted task
     const [deleteTask] = useMutation(DELETE_TASK, {
-        update(cache, { data: { deleteTask }} ) {
+        update(cache, { data: { deleteTask } }) {
             try {
                 cache.updateQuery({
                     query: QUERY_TASKS,
@@ -24,26 +27,26 @@ const TaskItem = (props) => {
                         username
                     }
                 }, (data) => ({ tasks: data.tasks.filter(task => task._id !== deleteTask._id) }))
-            } catch(err) {
-                console.error(err); 
+            } catch (err) {
+                console.error(err);
             }
         }
-    }); 
+    });
     const { task } = props;
     const { taskContent, complete, _id } = task;
     const [hovered, setHovered] = useState(false);
 
     const dispatch = useDispatch();
-       // category returned from the server will be as one of a few potential enums, we need to convert these to the appropriate name of input in the form
-       const categoryConvert = (category) => {
-        switch (category){
-            case('DO'):
+    // category returned from the server will be as one of a few potential enums, we need to convert these to the appropriate name of input in the form
+    const categoryConvert = (category) => {
+        switch (category) {
+            case ('DO'):
                 return 'do';
-            case('DO_LATER'):
+            case ('DO_LATER'):
                 return 'doLater';
-            case('DELEGATE'):
+            case ('DELEGATE'):
                 return 'delegate';
-            case('DELETE'):
+            case ('DELETE'):
                 return 'delete';
             default:
                 return 'do'
@@ -61,10 +64,10 @@ const TaskItem = (props) => {
                 }
             });
             // console.log(data); 
-        } catch(err) {
-            console.error(err); 
+        } catch (err) {
+            console.error(err);
         }
-       
+
     }
 
     // delete this specific task
@@ -77,45 +80,61 @@ const TaskItem = (props) => {
             });
             // console.log(data); 
         } catch (err) {
-            console.error(err); 
+            console.error(err);
         }
     }
 
     return (
-            <li
-                className="task-list-item"
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-            >
-                <div className="task-item-content-wrapper">
+        <li
+            className="task-list-item"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            <div className="task-item-content-wrapper">
+                <button
+                    className="task-item-btn"
+                    onClick={() => updateTaskStatus()}
+                >
+                    {complete ? <FontAwesomeIcon icon="check-square" /> : <FontAwesomeIcon icon="square" />}
+                </button>
+                <span className={`task-item-content ${complete && 'line-through'}`}>{taskContent}</span>
+            </div>
+
+
+            {width < transitionWidth ?
+                <div className="task-item-btn-wrapper">
                     <button
                         className="task-item-btn"
-                        onClick={() => updateTaskStatus()}
+                        onClick={() => dispatch(updateTaskModal(task))}
                     >
-                        {complete ? <FontAwesomeIcon icon="check-square" /> : <FontAwesomeIcon icon="square" />}
+                        <FontAwesomeIcon icon="edit" />
                     </button>
-                    <span className={`task-item-content ${complete && 'line-through'}`}>{taskContent}</span>
+                    <button
+                        className="task-item-btn"
+                        onClick={() => deleteTaskHandler()}
+                    >
+                        <FontAwesomeIcon icon="trash" />
+                    </button>
                 </div>
 
-
-                {
-                    hovered &&
-                    <div className="task-item-btn-wrapper">
-                        <button
-                            className="task-item-btn"
-                            onClick={() => dispatch(updateTaskModal(task))}
-                        >
-                            <FontAwesomeIcon icon="edit" />
-                        </button>
-                        <button
-                            className="task-item-btn"
-                            onClick={() => deleteTaskHandler()}
-                        >
-                            <FontAwesomeIcon icon="trash" />
-                        </button>
-                    </div>
-                }
-            </li>
+                :
+                hovered &&
+                <div className="task-item-btn-wrapper">
+                    <button
+                        className="task-item-btn"
+                        onClick={() => dispatch(updateTaskModal(task))}
+                    >
+                        <FontAwesomeIcon icon="edit" />
+                    </button>
+                    <button
+                        className="task-item-btn"
+                        onClick={() => deleteTaskHandler()}
+                    >
+                        <FontAwesomeIcon icon="trash" />
+                    </button>
+                </div>
+            }
+        </li>
     )
 }
 

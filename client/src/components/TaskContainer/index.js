@@ -6,14 +6,16 @@ import { useMutation } from '@apollo/client';
 import { QUERY_TASKS } from "../../utils/queries";
 import { DELETE_TASKS_BY_CATEGORY } from "../../utils/mutations";
 import Auth from "../../utils/Auth";
-
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const TaskContainer = (props) => {
-    const username = Auth.getTokenData().data.username; 
+    const transitionWidth = 769;
+    const { width } = useWindowDimensions();
+    const username = Auth.getTokenData().data.username;
     // import mutation to delete tasks by category
     // update QUERY_TASKS to remove all tasks with the deleted category
     const [deleteTaskByCategory] = useMutation(DELETE_TASKS_BY_CATEGORY, {
-        update(cache, { data: { deleteTaskByCategory }}) {
+        update(cache, { data: { deleteTaskByCategory } }) {
             // we will remove all tasks associated with the current task container's category
             try {
                 cache.updateQuery({
@@ -21,9 +23,9 @@ const TaskContainer = (props) => {
                     variables: {
                         username
                     }
-                }, (data) => ({ tasks: data.tasks.filter(task => task.category !== category)}));
-            } catch(err) {
-                console.error(err); 
+                }, (data) => ({ tasks: data.tasks.filter(task => task.category !== category) }));
+            } catch (err) {
+                console.error(err);
             }
         }
     });
@@ -52,7 +54,7 @@ const TaskContainer = (props) => {
     };
 
     const deleteCategoryTasksHandler = async () => {
-        try {   
+        try {
             const { data } = await deleteTaskByCategory({
                 variables: {
                     username,
@@ -62,8 +64,8 @@ const TaskContainer = (props) => {
             // console.log(`========================= Category tasks have been deleted===============`); 
             // console.log(data); 
 
-        } catch(err) {
-            console.error(err); 
+        } catch (err) {
+            console.error(err);
         }
     }
 
@@ -78,7 +80,16 @@ const TaskContainer = (props) => {
             >
                 <div className="title-wrapper">
                     <h2>{title}</h2>
-                    {hovered &&
+                    {width < transitionWidth ?
+                        <span
+                            aria-label="delete-category-tasks-btn"
+                            className="clear-btn"
+                            onClick={() => deleteCategoryTasksHandler()}
+                        >
+                            <FontAwesomeIcon icon='trash' />
+                        </span>
+                        :
+                        hovered &&
                         <span
                             aria-label="delete-category-tasks-btn"
                             className="clear-btn"
