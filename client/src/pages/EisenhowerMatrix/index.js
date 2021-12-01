@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAllTasks, deleteCompletedTasks} from "../../redux/eisenhowerMatrix";
 import { newTaskModal } from "../../redux/taskModal";
 import './style.css';
 import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';

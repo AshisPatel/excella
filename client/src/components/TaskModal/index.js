@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExcellaIcon from '../ExcellaIcon';
 import HorizontalLoader from '../HorizontalLoader';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTask, updateTask } from '../../redux/eisenhowerMatrix';
 import { closeTaskModal } from "../../redux/taskModal";
 import { useMutation } from '@apollo/client';
 import { ADD_TASK, UPDATE_TASK } from '../../utils/mutations';
@@ -151,7 +150,7 @@ const TaskModal = () => {
                         isContentSame = true; 
                     } 
                     // unless the task is already complete and the newTask category is delete 
-                    if(task.complete && newTask.category === 'delete') {
+                    if(task.complete && newTask.category === 'delete' && originalContent.taskContent === newTask.taskContent) {
                         isContentSame = true; 
                     }
                     const { data } = await updateTask({
