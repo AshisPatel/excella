@@ -1,7 +1,22 @@
 import { gql } from '@apollo/client';
 
+// Task Queries
+export const QUERY_TASKS = gql`
+query tasks($username: String!) {
+    tasks(username: $username) {
+        _id
+        category
+        taskContent
+        complete
+        username
+    }
+}
+`;
+
+
+// Job Queries
 export const QUERY_JOBS = gql`
-query jobs($username: String) {
+query jobs($username: String!) {
     jobs(username: $username) {
         _id
         jobTitle

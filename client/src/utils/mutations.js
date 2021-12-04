@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// User mutations
 export const ADD_USER = gql`
 mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
@@ -26,6 +27,66 @@ mutation login($email: String!, $password: String!) {
 }
 `;
 
+// Task Mutations
+export const ADD_TASK = gql`
+mutation addTask($username: String!, $taskContent: String!, $category: String!, $complete: Boolean!) {
+    addTask(username: $username, taskContent: $taskContent, category: $category, complete: $complete) {
+        username, 
+        _id,
+        category,
+        taskContent,
+        complete
+    }
+}
+`;
+
+export const UPDATE_TASK = gql`
+mutation updateTask($_id: ID!, $taskContent: String!, $category: String!, $complete: Boolean!) {
+    updateTask(_id: $_id, taskContent: $taskContent, category: $category, complete: $complete) {
+        _id,
+        username,
+        category,
+        taskContent,
+        complete
+    }
+}
+`;
+
+export const DELETE_TASK = gql`
+mutation deleteTask($_id: ID!){
+    deleteTask(_id: $_id) {
+        _id,
+        taskContent,
+        category
+    }
+}
+`;
+
+export const DELETE_ALL_TASKS = gql`
+mutation deleteAllTasks($username: String!) {
+    deleteAllTasks(username: $username) {
+        deletedCount 
+    }
+}
+`;
+
+export const DELETE_COMPLETED_TASKS = gql`
+mutation deleteCompletedTasks($username: String!) {
+    deleteCompletedTasks(username: $username) {
+        deletedCount
+    }
+}`;
+
+export const DELETE_TASKS_BY_CATEGORY = gql`
+mutation deleteTasksByCategory($username: String!, $category: String!) {
+    deleteTasksByCategory(username: $username, category: $category) {
+        deletedCount
+    }
+}
+`;
+
+
+// Job Mutations
 export const ADD_JOB = gql`
 mutation addJob($username: String!, $jobTitle: String!, $employer: String!, $applicationStatus: String!, $lastUpdated: String!) {
     addJob(username: $username, jobTitle: $jobTitle, employer: $employer, applicationStatus: $applicationStatus, lastUpdated: $lastUpdated) {

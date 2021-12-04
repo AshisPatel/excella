@@ -75,7 +75,7 @@ const Job = () => {
                 }
             });
 
-            console.log(data); 
+            // console.log(data); 
         } catch(err) {
             console.error(err);
             alert('There was a problem deleting this job!'); 

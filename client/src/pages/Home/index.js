@@ -51,9 +51,13 @@ const Home = () => {
     // useEffect to switch an animation variable for Excella -> sliding in to hovering 
     // timeout duration is with reference to the animation length for .slide-in
     useEffect(() => {
-        setTimeout(() => {
+        let timer1 = setTimeout(() => {
             setSlideIn(false); 
         },500);
+        return () => {
+            clearTimeout(timer1); 
+        }
+        
     }, []);
 
     return (

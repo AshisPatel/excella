@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import ExcellaShadowIcon from '../ExcellaShadowIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavError = ({ message }) => {
     const [slideIn, setSlideIn] = useState(true);
@@ -10,7 +11,7 @@ const NavError = ({ message }) => {
         }, 500);
         // clearing timeout on unmount
         return () => {
-            clearTimeout(timer1); 
+            clearTimeout(timer1);
         }
     }, []);
     return (
@@ -20,9 +21,11 @@ const NavError = ({ message }) => {
                     <ExcellaShadowIcon />
                 </div>
                 <div className="col-4">
-                    <p className='speech-bubble speech-bubble-fade-in'>
+                    <div className='speech-bubble speech-bubble-fade-in'>
+                        {message === 'Under construction, check back soon!' && <div className="hammer"><FontAwesomeIcon icon="hammer" /></div>}
                         {message}
-                    </p>
+
+                    </div>
                 </div>
             </div>
         </section>

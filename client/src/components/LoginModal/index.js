@@ -55,7 +55,7 @@ const LoginModal = ({ setShowSignup, setShowLogin }) => {
                     password
                 }
             });
-            console.log(data);
+            // console.log(data);
             setTimeout(() => {
                 setLoading(false);
                 setSuccess(true); 

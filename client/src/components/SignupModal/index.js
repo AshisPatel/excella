@@ -68,7 +68,7 @@ const SignupModal = ({ setShowSignup, setShowLogin }) => {
                     password
                 }
             });
-            console.log(data); 
+            // console.log(data); 
             // store token in localStorage
             setTimeout(() => {
                 setLoading(false);
