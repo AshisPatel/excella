@@ -15,7 +15,7 @@ $center-x: 0 auto auto 0;
     color: $gold; 
     margin-left: auto;
     margin-right: auto; 
-    width: 50%; 
+    width: 80%; 
     display: flex;
     flex-direction: column; 
     align-items: center; 
@@ -41,6 +41,7 @@ $center-x: 0 auto auto 0;
     margin-right: auto;
     margin-left: auto;
     font-size: 15rem; 
+    text-align: center; 
     font-family: 'Black Ops One', sans-serif;
 }
 
@@ -69,4 +70,74 @@ $center-x: 0 auto auto 0;
         border-color: $dark-gold;
         background-color: darken($black, 10%);
     }
+}
+
+@media screen and (min-width: 1440px) {
+    .time-display {
+        font-size: 15rem; 
+    }
+}
+
+@media screen and (max-width: 1399px) {
+    .timer-btn {
+        font-size: 1.25rem; 
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .title-wrapper {
+        width: 35%; 
+    }
+
+    .time-display {
+        font-size: 10rem; 
+    }
+    .timer-message {
+        width: 60%; 
+    }
+    .timer-btn {
+        margin-top: 2rem; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+   
+
+    .title-wrapper {
+        width: 60%; 
+    }
+    .timer {
+        width: 100%; 
+    }
+
+    .time-display {
+        font-size: 10rem; 
+    }
+
+}
+
+@media screen and (max-width: 767.9px) {
+
+    .timer-message {
+        width: 80%; 
+
+        & h2 {
+            font-size: 1rem; 
+        }
+    }
+
+    .title-wrapper {
+        width: 80%; 
+    }
+    .time-display {
+        font-size: 5rem; 
+    }
+
+    .timer-btn {
+        font-size: 1rem; 
+        padding: 0.5rem;
+        border-width: 0.125rem;
+    }
+
 }
