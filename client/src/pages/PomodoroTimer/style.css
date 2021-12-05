@@ -44,6 +44,23 @@
   font-family: 'Black Ops One', sans-serif;
 }
 
+.timer-btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.timer-btn-container button:first-child {
+  margin-right: 1rem;
+}
+
+.timer-btn-container button:last-child {
+  margin-left: 1rem;
+}
+
 .timer-btn {
   font-size: 2rem;
   width: -webkit-fit-content;

@@ -45,6 +45,19 @@ $center-x: 0 auto auto 0;
     font-family: 'Black Ops One', sans-serif;
 }
 
+.timer-btn-container {
+    display: flex;
+    justify-content: center;
+    
+    & button:first-child {
+        margin-right: 1rem;
+    }
+
+    & button:last-child {
+        margin-left: 1rem; 
+    }
+}
+
 .timer-btn {
     font-size: 2rem;
     width: fit-content;

@@ -3,6 +3,7 @@ import './style.css';
 import Auth from "../../utils/Auth";
 import NavError from '../../components/NavError';
 import ExcellaShadowIcon from "../../components/ExcellaShadowIcon";
+import TimerOptions from "../../components/TimerOptions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PomodoroTimer = () => {
@@ -77,16 +78,26 @@ const PomodoroTimer = () => {
             </div>
             <div className="timer">
                 <span className="time-display">{formatTime(time)}</span>
-                <button
-                    className="timer-btn"
-                    onClick={() => timerRunning ? stopTimer() : startTimer()}
-                >
-                    {/* if timerRunning is true set button to stop, if it is not running and the time is maximum set it to start, if the timerRunning and time is not maximum set to resume */}
-                    
-                    {timerRunning ? 'Pause' : time < (rest ? restTime : workTime) ? 'Resume' : 'Start'}
-                    <FontAwesomeIcon icon={timerRunning ? 'pause' : 'play'} />
-                </button>
+                <div className="timer-btn-container">
+                    <button
+                        className="timer-btn"
+                        onClick={() => timerRunning ? stopTimer() : startTimer()}
+                    >
+                        {/* if timerRunning is true set button to stop, if it is not running and the time is maximum set it to start, if the timerRunning and time is not maximum set to resume */}
+                        
+                        {timerRunning ? 'Pause' : time < (rest ? restTime : workTime) ? 'Resume' : 'Start'}
+                        <FontAwesomeIcon icon={timerRunning ? 'pause' : 'play'} />
+                    </button>
+                    <button 
+                        className="timer-btn"
+                        
+                    >
+                        Options
+                        <FontAwesomeIcon icon='cog' />
+                    </button>
+                </div>
             </div>
+            <TimerOptions />
         </div>
     );
 };
