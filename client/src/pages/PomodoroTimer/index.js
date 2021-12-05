@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import './style.css';
 import Auth from "../../utils/Auth";
 import NavError from '../../components/NavError';
-import dayjs from "dayjs";
+import ExcellaShadowIcon from "../../components/ExcellaShadowIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PomodoroTimer = () => {
     // instantiate timer variables
     const [restTime, setRestTime] = useState(0.5 * 60 * 1000);
-    const [workTime, setWorkTime] = useState(0.5 * 60 * 1000);
+    const [workTime, setWorkTime] = useState(1 * 60 * 1000);
     const [time, setTime] = useState(workTime);
     const [rest, setRest] = useState(false);
     const [timerId, setTimerId] = useState(0);
@@ -68,13 +69,22 @@ const PomodoroTimer = () => {
             <div className="title-wrapper">
                 <h1 className='page-title'>Pomodoro Timer</h1>
             </div>
+            <div className="excella-speech-label timer-message">
+                <ExcellaShadowIcon />
+                <h2>
+                    {rest ? "Great job! Let's relax." : "You've got this, I believe in you!"}
+                </h2>
+            </div>
             <div className="timer">
-                {formatTime(time)}
+                <span className="time-display">{formatTime(time)}</span>
                 <button
+                    className="timer-btn"
                     onClick={() => timerRunning ? stopTimer() : startTimer()}
                 >
                     {/* if timerRunning is true set button to stop, if it is not running and the time is maximum set it to start, if the timerRunning and time is not maximum set to resume */}
-                    {timerRunning ? 'Stop' : time < (rest ? restTime : workTime) ? 'Resume' : 'Start'}
+                    
+                    {timerRunning ? 'Pause' : time < (rest ? restTime : workTime) ? 'Resume' : 'Start'}
+                    <FontAwesomeIcon icon={timerRunning ? 'pause' : 'play'} />
                 </button>
             </div>
         </div>

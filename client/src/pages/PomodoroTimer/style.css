@@ -1,8 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
 .timer {
   color: #bc992B;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.timer-message {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .title-wrapper {
@@ -10,5 +33,47 @@
   margin-top: 2rem;
   margin-right: auto;
   margin-left: auto;
+}
+
+.time-display {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 15rem;
+  font-family: 'Black Ops One', sans-serif;
+}
+
+.timer-btn {
+  font-size: 2rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 1rem;
+  margin-bottom: 3rem;
+  border: 0.25rem solid #E2CA78;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  color: #E2CA78;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.timer-btn svg {
+  margin-left: 1rem;
+}
+
+.timer-btn:hover, .timer-btn :focus {
+  color: #bc992B;
+  border-color: #bc992B;
+  background-color: rgba(235, 236, 233, 0.05);
+}
+
+.timer-btn:active {
+  color: #C99200;
+  border-color: #C99200;
+  background-color: #0f0f0f;
 }
 /*# sourceMappingURL=style.css.map */

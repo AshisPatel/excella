@@ -1470,51 +1470,6 @@ body {
   color: #EBECE9;
 }
 
-.modal-form .excella-speech-label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  -webkit-animation: excella-modal-hover 2s ease-in-out infinite;
-          animation: excella-modal-hover 2s ease-in-out infinite;
-}
-
-.modal-form .excella-speech-label svg {
-  fill: #bc992B;
-  width: 5rem;
-  height: 5rem;
-}
-
-.modal-form .excella-speech-label h2 {
-  text-align: left;
-  position: relative;
-  background: #bc992B;
-  color: #282828;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  margin-left: 0.5rem;
-}
-
-.modal-form .excella-speech-label h2::before {
-  position: absolute;
-  content: '';
-  top: 50%;
-  left: 0;
-  border: 0.6rem solid transparent;
-  border-right-color: #bc992B;
-  border-left: 0;
-  border-top: 0;
-  margin-top: -0.3rem;
-  margin-left: -0.6rem;
-}
-
 .modal-form textarea {
   width: 98%;
   z-index: 2;
@@ -1844,6 +1799,51 @@ body {
   margin-left: auto;
 }
 
+.excella-speech-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  -webkit-animation: excella-modal-hover 2s ease-in-out infinite;
+          animation: excella-modal-hover 2s ease-in-out infinite;
+}
+
+.excella-speech-label svg {
+  fill: #bc992B;
+  width: 5rem;
+  height: 5rem;
+}
+
+.excella-speech-label h2 {
+  text-align: left;
+  position: relative;
+  background: #bc992B;
+  color: #282828;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.excella-speech-label h2::before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 0;
+  border: 0.6rem solid transparent;
+  border-right-color: #bc992B;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -0.3rem;
+  margin-left: -0.6rem;
+}
+
 @media screen and (max-width: 425px) {
   .modal-form .text-input {
     font-size: 1rem;
@@ -1889,7 +1889,7 @@ body {
   .page-title {
     margin-top: 1rem;
   }
-  .modal-form .excella-speech-label h2 {
+  .excella-speech-label h2 {
     font-size: 1.2rem;
   }
 }

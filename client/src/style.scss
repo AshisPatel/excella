@@ -131,47 +131,6 @@ body {
         }
     }
 
-    & .excella-speech-label {
-        display: flex;
-        justify-content: start; 
-        align-items: center; 
-        margin-top: 1rem;
-        margin-bottom: 1rem; 
-        animation: excella-modal-hover 2s ease-in-out infinite; 
-        & svg {
-            fill: $gold; 
-            width: 5rem;
-            height: 5rem; 
-
-        }
-
-        & h2 {
-            text-align: left; 
-            position: relative; 
-            background: $gold;
-            color: $black; 
-            border-radius: 0.5rem; 
-            padding: 0.5rem; 
-            margin-left: 0.5rem; 
-            &::before {
-                // creating a box with only the border
-                // the entire box is made transparent
-                // We give a color to the right corner - right border
-                // Then we remove the top and left to only display the bottom and right corners to make a half triangle 
-                position: absolute; 
-                content: '';
-                top: 50%;
-                left: 0;
-                border: 0.6rem solid transparent;
-                border-right-color: $gold; 
-                border-left: 0;
-                border-top: 0; 
-                margin-top: -0.3rem;
-                margin-left: -0.6rem; 
-            }
-        }
-    }
-
     & textarea {
         width: 98%;
         z-index: 2;
@@ -450,6 +409,47 @@ body {
     margin-left: auto; 
 }
 
+.excella-speech-label {
+    display: flex;
+    justify-content: start; 
+    align-items: center; 
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    animation: excella-modal-hover 2s ease-in-out infinite; 
+    & svg {
+        fill: $gold; 
+        width: 5rem;
+        height: 5rem; 
+
+    }
+
+    & h2 {
+        text-align: left; 
+        position: relative; 
+        background: $gold;
+        color: $black; 
+        border-radius: 0.5rem; 
+        padding: 0.5rem; 
+        margin-left: 0.5rem; 
+        &::before {
+            // creating a box with only the border
+            // the entire box is made transparent
+            // We give a color to the right corner - right border
+            // Then we remove the top and left to only display the bottom and right corners to make a half triangle 
+            position: absolute; 
+            content: '';
+            top: 50%;
+            left: 0;
+            border: 0.6rem solid transparent;
+            border-right-color: $gold; 
+            border-left: 0;
+            border-top: 0; 
+            margin-top: -0.3rem;
+            margin-left: -0.6rem; 
+        }
+    }
+}
+
 @media screen and (max-width: 425px) {
 
     .modal-form {
@@ -497,13 +497,10 @@ body {
         margin-top: 1rem; 
     }
 
-    .modal-form {
-        & .excella-speech-label {
-            & h2 {
-                font-size: 1.2rem; 
-            }
+    .excella-speech-label {
+    & h2 {
+            font-size: 1.2rem; 
         }
-
     }
 }
 
