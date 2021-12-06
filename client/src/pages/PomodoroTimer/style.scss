@@ -34,6 +34,10 @@ $center-x: 0 auto auto 0;
     margin-top: 2rem; 
     margin-right: auto;
     margin-left: auto;
+
+    & h2 {
+        box-shadow: $box-shadow; 
+    }
 }
 
 .time-display {
@@ -84,6 +88,8 @@ $center-x: 0 auto auto 0;
         background-color: darken($black, 10%);
     }
 }
+
+
 
 @media screen and (min-width: 1440px) {
     .time-display {

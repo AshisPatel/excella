@@ -5,29 +5,30 @@ import NavError from '../../components/NavError';
 import ExcellaShadowIcon from "../../components/ExcellaShadowIcon";
 import TimerOptions from "../../components/TimerOptions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector, useDispatch } from 'react-redux';
+import { startTimer, stopTimer, decreaseTime } from '../../redux/pomodoroTimer';
 
 const PomodoroTimer = () => {
-    // instantiate timer variables
-    const [restTime, setRestTime] = useState(0.5 * 60 * 1000);
-    const [workTime, setWorkTime] = useState(1 * 60 * 1000);
-    const [time, setTime] = useState(workTime);
-    const [rest, setRest] = useState(false);
-    const [timerId, setTimerId] = useState(0);
-    const [timerRunning, setTimerRunning] = useState(false);
+    // import globalState for pomodoroTimer and dispatch to modify global store
+    const pomodoroTimer = useSelector(state => state.pomodoroTimer);
+    const dispatch = useDispatch(); 
 
+    const { time, workTime, breakTime, working, timerRunning, timerInterval } = pomodoroTimer; 
 
     // function to start timer
-    const startTimer = () => {
-        // if its a rest time, decrement the restTime 
-        setTimerId(setInterval(() => {
-            setTime(prevTime => prevTime - 1000)
-        }, 1000));
-        setTimerRunning(true);
+    const startTimerHandler = () => {
+        // we need to dispatch to start the timer -> this will create the timeInterval 
+        dispatch(startTimer(setInterval(() => {
+            dispatch(decreaseTime());
+        },1000))); 
+        
     }
-    // function to stop timer
-    const stopTimer = () => {
-        clearInterval(timerId);
-        setTimerRunning(false);
+
+
+    const stopTimerHandler = () => {
+        // stop timer and clear interval
+        clearInterval(timerInterval);
+        dispatch(stopTimer()); 
     }
     // function to format time from milliseconds to 'mm:ss'
     const formatTime = (time) => {
@@ -44,19 +45,7 @@ const PomodoroTimer = () => {
             return `${minutes}:0${seconds}`
         }
         return `${minutes}:${seconds}`;
-    }
-
-    // monitor when work timer or rest timer hits 0 and switch to the other 
-    useEffect(async () => {
-        if (time === 0) {
-            clearInterval(timerId);
-            // set time limit based on mode that just ended
-            rest ? setTime(workTime) : setTime(restTime);
-            // toggle rest mode on or off
-            rest ? setRest(false) : setRest(true);
-            setTimerRunning(false);
-        }
-    }, [time])
+    }   
 
     // do not load for not logged in users
     if (!Auth.loggedIn()) {
@@ -73,7 +62,7 @@ const PomodoroTimer = () => {
             <div className="excella-speech-label timer-message">
                 <ExcellaShadowIcon />
                 <h2>
-                    {rest ? "Great job! Let's relax." : "You've got this, I believe in you!"}
+                    {working ? "You've got this, I believe in you!" :  "Great job! Let's relax."}
                 </h2>
             </div>
             <div className="timer">
@@ -81,11 +70,11 @@ const PomodoroTimer = () => {
                 <div className="timer-btn-container">
                     <button
                         className="timer-btn"
-                        onClick={() => timerRunning ? stopTimer() : startTimer()}
+                        onClick={() => timerRunning ? stopTimerHandler() : startTimerHandler()}
                     >
                         {/* if timerRunning is true set button to stop, if it is not running and the time is maximum set it to start, if the timerRunning and time is not maximum set to resume */}
-                        
-                        {timerRunning ? 'Pause' : time < (rest ? restTime : workTime) ? 'Resume' : 'Start'}
+                        {/* time needs to be converted to minutes */}
+                        {timerRunning ? 'Pause' : (time/1000/60) < (working ? workTime : breakTime) ? 'Resume' : 'Start'}
                         <FontAwesomeIcon icon={timerRunning ? 'pause' : 'play'} />
                     </button>
                     <button 
