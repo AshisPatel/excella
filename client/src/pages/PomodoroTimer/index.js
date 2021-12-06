@@ -6,29 +6,28 @@ import ExcellaShadowIcon from "../../components/ExcellaShadowIcon";
 import TimerOptions from "../../components/TimerOptions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from 'react-redux';
-import { startTimer, stopTimer, decreaseTime } from '../../redux/pomodoroTimer';
+import { startTimer, stopTimer, decreaseTime, switchTimers } from '../../redux/pomodoroTimer';
 
 const PomodoroTimer = () => {
     // import globalState for pomodoroTimer and dispatch to modify global store
     const pomodoroTimer = useSelector(state => state.pomodoroTimer);
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
-    const { time, workTime, breakTime, working, timerRunning, timerInterval } = pomodoroTimer; 
+    const { time, workTime, breakTime, working, timerRunning, timerInterval } = pomodoroTimer;
 
     // function to start timer
     const startTimerHandler = () => {
         // we need to dispatch to start the timer -> this will create the timeInterval 
         dispatch(startTimer(setInterval(() => {
             dispatch(decreaseTime());
-        },1000))); 
-        
-    }
+        }, 1000)));
 
+    }
 
     const stopTimerHandler = () => {
         // stop timer and clear interval
         clearInterval(timerInterval);
-        dispatch(stopTimer()); 
+        dispatch(stopTimer());
     }
     // function to format time from milliseconds to 'mm:ss'
     const formatTime = (time) => {
@@ -45,7 +44,16 @@ const PomodoroTimer = () => {
             return `${minutes}:0${seconds}`
         }
         return `${minutes}:${seconds}`;
-    }   
+    }
+
+    // check to see when time is equal to 0 and dispatch actions to reset timer and toggle mode
+    useEffect(() => {
+
+        if (time === 0) {
+            stopTimerHandler();
+            dispatch(switchTimers());
+        }
+    }, [time])
 
     // do not load for not logged in users
     if (!Auth.loggedIn()) {
@@ -62,11 +70,15 @@ const PomodoroTimer = () => {
             <div className="excella-speech-label timer-message">
                 <ExcellaShadowIcon />
                 <h2>
-                    {working ? "You've got this, I believe in you!" :  "Great job! Let's relax."}
+                    {working ? "You've got this, I believe in you!" : "Great job! Let's relax."}
                 </h2>
             </div>
             <div className="timer">
-                <span className="time-display">{formatTime(time)}</span>
+                <div className="time-display-container">
+                    <span className="time-display">
+                        {formatTime(time)}            
+                    </span>
+                </div>
                 <div className="timer-btn-container">
                     <button
                         className="timer-btn"
@@ -74,12 +86,12 @@ const PomodoroTimer = () => {
                     >
                         {/* if timerRunning is true set button to stop, if it is not running and the time is maximum set it to start, if the timerRunning and time is not maximum set to resume */}
                         {/* time needs to be converted to minutes */}
-                        {timerRunning ? 'Pause' : (time/1000/60) < (working ? workTime : breakTime) ? 'Resume' : 'Start'}
+                        {timerRunning ? 'Pause' : (time / 1000 / 60) < (working ? workTime : breakTime) ? 'Resume' : 'Start'}
                         <FontAwesomeIcon icon={timerRunning ? 'pause' : 'play'} />
                     </button>
-                    <button 
+                    <button
                         className="timer-btn"
-                        
+
                     >
                         Options
                         <FontAwesomeIcon icon='cog' />

@@ -35,12 +35,26 @@
   margin-left: auto;
 }
 
+.title-wrapper h2 {
+  -webkit-box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+          box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+}
+
+.time-display-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
 .time-display {
-  width: 80%;
-  margin-right: auto;
-  margin-left: auto;
-  font-size: 15rem;
-  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 12rem;
   font-family: 'Black Ops One', sans-serif;
 }
 

@@ -47,8 +47,8 @@ export const switchTimers = () => {
 
 // initialize state
 let initialState = {
-    workTime: 25,
-    breakTime: 5,
+    workTime: 2,
+    breakTime: 1,
     timerInterval: '',
     working: true,
     timerRunning: false
@@ -90,11 +90,11 @@ export default function pomodoroTimerReducer(pomodoroTimer = initialStateWithTim
             };
         }
         case 'SWITCH_TIMERS': 
+        // switch working status and switch the time to be the breaktime if the status USED to be working and switch time to the worktime if the status USED to be NOT working
         return {
             ...pomodoroTimer,
             working: !pomodoroTimer.working,
-            timerRunning: false, 
-            time: (pomodoroTimer.break ? pomodoroTimer.breakTime : pomodoroTimer.workTime) * 60 * 1000
+            time: (pomodoroTimer.working ? pomodoroTimer.breakTime : pomodoroTimer.workTime) * 60 * 1000
         }
         default:
             return pomodoroTimer;
