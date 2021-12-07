@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
 .timer {
   color: #bc992B;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,11 +49,10 @@
 }
 
 .time-display {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  font-size: 12rem;
+  width: 750px;
+  font-size: 15rem;
   font-family: 'Black Ops One', sans-serif;
+  margin: 0 auto;
 }
 
 .timer-btn-container {
@@ -109,24 +106,20 @@
   background-color: #0f0f0f;
 }
 
-@media screen and (min-width: 1440px) {
-  .time-display {
-    font-size: 15rem;
-  }
-}
-
-@media screen and (max-width: 1399px) {
+@media screen and (max-width: 1440px) {
   .timer-btn {
     font-size: 1.25rem;
+    margin-top: 2rem;
+  }
+  .time-display {
+    width: 500px;
+    font-size: 10rem;
   }
 }
 
 @media screen and (max-width: 1024px) {
   .title-wrapper {
     width: 35%;
-  }
-  .time-display {
-    font-size: 10rem;
   }
   .timer-message {
     width: 60%;
@@ -143,9 +136,6 @@
   .timer {
     width: 100%;
   }
-  .time-display {
-    font-size: 10rem;
-  }
 }
 
 @media screen and (max-width: 767.9px) {
@@ -158,13 +148,14 @@
   .title-wrapper {
     width: 80%;
   }
-  .time-display {
-    font-size: 5rem;
-  }
   .timer-btn {
     font-size: 1rem;
     padding: 0.5rem;
     border-width: 0.125rem;
+  }
+  .time-display {
+    width: 255px;
+    font-size: 5rem;
   }
 }
 /*# sourceMappingURL=style.css.map */

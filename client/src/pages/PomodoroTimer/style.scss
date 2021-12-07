@@ -13,9 +13,9 @@ $center-x: 0 auto auto 0;
 
 .timer {
     color: $gold; 
-    margin-left: auto;
-    margin-right: auto; 
-    width: 80%; 
+    // margin-left: auto;
+    // margin-right: auto; 
+    width: 100%; 
     display: flex;
     flex-direction: column; 
     align-items: center; 
@@ -47,9 +47,10 @@ $center-x: 0 auto auto 0;
 }
 
 .time-display {
-    width: fit-content;   
-    font-size: 12rem;  
+    width: 750px;
+    font-size: 15rem;  
     font-family: 'Black Ops One', sans-serif;
+    margin: 0 auto; 
 }
 
 .timer-btn-container {
@@ -93,26 +94,21 @@ $center-x: 0 auto auto 0;
 }
 
 
-
-@media screen and (min-width: 1440px) {
-    .time-display {
-        font-size: 15rem; 
-    }
-}
-
-@media screen and (max-width: 1399px) {
+@media screen and (max-width: 1440px) {
     .timer-btn {
         font-size: 1.25rem; 
+        margin-top: 2rem; 
+    }
+    
+    .time-display {
+        width: 500px;
+        font-size: 10rem;  
     }
 }
 
 @media screen and (max-width: 1024px) {
     .title-wrapper {
         width: 35%; 
-    }
-
-    .time-display {
-        font-size: 10rem; 
     }
     .timer-message {
         width: 60%; 
@@ -133,10 +129,6 @@ $center-x: 0 auto auto 0;
         width: 100%; 
     }
 
-    .time-display {
-        font-size: 10rem; 
-    }
-
 }
 
 @media screen and (max-width: 767.9px) {
@@ -152,14 +144,16 @@ $center-x: 0 auto auto 0;
     .title-wrapper {
         width: 80%; 
     }
-    .time-display {
-        font-size: 5rem; 
-    }
 
     .timer-btn {
         font-size: 1rem; 
         padding: 0.5rem;
         border-width: 0.125rem;
+    }
+
+    .time-display {
+        width: 255px;
+        font-size: 5rem;  
     }
 
 }

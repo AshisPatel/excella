@@ -31,19 +31,17 @@ const PomodoroTimer = () => {
     }
     // function to format time from milliseconds to 'mm:ss'
     const formatTime = (time) => {
-        const minutes = Math.floor(time / (60 * 1000));
-        const seconds = (time - minutes * 60 * 1000) / 1000;
+        let minutes = Math.floor(time / (60 * 1000));
+        let seconds = (time - minutes * 60 * 1000) / 1000;
         if (minutes < 10) {
-            if (seconds < 10) {
-                return `0${minutes}:0${seconds}`;
-            } else {
-                return `0${minutes}:${seconds}`;
-            }
+          minutes = `0${minutes}`; 
         }
         if (seconds < 10) {
-            return `${minutes}:0${seconds}`
+            seconds = `0${seconds}`;
         }
-        return `${minutes}:${seconds}`;
+       
+
+        return (<><span>{minutes}</span><span>:</span><span>{seconds}</span></>)
     }
 
     // check to see when time is equal to 0 and dispatch actions to reset timer and toggle mode
