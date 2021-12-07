@@ -1,28 +1,23 @@
 .return-link {
   color: #282828;
   text-decoration: none;
-  -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
   padding: 1rem;
   border-radius: 0.5rem;
   margin-left: 2rem;
   margin-top: 3rem;
   background-color: #E2CA78;
-  -webkit-box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
-          box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
-
 .return-link svg {
   margin-right: 0.5rem;
 }
-
 .return-link:hover {
   background-color: #bc992B;
 }
-
 .return-link:active {
   background-color: #EBECE9;
 }
@@ -36,8 +31,7 @@
   background-color: #bc992B;
   border-radius: 0.5rem;
   color: #282828;
-  -webkit-box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
-          box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
 }
 
 .job-card-divider {
@@ -50,28 +44,21 @@
 }
 
 .job-info-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   font-size: 1.1rem;
 }
 
 .job-info-list {
   list-style: none;
 }
-
 .job-info-list label {
   display: block;
 }
-
 .job-info-list li:first-child {
   margin-bottom: 0.5rem;
   margin-top: 0rem;
 }
-
 .job-info-list li {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -81,21 +68,17 @@
   list-style: none;
   margin-bottom: auto;
 }
-
 .job-options-list li:first-child {
   margin-bottom: 0.5rem;
   margin-top: 0;
 }
-
 .job-options-list li {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-
 .job-options-list button {
   width: 95%;
 }
-
 .job-options-list button svg {
   display: block;
   margin-right: auto;
@@ -115,14 +98,11 @@
   background-color: transparent;
   margin-left: 0.5rem;
   margin-top: 0.25rem;
-  -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
-
 .show-contact-btn:hover, .show-contact-btn :focus {
   color: rgba(40, 40, 40, 0.8);
 }
-
 .show-contact-btn:active {
   color: #EBECE9;
 }
@@ -134,58 +114,39 @@
   font-weight: bold;
   border-radius: 0.2rem;
   padding: 0.5rem;
-  -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
-
 .job-card-btn:hover, .job-card-btn :focus {
   background-color: rgba(40, 40, 40, 0.15);
 }
-
 .job-card-btn:active {
   background-color: #282828;
   color: #bc992B;
 }
 
 .new-contact-btn {
-  margin-top: .25rem;
+  margin-top: 0.25rem;
 }
 
 .contact-header-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   font-size: 1.1rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-bottom: 0.5rem;
 }
-
 .contact-header-wrapper div:first-child {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: start;
-          flex-direction: start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: start;
+  align-items: center;
 }
 
 .rotate-up {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .rotate-down {
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .expand {
@@ -215,7 +176,6 @@
     height: 10rem;
   }
 }
-
 @-webkit-keyframes collapse {
   from {
     height: 10rem;
@@ -224,7 +184,6 @@
     height: 0;
   }
 }
-
 @keyframes collapse {
   from {
     height: 10rem;
@@ -233,19 +192,17 @@
     height: 0;
   }
 }
-
 @media screen and (max-width: 992px) {
   .job-card {
     margin-top: 2rem;
   }
 }
-
 @media screen and (max-width: 768px) {
   .job-info-container {
     font-size: 1rem;
   }
+
   .contact-header-wrapper {
     font-size: 1rem;
   }
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

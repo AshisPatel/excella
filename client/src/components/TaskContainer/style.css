@@ -22,32 +22,22 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   border-radius: 0.5rem;
-  -webkit-box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
-          box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
   height: 13rem;
   padding-right: 0.25rem;
   position: relative;
 }
-
 .task-container h2 {
   margin-top: 1rem;
   margin-left: 1rem;
   margin-bottom: 0;
   font-size: 1.5rem;
 }
-
 .task-container .title-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
-
 .task-container .clear-btn {
   position: absolute;
   top: 0;
@@ -56,10 +46,8 @@
   margin-top: 1rem;
   -webkit-animation: fade-in 0.2s linear forwards;
           animation: fade-in 0.2s linear forwards;
-  -webkit-transition: color 0.2s linear;
   transition: color 0.2s linear;
 }
-
 .task-container .clear-btn:hover {
   color: #EBECE9;
 }
@@ -95,16 +83,18 @@
   .task-container h2 {
     margin-left: 0rem;
   }
+
   .task-list {
     margin-left: 0;
   }
+
   .em-right-box {
     margin-left: auto;
     margin-right: auto;
   }
+
   .em-left-box {
     margin-left: auto;
     margin-right: auto;
   }
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

@@ -42,7 +42,7 @@ const client = new ApolloClient({
 
 function App() {
 
-  // initialize visibility of signup/login modal
+  // initialize visibility of signup/login/timer modal
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 

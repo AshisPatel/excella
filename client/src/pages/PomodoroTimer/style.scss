@@ -27,6 +27,10 @@ $center-x: 0 auto auto 0;
     margin-left: auto; 
     display: flex;
     justify-content: center; 
+
+    & h2 {
+        box-shadow: $box-shadow; 
+    }
 }
 
 .title-wrapper {
