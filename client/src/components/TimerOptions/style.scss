@@ -1,0 +1,31 @@
+.timer-input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem; 
+
+    & label {
+        font-size: 1.5rem; 
+    }
+    
+    & label:first-child{
+        margin-right: 1rem;
+    }
+
+    & label:last-child{
+        margin-left: 1rem; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .timer-input-container {
+        & label {
+            font-size:1rem; 
+        }
+    }
+}
+
+.timer-option-modal {
+    justify-content:flex-start !important;
+    max-height: 20rem !important;  
+    width: 75% !important; 
+}

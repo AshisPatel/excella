@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './style.css'; 
 import ExcellaIcon from '../ExcellaIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const TimerOptions = () => {
+const TimerOptions = ({ setShowTimerOptions }) => {
 
     // initialize formState
     const [formState, setFormState] = useState({
@@ -35,7 +36,7 @@ const TimerOptions = () => {
         // fade out and close out after 300ms animation
         setFadeOut(true); 
         setTimeout(() => {
-            // insert variable change to unmount modal
+            setShowTimerOptions(false); 
         }, 300);
     };
 
@@ -43,7 +44,7 @@ const TimerOptions = () => {
         <>
             <div className="modal-wrapper">
                 <form 
-                className={`modal-form task-modal ${fadeOut ? 'slide-out' : 'slide-n'}`}
+                className={`modal-form timer-option-modal ${fadeOut ? 'slide-out' : 'slide-n'}`}
                 onSubmit={handleSubmit}
                 >
                     <span
@@ -56,35 +57,30 @@ const TimerOptions = () => {
 
                     <div className="excella-speech-label">
                         <ExcellaIcon />
-                        <h2>Set your work cycle duration (minutes):</h2>
+                        <h2>Adjust the timer for your needs!</h2>
                     </div>
+                    <div className="timer-input-container">
+                        <label>Work: <input 
+                            name="workTime"
+                            aria-label='work time'
+                            value={formState.workTime}
+                            ref={numberRef}
+                            type='number'
+                            className='number-input'
+                            placeholder='Work Time'
+                            onChange={handleChange}
+                        /> minutes</label>
 
-                    <input 
-                        name="workTime"
-                        aria-label='work time'
-                        value={formState.workTime}
-                        ref={numberRef}
-                        type='number'
-                        className='text-input'
-                        placeholder='Work Time (minutes)'
-                        onChange={handleChange}
-                    />
-
-                    <div className="excella-speech-label">
-                        <ExcellaIcon />
-                        <h2>Set your break cycle duration (minutes):</h2>
+                        <label>Break: <input 
+                            name="breakTime"
+                            aria-label='break time'
+                            value={formState.breakTime}
+                            type='number'
+                            className='number-input'
+                            placeholder='Break Time'
+                            onChange={handleChange}
+                        /> minutes</label>
                     </div>
-
-                    <input 
-                        name="breakTime"
-                        aria-label='break time'
-                        value={formState.breakTime}
-                        type='number'
-                        className='text-input'
-                        placeholder='Break Time (minutes)'
-                        onChange={handleChange}
-                    />
-
                     <button
                         className= {`button ${success && 'success'}`}
                         onClick={handleSubmit}

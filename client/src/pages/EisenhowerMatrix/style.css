@@ -5,13 +5,17 @@
   background-color: #E2CA78;
   color: #282828;
   border-radius: 0.5rem;
-  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+  -webkit-box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+          box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+  -webkit-transition: background-color 0.2s linear, color 0.2s linear;
   transition: background-color 0.2s linear, color 0.2s linear;
 }
+
 .em-main-btn:hover {
   color: #282828;
   background-color: #bc992B;
 }
+
 .em-main-btn svg {
   margin-right: 0.5rem;
 }
@@ -19,8 +23,10 @@
 .clean-btn {
   color: #EBECE9;
   background-color: #161616;
+  -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
+
 .clean-btn:hover {
   color: #282828;
   background-color: #bc992B;
@@ -29,14 +35,19 @@
 .delete-btn {
   background-color: #EBECE9;
 }
+
 .delete-btn:hover {
   background-color: #bc992B;
   color: #282828;
 }
 
 .em-main-btn-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 1rem;
   margin-top: 0;
 }
@@ -47,15 +58,19 @@
     padding: 0.75rem;
   }
 }
+
 @media screen and (max-width: 425px) {
   .em-main-btn-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
-
   .em-main-btn {
     width: 100%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */

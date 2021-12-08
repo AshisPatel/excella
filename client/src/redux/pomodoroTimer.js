@@ -47,7 +47,7 @@ export const switchTimers = () => {
 
 // initialize state
 let initialState = {
-    workTime: 2,
+    workTime: 25,
     breakTime: 1,
     timerInterval: '',
     working: true,

@@ -2,20 +2,33 @@
 .timer {
   color: #bc992B;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .timer-message {
   width: 50%;
   margin-right: auto;
   margin-left: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 .timer-message h2 {
-  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+  -webkit-box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+          box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
 }
 
 .title-wrapper {
@@ -24,30 +37,42 @@
   margin-right: auto;
   margin-left: auto;
 }
+
 .title-wrapper h2 {
-  box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+  -webkit-box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
+          box-shadow: 0.6rem 0.6rem rgba(235, 236, 233, 0.08);
 }
 
 .time-display-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
 }
 
 .time-display {
   width: 750px;
   font-size: 15rem;
-  font-family: "Black Ops One", sans-serif;
+  font-family: 'Black Ops One', sans-serif;
   margin: 0 auto;
 }
 
 .timer-btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 .timer-btn-container button:first-child {
   margin-right: 1rem;
 }
+
 .timer-btn-container button:last-child {
   margin-left: 1rem;
 }
@@ -66,16 +91,20 @@
   background-color: transparent;
   border-radius: 0.5rem;
   color: #E2CA78;
+  -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
+
 .timer-btn svg {
   margin-left: 1rem;
 }
+
 .timer-btn:hover, .timer-btn :focus {
   color: #bc992B;
   border-color: #bc992B;
   background-color: rgba(235, 236, 233, 0.05);
 }
+
 .timer-btn:active {
   color: #C99200;
   border-color: #C99200;
@@ -87,34 +116,33 @@
     font-size: 1.25rem;
     margin-top: 2rem;
   }
-
   .time-display {
     width: 500px;
     font-size: 10rem;
   }
 }
+
 @media screen and (max-width: 1024px) {
   .title-wrapper {
     width: 35%;
   }
-
   .timer-message {
     width: 60%;
   }
-
   .timer-btn {
     margin-top: 2rem;
   }
 }
+
 @media screen and (max-width: 768px) {
   .title-wrapper {
     width: 60%;
   }
-
   .timer {
     width: 100%;
   }
 }
+
 @media screen and (max-width: 767.9px) {
   .timer-message {
     width: 80%;
@@ -122,19 +150,17 @@
   .timer-message h2 {
     font-size: 1rem;
   }
-
   .title-wrapper {
     width: 80%;
   }
-
   .timer-btn {
     font-size: 1rem;
     padding: 0.5rem;
     border-width: 0.125rem;
   }
-
   .time-display {
     width: 255px;
     font-size: 5rem;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */

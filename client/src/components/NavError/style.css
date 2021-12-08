@@ -25,62 +25,79 @@
 
 @-webkit-keyframes excella-slide-in-nav-error {
   0% {
-    transform: translateX(-50vw) rotate(45deg);
+    -webkit-transform: translateX(-50vw) rotate(45deg);
+            transform: translateX(-50vw) rotate(45deg);
   }
   75% {
-    transform: translateX(0) rotate(-15deg);
+    -webkit-transform: translateX(0) rotate(-15deg);
+            transform: translateX(0) rotate(-15deg);
   }
   100% {
-    transform: translateX(0) rotate(0deg);
+    -webkit-transform: translateX(0) rotate(0deg);
+            transform: translateX(0) rotate(0deg);
   }
 }
 
 @keyframes excella-slide-in-nav-error {
   0% {
-    transform: translateX(-50vw) rotate(45deg);
+    -webkit-transform: translateX(-50vw) rotate(45deg);
+            transform: translateX(-50vw) rotate(45deg);
   }
   75% {
-    transform: translateX(0) rotate(-15deg);
+    -webkit-transform: translateX(0) rotate(-15deg);
+            transform: translateX(0) rotate(-15deg);
   }
   100% {
-    transform: translateX(0) rotate(0deg);
+    -webkit-transform: translateX(0) rotate(0deg);
+            transform: translateX(0) rotate(0deg);
   }
 }
+
 @-webkit-keyframes hammering {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   25% {
-    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
   }
   50% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   100% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
 }
+
 @keyframes hammering {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   25% {
-    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
   }
   50% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   100% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
 }
+
 @media screen and (max-width: 500px) {
   .nav-error-margins {
     margin-top: 30%;
     margin-left: 10%;
   }
-
   .hammer {
     font-size: 2rem;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */

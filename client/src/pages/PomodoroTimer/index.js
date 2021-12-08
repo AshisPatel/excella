@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from 'react-redux';
 import { startTimer, stopTimer, decreaseTime, switchTimers } from '../../redux/pomodoroTimer';
 
-const PomodoroTimer = () => {
+const PomodoroTimer = ({ setShowTimerOptions }) => {
     // import globalState for pomodoroTimer and dispatch to modify global store
     const pomodoroTimer = useSelector(state => state.pomodoroTimer);
     const dispatch = useDispatch();
@@ -89,14 +89,13 @@ const PomodoroTimer = () => {
                     </button>
                     <button
                         className="timer-btn"
-
+                        onClick={() => setShowTimerOptions(true)}
                     >
                         Options
                         <FontAwesomeIcon icon='cog' />
                     </button>
                 </div>
             </div>
-            <TimerOptions />
         </div>
     );
 };

@@ -13,6 +13,7 @@ import SignupModal from "./components/SignupModal";
 import Job from "./pages/Job";
 import NoMatch from "./pages/NoMatch";
 import Auth from './utils/Auth'; 
+import TimerOptions from "./components/TimerOptions";
 // create link to graphql server at its endpoint in our server-side code
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -45,6 +46,7 @@ function App() {
   // initialize visibility of signup/login/timer modal
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+  const [showTimerOptions, setShowTimerOptions] = useState(false); 
 
   return (
     <ApolloProvider client={client}>
@@ -52,6 +54,7 @@ function App() {
         {Auth.loggedIn() && <SideNav />}
         {showSignup && <SignupModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}
         {showLogin && <LoginModal setShowSignup={setShowSignup} setShowLogin={setShowLogin} />}
+        {showTimerOptions && <TimerOptions setShowTimerOptions={setShowTimerOptions} />}
         {
           <Nav
           setShowLogin={setShowLogin}
@@ -62,7 +65,7 @@ function App() {
           <Route path="/EisenhowerMatrix" element={<EisenHowerMatrix />} />
           <Route path="/JobCRM" element={<JobCRM />} />
           <Route path="/JobCRM/:_id" element={<Job />} />
-          <Route path="/PomodoroTimer" element={<PomodoroTimer />} />
+          <Route path="/PomodoroTimer" element={<PomodoroTimer setShowTimerOptions={setShowTimerOptions}/>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
 

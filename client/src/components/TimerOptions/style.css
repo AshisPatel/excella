@@ -1,0 +1,36 @@
+.timer-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.timer-input-container label {
+  font-size: 1.5rem;
+}
+
+.timer-input-container label:first-child {
+  margin-right: 1rem;
+}
+
+.timer-input-container label:last-child {
+  margin-left: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .timer-input-container label {
+    font-size: 1rem;
+  }
+}
+
+.timer-option-modal {
+  -webkit-box-pack: start !important;
+      -ms-flex-pack: start !important;
+          justify-content: flex-start !important;
+  max-height: 20rem !important;
+  width: 75% !important;
+}
+/*# sourceMappingURL=style.css.map */

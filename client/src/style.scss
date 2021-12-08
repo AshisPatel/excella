@@ -131,6 +131,21 @@ body {
         }
     }
 
+    & .number-input {
+        width: 3rem; 
+        z-index: 2;
+        border-radius: 0.5rem; 
+        height: 3rem; 
+        text-align: center; 
+        margin: 0.5rem auto; 
+        border: none; 
+        color: $white;
+        background-color: rgba($white, 0.3);
+        font-size: 1.2rem;
+        padding-left: 1rem; 
+        
+    }
+
     & textarea {
         width: 98%;
         z-index: 2;
