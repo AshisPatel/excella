@@ -27,7 +27,7 @@ $black: #282828;
 
 @for $i from 0 through 2 {
     .icon-pulse-#{$i}{
-        animation: pulse 1.33s ($i*.33s) linear infinite; 
+        animation: pulse 1.33s ($i*.16s) linear infinite; 
     }
 }
 

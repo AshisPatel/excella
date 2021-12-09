@@ -33,13 +33,13 @@
 }
 
 .icon-pulse-1 {
-  -webkit-animation: pulse 1.33s 0.33s linear infinite;
-          animation: pulse 1.33s 0.33s linear infinite;
+  -webkit-animation: pulse 1.33s 0.16s linear infinite;
+          animation: pulse 1.33s 0.16s linear infinite;
 }
 
 .icon-pulse-2 {
-  -webkit-animation: pulse 1.33s 0.66s linear infinite;
-          animation: pulse 1.33s 0.66s linear infinite;
+  -webkit-animation: pulse 1.33s 0.32s linear infinite;
+          animation: pulse 1.33s 0.32s linear infinite;
 }
 
 @-webkit-keyframes pulse {
