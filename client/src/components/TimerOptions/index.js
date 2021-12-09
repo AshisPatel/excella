@@ -98,7 +98,23 @@ const TimerOptions = ({ setShowTimerOptions }) => {
                             type='number'
                             className='timer-input'
                             onChange={handleChange}
-                        /> minutes</label>
+                        />
+                            <div className='pm-btn-container brk-btns'>
+                                <button
+                                    className='inc-btn'
+                                    type='button'
+                                >
+                                    <FontAwesomeIcon icon='plus' />
+                                </button>
+                                <button
+                                    className='dec-btn'
+                                    type='button'
+                                >
+                                    <FontAwesomeIcon icon='minus' />
+                                </button>
+                            </div>
+                            <span>minutes</span>
+                        </label>
                     </div>
                     <p className='warning'>
                         {warning}
