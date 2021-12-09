@@ -1470,20 +1470,6 @@ body {
   color: #EBECE9;
 }
 
-.modal-form .number-input {
-  width: 3rem;
-  z-index: 2;
-  border-radius: 0.5rem;
-  height: 3rem;
-  text-align: center;
-  margin: 0.5rem auto;
-  border: none;
-  color: #EBECE9;
-  background-color: rgba(235, 236, 233, 0.3);
-  font-size: 1.2rem;
-  padding-left: 1rem;
-}
-
 .modal-form textarea {
   width: 98%;
   z-index: 2;

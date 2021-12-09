@@ -1,3 +1,15 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .timer-input-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10,6 +22,11 @@
 
 .timer-input-container label {
   font-size: 1.5rem;
+  position: relative;
+}
+
+.timer-input-container label span {
+  margin-left: 0.5rem;
 }
 
 .timer-input-container label:first-child {
@@ -20,17 +37,96 @@
   margin-left: 1rem;
 }
 
-@media screen and (max-width: 768px) {
-  .timer-input-container label {
-    font-size: 1rem;
-  }
-}
-
 .timer-option-modal {
   -webkit-box-pack: start !important;
       -ms-flex-pack: start !important;
           justify-content: flex-start !important;
-  max-height: 20rem !important;
+  max-height: 18rem !important;
   width: 75% !important;
+}
+
+.timer-option-modal .button {
+  margin-top: auto;
+}
+
+.timer-input {
+  width: 4rem;
+  padding-left: 0.2rem;
+  border-radius: 0.5rem;
+  z-index: 2;
+  height: 3rem;
+  text-align: left;
+  margin: 0.5rem auto;
+  border: none;
+  color: #EBECE9;
+  background-color: rgba(235, 236, 233, 0.3);
+  font-size: 1.5rem;
+}
+
+.timer-input:focus {
+  outline: none;
+  background-color: rgba(235, 236, 233, 0.4);
+}
+
+.pm-btn-container {
+  position: absolute;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 0.75rem;
+  top: 14%;
+  left: 49%;
+  height: 3rem;
+  border-left: 1px solid rgba(235, 236, 233, 0.5);
+  width: 1.6rem;
+}
+
+.pm-btn-container button {
+  color: #EBECE9;
+  display: block;
+  width: inherit;
+  height: 50%;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.pm-btn-container button:hover, .pm-btn-container button :focus {
+  background-color: rgba(235, 236, 233, 0.2);
+  border: 1px solid #bc992B;
+  color: #E2CA78;
+}
+
+.pm-btn-container button:active {
+  color: #282828;
+  background-color: #bc992B;
+}
+
+.pm-btn-container button:first-child {
+  border-top-right-radius: 0.5rem;
+  border-bottom: 1px solid rgba(235, 236, 233, 0.5);
+}
+
+.pm-btn-container button:last-child {
+  border-bottom-right-radius: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .timer-input-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .timer-input-container label {
+    margin: 0 !important;
+  }
+  .timer-option-modal {
+    max-height: 22rem !important;
+  }
 }
 /*# sourceMappingURL=style.css.map */
