@@ -22,12 +22,14 @@ input[type=number] {
 
 .timer-input-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
+    align-items: center;
     margin-bottom: 2rem; 
 
     & label {
         font-size: 1.5rem; 
         position: relative; 
+        margin: 0 !important; 
 
         & span {
             margin-left: 0.5rem; 
@@ -45,7 +47,7 @@ input[type=number] {
 
 .timer-option-modal {
     justify-content:flex-start !important;
-    max-height: 18rem !important;  
+    max-height: 30rem !important;  
     width: 75% !important; 
 
     & .button {
@@ -54,7 +56,7 @@ input[type=number] {
 }
 
 .timer-input {
-    width: 3rem;  
+    width: 3.5rem;  
     border-top-left-radius: 0.5rem; 
     border-bottom-left-radius: 0.5rem; 
     z-index: 2;
@@ -113,23 +115,7 @@ input[type=number] {
     }
 }
 
-
-
-@media screen and (max-width: 768px) {
-    .timer-input-container {
-        flex-direction: column; 
-        align-items: center;
-        & label {
-            margin: 0 !important; 
-        }
-    }
-
-    .timer-option-modal {
-        max-height: 22rem !important; 
-    }
-
-    .brk-btns {
-        transform: translateY(0.55rem) !important; 
-    }
+.brk-btns {
+    transform: translateY(0.55rem) !important; 
 }
 

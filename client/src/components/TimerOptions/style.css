@@ -14,15 +14,20 @@ input[type=number] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-bottom: 2rem;
 }
 
 .timer-input-container label {
   font-size: 1.5rem;
   position: relative;
+  margin: 0 !important;
 }
 
 .timer-input-container label span {
@@ -41,7 +46,7 @@ input[type=number] {
   -webkit-box-pack: start !important;
       -ms-flex-pack: start !important;
           justify-content: flex-start !important;
-  max-height: 18rem !important;
+  max-height: 30rem !important;
   width: 75% !important;
 }
 
@@ -50,7 +55,7 @@ input[type=number] {
 }
 
 .timer-input {
-  width: 3rem;
+  width: 3.5rem;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   z-index: 2;
@@ -110,25 +115,8 @@ input[type=number] {
   border-bottom-right-radius: 0.5rem;
 }
 
-@media screen and (max-width: 768px) {
-  .timer-input-container {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .timer-input-container label {
-    margin: 0 !important;
-  }
-  .timer-option-modal {
-    max-height: 22rem !important;
-  }
-  .brk-btns {
-    -webkit-transform: translateY(0.55rem) !important;
-            transform: translateY(0.55rem) !important;
-  }
+.brk-btns {
+  -webkit-transform: translateY(0.55rem) !important;
+          transform: translateY(0.55rem) !important;
 }
 /*# sourceMappingURL=style.css.map */

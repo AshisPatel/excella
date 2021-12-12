@@ -8,7 +8,7 @@ const TimerOptions = ({ setShowTimerOptions }) => {
     // initialize formState
     const [formState, setFormState] = useState({
         workTime: 25,
-        restTime: 5
+        breakTime: 5
     });
 
     // initialize warning variable for form submission 
@@ -27,12 +27,65 @@ const TimerOptions = ({ setShowTimerOptions }) => {
     // handle form submit
     const handleSubmit = (e) => {
 
+        e.preventDefault(); 
+
     }
 
     // handle form input change
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+        // if(!value) {
+        //     value = 0; 
+        // }
         setFormState(prevState => ({ ...prevState, [name]: value }));
+    }
+
+    // handle time increase for work time plus button
+    const incrementWorkTime = () => {
+        if(parseInt(formState.workTime) < 60) {
+            setWarning(''); 
+            return setFormState(prevState => ({...prevState, workTime: parseInt(prevState.workTime) + 1}));
+        } else if (!formState.workTime) {
+            setWarning(''); 
+            return setFormState(prevState => ({...prevState, workTime: 1})); 
+        }
+        setWarning('Work duration must be less than 60 minutes.'); 
+    }
+
+    // handle time decrease for work time minus button
+    const decrementWorkTime= () => {
+        if(parseInt(formState.workTime) > 1) {
+            setWarning('');
+            return setFormState(prevState => ({...prevState, workTime: parseInt(prevState.workTime) - 1})); 
+        } else if (!formState.workTime) {
+            setWarning(''); 
+            return setFormState(prevState => ({...prevState, workTime: 1})); 
+        }
+        setWarning('Work duration must be at least 1 minute.'); 
+    }
+
+      // handle time increase for work time plus button
+      const incrementBreakTime = () => {
+        if(parseInt(formState.breakTime) < parseInt(formState.workTime)) {
+            setWarning(''); 
+            return setFormState(prevState => ({...prevState, breakTime: parseInt(prevState.breakTime) + 1}));
+        } else if (!formState.breakTime) {
+            setWarning(''); 
+            return setFormState(prevState => ({...prevState, breakTime: 1})); 
+        }
+        setWarning('Break duration cannot be longer than work duration.'); 
+    }
+
+    // handle time decrease for work time minus button
+    const decrementBreakTime= () => {
+        if(parseInt(formState.breakTime) > 1) {
+            setWarning('');
+            return setFormState(prevState => ({...prevState, breakTime: parseInt(prevState.breakTime) - 1})); 
+        } else if (!formState.breakTime) {
+            setWarning(''); 
+            return setFormState(prevState => ({...prevState, breakTime: 1})); 
+        }
+        setWarning('Break duration must be at least 1 minute.'); 
     }
 
     const closeModal = () => {
@@ -76,12 +129,14 @@ const TimerOptions = ({ setShowTimerOptions }) => {
                                 <button
                                     className='inc-btn'
                                     type='button'
+                                    onClick={() => incrementWorkTime('workTime')}
                                 >
                                     <FontAwesomeIcon icon='plus' />
                                 </button>
                                 <button
                                     className='dec-btn'
                                     type='button'
+                                    onClick={() => decrementWorkTime()}
                                 >
                                     <FontAwesomeIcon icon='minus' />
                                 </button>
@@ -103,12 +158,14 @@ const TimerOptions = ({ setShowTimerOptions }) => {
                                 <button
                                     className='inc-btn'
                                     type='button'
+                                    onClick={() => incrementBreakTime()}
                                 >
                                     <FontAwesomeIcon icon='plus' />
                                 </button>
                                 <button
                                     className='dec-btn'
                                     type='button'
+                                    onClick={() => decrementBreakTime()}
                                 >
                                     <FontAwesomeIcon icon='minus' />
                                 </button>
@@ -128,6 +185,17 @@ const TimerOptions = ({ setShowTimerOptions }) => {
                             <><FontAwesomeIcon icon="save" /> Update</>
                         }
                     </button>
+                    <button 
+                        className={`button ${success && 'success'}`}
+                        name = 'save-defaults-btn'
+                        onClick={handleSubmit}
+                    >
+                        {success ?
+                            <FontAwesomeIcon icon="check" /> :
+                            <><FontAwesomeIcon icon="cog" /> Make Default</>
+                        }
+                    </button>
+
                 </form>
             </div>
             <div className="modal-backdrop"></div>
