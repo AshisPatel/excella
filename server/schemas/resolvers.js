@@ -1,6 +1,6 @@
 const { User, Job, Task } = require('../models');
 //import GraphQL authentication error handling
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError, UserInputError } = require('apollo-server-express');
 //JWT function
 const { signToken } = require('../utils/auth');
 //import custom scalar resolver to format date-time responses in a human-readable format
@@ -311,7 +311,7 @@ const resolvers = {
           // check to see if break time is trying to be set higher than the work time
           if (timerArgs.breakTime > timerArgs.workTime) {
             console.log('TIMER VALUE ERROR')
-            return {error: "Break time cannot be greater than work time!"}
+            throw new UserInputError('Break duration cannot be set longer than Work duration!'); 
           }
           const updatedUser = await User.findOneAndUpdate({ _id: _id  }, timerArgs, {new: true, runValidators: true });
           return updatedUser;

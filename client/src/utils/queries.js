@@ -46,3 +46,14 @@ query singleJob($_id: ID!) {
     }
 }
 `;
+
+// Timer Queries
+export const QUERY_ME = gql`
+query me {
+    me {
+        username
+        workTime
+        breakTime
+    }
+}
+`;

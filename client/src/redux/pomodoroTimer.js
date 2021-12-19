@@ -1,5 +1,12 @@
 // actions calls
 
+export const setTime = (time) => {
+    return {
+        type: 'SET_TIME',
+        payload: time
+    }
+}
+
 // action call to set work time, will take time in minutes
 export const setWorkTime = (time) => {
     return {
@@ -48,7 +55,7 @@ export const switchTimers = () => {
 // initialize state
 let initialState = {
     workTime: 25,
-    breakTime: 1,
+    breakTime: 5,
     timerInterval: '',
     working: true,
     timerRunning: false
@@ -60,6 +67,11 @@ let initialStateWithTime = {...initialState, time: (initialState.working ? initi
 // setup reducer 
 export default function pomodoroTimerReducer(pomodoroTimer = initialStateWithTime, { type, payload }) {
     switch (type) {
+        case 'SET_TIME':
+            return {
+                ...pomodoroTimer,
+                time: payload * 60 * 1000
+            }
         case 'SET_WORK_TIME':
             return {
                 ...pomodoroTimer,

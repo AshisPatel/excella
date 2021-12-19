@@ -2,13 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import './style.css';
 import ExcellaIcon from '../ExcellaIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useMutation } from '@apollo/client';
+import { useSelector, useDispatch } from 'react-redux'; 
 
 const TimerOptions = ({ setShowTimerOptions }) => {
+    // get workTime and breakTime from global state 
+    const { workTime, breakTime } = useSelector(state => state.pomodoroTimer);
 
     // initialize formState
     const [formState, setFormState] = useState({
-        workTime: 25,
-        breakTime: 5
+        workTime,
+        breakTime
     });
 
     // initialize warning variable for form submission 
@@ -29,8 +33,10 @@ const TimerOptions = ({ setShowTimerOptions }) => {
         e.preventDefault();
 
         if(!formState.breakTime || !formState.workTime) return setWarning('Duration of cycles must be between 1 and 60 minutes.');
-
+        if(formState.breakTime > formState.workTime) return setWarning('Break duration cannot be longer than Work duration.'); 
         // make mutation to update user timer variables 
+        
+
         
     }
 
