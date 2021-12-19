@@ -46,7 +46,7 @@ input[type=number] {
   -webkit-box-pack: start !important;
       -ms-flex-pack: start !important;
           justify-content: flex-start !important;
-  max-height: 30rem !important;
+  max-height: 33rem !important;
   width: 75% !important;
 }
 

@@ -26,66 +26,77 @@ const TimerOptions = ({ setShowTimerOptions }) => {
 
     // handle form submit
     const handleSubmit = (e) => {
+        e.preventDefault();
 
-        e.preventDefault(); 
+        if(!formState.breakTime || !formState.workTime) return setWarning('Duration of cycles must be between 1 and 60 minutes.');
 
+        // make mutation to update user timer variables 
+        
     }
 
     // handle form input change
     const handleChange = (e) => {
         let { name, value } = e.target;
-        // if(!value) {
-        //     value = 0; 
-        // }
-        setFormState(prevState => ({ ...prevState, [name]: value }));
+        // check if input for breakTime would be longer than work time 
+        if (name === 'breakTime') {
+            if (value > formState.workTime) return setWarning('Break duration cannot be greater than work duration');
+        }
+
+        // make sure values are between 0 and 60 minutes
+        // must be greater than 0 to allow a blank input ---> will verify inputs are not 0 or blank on submit 
+        if (value > 60 || value < 0) {
+            return setWarning(`${name === 'workTime' ? "Work" : "Break"} duration must be between 1 to 60 minutes`)
+        }
+        setWarning(''); 
+        setFormState(prevState => ({ ...prevState, [name]: value })); 
     }
 
     // handle time increase for work time plus button
     const incrementWorkTime = () => {
-        if(parseInt(formState.workTime) < 60) {
-            setWarning(''); 
-            return setFormState(prevState => ({...prevState, workTime: parseInt(prevState.workTime) + 1}));
+        if (parseInt(formState.workTime) < 60) {
+            setWarning('');
+            return setFormState(prevState => ({ ...prevState, workTime: parseInt(prevState.workTime) + 1 }));
         } else if (!formState.workTime) {
-            setWarning(''); 
-            return setFormState(prevState => ({...prevState, workTime: 1})); 
+            setWarning('');
+            return setFormState(prevState => ({ ...prevState, workTime: 1 }));
         }
-        setWarning('Work duration must be less than 60 minutes.'); 
+        setWarning('Work duration must be less than 60 minutes.');
     }
 
     // handle time decrease for work time minus button
-    const decrementWorkTime= () => {
-        if(parseInt(formState.workTime) > 1) {
+    const decrementWorkTime = () => {
+        if (parseInt(formState.workTime) > 1) {
             setWarning('');
-            return setFormState(prevState => ({...prevState, workTime: parseInt(prevState.workTime) - 1})); 
+            return setFormState(prevState => ({ ...prevState, workTime: parseInt(prevState.workTime) - 1 }));
         } else if (!formState.workTime) {
-            setWarning(''); 
-            return setFormState(prevState => ({...prevState, workTime: 1})); 
+            setWarning('');
+            return setFormState(prevState => ({ ...prevState, workTime: 1 }));
         }
-        setWarning('Work duration must be at least 1 minute.'); 
+        setWarning('Work duration must be at least 1 minute.');
     }
 
-      // handle time increase for work time plus button
-      const incrementBreakTime = () => {
-        if(parseInt(formState.breakTime) < parseInt(formState.workTime)) {
-            setWarning(''); 
-            return setFormState(prevState => ({...prevState, breakTime: parseInt(prevState.breakTime) + 1}));
+    // handle time increase for work time plus button
+    const incrementBreakTime = () => {
+        if (parseInt(formState.breakTime) < parseInt(formState.workTime)) {
+            setWarning('');
+            return setFormState(prevState => ({ ...prevState, breakTime: parseInt(prevState.breakTime) + 1 }));
         } else if (!formState.breakTime) {
-            setWarning(''); 
-            return setFormState(prevState => ({...prevState, breakTime: 1})); 
+            setWarning('');
+            return setFormState(prevState => ({ ...prevState, breakTime: 1 }));
         }
-        setWarning('Break duration cannot be longer than work duration.'); 
+        setWarning('Break duration cannot be longer than work duration.');
     }
 
     // handle time decrease for work time minus button
-    const decrementBreakTime= () => {
-        if(parseInt(formState.breakTime) > 1) {
+    const decrementBreakTime = () => {
+        if (parseInt(formState.breakTime) > 1) {
             setWarning('');
-            return setFormState(prevState => ({...prevState, breakTime: parseInt(prevState.breakTime) - 1})); 
+            return setFormState(prevState => ({ ...prevState, breakTime: parseInt(prevState.breakTime) - 1 }));
         } else if (!formState.breakTime) {
-            setWarning(''); 
-            return setFormState(prevState => ({...prevState, breakTime: 1})); 
+            setWarning('');
+            return setFormState(prevState => ({ ...prevState, breakTime: 1 }));
         }
-        setWarning('Break duration must be at least 1 minute.'); 
+        setWarning('Break duration must be at least 1 minute.');
     }
 
     const closeModal = () => {
@@ -94,6 +105,30 @@ const TimerOptions = ({ setShowTimerOptions }) => {
         setTimeout(() => {
             setShowTimerOptions(false);
         }, 300);
+    };
+
+    // will trigger on key press
+    const handleArrowKeys = (e) => {
+        // checks for the up arrow key
+        if (e.keyCode === 38) {
+            // prevent default increase / decrease ---> only allow state change through previous functions
+            e.preventDefault();
+            // only two inputs, so if it is workTime input, increase work time else increase breakTime
+            e.target.name === "workTime" ? incrementWorkTime() : incrementBreakTime()
+        }
+        // checks for the down arrow key 
+        if (e.keyCode === 40) {
+            e.preventDefault();
+            e.target.name === "workTime" ? decrementWorkTime() : decrementBreakTime()
+        }
+    }
+
+    const reset = () => {
+        setWarning('');
+        setFormState({
+            workTime: 25,
+            breakTime: 5
+        });
     };
 
     return (
@@ -124,6 +159,7 @@ const TimerOptions = ({ setShowTimerOptions }) => {
                             type='number'
                             className='timer-input'
                             onChange={handleChange}
+                            onKeyDown={handleArrowKeys}
                         />
                             <div className='pm-btn-container'>
                                 <button
@@ -153,6 +189,7 @@ const TimerOptions = ({ setShowTimerOptions }) => {
                             type='number'
                             className='timer-input'
                             onChange={handleChange}
+                            onKeyDown={handleArrowKeys}
                         />
                             <div className='pm-btn-container brk-btns'>
                                 <button
@@ -185,15 +222,22 @@ const TimerOptions = ({ setShowTimerOptions }) => {
                             <><FontAwesomeIcon icon="save" /> Update</>
                         }
                     </button>
-                    <button 
+                    <button
                         className={`button ${success && 'success'}`}
-                        name = 'save-defaults-btn'
+                        name='save-defaults-btn'
                         onClick={handleSubmit}
                     >
                         {success ?
                             <FontAwesomeIcon icon="check" /> :
                             <><FontAwesomeIcon icon="cog" /> Make Default</>
                         }
+                    </button>
+
+                    <button
+                        className="button"
+                        onClick={() => reset()}
+                    >
+                        <FontAwesomeIcon icon="undo" /> Reset
                     </button>
 
                 </form>
