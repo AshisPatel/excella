@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import { useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../redux/currentPage';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import JobBadge from '../JobBadge';
 
 
 const JobItem = ({ job }) => {
@@ -22,6 +23,7 @@ const JobItem = ({ job }) => {
                 <>  
                     <td>{applicationStatus}</td>
                     <td>{dayjs(lastUpdated).format('MM/DD/YYYY')}</td>
+                    <td><JobBadge date={lastUpdated}/></td>
                 </>
             }
         </tr>
