@@ -1,11 +1,6 @@
 const { Schema } = require('mongoose');
 
 const timerSchema = new Schema({
-
-    username: {
-        type: String,
-        required: true
-    },
     
     workTime: {
         type: Number,
@@ -25,12 +20,12 @@ const timerSchema = new Schema({
 });
 
 // check pre creation at validation step that breakTime is less than or equal to workTime
-timerSchema.pre('validate', function(next) {
-    if (this.breakTime > this.workTime) {
-        this.invalidate('breakTime', 'Break duration cannot be longer than Work duration', this.breakTime); 
-    }
+// timerSchema.pre('validate', function(next) {
+//     if (this.breakTime > this.workTime) {
+//         this.invalidate('breakTime', 'Break duration cannot be longer than Work duration', this.breakTime); 
+//     }
 
-    next(); 
-})
+//     next(); 
+// })
 
 module.exports = timerSchema; 

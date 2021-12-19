@@ -6,6 +6,8 @@ const typeDefs = gql`
         token: ID!
         user: User
     }
+
+
     
     type User {
         _id: ID
@@ -14,6 +16,8 @@ const typeDefs = gql`
         email: String
         jobs: [Job]
         tasks: [Task]
+        workTime: Int,
+        breakTime: Int
     }
 
     enum TaskCategory {
@@ -79,6 +83,7 @@ const typeDefs = gql`
         addContact(_id: ID!, firstName: String!, lastName: String! email: String, phone: String): Job
         deleteContact(_id: ID!): Job
         updateContact(_id: ID!, firstName: String!, lastName: String!, email: String, phone: String): Contact
+        updateTimer(_id: ID!, workTime: Int!, breakTime: Int!): User 
     }
 `
 

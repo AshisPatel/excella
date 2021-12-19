@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const timerSchema = require('./Timer'); 
-//import our schemas that will become part of the userSchema
-//const { jobSchema } = require('./Job');
-//const taskSchema = require('./Task');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -40,7 +36,19 @@ const userSchema = new Schema({
         }
     ],
 
-    timer: [timerSchema]
+    workTime: {
+        type: Number,
+        default: 25,
+        max: 60,
+        min: 1
+    },
+
+    breakTime: {
+        type: Number,
+        default: 5,
+        max: 60,
+        min: 1
+    }
 });
 
 // set up pre-save middleware to create password
