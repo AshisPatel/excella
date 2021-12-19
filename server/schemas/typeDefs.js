@@ -7,8 +7,6 @@ const typeDefs = gql`
         user: User
     }
 
-
-    
     type User {
         _id: ID
         username: String
@@ -16,7 +14,7 @@ const typeDefs = gql`
         email: String
         jobs: [Job]
         tasks: [Task]
-        workTime: Int,
+        workTime: Int
         breakTime: Int
     }
 
@@ -35,6 +33,10 @@ const typeDefs = gql`
         complete: Boolean,
         username: String
     }
+
+    type Note {
+        noteBody: String
+    }
     
     type Contact {
         _id: ID
@@ -52,6 +54,7 @@ const typeDefs = gql`
         applicationStatus: String
         username: String
         contacts: [Contact]
+        notes: [Note]
     }
 
     type DeletedTasks {

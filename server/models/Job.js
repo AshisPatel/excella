@@ -1,6 +1,14 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat')
 
+const noteSchema = new Schema({
+    noteBody: {
+        type: String,
+        required: true,
+        trim: true
+    }
+})
+
 const contactSchema = new Schema({
 //add 'follow-up' array of user contact notes each time they reach out to one of their contacts (feature later? or MVP capability?)
     // contactId: {
@@ -58,7 +66,9 @@ const jobSchema = new Schema({
         type: String,
         required: 'Please enter your username!'
     },
-    contacts: [contactSchema]
+    contacts: [contactSchema],
+
+    notes: [noteSchema]
 },
 // {
 //     toJSON: {
