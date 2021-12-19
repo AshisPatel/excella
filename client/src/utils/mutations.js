@@ -164,3 +164,15 @@ mutation deleteContact($_id: ID!) {
     }
 }
 `;
+
+// Timer mutations
+
+export const UPDATE_TIMER = gql`
+mutation updateTimer($workTime: Int!, $breakTime: Int!) {
+    updateTimer(workTime: $workTime, breakTime: $breakTime) {
+        workTime
+        breakTime
+        username
+    }
+}
+`;

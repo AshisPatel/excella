@@ -86,7 +86,7 @@ const typeDefs = gql`
         addContact(_id: ID!, firstName: String!, lastName: String! email: String, phone: String): Job
         deleteContact(_id: ID!): Job
         updateContact(_id: ID!, firstName: String!, lastName: String!, email: String, phone: String): Contact
-        updateTimer(_id: ID!, workTime: Int!, breakTime: Int!): User 
+        updateTimer(workTime: Int!, breakTime: Int!): User 
     }
 `
 

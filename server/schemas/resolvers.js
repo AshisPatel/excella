@@ -306,14 +306,14 @@ const resolvers = {
         throw new AuthenticationError('You must be logged in to update a Contact!');
       },
       //=======================Job Mutations===============================================
-      updateTimer: async(parent, {_id, ...timerArgs}, context) => {
+      updateTimer: async(parent, timerArgs, context) => {
         if(context.user) {
           // check to see if break time is trying to be set higher than the work time
           if (timerArgs.breakTime > timerArgs.workTime) {
             console.log('TIMER VALUE ERROR')
             throw new UserInputError('Break duration cannot be set longer than Work duration!'); 
           }
-          const updatedUser = await User.findOneAndUpdate({ _id: _id  }, timerArgs, {new: true, runValidators: true });
+          const updatedUser = await User.findOneAndUpdate({ _id: context.user._id  }, timerArgs, {new: true, runValidators: true });
           return updatedUser;
         }
       }
