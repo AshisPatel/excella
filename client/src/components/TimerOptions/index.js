@@ -4,14 +4,32 @@ import ExcellaIcon from '../ExcellaIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMutation } from '@apollo/client';
 import { UPDATE_TIMER } from '../../utils/mutations';
-import { useSelector, useDispatch } from 'react-redux'; 
+import { QUERY_JOBS, QUERY_ME } from '../../utils/queries';
+import { useSelector, useDispatch } from 'react-redux';
+import { setWorkTime, setBreakTime, setTime } from '../../redux/pomodoroTimer';
 
 const TimerOptions = ({ setShowTimerOptions }) => {
     // get workTime and breakTime from global state 
-    const { workTime, breakTime } = useSelector(state => state.pomodoroTimer);
-
+    const { workTime, breakTime, time, working } = useSelector(state => state.pomodoroTimer);
+    const dispatch = useDispatch();
     // import updateTimer mutation
-    const [updateTimer, { error }] = useMutation(UPDATE_TIMER); 
+    // update cache of QUERY_ME to include new timer values 
+    const [updateTimer, { error }] = useMutation(UPDATE_TIMER, {
+        update(cache, { data: { updateTimer } }) {
+            console.log('Updating query me');
+            console.log(updateTimer); 
+            try {
+                cache.updateQuery({
+                    query: QUERY_ME
+                }, (data) => ({ me: updateTimer})
+                )
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    });
+
+
 
     // initialize formState
     const [formState, setFormState] = useState({
@@ -23,6 +41,7 @@ const TimerOptions = ({ setShowTimerOptions }) => {
     const [warning, setWarning] = useState('');
 
     // initialize state variables for animations
+    const [loading, setLoading] = useState(false);
     const [fadeOut, setFadeOut] = useState(false);
     const [success, setSuccess] = useState(false);
 
@@ -33,15 +52,38 @@ const TimerOptions = ({ setShowTimerOptions }) => {
     }, [])
 
     // handle form submit
-    const handleSubmit = (e) => {
+    const handleUpdate = async (e) => {
+
         e.preventDefault();
-
-        if(!formState.breakTime || !formState.workTime) return setWarning('Duration of cycles must be between 1 and 60 minutes.');
-        if(formState.breakTime > formState.workTime) return setWarning('Break duration cannot be longer than Work duration.'); 
+        const { workTime, breakTime } = formState;
+        if (!breakTime || !workTime) return setWarning('Duration of cycles must be between 1 and 60 minutes.');
+        if (breakTime > workTime) return setWarning('Break duration cannot be longer than Work duration.');
         // make mutation to update user timer variables 
+        // call function to actually change data 
+        dispatch(setWorkTime(workTime));
+        dispatch(setBreakTime(breakTime));
+        working ? dispatch(setTime(workTime)) : dispatch(setTime(breakTime)); 
+        try {
+            setLoading(true);
+            const { data } = await updateTimer({
+                variables: {
+                    workTime,
+                    breakTime
+                }
+            });
+            console.log(data);
+            setTimeout(() => {
+                setLoading(false);
+                setSuccess(true);
+                setTimeout(() => {
+                    closeModal();
+                }, 500)
+            }, 1000);
 
-
-        
+        } catch (err) {
+            console.error(err);
+            setWarning('There was a problem updating the timer.');
+        }
     }
 
     // handle form input change
@@ -57,8 +99,8 @@ const TimerOptions = ({ setShowTimerOptions }) => {
         if (value > 60 || value < 0) {
             return setWarning(`${name === 'workTime' ? "Work" : "Break"} duration must be between 1 to 60 minutes`)
         }
-        setWarning(''); 
-        setFormState(prevState => ({ ...prevState, [name]: value })); 
+        setWarning('');
+        setFormState(prevState => ({ ...prevState, [name]: value }));
     }
 
     // handle time increase for work time plus button
@@ -133,12 +175,34 @@ const TimerOptions = ({ setShowTimerOptions }) => {
         }
     }
 
-    const reset = () => {
+    const reset = async () => {
         setWarning('');
         setFormState({
             workTime: 25,
             breakTime: 5
         });
+
+        try {
+            setLoading(true);
+            const { data } = await updateTimer({
+                variables: {
+                    workTime: 25,
+                    breakTime: 5
+                }
+            });
+            console.log(data);
+            setTimeout(() => {
+                setLoading(false);
+                setSuccess(true);
+                setTimeout(() => {
+                    closeModal();
+                }, 500)
+            }, 1000);
+
+        } catch (err) {
+            console.error(err);
+            setWarning('There was a problem updating the timer.');
+        }
     };
 
     return (
@@ -146,7 +210,7 @@ const TimerOptions = ({ setShowTimerOptions }) => {
             <div className="modal-wrapper">
                 <form
                     className={`modal-form timer-option-modal ${fadeOut ? 'slide-out' : 'slide-in'}`}
-                    onSubmit={handleSubmit}
+                    onSubmit={handleUpdate}
                 >
                     <span
                         className="close-btn"
@@ -225,21 +289,11 @@ const TimerOptions = ({ setShowTimerOptions }) => {
                     </p>
                     <button
                         className={`button ${success && 'success'}`}
-                        onClick={handleSubmit}
+                        onClick={handleUpdate}
                     >
                         {success ?
                             <FontAwesomeIcon icon="check" /> :
                             <><FontAwesomeIcon icon="save" /> Update</>
-                        }
-                    </button>
-                    <button
-                        className={`button ${success && 'success'}`}
-                        name='save-defaults-btn'
-                        onClick={handleSubmit}
-                    >
-                        {success ?
-                            <FontAwesomeIcon icon="check" /> :
-                            <><FontAwesomeIcon icon="cog" /> Make Default</>
                         }
                     </button>
 
